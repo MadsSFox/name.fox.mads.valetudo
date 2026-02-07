@@ -1,0 +1,12 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Current Floor",
+    "da": "Nuværende etage",
+    "de": "Aktuelles Stockwerk"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Floor",
+    "da": "Etage",
+    "de": "Stockwerk"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "values": [
+    { "id": "__new__", "title": { "en": "New Floor...", "da": "Ny etage...", "de": "Neues Stockwerk..." } }
+  ]
+}

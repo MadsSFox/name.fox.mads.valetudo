@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Last Clean Duration",
+    "da": "Seneste rengøringstid",
+    "de": "Letzte Reinigungsdauer"
+  },
+  "units": {
+    "en": "min",
+    "da": "min",
+    "de": "Min"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "New Floor",
+    "da": "Ny etage",
+    "de": "Neues Stockwerk"
+  },
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button",
+  "icon": "/assets/icon.svg"
+}

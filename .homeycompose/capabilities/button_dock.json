@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Return to Dock",
+    "da": "Kør til dock",
+    "de": "Zur Ladestation"
+  },
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button",
+  "icon": "/assets/icon.svg"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Last Clean Area",
+    "da": "Seneste rengøringsareal",
+    "de": "Letzte Reinigungsfläche"
+  },
+  "units": {
+    "en": "m\u00b2",
+    "da": "m\u00b2",
+    "de": "m\u00b2"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

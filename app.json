@@ -1,0 +1,2481 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "name.fox.mads.valetudo",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Valetudo",
+    "da": "Valetudo",
+    "de": "Valetudo"
+  },
+  "description": {
+    "en": "Control your Valetudo-powered robot vacuum",
+    "da": "Styr din Valetudo-drevne robotstøvsuger",
+    "de": "Steuere deinen Valetudo-betriebenen Saugroboter"
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Mads Fox",
+    "email": "mads.saustrup.kristensen@gmail.com"
+  },
+  "brandColor": "#1a73e8",
+  "tags": {
+    "en": [
+      "valetudo",
+      "vacuum",
+      "robot",
+      "roborock",
+      "dreame",
+      "mqtt",
+      "multi-floor"
+    ],
+    "da": [
+      "valetudo",
+      "støvsuger",
+      "robot",
+      "roborock",
+      "dreame",
+      "mqtt",
+      "multi-etage"
+    ],
+    "de": [
+      "valetudo",
+      "staubsauger",
+      "roboter",
+      "roborock",
+      "dreame",
+      "mqtt",
+      "multi-etage"
+    ]
+  },
+  "source": "https://github.com/MadsSFox/homey-valetudo",
+  "homepage": "https://github.com/MadsSFox/homey-valetudo",
+  "support": "https://github.com/MadsSFox/homey-valetudo/issues",
+  "bugs": {
+    "url": "https://github.com/MadsSFox/homey-valetudo/issues"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "floor_switched",
+        "title": {
+          "en": "Floor was switched",
+          "da": "Etage blev skiftet",
+          "de": "Stockwerk wurde gewechselt"
+        },
+        "tokens": [
+          {
+            "name": "floor_name",
+            "type": "string",
+            "title": {
+              "en": "Floor Name",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "example": {
+              "en": "Ground Floor",
+              "da": "Stueetage",
+              "de": "Erdgeschoss"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "cleaning_started",
+        "title": {
+          "en": "Cleaning started",
+          "da": "Rengøring startet",
+          "de": "Reinigung gestartet"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "cleaning_finished",
+        "title": {
+          "en": "Cleaning finished",
+          "da": "Rengøring afsluttet",
+          "de": "Reinigung beendet"
+        },
+        "tokens": [
+          {
+            "name": "area_m2",
+            "type": "number",
+            "title": {
+              "en": "Area Cleaned (m2)",
+              "da": "Rengjort areal (m2)",
+              "de": "Gereinigte Fläche (m2)"
+            },
+            "example": {
+              "en": "42",
+              "da": "42",
+              "de": "42"
+            }
+          },
+          {
+            "name": "duration_min",
+            "type": "number",
+            "title": {
+              "en": "Duration (min)",
+              "da": "Varighed (min)",
+              "de": "Dauer (Min)"
+            },
+            "example": {
+              "en": "35",
+              "da": "35",
+              "de": "35"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "error_occurred",
+        "title": {
+          "en": "An error occurred",
+          "da": "Der opstod en fejl",
+          "de": "Ein Fehler ist aufgetreten"
+        },
+        "tokens": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "title": {
+              "en": "Error Message",
+              "da": "Fejlmeddelelse",
+              "de": "Fehlermeldung"
+            },
+            "example": {
+              "en": "Stuck near cliff",
+              "da": "Sidder fast ved kant",
+              "de": "An Kante hängengeblieben"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "robot_stuck",
+        "title": {
+          "en": "Robot is stuck",
+          "da": "Robotten sidder fast",
+          "de": "Roboter steckt fest"
+        },
+        "tokens": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "title": {
+              "en": "Error Message",
+              "da": "Fejlmeddelelse",
+              "de": "Fehlermeldung"
+            },
+            "example": {
+              "en": "Stuck: please move robot",
+              "da": "Sidder fast: flyt venligst robotten",
+              "de": "Festgefahren: bitte Roboter versetzen"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "dustbin_full",
+        "title": {
+          "en": "Dustbin needs emptying",
+          "da": "Støvbeholderen skal tømmes",
+          "de": "Staubbehälter muss geleert werden"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "battery_level_reached",
+        "title": {
+          "en": "Battery dropped below threshold",
+          "da": "Batteri faldet under grænse",
+          "de": "Akku unter Schwellenwert gefallen"
+        },
+        "titleFormatted": {
+          "en": "Battery dropped below [[threshold]]%",
+          "da": "Batteri faldet under [[threshold]]%",
+          "de": "Akku unter [[threshold]]% gefallen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "number",
+            "name": "threshold",
+            "title": {
+              "en": "Battery %",
+              "da": "Batteri %",
+              "de": "Akku %"
+            },
+            "min": 5,
+            "max": 95,
+            "step": 5,
+            "value": 20
+          }
+        ],
+        "tokens": [
+          {
+            "name": "battery_level",
+            "type": "number",
+            "title": {
+              "en": "Battery Level",
+              "da": "Batteriniveau",
+              "de": "Akkustand"
+            },
+            "example": {
+              "en": "15",
+              "da": "15",
+              "de": "15"
+            }
+          }
+        ]
+      },
+      {
+        "id": "segment_cleaning_started",
+        "title": {
+          "en": "Started cleaning a segment",
+          "da": "Begyndte rengøring af segment",
+          "de": "Segmentreinigung gestartet"
+        },
+        "tokens": [
+          {
+            "name": "segment_name",
+            "type": "string",
+            "title": {
+              "en": "Segment Name",
+              "da": "Segmentnavn",
+              "de": "Segmentname"
+            },
+            "example": {
+              "en": "Kitchen",
+              "da": "Køkken",
+              "de": "Küche"
+            }
+          },
+          {
+            "name": "segment_id",
+            "type": "string",
+            "title": {
+              "en": "Segment ID",
+              "da": "Segment-ID",
+              "de": "Segment-ID"
+            },
+            "example": {
+              "en": "17",
+              "da": "17",
+              "de": "17"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "segment_cleaning_finished",
+        "title": {
+          "en": "Finished cleaning a segment",
+          "da": "Afsluttede rengøring af segment",
+          "de": "Segmentreinigung beendet"
+        },
+        "tokens": [
+          {
+            "name": "segment_name",
+            "type": "string",
+            "title": {
+              "en": "Segment Name",
+              "da": "Segmentnavn",
+              "de": "Segmentname"
+            },
+            "example": {
+              "en": "Kitchen",
+              "da": "Køkken",
+              "de": "Küche"
+            }
+          },
+          {
+            "name": "segment_id",
+            "type": "string",
+            "title": {
+              "en": "Segment ID",
+              "da": "Segment-ID",
+              "de": "Segment-ID"
+            },
+            "example": {
+              "en": "17",
+              "da": "17",
+              "de": "17"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "consumable_depleted",
+        "title": {
+          "en": "A consumable needs replacement",
+          "da": "En forbrugsdel skal udskiftes",
+          "de": "Ein Verbrauchsteil muss ersetzt werden"
+        },
+        "tokens": [
+          {
+            "name": "consumable_type",
+            "type": "string",
+            "title": {
+              "en": "Consumable Type",
+              "da": "Forbrugsdelstype",
+              "de": "Verbrauchsteiltyp"
+            },
+            "example": {
+              "en": "filter",
+              "da": "filter",
+              "de": "Filter"
+            }
+          },
+          {
+            "name": "consumable_sub_type",
+            "type": "string",
+            "title": {
+              "en": "Consumable Sub-Type",
+              "da": "Forbrugsdels-undertype",
+              "de": "Verbrauchsteil-Untertyp"
+            },
+            "example": {
+              "en": "main",
+              "da": "hoved",
+              "de": "Haupt"
+            }
+          },
+          {
+            "name": "remaining",
+            "type": "number",
+            "title": {
+              "en": "Remaining %",
+              "da": "Resterende %",
+              "de": "Verbleibend %"
+            },
+            "example": {
+              "en": "5",
+              "da": "5",
+              "de": "5"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "valetudo_updated",
+        "title": {
+          "en": "Valetudo was updated",
+          "da": "Valetudo blev opdateret",
+          "de": "Valetudo wurde aktualisiert"
+        },
+        "tokens": [
+          {
+            "name": "old_version",
+            "type": "string",
+            "title": {
+              "en": "Previous Version",
+              "da": "Tidligere version",
+              "de": "Vorherige Version"
+            },
+            "example": {
+              "en": "2026.01.0",
+              "da": "2026.01.0",
+              "de": "2026.01.0"
+            }
+          },
+          {
+            "name": "new_version",
+            "type": "string",
+            "title": {
+              "en": "New Version",
+              "da": "Ny version",
+              "de": "Neue Version"
+            },
+            "example": {
+              "en": "2026.02.0",
+              "da": "2026.02.0",
+              "de": "2026.02.0"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "update_available",
+        "title": {
+          "en": "A Valetudo update is available",
+          "da": "En Valetudo-opdatering er tilgængelig",
+          "de": "Ein Valetudo-Update ist verfügbar"
+        },
+        "tokens": [
+          {
+            "name": "current_version",
+            "type": "string",
+            "title": {
+              "en": "Current Version",
+              "da": "Nuværende version",
+              "de": "Aktuelle Version"
+            },
+            "example": {
+              "en": "2026.02.0",
+              "da": "2026.02.0",
+              "de": "2026.02.0"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "is_on_floor",
+        "title": {
+          "en": "Is on floor",
+          "da": "Er på etage",
+          "de": "Ist auf Stockwerk"
+        },
+        "titleFormatted": {
+          "en": "Is on floor [[floor]]",
+          "da": "Er på etage [[floor]]",
+          "de": "Ist auf Stockwerk [[floor]]"
+        },
+        "titleTrue": {
+          "en": "Is on floor [[floor]]",
+          "da": "Er på etage [[floor]]",
+          "de": "Ist auf Stockwerk [[floor]]"
+        },
+        "titleFalse": {
+          "en": "Is not on floor [[floor]]",
+          "da": "Er ikke på etage [[floor]]",
+          "de": "Ist nicht auf Stockwerk [[floor]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "has_state",
+        "title": {
+          "en": "State is",
+          "da": "Status er",
+          "de": "Status ist"
+        },
+        "titleFormatted": {
+          "en": "State is [[state]]",
+          "da": "Status er [[state]]",
+          "de": "Status ist [[state]]"
+        },
+        "titleTrue": {
+          "en": "State is [[state]]",
+          "da": "Status er [[state]]",
+          "de": "Status ist [[state]]"
+        },
+        "titleFalse": {
+          "en": "State is not [[state]]",
+          "da": "Status er ikke [[state]]",
+          "de": "Status ist nicht [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "state",
+            "title": {
+              "en": "State",
+              "da": "Status",
+              "de": "Status"
+            },
+            "values": [
+              {
+                "id": "cleaning",
+                "label": {
+                  "en": "Cleaning",
+                  "da": "Rengører",
+                  "de": "Reinigt"
+                }
+              },
+              {
+                "id": "docked",
+                "label": {
+                  "en": "Docked",
+                  "da": "I dock",
+                  "de": "Angedockt"
+                }
+              },
+              {
+                "id": "idle",
+                "label": {
+                  "en": "Idle",
+                  "da": "Inaktiv",
+                  "de": "Bereit"
+                }
+              },
+              {
+                "id": "returning",
+                "label": {
+                  "en": "Returning",
+                  "da": "Returnerer",
+                  "de": "Kehrt zurück"
+                }
+              },
+              {
+                "id": "paused",
+                "label": {
+                  "en": "Paused",
+                  "da": "Pauseret",
+                  "de": "Pausiert"
+                }
+              },
+              {
+                "id": "error",
+                "label": {
+                  "en": "Error",
+                  "da": "Fejl",
+                  "de": "Fehler"
+                }
+              },
+              {
+                "id": "manual_control",
+                "label": {
+                  "en": "Manual Control",
+                  "da": "Manuel styring",
+                  "de": "Manuelle Steuerung"
+                }
+              },
+              {
+                "id": "moving",
+                "label": {
+                  "en": "Moving",
+                  "da": "Bevæger sig",
+                  "de": "Bewegt sich"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "has_dock",
+        "title": {
+          "en": "Current floor has a dock",
+          "da": "Nuværende etage har en dock",
+          "de": "Aktuelles Stockwerk hat eine Ladestation"
+        },
+        "titleTrue": {
+          "en": "Current floor has a dock",
+          "da": "Nuværende etage har en dock",
+          "de": "Aktuelles Stockwerk hat eine Ladestation"
+        },
+        "titleFalse": {
+          "en": "Current floor has no dock",
+          "da": "Nuværende etage har ingen dock",
+          "de": "Aktuelles Stockwerk hat keine Ladestation"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "is_on_carpet",
+        "title": {
+          "en": "Is on carpet",
+          "da": "Er på tæppe",
+          "de": "Ist auf Teppich"
+        },
+        "titleTrue": {
+          "en": "Is on carpet",
+          "da": "Er på tæppe",
+          "de": "Ist auf Teppich"
+        },
+        "titleFalse": {
+          "en": "Is not on carpet",
+          "da": "Er ikke på tæppe",
+          "de": "Ist nicht auf Teppich"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "is_in_segment",
+        "title": {
+          "en": "Is in segment",
+          "da": "Er i segment",
+          "de": "Ist in Segment"
+        },
+        "titleFormatted": {
+          "en": "Is in segment [[segment]]",
+          "da": "Er i segment [[segment]]",
+          "de": "Ist in Segment [[segment]]"
+        },
+        "titleTrue": {
+          "en": "Is in segment [[segment]]",
+          "da": "Er i segment [[segment]]",
+          "de": "Ist in Segment [[segment]]"
+        },
+        "titleFalse": {
+          "en": "Is not in segment [[segment]]",
+          "da": "Er ikke i segment [[segment]]",
+          "de": "Ist nicht in Segment [[segment]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment",
+            "title": {
+              "en": "Segment (Room)",
+              "da": "Segment (rum)",
+              "de": "Segment (Raum)"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "is_dnd_enabled",
+        "title": {
+          "en": "Do Not Disturb is enabled",
+          "da": "Forstyr ikke er aktiveret",
+          "de": "Bitte nicht stören ist aktiviert"
+        },
+        "titleTrue": {
+          "en": "Do Not Disturb is enabled",
+          "da": "Forstyr ikke er aktiveret",
+          "de": "Bitte nicht stören ist aktiviert"
+        },
+        "titleFalse": {
+          "en": "Do Not Disturb is disabled",
+          "da": "Forstyr ikke er deaktiveret",
+          "de": "Bitte nicht stören ist deaktiviert"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "is_carpet_mode_enabled",
+        "title": {
+          "en": "Carpet boost mode is enabled",
+          "da": "Tæppe-boost er aktiveret",
+          "de": "Teppich-Boost ist aktiviert"
+        },
+        "titleTrue": {
+          "en": "Carpet boost mode is enabled",
+          "da": "Tæppe-boost er aktiveret",
+          "de": "Teppich-Boost ist aktiviert"
+        },
+        "titleFalse": {
+          "en": "Carpet boost mode is disabled",
+          "da": "Tæppe-boost er deaktiveret",
+          "de": "Teppich-Boost ist deaktiviert"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "switch_floor",
+        "title": {
+          "en": "Switch to floor",
+          "da": "Skift til etage",
+          "de": "Stockwerk wechseln"
+        },
+        "titleFormatted": {
+          "en": "Switch to floor [[floor]]",
+          "da": "Skift til etage [[floor]]",
+          "de": "Wechsle zu Stockwerk [[floor]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "save_floor",
+        "title": {
+          "en": "Save current map as floor",
+          "da": "Gem nuværende kort som etage",
+          "de": "Aktuelle Karte als Stockwerk speichern"
+        },
+        "titleFormatted": {
+          "en": "Save current map as floor [[floor_name]] (dock: [[has_dock]])",
+          "da": "Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
+          "de": "Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "text",
+            "name": "floor_name",
+            "title": {
+              "en": "Floor Name",
+              "da": "Etage",
+              "de": "Stockwerkname"
+            },
+            "placeholder": {
+              "en": "e.g. Ground Floor",
+              "da": "f.eks. Stueetage",
+              "de": "z.B. Erdgeschoss"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "has_dock",
+            "title": {
+              "en": "Has Dock",
+              "da": "Har dock",
+              "de": "Hat Ladestation"
+            },
+            "values": [
+              {
+                "id": "yes",
+                "label": {
+                  "en": "Yes",
+                  "da": "Ja",
+                  "de": "Ja"
+                }
+              },
+              {
+                "id": "no",
+                "label": {
+                  "en": "No",
+                  "da": "Nej",
+                  "de": "Nein"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "update_floor",
+        "title": {
+          "en": "Update floor",
+          "da": "Opdater etage",
+          "de": "Stockwerk aktualisieren"
+        },
+        "titleFormatted": {
+          "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+          "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+          "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          },
+          {
+            "type": "text",
+            "name": "new_name",
+            "title": {
+              "en": "New Name",
+              "da": "Nyt navn",
+              "de": "Neuer Name"
+            },
+            "placeholder": {
+              "en": "e.g. Kitchen Floor",
+              "da": "f.eks. Køkkenetage",
+              "de": "z.B. Küchengeschoss"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "has_dock",
+            "title": {
+              "en": "Has Dock",
+              "da": "Har dock",
+              "de": "Hat Ladestation"
+            },
+            "values": [
+              {
+                "id": "yes",
+                "label": {
+                  "en": "Yes",
+                  "da": "Ja",
+                  "de": "Ja"
+                }
+              },
+              {
+                "id": "no",
+                "label": {
+                  "en": "No",
+                  "da": "Nej",
+                  "de": "Nein"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "start_cleaning",
+        "title": {
+          "en": "Start cleaning",
+          "da": "Start rengøring",
+          "de": "Reinigung starten"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "stop_cleaning",
+        "title": {
+          "en": "Stop cleaning",
+          "da": "Stop rengøring",
+          "de": "Reinigung stoppen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "pause_cleaning",
+        "title": {
+          "en": "Pause cleaning",
+          "da": "Pause rengøring",
+          "de": "Reinigung pausieren"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "return_to_dock",
+        "title": {
+          "en": "Return to dock",
+          "da": "Kør til dock",
+          "de": "Zur Ladestation zurückkehren"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "clean_segment",
+        "title": {
+          "en": "Clean segment",
+          "da": "Rengør segment",
+          "de": "Segment reinigen"
+        },
+        "titleFormatted": {
+          "en": "Clean segment [[segment]] ([[iterations]]x)",
+          "da": "Rengør segment [[segment]] ([[iterations]]x)",
+          "de": "Segment [[segment]] reinigen ([[iterations]]x)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment",
+            "title": {
+              "en": "Segment (Room)",
+              "da": "Segment (rum)",
+              "de": "Segment (Raum)"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          },
+          {
+            "type": "number",
+            "name": "iterations",
+            "title": {
+              "en": "Iterations",
+              "da": "Gentagelser",
+              "de": "Durchgänge"
+            },
+            "min": 1,
+            "step": 1,
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "clean_zone",
+        "title": {
+          "en": "Clean zone",
+          "da": "Rengør zone",
+          "de": "Zone reinigen"
+        },
+        "titleFormatted": {
+          "en": "Clean zone [[zone]] ([[iterations]]x)",
+          "da": "Rengør zone [[zone]] ([[iterations]]x)",
+          "de": "Zone [[zone]] reinigen ([[iterations]]x)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "zone",
+            "title": {
+              "en": "Zone",
+              "da": "Zone",
+              "de": "Zone"
+            },
+            "placeholder": {
+              "en": "Select a saved zone...",
+              "da": "Vælg en gemt zone...",
+              "de": "Gespeicherte Zone auswählen..."
+            }
+          },
+          {
+            "type": "number",
+            "name": "iterations",
+            "title": {
+              "en": "Iterations",
+              "da": "Gentagelser",
+              "de": "Durchgänge"
+            },
+            "min": 1,
+            "step": 1,
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "save_zone",
+        "title": {
+          "en": "Save zone at coordinates",
+          "da": "Gem zone ved koordinater",
+          "de": "Zone an Koordinaten speichern"
+        },
+        "titleFormatted": {
+          "en": "Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
+          "da": "Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
+          "de": "Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "text",
+            "name": "name",
+            "title": {
+              "en": "Zone Name",
+              "da": "Zonenavn",
+              "de": "Zonenname"
+            },
+            "placeholder": {
+              "en": "e.g. Under Kitchen Table",
+              "da": "f.eks. Under køkkenbordet",
+              "de": "z.B. Unter dem Küchentisch"
+            }
+          },
+          {
+            "type": "number",
+            "name": "x1",
+            "title": {
+              "en": "Top-left X",
+              "da": "Øverste venstre X",
+              "de": "Oben-links X"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y1",
+            "title": {
+              "en": "Top-left Y",
+              "da": "Øverste venstre Y",
+              "de": "Oben-links Y"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "x2",
+            "title": {
+              "en": "Bottom-right X",
+              "da": "Nederste højre X",
+              "de": "Unten-rechts X"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y2",
+            "title": {
+              "en": "Bottom-right Y",
+              "da": "Nederste højre Y",
+              "de": "Unten-rechts Y"
+            },
+            "min": 0,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "delete_zone",
+        "title": {
+          "en": "Delete saved zone",
+          "da": "Slet gemt zone",
+          "de": "Gespeicherte Zone löschen"
+        },
+        "titleFormatted": {
+          "en": "Delete saved zone [[zone]]",
+          "da": "Slet gemt zone [[zone]]",
+          "de": "Gespeicherte Zone [[zone]] löschen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "zone",
+            "title": {
+              "en": "Zone",
+              "da": "Zone",
+              "de": "Zone"
+            },
+            "placeholder": {
+              "en": "Select a zone to delete...",
+              "da": "Vælg en zone at slette...",
+              "de": "Zone zum Löschen auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_fan_speed",
+        "title": {
+          "en": "Set fan speed",
+          "da": "Indstil blæserhastighed",
+          "de": "Saugstärke einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set fan speed to [[speed]]",
+          "da": "Indstil blæserhastighed til [[speed]]",
+          "de": "Saugstärke auf [[speed]] einstellen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "speed",
+            "title": {
+              "en": "Speed",
+              "da": "Hastighed",
+              "de": "Stufe"
+            },
+            "values": [
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "da": "Slukket",
+                  "de": "Aus"
+                }
+              },
+              {
+                "id": "min",
+                "label": {
+                  "en": "Min",
+                  "da": "Min",
+                  "de": "Min"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "da": "Lav",
+                  "de": "Niedrig"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "da": "Medium",
+                  "de": "Mittel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "da": "Høj",
+                  "de": "Hoch"
+                }
+              },
+              {
+                "id": "turbo",
+                "label": {
+                  "en": "Turbo",
+                  "da": "Turbo",
+                  "de": "Turbo"
+                }
+              },
+              {
+                "id": "max",
+                "label": {
+                  "en": "Max",
+                  "da": "Maks",
+                  "de": "Max"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_water_usage",
+        "title": {
+          "en": "Set water usage",
+          "da": "Indstil vandforbrug",
+          "de": "Wasserverbrauch einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set water usage to [[level]]",
+          "da": "Indstil vandforbrug til [[level]]",
+          "de": "Wasserverbrauch auf [[level]] einstellen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "level",
+            "title": {
+              "en": "Water Level",
+              "da": "Vandniveau",
+              "de": "Wasserstufe"
+            },
+            "values": [
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "da": "Slukket",
+                  "de": "Aus"
+                }
+              },
+              {
+                "id": "min",
+                "label": {
+                  "en": "Min",
+                  "da": "Min",
+                  "de": "Min"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "da": "Lav",
+                  "de": "Niedrig"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "da": "Medium",
+                  "de": "Mittel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "da": "Høj",
+                  "de": "Hoch"
+                }
+              },
+              {
+                "id": "max",
+                "label": {
+                  "en": "Max",
+                  "da": "Maks",
+                  "de": "Max"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_operation_mode",
+        "title": {
+          "en": "Set operation mode",
+          "da": "Indstil driftstilstand",
+          "de": "Betriebsmodus einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set operation mode to [[mode]]",
+          "da": "Indstil driftstilstand til [[mode]]",
+          "de": "Betriebsmodus auf [[mode]] einstellen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "da": "Tilstand",
+              "de": "Modus"
+            },
+            "values": [
+              {
+                "id": "vacuum",
+                "label": {
+                  "en": "Vacuum Only",
+                  "da": "Kun støvsuge",
+                  "de": "Nur Saugen"
+                }
+              },
+              {
+                "id": "mop",
+                "label": {
+                  "en": "Mop Only",
+                  "da": "Kun moppe",
+                  "de": "Nur Wischen"
+                }
+              },
+              {
+                "id": "vacuum_and_mop",
+                "label": {
+                  "en": "Vacuum & Mop",
+                  "da": "Støvsuge og moppe",
+                  "de": "Saugen & Wischen"
+                }
+              },
+              {
+                "id": "vacuum_then_mop",
+                "label": {
+                  "en": "Vacuum then Mop",
+                  "da": "Støvsuge derefter moppe",
+                  "de": "Saugen dann Wischen"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_speaker_volume",
+        "title": {
+          "en": "Set speaker volume",
+          "da": "Indstil højtalervolumen",
+          "de": "Lautstärke einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set speaker volume to [[volume]]%",
+          "da": "Indstil højtalervolumen til [[volume]]%",
+          "de": "Lautstärke auf [[volume]]% einstellen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "number",
+            "name": "volume",
+            "title": {
+              "en": "Volume %",
+              "da": "Volumen %",
+              "de": "Lautstärke %"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 10,
+            "value": 80
+          }
+        ]
+      },
+      {
+        "id": "play_test_sound",
+        "title": {
+          "en": "Play test sound",
+          "da": "Afspil testlyd",
+          "de": "Testton abspielen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "locate",
+        "title": {
+          "en": "Locate robot",
+          "da": "Find robot",
+          "de": "Roboter finden"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "trigger_auto_empty",
+        "title": {
+          "en": "Empty dustbin",
+          "da": "Tøm støvbeholder",
+          "de": "Staubbehälter leeren"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "set_dnd",
+        "title": {
+          "en": "Set Do Not Disturb",
+          "da": "Indstil Forstyr ikke",
+          "de": "Bitte nicht stören einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set Do Not Disturb [[enabled]]",
+          "da": "Indstil Forstyr ikke [[enabled]]",
+          "de": "Bitte nicht stören [[enabled]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "enabled",
+            "title": {
+              "en": "State",
+              "da": "Tilstand",
+              "de": "Status"
+            },
+            "values": [
+              {
+                "id": "enable",
+                "label": {
+                  "en": "Enabled",
+                  "da": "Aktiveret",
+                  "de": "Aktiviert"
+                }
+              },
+              {
+                "id": "disable",
+                "label": {
+                  "en": "Disabled",
+                  "da": "Deaktiveret",
+                  "de": "Deaktiviert"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_carpet_mode",
+        "title": {
+          "en": "Set carpet boost mode",
+          "da": "Indstil tæppe-boost",
+          "de": "Teppich-Boost einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set carpet boost mode [[enabled]]",
+          "da": "Indstil tæppe-boost [[enabled]]",
+          "de": "Teppich-Boost [[enabled]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "enabled",
+            "title": {
+              "en": "State",
+              "da": "Tilstand",
+              "de": "Status"
+            },
+            "values": [
+              {
+                "id": "enable",
+                "label": {
+                  "en": "Enabled",
+                  "da": "Aktiveret",
+                  "de": "Aktiviert"
+                }
+              },
+              {
+                "id": "disable",
+                "label": {
+                  "en": "Disabled",
+                  "da": "Deaktiveret",
+                  "de": "Deaktiviert"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "go_to_location",
+        "title": {
+          "en": "Send robot to coordinates",
+          "da": "Send robot til koordinater",
+          "de": "Roboter zu Koordinaten schicken"
+        },
+        "titleFormatted": {
+          "en": "Send robot to ([[x]], [[y]])",
+          "da": "Send robot til ([[x]], [[y]])",
+          "de": "Roboter zu ([[x]], [[y]]) schicken"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X coordinate",
+              "da": "X-koordinat",
+              "de": "X-Koordinate"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y coordinate",
+              "da": "Y-koordinat",
+              "de": "Y-Koordinate"
+            },
+            "min": 0,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "reset_consumable",
+        "title": {
+          "en": "Reset consumable",
+          "da": "Nulstil forbrugsdel",
+          "de": "Verbrauchsteil zurücksetzen"
+        },
+        "titleFormatted": {
+          "en": "Reset consumable [[consumable]]",
+          "da": "Nulstil forbrugsdel [[consumable]]",
+          "de": "Verbrauchsteil [[consumable]] zurücksetzen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "consumable",
+            "title": {
+              "en": "Consumable",
+              "da": "Forbrugsdel",
+              "de": "Verbrauchsteil"
+            },
+            "values": [
+              {
+                "id": "filter:none",
+                "label": {
+                  "en": "Filter",
+                  "da": "Filter",
+                  "de": "Filter"
+                }
+              },
+              {
+                "id": "brush:main",
+                "label": {
+                  "en": "Main Brush",
+                  "da": "Hovedbørste",
+                  "de": "Hauptbürste"
+                }
+              },
+              {
+                "id": "brush:side_right",
+                "label": {
+                  "en": "Side Brush",
+                  "da": "Sidebørste",
+                  "de": "Seitenbürste"
+                }
+              },
+              {
+                "id": "mop:none",
+                "label": {
+                  "en": "Mop",
+                  "da": "Moppe",
+                  "de": "Wischmopp"
+                }
+              },
+              {
+                "id": "sensor:all",
+                "label": {
+                  "en": "Sensors",
+                  "da": "Sensorer",
+                  "de": "Sensoren"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "start_new_map",
+        "title": {
+          "en": "Start building a new map",
+          "da": "Start opbygning af nyt kort",
+          "de": "Neue Karte erstellen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      },
+      {
+        "id": "install_voice_pack",
+        "title": {
+          "en": "Install voice pack",
+          "da": "Installer stemmepakke",
+          "de": "Sprachpaket installieren"
+        },
+        "titleFormatted": {
+          "en": "Install voice pack from [[url]] (language: [[language]])",
+          "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])",
+          "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "text",
+            "name": "url",
+            "title": {
+              "en": "Voice Pack URL",
+              "da": "Stemmepakke-URL",
+              "de": "Sprachpaket-URL"
+            },
+            "placeholder": {
+              "en": "https://example.com/voice.pkg",
+              "da": "https://example.com/voice.pkg",
+              "de": "https://example.com/voice.pkg"
+            }
+          },
+          {
+            "type": "text",
+            "name": "language",
+            "title": {
+              "en": "Language Code",
+              "da": "Sprogkode",
+              "de": "Sprachcode"
+            },
+            "placeholder": {
+              "en": "en",
+              "da": "da",
+              "de": "de"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Valetudo Robot Vacuum",
+        "da": "Valetudo Robotstøvsuger",
+        "de": "Valetudo Saugroboter"
+      },
+      "class": "vacuumcleaner",
+      "images": {
+        "small": "/drivers/valetudo/assets/images/small.png",
+        "large": "/drivers/valetudo/assets/images/large.png"
+      },
+      "capabilities": [
+        "onoff",
+        "vacuum_state",
+        "fan_speed",
+        "measure_battery",
+        "alarm_battery",
+        "current_floor",
+        "vacuum_error",
+        "measure_clean_area_last",
+        "measure_clean_duration_last",
+        "measure_clean_area_total",
+        "measure_clean_duration_total",
+        "button_dock",
+        "floor_picker",
+        "button_new_floor"
+      ],
+      "capabilitiesOptions": {
+        "onoff": {
+          "title": {
+            "en": "Cleaning",
+            "da": "Rengøring",
+            "de": "Reinigung"
+          },
+          "greyout": false
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery",
+            "da": "Batteri",
+            "de": "Akku"
+          }
+        },
+        "alarm_battery": {
+          "title": {
+            "en": "Low Battery",
+            "da": "Lavt batteri",
+            "de": "Akku schwach"
+          }
+        }
+      },
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "discovery": "valetudo",
+      "pair": [
+        {
+          "id": "discover"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "valetudo",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Valetudo Web UI",
+            "da": "Valetudo Web UI",
+            "de": "Valetudo Web-UI"
+          },
+          "children": [
+            {
+              "id": "valetudo_url",
+              "type": "label",
+              "label": {
+                "en": "Map & Controls",
+                "da": "Kort & kontrol",
+                "de": "Karte & Steuerung"
+              },
+              "hint": {
+                "en": "Open this URL in your browser to view the live map, manage rooms, and configure your robot.",
+                "da": "Åbn denne URL i din browser for at se live-kortet, administrere rum og konfigurere din robot.",
+                "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
+              },
+              "value": "http://"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Valetudo Connection",
+            "da": "Valetudo-forbindelse",
+            "de": "Valetudo-Verbindung"
+          },
+          "children": [
+            {
+              "id": "host",
+              "type": "text",
+              "label": {
+                "en": "Valetudo Host",
+                "da": "Valetudo-vært",
+                "de": "Valetudo-Host"
+              },
+              "hint": {
+                "en": "IP address or hostname of your Valetudo instance",
+                "da": "IP-adresse eller værtsnavn for din Valetudo-instans",
+                "de": "IP-Adresse oder Hostname deiner Valetudo-Instanz"
+              },
+              "value": ""
+            },
+            {
+              "id": "valetudo_auth_user",
+              "type": "text",
+              "label": {
+                "en": "HTTP Auth Username",
+                "da": "HTTP-brugernavn",
+                "de": "HTTP-Benutzername"
+              },
+              "hint": {
+                "en": "Leave empty if HTTP basic auth is not enabled",
+                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+              },
+              "value": ""
+            },
+            {
+              "id": "valetudo_auth_pass",
+              "type": "password",
+              "label": {
+                "en": "HTTP Auth Password",
+                "da": "HTTP-adgangskode",
+                "de": "HTTP-Passwort"
+              },
+              "hint": {
+                "en": "Leave empty if HTTP basic auth is not enabled",
+                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT",
+            "da": "MQTT",
+            "de": "MQTT"
+          },
+          "children": [
+            {
+              "id": "mqtt_broker",
+              "type": "text",
+              "label": {
+                "en": "MQTT Broker URL",
+                "da": "MQTT Broker URL",
+                "de": "MQTT-Broker-URL"
+              },
+              "hint": {
+                "en": "e.g. mqtt://192.168.1.10",
+                "da": "f.eks. mqtt://192.168.1.10",
+                "de": "z.B. mqtt://192.168.1.10"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_username",
+              "type": "text",
+              "label": {
+                "en": "MQTT Username",
+                "da": "MQTT Brugernavn",
+                "de": "MQTT-Benutzername"
+              },
+              "hint": {
+                "en": "Optional",
+                "da": "Valgfri",
+                "de": "Optional"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_password",
+              "type": "password",
+              "label": {
+                "en": "MQTT Password",
+                "da": "MQTT Adgangskode",
+                "de": "MQTT-Passwort"
+              },
+              "hint": {
+                "en": "Optional",
+                "da": "Valgfri",
+                "de": "Optional"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_topic_prefix",
+              "type": "text",
+              "label": {
+                "en": "MQTT Topic Prefix",
+                "da": "MQTT Emne-præfiks",
+                "de": "MQTT-Topic-Präfix"
+              },
+              "hint": {
+                "en": "Valetudo MQTT topic prefix (default: valetudo)",
+                "da": "Valetudo MQTT emne-præfiks (standard: valetudo)",
+                "de": "Valetudo MQTT-Topic-Präfix (Standard: valetudo)"
+              },
+              "value": "valetudo"
+            },
+            {
+              "id": "mqtt_identifier",
+              "type": "text",
+              "label": {
+                "en": "Robot MQTT Identifier",
+                "da": "Robot MQTT-identifikator",
+                "de": "Roboter-MQTT-Kennung"
+              },
+              "hint": {
+                "en": "The robot's MQTT identifier (auto-discovered during pairing)",
+                "da": "Robottens MQTT-identifikator (opdaget automatisk under parring)",
+                "de": "Die MQTT-Kennung des Roboters (automatisch beim Pairing erkannt)"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "SSH (for Multi-Floor)",
+            "da": "SSH (til multi-etage)",
+            "de": "SSH (für Multi-Stockwerk)"
+          },
+          "children": [
+            {
+              "id": "ssh_host",
+              "type": "text",
+              "label": {
+                "en": "SSH Host",
+                "da": "SSH-vært",
+                "de": "SSH-Host"
+              },
+              "hint": {
+                "en": "Defaults to Valetudo host if empty",
+                "da": "Standard er Valetudo-vært hvis tom",
+                "de": "Verwendet Valetudo-Host wenn leer"
+              },
+              "value": ""
+            },
+            {
+              "id": "ssh_port",
+              "type": "number",
+              "label": {
+                "en": "SSH Port",
+                "da": "SSH-port",
+                "de": "SSH-Port"
+              },
+              "value": 22,
+              "min": 1,
+              "max": 65535
+            },
+            {
+              "id": "ssh_user",
+              "type": "text",
+              "label": {
+                "en": "SSH Username",
+                "da": "SSH-brugernavn",
+                "de": "SSH-Benutzername"
+              },
+              "value": "root"
+            },
+            {
+              "id": "ssh_password",
+              "type": "password",
+              "label": {
+                "en": "SSH Password",
+                "da": "SSH-adgangskode",
+                "de": "SSH-Passwort"
+              },
+              "hint": {
+                "en": "Used for password-based SSH authentication",
+                "da": "Bruges til adgangskodebaseret SSH-godkendelse",
+                "de": "Für passwortbasierte SSH-Authentifizierung"
+              },
+              "value": ""
+            },
+            {
+              "id": "ssh_private_key",
+              "type": "textarea",
+              "label": {
+                "en": "SSH Private Key",
+                "da": "SSH Privat nøgle",
+                "de": "Privater SSH-Schlüssel"
+              },
+              "hint": {
+                "en": "Paste your SSH private key here (the content of your key file, e.g. id_rsa). Used for key-based auth, which is required for most rooted Roborock robots. Your SSH key was generated during rooting — see https://builder.dontvacuum.me for details.",
+                "da": "Indsæt din SSH private nøgle her (indholdet af din nøglefil, f.eks. id_rsa). Bruges til nøglebaseret godkendelse, som kræves af de fleste rootede Roborock-robotter. Din SSH-nøgle blev genereret under rooting — se https://builder.dontvacuum.me for detaljer.",
+                "de": "Füge deinen privaten SSH-Schlüssel hier ein (den Inhalt deiner Schlüsseldatei, z.B. id_rsa). Wird für schlüsselbasierte Authentifizierung benötigt, die bei den meisten gerooteten Roborock-Robotern erforderlich ist. Dein SSH-Schlüssel wurde beim Rooten generiert — siehe https://builder.dontvacuum.me für Details."
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Voice Packs",
+            "da": "Stemmepakker",
+            "de": "Sprachpakete"
+          },
+          "children": [
+            {
+              "id": "voice_pack_url",
+              "type": "text",
+              "label": {
+                "en": "Voice Pack URL",
+                "da": "Stemmepakke-URL",
+                "de": "Sprachpaket-URL"
+              },
+              "hint": {
+                "en": "URL to a Valetudo-compatible voice pack (.pkg or .tar.gz). You can find community voice packs at github.com/Hypfer/Valetudo/discussions",
+                "da": "URL til en Valetudo-kompatibel stemmepakke (.pkg eller .tar.gz). Du kan finde stemmepakker på github.com/Hypfer/Valetudo/discussions",
+                "de": "URL zu einem Valetudo-kompatiblen Sprachpaket (.pkg oder .tar.gz). Community-Sprachpakete findest du unter github.com/Hypfer/Valetudo/discussions"
+              },
+              "value": ""
+            },
+            {
+              "id": "voice_pack_language",
+              "type": "text",
+              "label": {
+                "en": "Language Code",
+                "da": "Sprogkode",
+                "de": "Sprachcode"
+              },
+              "hint": {
+                "en": "e.g. en, de, fr",
+                "da": "f.eks. en, da, de",
+                "de": "z.B. en, de, fr"
+              },
+              "value": "en"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "button_dock": {
+      "type": "boolean",
+      "title": {
+        "en": "Return to Dock",
+        "da": "Kør til dock",
+        "de": "Zur Ladestation"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/icon.svg"
+    },
+    "button_new_floor": {
+      "type": "boolean",
+      "title": {
+        "en": "New Floor",
+        "da": "Ny etage",
+        "de": "Neues Stockwerk"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/icon.svg"
+    },
+    "current_floor": {
+      "type": "string",
+      "title": {
+        "en": "Current Floor",
+        "da": "Nuværende etage",
+        "de": "Aktuelles Stockwerk"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "fan_speed": {
+      "type": "enum",
+      "title": {
+        "en": "Fan Speed",
+        "da": "Blæserhastighed",
+        "de": "Saugstärke"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "icon": "/assets/icon.svg",
+      "values": [
+        {
+          "id": "off",
+          "title": {
+            "en": "Off",
+            "da": "Slukket",
+            "de": "Aus"
+          }
+        },
+        {
+          "id": "min",
+          "title": {
+            "en": "Min",
+            "da": "Min",
+            "de": "Min"
+          }
+        },
+        {
+          "id": "low",
+          "title": {
+            "en": "Low",
+            "da": "Lav",
+            "de": "Niedrig"
+          }
+        },
+        {
+          "id": "medium",
+          "title": {
+            "en": "Medium",
+            "da": "Medium",
+            "de": "Mittel"
+          }
+        },
+        {
+          "id": "high",
+          "title": {
+            "en": "High",
+            "da": "Høj",
+            "de": "Hoch"
+          }
+        },
+        {
+          "id": "turbo",
+          "title": {
+            "en": "Turbo",
+            "da": "Turbo",
+            "de": "Turbo"
+          }
+        },
+        {
+          "id": "max",
+          "title": {
+            "en": "Max",
+            "da": "Maks",
+            "de": "Max"
+          }
+        }
+      ]
+    },
+    "floor_picker": {
+      "type": "enum",
+      "title": {
+        "en": "Floor",
+        "da": "Etage",
+        "de": "Stockwerk"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "__new__",
+          "title": {
+            "en": "New Floor...",
+            "da": "Ny etage...",
+            "de": "Neues Stockwerk..."
+          }
+        }
+      ]
+    },
+    "measure_clean_area_last": {
+      "type": "number",
+      "title": {
+        "en": "Last Clean Area",
+        "da": "Seneste rengøringsareal",
+        "de": "Letzte Reinigungsfläche"
+      },
+      "units": {
+        "en": "m²",
+        "da": "m²",
+        "de": "m²"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "measure_clean_area_total": {
+      "type": "number",
+      "title": {
+        "en": "Total Clean Area",
+        "da": "Samlet rengøringsareal",
+        "de": "Gesamte Reinigungsfläche"
+      },
+      "units": {
+        "en": "m²",
+        "da": "m²",
+        "de": "m²"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "measure_clean_duration_last": {
+      "type": "number",
+      "title": {
+        "en": "Last Clean Duration",
+        "da": "Seneste rengøringstid",
+        "de": "Letzte Reinigungsdauer"
+      },
+      "units": {
+        "en": "min",
+        "da": "min",
+        "de": "Min"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "measure_clean_duration_total": {
+      "type": "number",
+      "title": {
+        "en": "Total Clean Duration",
+        "da": "Samlet rengøringstid",
+        "de": "Gesamte Reinigungsdauer"
+      },
+      "units": {
+        "en": "hrs",
+        "da": "timer",
+        "de": "Std"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "vacuum_error": {
+      "type": "string",
+      "title": {
+        "en": "Error",
+        "da": "Fejl",
+        "de": "Fehler"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "vacuum_state": {
+      "type": "enum",
+      "title": {
+        "en": "Vacuum State",
+        "da": "Støvsugerstatus",
+        "de": "Saugroboter-Status"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg",
+      "values": [
+        {
+          "id": "cleaning",
+          "title": {
+            "en": "Cleaning",
+            "da": "Rengører",
+            "de": "Reinigt"
+          }
+        },
+        {
+          "id": "docked",
+          "title": {
+            "en": "Docked",
+            "da": "I dock",
+            "de": "Angedockt"
+          }
+        },
+        {
+          "id": "idle",
+          "title": {
+            "en": "Idle",
+            "da": "Inaktiv",
+            "de": "Bereit"
+          }
+        },
+        {
+          "id": "returning",
+          "title": {
+            "en": "Returning",
+            "da": "Returnerer",
+            "de": "Kehrt zurück"
+          }
+        },
+        {
+          "id": "paused",
+          "title": {
+            "en": "Paused",
+            "da": "Pauseret",
+            "de": "Pausiert"
+          }
+        },
+        {
+          "id": "error",
+          "title": {
+            "en": "Error",
+            "da": "Fejl",
+            "de": "Fehler"
+          }
+        },
+        {
+          "id": "manual_control",
+          "title": {
+            "en": "Manual Control",
+            "da": "Manuel styring",
+            "de": "Manuelle Steuerung"
+          }
+        },
+        {
+          "id": "moving",
+          "title": {
+            "en": "Moving",
+            "da": "Bevæger sig",
+            "de": "Bewegt sich"
+          }
+        }
+      ]
+    }
+  },
+  "discovery": {
+    "valetudo": {
+      "type": "mdns-sd",
+      "mdns-sd": {
+        "name": "_valetudo._tcp.local.",
+        "protocol": "tcp"
+      },
+      "id": "{{name}}"
+    }
+  }
+}

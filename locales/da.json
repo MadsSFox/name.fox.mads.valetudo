@@ -1,0 +1,55 @@
+{
+  "drivers": {
+    "valetudo": {
+      "name": "Valetudo Robotstøvsuger",
+      "pair": {
+        "connection": {
+          "title": "Forbind til Valetudo",
+          "usernameLabel": "Valetudo-vært (IP eller værtsnavn)",
+          "passwordLabel": "HTTP-adgangskode (lad stå tom hvis ingen)"
+        },
+        "list_devices": {
+          "title": "Vælg din robot"
+        }
+      },
+      "settings": {
+        "host": {
+          "label": "Valetudo-vært"
+        },
+        "valetudo_auth_user": {
+          "label": "HTTP-brugernavn"
+        },
+        "valetudo_auth_pass": {
+          "label": "HTTP-adgangskode"
+        },
+        "mqtt_broker": {
+          "label": "MQTT Broker URL"
+        },
+        "mqtt_username": {
+          "label": "MQTT Brugernavn"
+        },
+        "mqtt_password": {
+          "label": "MQTT Adgangskode"
+        },
+        "mqtt_topic_prefix": {
+          "label": "MQTT Emne-præfiks"
+        },
+        "mqtt_identifier": {
+          "label": "Robot MQTT-identifikator"
+        },
+        "ssh_host": {
+          "label": "SSH-vært"
+        },
+        "ssh_port": {
+          "label": "SSH-port"
+        },
+        "ssh_user": {
+          "label": "SSH-brugernavn"
+        },
+        "ssh_password": {
+          "label": "SSH-adgangskode"
+        }
+      }
+    }
+  }
+}

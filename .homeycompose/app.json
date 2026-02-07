@@ -1,0 +1,44 @@
+{
+  "id": "name.fox.mads.valetudo",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Valetudo",
+    "da": "Valetudo",
+    "de": "Valetudo"
+  },
+  "description": {
+    "en": "Control your Valetudo-powered robot vacuum",
+    "da": "Styr din Valetudo-drevne robotstøvsuger",
+    "de": "Steuere deinen Valetudo-betriebenen Saugroboter"
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Mads Fox",
+    "email": "mads.saustrup.kristensen@gmail.com"
+  },
+  "brandColor": "#1a73e8",
+  "tags": {
+    "en": ["valetudo", "vacuum", "robot", "roborock", "dreame", "mqtt", "multi-floor"],
+    "da": ["valetudo", "støvsuger", "robot", "roborock", "dreame", "mqtt", "multi-etage"],
+    "de": ["valetudo", "staubsauger", "roboter", "roborock", "dreame", "mqtt", "multi-etage"]
+  },
+  "source": "https://github.com/MadsSFox/homey-valetudo",
+  "homepage": "https://github.com/MadsSFox/homey-valetudo",
+  "support": "https://github.com/MadsSFox/homey-valetudo/issues",
+  "bugs": {
+    "url": "https://github.com/MadsSFox/homey-valetudo/issues"
+  }
+}

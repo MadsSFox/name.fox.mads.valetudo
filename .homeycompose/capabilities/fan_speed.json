@@ -1,0 +1,21 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Fan Speed",
+    "da": "Blæserhastighed",
+    "de": "Saugstärke"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "icon": "/assets/icon.svg",
+  "values": [
+    { "id": "off", "title": { "en": "Off", "da": "Slukket", "de": "Aus" } },
+    { "id": "min", "title": { "en": "Min", "da": "Min", "de": "Min" } },
+    { "id": "low", "title": { "en": "Low", "da": "Lav", "de": "Niedrig" } },
+    { "id": "medium", "title": { "en": "Medium", "da": "Medium", "de": "Mittel" } },
+    { "id": "high", "title": { "en": "High", "da": "Høj", "de": "Hoch" } },
+    { "id": "turbo", "title": { "en": "Turbo", "da": "Turbo", "de": "Turbo" } },
+    { "id": "max", "title": { "en": "Max", "da": "Maks", "de": "Max" } }
+  ]
+}

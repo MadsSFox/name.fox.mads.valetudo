@@ -1,0 +1,72 @@
+{
+  "name": {
+    "en": "Valetudo Robot Vacuum",
+    "da": "Valetudo Robotstøvsuger",
+    "de": "Valetudo Saugroboter"
+  },
+  "class": "vacuumcleaner",
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "capabilities": [
+    "onoff",
+    "vacuum_state",
+    "fan_speed",
+    "measure_battery",
+    "alarm_battery",
+    "current_floor",
+    "vacuum_error",
+    "measure_clean_area_last",
+    "measure_clean_duration_last",
+    "measure_clean_area_total",
+    "measure_clean_duration_total",
+    "button_dock",
+    "floor_picker",
+    "button_new_floor"
+  ],
+  "capabilitiesOptions": {
+    "onoff": {
+      "title": {
+        "en": "Cleaning",
+        "da": "Rengøring",
+        "de": "Reinigung"
+      },
+      "greyout": false
+    },
+    "measure_battery": {
+      "title": {
+        "en": "Battery",
+        "da": "Batteri",
+        "de": "Akku"
+      }
+    },
+    "alarm_battery": {
+      "title": {
+        "en": "Low Battery",
+        "da": "Lavt batteri",
+        "de": "Akku schwach"
+      }
+    }
+  },
+  "energy": {
+    "batteries": ["INTERNAL"]
+  },
+  "discovery": "valetudo",
+  "pair": [
+    {
+      "id": "discover"
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
+}

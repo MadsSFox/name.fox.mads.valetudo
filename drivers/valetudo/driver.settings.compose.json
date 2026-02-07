@@ -1,0 +1,284 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Valetudo Web UI",
+      "da": "Valetudo Web UI",
+      "de": "Valetudo Web-UI"
+    },
+    "children": [
+      {
+        "id": "valetudo_url",
+        "type": "label",
+        "label": {
+          "en": "Map & Controls",
+          "da": "Kort & kontrol",
+          "de": "Karte & Steuerung"
+        },
+        "hint": {
+          "en": "Open this URL in your browser to view the live map, manage rooms, and configure your robot.",
+          "da": "Åbn denne URL i din browser for at se live-kortet, administrere rum og konfigurere din robot.",
+          "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
+        },
+        "value": "http://"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Valetudo Connection",
+      "da": "Valetudo-forbindelse",
+      "de": "Valetudo-Verbindung"
+    },
+    "children": [
+      {
+        "id": "host",
+        "type": "text",
+        "label": {
+          "en": "Valetudo Host",
+          "da": "Valetudo-vært",
+          "de": "Valetudo-Host"
+        },
+        "hint": {
+          "en": "IP address or hostname of your Valetudo instance",
+          "da": "IP-adresse eller værtsnavn for din Valetudo-instans",
+          "de": "IP-Adresse oder Hostname deiner Valetudo-Instanz"
+        },
+        "value": ""
+      },
+      {
+        "id": "valetudo_auth_user",
+        "type": "text",
+        "label": {
+          "en": "HTTP Auth Username",
+          "da": "HTTP-brugernavn",
+          "de": "HTTP-Benutzername"
+        },
+        "hint": {
+          "en": "Leave empty if HTTP basic auth is not enabled",
+          "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+          "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+        },
+        "value": ""
+      },
+      {
+        "id": "valetudo_auth_pass",
+        "type": "password",
+        "label": {
+          "en": "HTTP Auth Password",
+          "da": "HTTP-adgangskode",
+          "de": "HTTP-Passwort"
+        },
+        "hint": {
+          "en": "Leave empty if HTTP basic auth is not enabled",
+          "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+          "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+        },
+        "value": ""
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "MQTT",
+      "da": "MQTT",
+      "de": "MQTT"
+    },
+    "children": [
+      {
+        "id": "mqtt_broker",
+        "type": "text",
+        "label": {
+          "en": "MQTT Broker URL",
+          "da": "MQTT Broker URL",
+          "de": "MQTT-Broker-URL"
+        },
+        "hint": {
+          "en": "e.g. mqtt://192.168.1.10",
+          "da": "f.eks. mqtt://192.168.1.10",
+          "de": "z.B. mqtt://192.168.1.10"
+        },
+        "value": ""
+      },
+      {
+        "id": "mqtt_username",
+        "type": "text",
+        "label": {
+          "en": "MQTT Username",
+          "da": "MQTT Brugernavn",
+          "de": "MQTT-Benutzername"
+        },
+        "hint": {
+          "en": "Optional",
+          "da": "Valgfri",
+          "de": "Optional"
+        },
+        "value": ""
+      },
+      {
+        "id": "mqtt_password",
+        "type": "password",
+        "label": {
+          "en": "MQTT Password",
+          "da": "MQTT Adgangskode",
+          "de": "MQTT-Passwort"
+        },
+        "hint": {
+          "en": "Optional",
+          "da": "Valgfri",
+          "de": "Optional"
+        },
+        "value": ""
+      },
+      {
+        "id": "mqtt_topic_prefix",
+        "type": "text",
+        "label": {
+          "en": "MQTT Topic Prefix",
+          "da": "MQTT Emne-præfiks",
+          "de": "MQTT-Topic-Präfix"
+        },
+        "hint": {
+          "en": "Valetudo MQTT topic prefix (default: valetudo)",
+          "da": "Valetudo MQTT emne-præfiks (standard: valetudo)",
+          "de": "Valetudo MQTT-Topic-Präfix (Standard: valetudo)"
+        },
+        "value": "valetudo"
+      },
+      {
+        "id": "mqtt_identifier",
+        "type": "text",
+        "label": {
+          "en": "Robot MQTT Identifier",
+          "da": "Robot MQTT-identifikator",
+          "de": "Roboter-MQTT-Kennung"
+        },
+        "hint": {
+          "en": "The robot's MQTT identifier (auto-discovered during pairing)",
+          "da": "Robottens MQTT-identifikator (opdaget automatisk under parring)",
+          "de": "Die MQTT-Kennung des Roboters (automatisch beim Pairing erkannt)"
+        },
+        "value": ""
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "SSH (for Multi-Floor)",
+      "da": "SSH (til multi-etage)",
+      "de": "SSH (für Multi-Stockwerk)"
+    },
+    "children": [
+      {
+        "id": "ssh_host",
+        "type": "text",
+        "label": {
+          "en": "SSH Host",
+          "da": "SSH-vært",
+          "de": "SSH-Host"
+        },
+        "hint": {
+          "en": "Defaults to Valetudo host if empty",
+          "da": "Standard er Valetudo-vært hvis tom",
+          "de": "Verwendet Valetudo-Host wenn leer"
+        },
+        "value": ""
+      },
+      {
+        "id": "ssh_port",
+        "type": "number",
+        "label": {
+          "en": "SSH Port",
+          "da": "SSH-port",
+          "de": "SSH-Port"
+        },
+        "value": 22,
+        "min": 1,
+        "max": 65535
+      },
+      {
+        "id": "ssh_user",
+        "type": "text",
+        "label": {
+          "en": "SSH Username",
+          "da": "SSH-brugernavn",
+          "de": "SSH-Benutzername"
+        },
+        "value": "root"
+      },
+      {
+        "id": "ssh_password",
+        "type": "password",
+        "label": {
+          "en": "SSH Password",
+          "da": "SSH-adgangskode",
+          "de": "SSH-Passwort"
+        },
+        "hint": {
+          "en": "Used for password-based SSH authentication",
+          "da": "Bruges til adgangskodebaseret SSH-godkendelse",
+          "de": "Für passwortbasierte SSH-Authentifizierung"
+        },
+        "value": ""
+      },
+      {
+        "id": "ssh_private_key",
+        "type": "textarea",
+        "label": {
+          "en": "SSH Private Key",
+          "da": "SSH Privat nøgle",
+          "de": "Privater SSH-Schlüssel"
+        },
+        "hint": {
+          "en": "Paste your SSH private key here (the content of your key file, e.g. id_rsa). Used for key-based auth, which is required for most rooted Roborock robots. Your SSH key was generated during rooting — see https://builder.dontvacuum.me for details.",
+          "da": "Indsæt din SSH private nøgle her (indholdet af din nøglefil, f.eks. id_rsa). Bruges til nøglebaseret godkendelse, som kræves af de fleste rootede Roborock-robotter. Din SSH-nøgle blev genereret under rooting — se https://builder.dontvacuum.me for detaljer.",
+          "de": "Füge deinen privaten SSH-Schlüssel hier ein (den Inhalt deiner Schlüsseldatei, z.B. id_rsa). Wird für schlüsselbasierte Authentifizierung benötigt, die bei den meisten gerooteten Roborock-Robotern erforderlich ist. Dein SSH-Schlüssel wurde beim Rooten generiert — siehe https://builder.dontvacuum.me für Details."
+        },
+        "value": ""
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Voice Packs",
+      "da": "Stemmepakker",
+      "de": "Sprachpakete"
+    },
+    "children": [
+      {
+        "id": "voice_pack_url",
+        "type": "text",
+        "label": {
+          "en": "Voice Pack URL",
+          "da": "Stemmepakke-URL",
+          "de": "Sprachpaket-URL"
+        },
+        "hint": {
+          "en": "URL to a Valetudo-compatible voice pack (.pkg or .tar.gz). You can find community voice packs at github.com/Hypfer/Valetudo/discussions",
+          "da": "URL til en Valetudo-kompatibel stemmepakke (.pkg eller .tar.gz). Du kan finde stemmepakker på github.com/Hypfer/Valetudo/discussions",
+          "de": "URL zu einem Valetudo-kompatiblen Sprachpaket (.pkg oder .tar.gz). Community-Sprachpakete findest du unter github.com/Hypfer/Valetudo/discussions"
+        },
+        "value": ""
+      },
+      {
+        "id": "voice_pack_language",
+        "type": "text",
+        "label": {
+          "en": "Language Code",
+          "da": "Sprogkode",
+          "de": "Sprachcode"
+        },
+        "hint": {
+          "en": "e.g. en, de, fr",
+          "da": "f.eks. en, da, de",
+          "de": "z.B. en, de, fr"
+        },
+        "value": "en"
+      }
+    ]
+  }
+]

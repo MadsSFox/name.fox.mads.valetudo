@@ -1,0 +1,619 @@
+{
+  "triggers": [
+    {
+      "id": "floor_switched",
+      "title": { "en": "Floor was switched", "da": "Etage blev skiftet", "de": "Stockwerk wurde gewechselt" },
+      "tokens": [
+        {
+          "name": "floor_name",
+          "type": "string",
+          "title": { "en": "Floor Name", "da": "Etage", "de": "Stockwerk" },
+          "example": { "en": "Ground Floor", "da": "Stueetage", "de": "Erdgeschoss" }
+        }
+      ]
+    },
+    {
+      "id": "cleaning_started",
+      "title": { "en": "Cleaning started", "da": "Rengøring startet", "de": "Reinigung gestartet" }
+    },
+    {
+      "id": "cleaning_finished",
+      "title": { "en": "Cleaning finished", "da": "Rengøring afsluttet", "de": "Reinigung beendet" },
+      "tokens": [
+        {
+          "name": "area_m2",
+          "type": "number",
+          "title": { "en": "Area Cleaned (m2)", "da": "Rengjort areal (m2)", "de": "Gereinigte Fläche (m2)" },
+          "example": { "en": "42", "da": "42", "de": "42" }
+        },
+        {
+          "name": "duration_min",
+          "type": "number",
+          "title": { "en": "Duration (min)", "da": "Varighed (min)", "de": "Dauer (Min)" },
+          "example": { "en": "35", "da": "35", "de": "35" }
+        }
+      ]
+    },
+    {
+      "id": "error_occurred",
+      "title": { "en": "An error occurred", "da": "Der opstod en fejl", "de": "Ein Fehler ist aufgetreten" },
+      "tokens": [
+        {
+          "name": "error_message",
+          "type": "string",
+          "title": { "en": "Error Message", "da": "Fejlmeddelelse", "de": "Fehlermeldung" },
+          "example": { "en": "Stuck near cliff", "da": "Sidder fast ved kant", "de": "An Kante hängengeblieben" }
+        }
+      ]
+    },
+    {
+      "id": "robot_stuck",
+      "title": { "en": "Robot is stuck", "da": "Robotten sidder fast", "de": "Roboter steckt fest" },
+      "tokens": [
+        {
+          "name": "error_message",
+          "type": "string",
+          "title": { "en": "Error Message", "da": "Fejlmeddelelse", "de": "Fehlermeldung" },
+          "example": { "en": "Stuck: please move robot", "da": "Sidder fast: flyt venligst robotten", "de": "Festgefahren: bitte Roboter versetzen" }
+        }
+      ]
+    },
+    {
+      "id": "dustbin_full",
+      "title": { "en": "Dustbin needs emptying", "da": "Støvbeholderen skal tømmes", "de": "Staubbehälter muss geleert werden" }
+    },
+    {
+      "id": "battery_level_reached",
+      "title": { "en": "Battery dropped below threshold", "da": "Batteri faldet under grænse", "de": "Akku unter Schwellenwert gefallen" },
+      "titleFormatted": { "en": "Battery dropped below [[threshold]]%", "da": "Batteri faldet under [[threshold]]%", "de": "Akku unter [[threshold]]% gefallen" },
+      "args": [
+        {
+          "type": "number",
+          "name": "threshold",
+          "title": { "en": "Battery %", "da": "Batteri %", "de": "Akku %" },
+          "min": 5,
+          "max": 95,
+          "step": 5,
+          "value": 20
+        }
+      ],
+      "tokens": [
+        {
+          "name": "battery_level",
+          "type": "number",
+          "title": { "en": "Battery Level", "da": "Batteriniveau", "de": "Akkustand" },
+          "example": { "en": "15", "da": "15", "de": "15" }
+        }
+      ]
+    },
+    {
+      "id": "segment_cleaning_started",
+      "title": { "en": "Started cleaning a segment", "da": "Begyndte rengøring af segment", "de": "Segmentreinigung gestartet" },
+      "tokens": [
+        {
+          "name": "segment_name",
+          "type": "string",
+          "title": { "en": "Segment Name", "da": "Segmentnavn", "de": "Segmentname" },
+          "example": { "en": "Kitchen", "da": "Køkken", "de": "Küche" }
+        },
+        {
+          "name": "segment_id",
+          "type": "string",
+          "title": { "en": "Segment ID", "da": "Segment-ID", "de": "Segment-ID" },
+          "example": { "en": "17", "da": "17", "de": "17" }
+        }
+      ]
+    },
+    {
+      "id": "segment_cleaning_finished",
+      "title": { "en": "Finished cleaning a segment", "da": "Afsluttede rengøring af segment", "de": "Segmentreinigung beendet" },
+      "tokens": [
+        {
+          "name": "segment_name",
+          "type": "string",
+          "title": { "en": "Segment Name", "da": "Segmentnavn", "de": "Segmentname" },
+          "example": { "en": "Kitchen", "da": "Køkken", "de": "Küche" }
+        },
+        {
+          "name": "segment_id",
+          "type": "string",
+          "title": { "en": "Segment ID", "da": "Segment-ID", "de": "Segment-ID" },
+          "example": { "en": "17", "da": "17", "de": "17" }
+        }
+      ]
+    },
+    {
+      "id": "consumable_depleted",
+      "title": { "en": "A consumable needs replacement", "da": "En forbrugsdel skal udskiftes", "de": "Ein Verbrauchsteil muss ersetzt werden" },
+      "tokens": [
+        {
+          "name": "consumable_type",
+          "type": "string",
+          "title": { "en": "Consumable Type", "da": "Forbrugsdelstype", "de": "Verbrauchsteiltyp" },
+          "example": { "en": "filter", "da": "filter", "de": "Filter" }
+        },
+        {
+          "name": "consumable_sub_type",
+          "type": "string",
+          "title": { "en": "Consumable Sub-Type", "da": "Forbrugsdels-undertype", "de": "Verbrauchsteil-Untertyp" },
+          "example": { "en": "main", "da": "hoved", "de": "Haupt" }
+        },
+        {
+          "name": "remaining",
+          "type": "number",
+          "title": { "en": "Remaining %", "da": "Resterende %", "de": "Verbleibend %" },
+          "example": { "en": "5", "da": "5", "de": "5" }
+        }
+      ]
+    },
+    {
+      "id": "valetudo_updated",
+      "title": { "en": "Valetudo was updated", "da": "Valetudo blev opdateret", "de": "Valetudo wurde aktualisiert" },
+      "tokens": [
+        {
+          "name": "old_version",
+          "type": "string",
+          "title": { "en": "Previous Version", "da": "Tidligere version", "de": "Vorherige Version" },
+          "example": { "en": "2026.01.0", "da": "2026.01.0", "de": "2026.01.0" }
+        },
+        {
+          "name": "new_version",
+          "type": "string",
+          "title": { "en": "New Version", "da": "Ny version", "de": "Neue Version" },
+          "example": { "en": "2026.02.0", "da": "2026.02.0", "de": "2026.02.0" }
+        }
+      ]
+    },
+    {
+      "id": "update_available",
+      "title": { "en": "A Valetudo update is available", "da": "En Valetudo-opdatering er tilgængelig", "de": "Ein Valetudo-Update ist verfügbar" },
+      "tokens": [
+        {
+          "name": "current_version",
+          "type": "string",
+          "title": { "en": "Current Version", "da": "Nuværende version", "de": "Aktuelle Version" },
+          "example": { "en": "2026.02.0", "da": "2026.02.0", "de": "2026.02.0" }
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "is_on_floor",
+      "title": { "en": "Is on floor", "da": "Er på etage", "de": "Ist auf Stockwerk" },
+      "titleFormatted": { "en": "Is on floor [[floor]]", "da": "Er på etage [[floor]]", "de": "Ist auf Stockwerk [[floor]]" },
+      "titleTrue": { "en": "Is on floor [[floor]]", "da": "Er på etage [[floor]]", "de": "Ist auf Stockwerk [[floor]]" },
+      "titleFalse": { "en": "Is not on floor [[floor]]", "da": "Er ikke på etage [[floor]]", "de": "Ist nicht auf Stockwerk [[floor]]" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "floor",
+          "title": { "en": "Floor", "da": "Etage", "de": "Stockwerk" },
+          "placeholder": { "en": "Select a floor...", "da": "Vælg en etage...", "de": "Stockwerk auswählen..." }
+        }
+      ]
+    },
+    {
+      "id": "has_state",
+      "title": { "en": "State is", "da": "Status er", "de": "Status ist" },
+      "titleFormatted": { "en": "State is [[state]]", "da": "Status er [[state]]", "de": "Status ist [[state]]" },
+      "titleTrue": { "en": "State is [[state]]", "da": "Status er [[state]]", "de": "Status ist [[state]]" },
+      "titleFalse": { "en": "State is not [[state]]", "da": "Status er ikke [[state]]", "de": "Status ist nicht [[state]]" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "state",
+          "title": { "en": "State", "da": "Status", "de": "Status" },
+          "values": [
+            { "id": "cleaning", "label": { "en": "Cleaning", "da": "Rengører", "de": "Reinigt" } },
+            { "id": "docked", "label": { "en": "Docked", "da": "I dock", "de": "Angedockt" } },
+            { "id": "idle", "label": { "en": "Idle", "da": "Inaktiv", "de": "Bereit" } },
+            { "id": "returning", "label": { "en": "Returning", "da": "Returnerer", "de": "Kehrt zurück" } },
+            { "id": "paused", "label": { "en": "Paused", "da": "Pauseret", "de": "Pausiert" } },
+            { "id": "error", "label": { "en": "Error", "da": "Fejl", "de": "Fehler" } },
+            { "id": "manual_control", "label": { "en": "Manual Control", "da": "Manuel styring", "de": "Manuelle Steuerung" } },
+            { "id": "moving", "label": { "en": "Moving", "da": "Bevæger sig", "de": "Bewegt sich" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "has_dock",
+      "title": { "en": "Current floor has a dock", "da": "Nuværende etage har en dock", "de": "Aktuelles Stockwerk hat eine Ladestation" },
+      "titleTrue": { "en": "Current floor has a dock", "da": "Nuværende etage har en dock", "de": "Aktuelles Stockwerk hat eine Ladestation" },
+      "titleFalse": { "en": "Current floor has no dock", "da": "Nuværende etage har ingen dock", "de": "Aktuelles Stockwerk hat keine Ladestation" }
+    },
+    {
+      "id": "is_on_carpet",
+      "title": { "en": "Is on carpet", "da": "Er på tæppe", "de": "Ist auf Teppich" },
+      "titleTrue": { "en": "Is on carpet", "da": "Er på tæppe", "de": "Ist auf Teppich" },
+      "titleFalse": { "en": "Is not on carpet", "da": "Er ikke på tæppe", "de": "Ist nicht auf Teppich" }
+    },
+    {
+      "id": "is_in_segment",
+      "title": { "en": "Is in segment", "da": "Er i segment", "de": "Ist in Segment" },
+      "titleFormatted": { "en": "Is in segment [[segment]]", "da": "Er i segment [[segment]]", "de": "Ist in Segment [[segment]]" },
+      "titleTrue": { "en": "Is in segment [[segment]]", "da": "Er i segment [[segment]]", "de": "Ist in Segment [[segment]]" },
+      "titleFalse": { "en": "Is not in segment [[segment]]", "da": "Er ikke i segment [[segment]]", "de": "Ist nicht in Segment [[segment]]" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "segment",
+          "title": { "en": "Segment (Room)", "da": "Segment (rum)", "de": "Segment (Raum)" },
+          "placeholder": { "en": "Select a room...", "da": "Vælg et rum...", "de": "Raum auswählen..." }
+        }
+      ]
+    },
+    {
+      "id": "is_dnd_enabled",
+      "title": { "en": "Do Not Disturb is enabled", "da": "Forstyr ikke er aktiveret", "de": "Bitte nicht stören ist aktiviert" },
+      "titleTrue": { "en": "Do Not Disturb is enabled", "da": "Forstyr ikke er aktiveret", "de": "Bitte nicht stören ist aktiviert" },
+      "titleFalse": { "en": "Do Not Disturb is disabled", "da": "Forstyr ikke er deaktiveret", "de": "Bitte nicht stören ist deaktiviert" }
+    },
+    {
+      "id": "is_carpet_mode_enabled",
+      "title": { "en": "Carpet boost mode is enabled", "da": "Tæppe-boost er aktiveret", "de": "Teppich-Boost ist aktiviert" },
+      "titleTrue": { "en": "Carpet boost mode is enabled", "da": "Tæppe-boost er aktiveret", "de": "Teppich-Boost ist aktiviert" },
+      "titleFalse": { "en": "Carpet boost mode is disabled", "da": "Tæppe-boost er deaktiveret", "de": "Teppich-Boost ist deaktiviert" }
+    }
+  ],
+  "actions": [
+    {
+      "id": "switch_floor",
+      "title": { "en": "Switch to floor", "da": "Skift til etage", "de": "Stockwerk wechseln" },
+      "titleFormatted": { "en": "Switch to floor [[floor]]", "da": "Skift til etage [[floor]]", "de": "Wechsle zu Stockwerk [[floor]]" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "floor",
+          "title": { "en": "Floor", "da": "Etage", "de": "Stockwerk" },
+          "placeholder": { "en": "Select a floor...", "da": "Vælg en etage...", "de": "Stockwerk auswählen..." }
+        }
+      ]
+    },
+    {
+      "id": "save_floor",
+      "title": { "en": "Save current map as floor", "da": "Gem nuværende kort som etage", "de": "Aktuelle Karte als Stockwerk speichern" },
+      "titleFormatted": { "en": "Save current map as floor [[floor_name]] (dock: [[has_dock]])", "da": "Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])", "de": "Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])" },
+      "args": [
+        {
+          "type": "text",
+          "name": "floor_name",
+          "title": { "en": "Floor Name", "da": "Etage", "de": "Stockwerkname" },
+          "placeholder": { "en": "e.g. Ground Floor", "da": "f.eks. Stueetage", "de": "z.B. Erdgeschoss" }
+        },
+        {
+          "type": "dropdown",
+          "name": "has_dock",
+          "title": { "en": "Has Dock", "da": "Har dock", "de": "Hat Ladestation" },
+          "values": [
+            { "id": "yes", "label": { "en": "Yes", "da": "Ja", "de": "Ja" } },
+            { "id": "no", "label": { "en": "No", "da": "Nej", "de": "Nein" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "update_floor",
+      "title": { "en": "Update floor", "da": "Opdater etage", "de": "Stockwerk aktualisieren" },
+      "titleFormatted": { "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]", "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]", "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "floor",
+          "title": { "en": "Floor", "da": "Etage", "de": "Stockwerk" },
+          "placeholder": { "en": "Select a floor...", "da": "Vælg en etage...", "de": "Stockwerk auswählen..." }
+        },
+        {
+          "type": "text",
+          "name": "new_name",
+          "title": { "en": "New Name", "da": "Nyt navn", "de": "Neuer Name" },
+          "placeholder": { "en": "e.g. Kitchen Floor", "da": "f.eks. Køkkenetage", "de": "z.B. Küchengeschoss" }
+        },
+        {
+          "type": "dropdown",
+          "name": "has_dock",
+          "title": { "en": "Has Dock", "da": "Har dock", "de": "Hat Ladestation" },
+          "values": [
+            { "id": "yes", "label": { "en": "Yes", "da": "Ja", "de": "Ja" } },
+            { "id": "no", "label": { "en": "No", "da": "Nej", "de": "Nein" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "start_cleaning",
+      "title": { "en": "Start cleaning", "da": "Start rengøring", "de": "Reinigung starten" }
+    },
+    {
+      "id": "stop_cleaning",
+      "title": { "en": "Stop cleaning", "da": "Stop rengøring", "de": "Reinigung stoppen" }
+    },
+    {
+      "id": "pause_cleaning",
+      "title": { "en": "Pause cleaning", "da": "Pause rengøring", "de": "Reinigung pausieren" }
+    },
+    {
+      "id": "return_to_dock",
+      "title": { "en": "Return to dock", "da": "Kør til dock", "de": "Zur Ladestation zurückkehren" }
+    },
+    {
+      "id": "clean_segment",
+      "title": { "en": "Clean segment", "da": "Rengør segment", "de": "Segment reinigen" },
+      "titleFormatted": { "en": "Clean segment [[segment]] ([[iterations]]x)", "da": "Rengør segment [[segment]] ([[iterations]]x)", "de": "Segment [[segment]] reinigen ([[iterations]]x)" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "segment",
+          "title": { "en": "Segment (Room)", "da": "Segment (rum)", "de": "Segment (Raum)" },
+          "placeholder": { "en": "Select a room...", "da": "Vælg et rum...", "de": "Raum auswählen..." }
+        },
+        {
+          "type": "number",
+          "name": "iterations",
+          "title": { "en": "Iterations", "da": "Gentagelser", "de": "Durchgänge" },
+          "min": 1,
+          "step": 1,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "clean_zone",
+      "title": { "en": "Clean zone", "da": "Rengør zone", "de": "Zone reinigen" },
+      "titleFormatted": { "en": "Clean zone [[zone]] ([[iterations]]x)", "da": "Rengør zone [[zone]] ([[iterations]]x)", "de": "Zone [[zone]] reinigen ([[iterations]]x)" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "zone",
+          "title": { "en": "Zone", "da": "Zone", "de": "Zone" },
+          "placeholder": { "en": "Select a saved zone...", "da": "Vælg en gemt zone...", "de": "Gespeicherte Zone auswählen..." }
+        },
+        {
+          "type": "number",
+          "name": "iterations",
+          "title": { "en": "Iterations", "da": "Gentagelser", "de": "Durchgänge" },
+          "min": 1,
+          "step": 1,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "save_zone",
+      "title": { "en": "Save zone at coordinates", "da": "Gem zone ved koordinater", "de": "Zone an Koordinaten speichern" },
+      "titleFormatted": { "en": "Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])", "da": "Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])", "de": "Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])" },
+      "args": [
+        {
+          "type": "text",
+          "name": "name",
+          "title": { "en": "Zone Name", "da": "Zonenavn", "de": "Zonenname" },
+          "placeholder": { "en": "e.g. Under Kitchen Table", "da": "f.eks. Under køkkenbordet", "de": "z.B. Unter dem Küchentisch" }
+        },
+        {
+          "type": "number",
+          "name": "x1",
+          "title": { "en": "Top-left X", "da": "Øverste venstre X", "de": "Oben-links X" },
+          "min": 0,
+          "step": 1
+        },
+        {
+          "type": "number",
+          "name": "y1",
+          "title": { "en": "Top-left Y", "da": "Øverste venstre Y", "de": "Oben-links Y" },
+          "min": 0,
+          "step": 1
+        },
+        {
+          "type": "number",
+          "name": "x2",
+          "title": { "en": "Bottom-right X", "da": "Nederste højre X", "de": "Unten-rechts X" },
+          "min": 0,
+          "step": 1
+        },
+        {
+          "type": "number",
+          "name": "y2",
+          "title": { "en": "Bottom-right Y", "da": "Nederste højre Y", "de": "Unten-rechts Y" },
+          "min": 0,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "delete_zone",
+      "title": { "en": "Delete saved zone", "da": "Slet gemt zone", "de": "Gespeicherte Zone löschen" },
+      "titleFormatted": { "en": "Delete saved zone [[zone]]", "da": "Slet gemt zone [[zone]]", "de": "Gespeicherte Zone [[zone]] löschen" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "zone",
+          "title": { "en": "Zone", "da": "Zone", "de": "Zone" },
+          "placeholder": { "en": "Select a zone to delete...", "da": "Vælg en zone at slette...", "de": "Zone zum Löschen auswählen..." }
+        }
+      ]
+    },
+    {
+      "id": "set_fan_speed",
+      "title": { "en": "Set fan speed", "da": "Indstil blæserhastighed", "de": "Saugstärke einstellen" },
+      "titleFormatted": { "en": "Set fan speed to [[speed]]", "da": "Indstil blæserhastighed til [[speed]]", "de": "Saugstärke auf [[speed]] einstellen" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "speed",
+          "title": { "en": "Speed", "da": "Hastighed", "de": "Stufe" },
+          "values": [
+            { "id": "off", "label": { "en": "Off", "da": "Slukket", "de": "Aus" } },
+            { "id": "min", "label": { "en": "Min", "da": "Min", "de": "Min" } },
+            { "id": "low", "label": { "en": "Low", "da": "Lav", "de": "Niedrig" } },
+            { "id": "medium", "label": { "en": "Medium", "da": "Medium", "de": "Mittel" } },
+            { "id": "high", "label": { "en": "High", "da": "Høj", "de": "Hoch" } },
+            { "id": "turbo", "label": { "en": "Turbo", "da": "Turbo", "de": "Turbo" } },
+            { "id": "max", "label": { "en": "Max", "da": "Maks", "de": "Max" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_water_usage",
+      "title": { "en": "Set water usage", "da": "Indstil vandforbrug", "de": "Wasserverbrauch einstellen" },
+      "titleFormatted": { "en": "Set water usage to [[level]]", "da": "Indstil vandforbrug til [[level]]", "de": "Wasserverbrauch auf [[level]] einstellen" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "level",
+          "title": { "en": "Water Level", "da": "Vandniveau", "de": "Wasserstufe" },
+          "values": [
+            { "id": "off", "label": { "en": "Off", "da": "Slukket", "de": "Aus" } },
+            { "id": "min", "label": { "en": "Min", "da": "Min", "de": "Min" } },
+            { "id": "low", "label": { "en": "Low", "da": "Lav", "de": "Niedrig" } },
+            { "id": "medium", "label": { "en": "Medium", "da": "Medium", "de": "Mittel" } },
+            { "id": "high", "label": { "en": "High", "da": "Høj", "de": "Hoch" } },
+            { "id": "max", "label": { "en": "Max", "da": "Maks", "de": "Max" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_operation_mode",
+      "title": { "en": "Set operation mode", "da": "Indstil driftstilstand", "de": "Betriebsmodus einstellen" },
+      "titleFormatted": { "en": "Set operation mode to [[mode]]", "da": "Indstil driftstilstand til [[mode]]", "de": "Betriebsmodus auf [[mode]] einstellen" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "title": { "en": "Mode", "da": "Tilstand", "de": "Modus" },
+          "values": [
+            { "id": "vacuum", "label": { "en": "Vacuum Only", "da": "Kun støvsuge", "de": "Nur Saugen" } },
+            { "id": "mop", "label": { "en": "Mop Only", "da": "Kun moppe", "de": "Nur Wischen" } },
+            { "id": "vacuum_and_mop", "label": { "en": "Vacuum & Mop", "da": "Støvsuge og moppe", "de": "Saugen & Wischen" } },
+            { "id": "vacuum_then_mop", "label": { "en": "Vacuum then Mop", "da": "Støvsuge derefter moppe", "de": "Saugen dann Wischen" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_speaker_volume",
+      "title": { "en": "Set speaker volume", "da": "Indstil højtalervolumen", "de": "Lautstärke einstellen" },
+      "titleFormatted": { "en": "Set speaker volume to [[volume]]%", "da": "Indstil højtalervolumen til [[volume]]%", "de": "Lautstärke auf [[volume]]% einstellen" },
+      "args": [
+        {
+          "type": "number",
+          "name": "volume",
+          "title": { "en": "Volume %", "da": "Volumen %", "de": "Lautstärke %" },
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "value": 80
+        }
+      ]
+    },
+    {
+      "id": "play_test_sound",
+      "title": { "en": "Play test sound", "da": "Afspil testlyd", "de": "Testton abspielen" }
+    },
+    {
+      "id": "locate",
+      "title": { "en": "Locate robot", "da": "Find robot", "de": "Roboter finden" }
+    },
+    {
+      "id": "trigger_auto_empty",
+      "title": { "en": "Empty dustbin", "da": "Tøm støvbeholder", "de": "Staubbehälter leeren" }
+    },
+    {
+      "id": "set_dnd",
+      "title": { "en": "Set Do Not Disturb", "da": "Indstil Forstyr ikke", "de": "Bitte nicht stören einstellen" },
+      "titleFormatted": { "en": "Set Do Not Disturb [[enabled]]", "da": "Indstil Forstyr ikke [[enabled]]", "de": "Bitte nicht stören [[enabled]]" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "enabled",
+          "title": { "en": "State", "da": "Tilstand", "de": "Status" },
+          "values": [
+            { "id": "enable", "label": { "en": "Enabled", "da": "Aktiveret", "de": "Aktiviert" } },
+            { "id": "disable", "label": { "en": "Disabled", "da": "Deaktiveret", "de": "Deaktiviert" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_carpet_mode",
+      "title": { "en": "Set carpet boost mode", "da": "Indstil tæppe-boost", "de": "Teppich-Boost einstellen" },
+      "titleFormatted": { "en": "Set carpet boost mode [[enabled]]", "da": "Indstil tæppe-boost [[enabled]]", "de": "Teppich-Boost [[enabled]]" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "enabled",
+          "title": { "en": "State", "da": "Tilstand", "de": "Status" },
+          "values": [
+            { "id": "enable", "label": { "en": "Enabled", "da": "Aktiveret", "de": "Aktiviert" } },
+            { "id": "disable", "label": { "en": "Disabled", "da": "Deaktiveret", "de": "Deaktiviert" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_to_location",
+      "title": { "en": "Send robot to coordinates", "da": "Send robot til koordinater", "de": "Roboter zu Koordinaten schicken" },
+      "titleFormatted": { "en": "Send robot to ([[x]], [[y]])", "da": "Send robot til ([[x]], [[y]])", "de": "Roboter zu ([[x]], [[y]]) schicken" },
+      "args": [
+        {
+          "type": "number",
+          "name": "x",
+          "title": { "en": "X coordinate", "da": "X-koordinat", "de": "X-Koordinate" },
+          "min": 0,
+          "step": 1
+        },
+        {
+          "type": "number",
+          "name": "y",
+          "title": { "en": "Y coordinate", "da": "Y-koordinat", "de": "Y-Koordinate" },
+          "min": 0,
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "reset_consumable",
+      "title": { "en": "Reset consumable", "da": "Nulstil forbrugsdel", "de": "Verbrauchsteil zurücksetzen" },
+      "titleFormatted": { "en": "Reset consumable [[consumable]]", "da": "Nulstil forbrugsdel [[consumable]]", "de": "Verbrauchsteil [[consumable]] zurücksetzen" },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "consumable",
+          "title": { "en": "Consumable", "da": "Forbrugsdel", "de": "Verbrauchsteil" },
+          "values": [
+            { "id": "filter:none", "label": { "en": "Filter", "da": "Filter", "de": "Filter" } },
+            { "id": "brush:main", "label": { "en": "Main Brush", "da": "Hovedbørste", "de": "Hauptbürste" } },
+            { "id": "brush:side_right", "label": { "en": "Side Brush", "da": "Sidebørste", "de": "Seitenbürste" } },
+            { "id": "mop:none", "label": { "en": "Mop", "da": "Moppe", "de": "Wischmopp" } },
+            { "id": "sensor:all", "label": { "en": "Sensors", "da": "Sensorer", "de": "Sensoren" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "start_new_map",
+      "title": { "en": "Start building a new map", "da": "Start opbygning af nyt kort", "de": "Neue Karte erstellen" }
+    },
+    {
+      "id": "install_voice_pack",
+      "title": { "en": "Install voice pack", "da": "Installer stemmepakke", "de": "Sprachpaket installieren" },
+      "titleFormatted": { "en": "Install voice pack from [[url]] (language: [[language]])", "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])", "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])" },
+      "args": [
+        {
+          "type": "text",
+          "name": "url",
+          "title": { "en": "Voice Pack URL", "da": "Stemmepakke-URL", "de": "Sprachpaket-URL" },
+          "placeholder": { "en": "https://example.com/voice.pkg", "da": "https://example.com/voice.pkg", "de": "https://example.com/voice.pkg" }
+        },
+        {
+          "type": "text",
+          "name": "language",
+          "title": { "en": "Language Code", "da": "Sprogkode", "de": "Sprachcode" },
+          "placeholder": { "en": "en", "da": "da", "de": "de" }
+        }
+      ]
+    }
+  ]
+}

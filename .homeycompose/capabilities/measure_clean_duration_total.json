@@ -1,0 +1,17 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total Clean Duration",
+    "da": "Samlet rengøringstid",
+    "de": "Gesamte Reinigungsdauer"
+  },
+  "units": {
+    "en": "hrs",
+    "da": "timer",
+    "de": "Std"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/icon.svg"
+}

@@ -1,0 +1,13 @@
+node_modules/
+.git/
+.github/
+test/
+*.log
+.DS_Store
+.env
+.eslintrc.json
+README.md
+README.txt
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE

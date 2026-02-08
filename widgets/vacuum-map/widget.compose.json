@@ -1,0 +1,18 @@
+{
+  "name": {
+    "en": "Vacuum Map",
+    "da": "Støvsugerkort",
+    "de": "Staubsaugerkarte"
+  },
+  "height": 300,
+  "devices": {
+    "type": "app",
+    "singular": true
+  },
+  "api": {
+    "getMap": {
+      "method": "GET",
+      "path": "/map"
+    }
+  }
+}

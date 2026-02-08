@@ -23,14 +23,8 @@ class ValetudoDriver extends Homey.Driver {
     this._consumableDepletedTrigger = this.homey.flow.getDeviceTriggerCard('consumable_depleted');
     this._robotStuckTrigger = this.homey.flow.getDeviceTriggerCard('robot_stuck');
     this._dustbinFullTrigger = this.homey.flow.getDeviceTriggerCard('dustbin_full');
-    this._batteryLevelReachedTrigger = this.homey.flow.getDeviceTriggerCard('battery_level_reached');
     this._valetudoUpdatedTrigger = this.homey.flow.getDeviceTriggerCard('valetudo_updated');
     this._updateAvailableTrigger = this.homey.flow.getDeviceTriggerCard('update_available');
-
-    // battery_level_reached needs a run listener for threshold comparison
-    this._batteryLevelReachedTrigger.registerRunListener(async (args, state) => {
-      return state.battery_level <= args.threshold;
-    });
 
     // --- Conditions ---
     this.homey.flow.getConditionCard('is_on_floor')
@@ -205,6 +199,14 @@ class ValetudoDriver extends Homey.Driver {
       })
       .registerArgumentAutocompleteListener('zone', async (query, args) => {
         return this._getZoneAutocomplete(args.device, query);
+      });
+
+    this.homey.flow.getActionCard('rename_segment')
+      .registerRunListener(async (args) => {
+        await args.device.renameSegment(args.segment.id, args.name);
+      })
+      .registerArgumentAutocompleteListener('segment', async (query, args) => {
+        return this._getSegmentAutocomplete(args.device, query);
       });
 
     this.homey.flow.getActionCard('start_new_map')

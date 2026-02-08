@@ -18,21 +18,7 @@
     },
     {
       "id": "cleaning_finished",
-      "title": { "en": "Cleaning finished", "da": "Rengøring afsluttet", "de": "Reinigung beendet" },
-      "tokens": [
-        {
-          "name": "area_m2",
-          "type": "number",
-          "title": { "en": "Area Cleaned (m2)", "da": "Rengjort areal (m2)", "de": "Gereinigte Fläche (m2)" },
-          "example": { "en": "42", "da": "42", "de": "42" }
-        },
-        {
-          "name": "duration_min",
-          "type": "number",
-          "title": { "en": "Duration (min)", "da": "Varighed (min)", "de": "Dauer (Min)" },
-          "example": { "en": "35", "da": "35", "de": "35" }
-        }
-      ]
+      "title": { "en": "Cleaning finished", "da": "Rengøring afsluttet", "de": "Reinigung beendet" }
     },
     {
       "id": "error_occurred",
@@ -61,30 +47,6 @@
     {
       "id": "dustbin_full",
       "title": { "en": "Dustbin needs emptying", "da": "Støvbeholderen skal tømmes", "de": "Staubbehälter muss geleert werden" }
-    },
-    {
-      "id": "battery_level_reached",
-      "title": { "en": "Battery dropped below threshold", "da": "Batteri faldet under grænse", "de": "Akku unter Schwellenwert gefallen" },
-      "titleFormatted": { "en": "Battery dropped below [[threshold]]%", "da": "Batteri faldet under [[threshold]]%", "de": "Akku unter [[threshold]]% gefallen" },
-      "args": [
-        {
-          "type": "number",
-          "name": "threshold",
-          "title": { "en": "Battery %", "da": "Batteri %", "de": "Akku %" },
-          "min": 5,
-          "max": 95,
-          "step": 5,
-          "value": 20
-        }
-      ],
-      "tokens": [
-        {
-          "name": "battery_level",
-          "type": "number",
-          "title": { "en": "Battery Level", "da": "Batteriniveau", "de": "Akkustand" },
-          "example": { "en": "15", "da": "15", "de": "15" }
-        }
-      ]
     },
     {
       "id": "segment_cleaning_started",
@@ -589,6 +551,25 @@
             { "id": "mop:none", "label": { "en": "Mop", "da": "Moppe", "de": "Wischmopp" } },
             { "id": "sensor:all", "label": { "en": "Sensors", "da": "Sensorer", "de": "Sensoren" } }
           ]
+        }
+      ]
+    },
+    {
+      "id": "rename_segment",
+      "title": { "en": "Rename segment", "da": "Omdøb segment", "de": "Segment umbenennen" },
+      "titleFormatted": { "en": "Rename segment [[segment]] to [[name]]", "da": "Omdøb segment [[segment]] til [[name]]", "de": "Segment [[segment]] in [[name]] umbenennen" },
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "segment",
+          "title": { "en": "Segment (Room)", "da": "Segment (rum)", "de": "Segment (Raum)" },
+          "placeholder": { "en": "Select a room...", "da": "Vælg et rum...", "de": "Raum auswählen..." }
+        },
+        {
+          "type": "text",
+          "name": "name",
+          "title": { "en": "New Name", "da": "Nyt navn", "de": "Neuer Name" },
+          "placeholder": { "en": "Kitchen", "da": "Køkken", "de": "Küche" }
         }
       ]
     },

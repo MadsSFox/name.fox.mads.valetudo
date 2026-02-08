@@ -133,6 +133,16 @@ describe('ValetudoApi', () => {
     });
   });
 
+  describe('renameSegment', () => {
+    it('should PUT rename action with segment id and name', async () => {
+      clientStub.put.resolves({ data: {} });
+      await api.renameSegment('17', 'Kitchen');
+      sinon.assert.calledWith(clientStub.put,
+        '/api/v2/robot/capabilities/MapSegmentRenameCapability',
+        { action: 'rename_segment', segment_id: '17', name: 'Kitchen' });
+    });
+  });
+
   describe('cleanSegments', () => {
     it('should PUT segment clean with ids and iterations', async () => {
       clientStub.put.resolves({ data: {} });
@@ -337,6 +347,16 @@ describe('ValetudoApi', () => {
       clientStub.get.resolves({ data: stats });
       const result = await api.getTotalStatistics();
       assert.strictEqual(result.length, 2);
+    });
+  });
+
+  describe('getMap', () => {
+    it('should GET /api/v2/robot/state/map with extended timeout', async () => {
+      const mapData = { size: { x: 5120, y: 5120 }, pixelSize: 5, layers: [], entities: [] };
+      clientStub.get.resolves({ data: mapData });
+      const result = await api.getMap();
+      assert.deepStrictEqual(result, mapData);
+      sinon.assert.calledWith(clientStub.get, '/api/v2/robot/state/map', { timeout: 30000 });
     });
   });
 

@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Main Brush",
+    "da": "Hovedb\u00f8rste",
+    "de": "Hauptb\u00fcrste"
+  },
+  "units": { "en": "%" },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "icon": "/assets/icon.svg",
+  "min": 0,
+  "max": 100
+}

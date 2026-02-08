@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Side Brush",
+    "da": "Sideb\u00f8rste",
+    "de": "Seitenb\u00fcrste"
+  },
+  "units": { "en": "%" },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "icon": "/assets/icon.svg",
+  "min": 0,
+  "max": 100
+}

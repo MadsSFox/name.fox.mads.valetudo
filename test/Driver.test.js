@@ -44,13 +44,12 @@ describe('Driver flow card logic', () => {
   });
 
   describe('Triggers', () => {
-    it('should register all 12 triggers', () => {
+    it('should register all 11 triggers', () => {
       const triggerIds = [
         'floor_switched', 'cleaning_started', 'cleaning_finished',
         'error_occurred', 'robot_stuck', 'dustbin_full',
-        'battery_level_reached', 'segment_cleaning_started',
-        'segment_cleaning_finished', 'consumable_depleted',
-        'valetudo_updated', 'update_available',
+        'segment_cleaning_started', 'segment_cleaning_finished',
+        'consumable_depleted', 'valetudo_updated', 'update_available',
       ];
 
       for (const id of triggerIds) {
@@ -60,21 +59,6 @@ describe('Driver flow card logic', () => {
       assert.strictEqual(Object.keys(flowCards).length, triggerIds.length);
     });
 
-    it('battery_level_reached run listener should compare threshold', async () => {
-      const card = mockFlowCard('trigger:battery_level_reached');
-      card.registerRunListener(async (args, state) => {
-        return state.battery_level <= args.threshold;
-      });
-
-      const shouldFire = await card._runListener({ threshold: 20 }, { battery_level: 15 });
-      assert.strictEqual(shouldFire, true);
-
-      const shouldNotFire = await card._runListener({ threshold: 20 }, { battery_level: 50 });
-      assert.strictEqual(shouldNotFire, false);
-
-      const exact = await card._runListener({ threshold: 20 }, { battery_level: 20 });
-      assert.strictEqual(exact, true);
-    });
   });
 
   describe('Conditions', () => {
@@ -239,6 +223,17 @@ describe('Driver flow card logic', () => {
 
       await card._runListener({ device, zone: { id: 'zone_123' } });
       sinon.assert.calledWith(device.deleteZone, 'zone_123');
+    });
+
+    it('rename_segment should pass segment id and new name', async () => {
+      const card = mockFlowCard('action:rename_segment');
+      const device = { renameSegment: sinon.stub().resolves() };
+      card.registerRunListener(async (args) => {
+        await args.device.renameSegment(args.segment.id, args.name);
+      });
+
+      await card._runListener({ device, segment: { id: '17' }, name: 'Kitchen' });
+      sinon.assert.calledWith(device.renameSegment, '17', 'Kitchen');
     });
 
     it('start_new_map should call device.startNewMap', async () => {

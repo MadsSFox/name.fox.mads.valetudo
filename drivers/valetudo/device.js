@@ -76,7 +76,6 @@ class ValetudoDevice extends Homey.Device {
     this._previousState = null;
     this._onCarpet = false;
     this._currentSegmentId = null;
-    this._lastBatteryLevel = null;
     this._dustbinTriggered = false;
     this._knownVersion = null;
     this._updateAlerted = false;
@@ -169,14 +168,6 @@ class ValetudoDevice extends Homey.Device {
     this._mqtt.on('battery_level', (level) => {
       this.setCapabilityValue('measure_battery', level).catch(this.error);
       this.setCapabilityValue('alarm_battery', level < LOW_BATTERY_THRESHOLD).catch(this.error);
-
-      // Trigger battery_level_reached when battery drops
-      if (this._lastBatteryLevel !== null && level < this._lastBatteryLevel) {
-        this.driver._batteryLevelReachedTrigger
-          .trigger(this, { battery_level: level }, { battery_level: level })
-          .catch(this.error);
-      }
-      this._lastBatteryLevel = level;
     });
 
     this._mqtt.on('vacuum_state', (state) => {
@@ -571,26 +562,18 @@ class ValetudoDevice extends Homey.Device {
     await this._api.installVoicePack(url, language);
   }
 
-  async _triggerCleaningFinished() {
-    let tokens = { area_m2: 0, duration_min: 0 };
-    try {
-      const stats = await this._api.getCurrentStatistics();
-      for (const stat of stats) {
-        if (stat.type === 'area') {
-          tokens.area_m2 = Math.round(stat.value / 10000); // cm2 -> m2
-        } else if (stat.type === 'time') {
-          tokens.duration_min = Math.round(stat.value / 60); // sec -> min
-        }
-      }
-      // Update last session capabilities
-      this.setCapabilityValue('measure_clean_area_last', tokens.area_m2).catch(this.error);
-      this.setCapabilityValue('measure_clean_duration_last', tokens.duration_min).catch(this.error);
-    } catch (err) {
-      this.log('Failed to fetch cleaning stats:', err.message);
+  async renameSegment(segmentId, name) {
+    await this._api.renameSegment(segmentId, name);
+    // Update local MQTT segment cache
+    if (this._mqtt.segments) {
+      this._mqtt.segments[segmentId] = name;
     }
-    this.driver._cleaningFinishedTrigger.trigger(this, tokens).catch(this.error);
+  }
 
-    // Refresh total statistics
+  async _triggerCleaningFinished() {
+    this.driver._cleaningFinishedTrigger.trigger(this).catch(this.error);
+
+    // Refresh statistics capabilities
     await this._updateStatistics();
   }
 
@@ -625,23 +608,49 @@ class ValetudoDevice extends Homey.Device {
   }
 
   _startConsumablePolling() {
+    // Fetch immediately on startup
+    this._updateConsumables();
+
     this._consumablePollInterval = this.homey.setInterval(async () => {
-      try {
-        const consumables = await this._api.getConsumables();
-        for (const c of consumables) {
-          if (c.remaining && c.remaining.unit === 'percent'
-              && c.remaining.value <= CONSUMABLE_DEPLETED_THRESHOLD) {
-            this.driver._consumableDepletedTrigger.trigger(this, {
-              consumable_type: c.type,
-              consumable_sub_type: c.subType || 'none',
-              remaining: c.remaining.value,
-            }).catch(this.error);
-          }
-        }
-      } catch {
-        // Consumable monitoring is optional — not all robots support it
-      }
+      await this._updateConsumables();
     }, CONSUMABLE_POLL_INTERVAL_MS);
+  }
+
+  async _updateConsumables() {
+    try {
+      const consumables = await this._api.getConsumables();
+      for (const c of consumables) {
+        // Update capability value
+        const capId = this._consumableCapabilityId(c.type, c.subType);
+        if (capId && c.remaining && c.remaining.unit === 'percent') {
+          this.setCapabilityValue(capId, c.remaining.value).catch(this.error);
+        }
+
+        // Trigger depleted alert
+        if (c.remaining && c.remaining.unit === 'percent'
+            && c.remaining.value <= CONSUMABLE_DEPLETED_THRESHOLD) {
+          this.driver._consumableDepletedTrigger.trigger(this, {
+            consumable_type: c.type,
+            consumable_sub_type: c.subType || 'none',
+            remaining: c.remaining.value,
+          }).catch(this.error);
+        }
+      }
+    } catch {
+      // Consumable monitoring is optional — not all robots support it
+    }
+  }
+
+  _consumableCapabilityId(type, subType) {
+    const key = `${type}:${subType || 'none'}`;
+    const map = {
+      'filter:none': 'measure_consumable_filter',
+      'brush:main': 'measure_consumable_main_brush',
+      'brush:side_right': 'measure_consumable_side_brush',
+      'mop:none': 'measure_consumable_mop',
+      'sensor:all': 'measure_consumable_sensor',
+    };
+    return map[key] || null;
   }
 
   _startUpdateCheckPolling() {

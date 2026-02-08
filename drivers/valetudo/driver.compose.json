@@ -21,6 +21,11 @@
     "measure_clean_duration_last",
     "measure_clean_area_total",
     "measure_clean_duration_total",
+    "measure_consumable_filter",
+    "measure_consumable_main_brush",
+    "measure_consumable_side_brush",
+    "measure_consumable_mop",
+    "measure_consumable_sensor",
     "button_dock",
     "floor_picker",
     "button_new_floor"

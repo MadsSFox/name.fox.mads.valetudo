@@ -10,13 +10,70 @@
   "uiComponent": "sensor",
   "icon": "/assets/icon.svg",
   "values": [
-    { "id": "cleaning", "title": { "en": "Cleaning", "da": "Rengører", "de": "Reinigt" } },
-    { "id": "docked", "title": { "en": "Docked", "da": "I dock", "de": "Angedockt" } },
-    { "id": "idle", "title": { "en": "Idle", "da": "Inaktiv", "de": "Bereit" } },
-    { "id": "returning", "title": { "en": "Returning", "da": "Returnerer", "de": "Kehrt zurück" } },
-    { "id": "paused", "title": { "en": "Paused", "da": "Pauseret", "de": "Pausiert" } },
-    { "id": "error", "title": { "en": "Error", "da": "Fejl", "de": "Fehler" } },
-    { "id": "manual_control", "title": { "en": "Manual Control", "da": "Manuel styring", "de": "Manuelle Steuerung" } },
-    { "id": "moving", "title": { "en": "Moving", "da": "Bevæger sig", "de": "Bewegt sich" } }
-  ]
+    {
+      "id": "cleaning",
+      "title": {
+        "en": "Cleaning",
+        "da": "Rengører",
+        "de": "Reinigt"
+      }
+    },
+    {
+      "id": "docked",
+      "title": {
+        "en": "Docked",
+        "da": "I dock",
+        "de": "Angedockt"
+      }
+    },
+    {
+      "id": "idle",
+      "title": {
+        "en": "Idle",
+        "da": "Inaktiv",
+        "de": "Bereit"
+      }
+    },
+    {
+      "id": "returning",
+      "title": {
+        "en": "Returning",
+        "da": "Returnerer",
+        "de": "Kehrt zurück"
+      }
+    },
+    {
+      "id": "paused",
+      "title": {
+        "en": "Paused",
+        "da": "Pauseret",
+        "de": "Pausiert"
+      }
+    },
+    {
+      "id": "error",
+      "title": {
+        "en": "Error",
+        "da": "Fejl",
+        "de": "Fehler"
+      }
+    },
+    {
+      "id": "manual_control",
+      "title": {
+        "en": "Manual Control",
+        "da": "Manuel styring",
+        "de": "Manuelle Steuerung"
+      }
+    },
+    {
+      "id": "moving",
+      "title": {
+        "en": "Moving",
+        "da": "Bevæger sig",
+        "de": "Bewegt sich"
+      }
+    }
+  ],
+  "insights": true
 }

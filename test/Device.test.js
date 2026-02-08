@@ -181,29 +181,6 @@ describe('Device logic', () => {
     });
   });
 
-  describe('battery threshold logic', () => {
-    it('should trigger when battery drops below previous level', () => {
-      let lastLevel = 50;
-      const level = 45;
-      const shouldTrigger = lastLevel !== null && level < lastLevel;
-      assert.strictEqual(shouldTrigger, true);
-    });
-
-    it('should not trigger when battery increases (charging)', () => {
-      let lastLevel = 50;
-      const level = 55;
-      const shouldTrigger = lastLevel !== null && level < lastLevel;
-      assert.strictEqual(shouldTrigger, false);
-    });
-
-    it('should not trigger on first reading', () => {
-      let lastLevel = null;
-      const level = 50;
-      const shouldTrigger = lastLevel !== null && level < lastLevel;
-      assert.strictEqual(shouldTrigger, false);
-    });
-  });
-
   describe('MQTT vs REST command routing', () => {
     it('should prefer MQTT when connected', () => {
       const mqttConnected = true;

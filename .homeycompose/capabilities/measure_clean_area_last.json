@@ -6,12 +6,13 @@
     "de": "Letzte Reinigungsfläche"
   },
   "units": {
-    "en": "m\u00b2",
-    "da": "m\u00b2",
-    "de": "m\u00b2"
+    "en": "m²",
+    "da": "m²",
+    "de": "m²"
   },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/assets/icon.svg"
+  "icon": "/assets/icon.svg",
+  "insights": true
 }

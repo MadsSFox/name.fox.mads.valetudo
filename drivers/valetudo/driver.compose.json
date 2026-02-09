@@ -5,6 +5,8 @@
     "de": "Valetudo Saugroboter"
   },
   "class": "vacuumcleaner",
+  "platforms": ["local"],
+  "connectivity": ["lan"],
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"

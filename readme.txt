@@ -1,3 +1,3 @@
-Valetudo for Homey brings your Valetudo-powered robot vacuum into the Homey ecosystem. Control cleaning, monitor battery, and manage multi-floor setups directly from Homey. Supports MQTT and HTTP connections with live map snapshots in a widget.
+Valetudo for Homey brings your Valetudo-powered robot vacuum into the Homey ecosystem. Control cleaning, monitor battery, and manage multi-floor setups directly from Homey. A built-in map widget gives you a live view of your robot at work.
 
-Compatible with any robot vacuum running Valetudo, including Roborock, Dreame, and other supported brands. Features include start/stop cleaning, fan speed control, floor switching via SSH, locate robot, and return to dock.
+Compatible with any robot vacuum running Valetudo, including Roborock, Dreame, and other supported brands. Whether you have one floor or several, Valetudo for Homey keeps everything in sync so you can automate your cleaning from a single place.

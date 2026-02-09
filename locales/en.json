@@ -13,6 +13,9 @@
         }
       },
       "settings": {
+        "valetudo_url": {
+          "label": "Map & Controls"
+        },
         "host": {
           "label": "Valetudo Host"
         },
@@ -48,6 +51,15 @@
         },
         "ssh_password": {
           "label": "SSH Password"
+        },
+        "ssh_private_key": {
+          "label": "SSH Private Key"
+        },
+        "voice_pack_url": {
+          "label": "Voice Pack URL"
+        },
+        "voice_pack_language": {
+          "label": "Language Code"
         }
       }
     }

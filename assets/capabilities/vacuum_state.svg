@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Robot body -->
+  <circle cx="50" cy="50" r="38" stroke="black" stroke-width="4" fill="none" fill-opacity="0"/>
+  <!-- Lidar bump -->
+  <circle cx="50" cy="50" r="14" stroke="black" stroke-width="3" fill="none" fill-opacity="0"/>
+  <!-- Front sensor dot -->
+  <circle cx="50" cy="16" r="4" fill="black"/>
+  <!-- Side brushes hint -->
+  <line x1="16" y1="50" x2="24" y2="50" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="76" y1="50" x2="84" y2="50" stroke="black" stroke-width="3" stroke-linecap="round"/>
+</svg>

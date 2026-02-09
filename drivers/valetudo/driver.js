@@ -251,22 +251,20 @@ class ValetudoDriver extends Homey.Driver {
       const found = [];
       const seenHosts = new Set();
 
-      // Method 1: mDNS discovery (instant, from Homey's cache)
+      // Method 1: mDNS discovery (handled by Homey at system level, outside Docker)
       try {
         const strategy = this.getDiscoveryStrategy();
         const results = strategy.getDiscoveryResults();
         for (const [, result] of Object.entries(results)) {
           const host = result.address;
           if (seenHosts.has(host)) continue;
-          try {
-            const api = new ValetudoApi({ host, log: this.log.bind(this) });
-            const info = await api.getRobotInfo();
-            const name = info.modelName || info.manufacturer || 'Valetudo Robot';
-            found.push({ host, name, id: info.id || host.replace(/\./g, '_') });
-            seenHosts.add(host);
-          } catch {
-            // Robot found via mDNS but not reachable
-          }
+          // Use TXT records from mDNS (available even if API unreachable from Docker)
+          const txt = result.txt || {};
+          const name = txt.model || txt.manufacturer || 'Valetudo Robot';
+          const id = txt.id || host.replace(/\./g, '_');
+          found.push({ host, name, id });
+          seenHosts.add(host);
+          this.log(`mDNS: found ${name} at ${host} (id: ${id})`);
         }
       } catch {
         // mDNS discovery not available
@@ -274,7 +272,7 @@ class ValetudoDriver extends Homey.Driver {
 
       // Method 2: Subnet scan (fallback if mDNS found nothing)
       if (found.length === 0) {
-        this.log('mDNS found no devices, scanning local subnet...');
+        this.log('mDNS found no devices, falling back to subnet scan...');
         const scanned = await this._scanForValetudo();
         for (const d of scanned) {
           if (!seenHosts.has(d.host)) {
@@ -290,7 +288,15 @@ class ValetudoDriver extends Homey.Driver {
 
     // Step 2: Validate a specific host (from selection or manual entry)
     session.setHandler('validate', async (data) => {
-      const { host, password, ssh_private_key } = data;
+      const { host, password, ssh_private_key, name: mdnsName, id: mdnsId } = data;
+
+      // If device was already identified via mDNS, skip API validation
+      // (API may be unreachable from Docker container during pairing)
+      if (mdnsId && mdnsName) {
+        this.log(`Skipping API validation for mDNS device: ${mdnsName} at ${host}`);
+        pairData = { host, password, ssh_private_key: ssh_private_key || '', name: mdnsName, id: mdnsId };
+        return { name: mdnsName, id: mdnsId };
+      }
 
       const api = new ValetudoApi({
         host,
@@ -339,9 +345,9 @@ class ValetudoDriver extends Homey.Driver {
   }
 
   _getLocalSubnets() {
+    const subnets = [];
     try {
       const interfaces = os.networkInterfaces();
-      const subnets = [];
       for (const [, addrs] of Object.entries(interfaces)) {
         for (const addr of addrs) {
           if (addr.family === 'IPv4' && !addr.internal) {
@@ -350,10 +356,10 @@ class ValetudoDriver extends Homey.Driver {
           }
         }
       }
-      return [...new Set(subnets)];
     } catch {
-      return [];
+      // Ignore
     }
+    return [...new Set(subnets)];
   }
 
   async _scanForValetudo() {
@@ -367,7 +373,7 @@ class ValetudoDriver extends Homey.Driver {
       for (let i = 1; i <= 254; i++) {
         const ip = `${subnet}.${i}`;
         promises.push(
-          axios.get(`http://${ip}/api/v2/robot`, { timeout: 1500 })
+          axios.get(`http://${ip}/api/v2/robot`, { timeout: 3000 })
             .then((res) => {
               if (res.data && (res.data.modelName || res.data.manufacturer || res.data.id)) {
                 const name = res.data.modelName || res.data.manufacturer || 'Valetudo Robot';

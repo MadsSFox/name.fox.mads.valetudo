@@ -8,7 +8,7 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/assets/icon.svg",
+  "icon": "/assets/capabilities/vacuum_state.svg",
   "values": [
     {
       "id": "cleaning",

@@ -233,7 +233,7 @@
         li.addEventListener('click', function() {
           document.getElementById('host').value = d.host;
           var sshKey = document.getElementById('ssh_key').value;
-          tryConnect(d.host, '', sshKey);
+          tryConnect(d.host, '', sshKey, d.name, d.id);
         });
         list.appendChild(li);
       });
@@ -272,11 +272,11 @@
     if (e.key === 'Enter') document.getElementById('connect-btn').click();
   });
 
-  function tryConnect(host, password, sshKey) {
+  function tryConnect(host, password, sshKey, mdnsName, mdnsId) {
     hideError();
     showState('validating');
 
-    Homey.emit('validate', { host: host, password: password, ssh_private_key: sshKey || '' }, function(err) {
+    Homey.emit('validate', { host: host, password: password, ssh_private_key: sshKey || '', name: mdnsName || '', id: mdnsId || '' }, function(err) {
       if (err) {
         showState('results');
         showError(err.message || 'Could not connect to Valetudo at ' + host);

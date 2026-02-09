@@ -13,6 +13,14 @@
     "getMap": {
       "method": "GET",
       "path": "/map"
+    },
+    "getFloors": {
+      "method": "GET",
+      "path": "/floors"
+    },
+    "getFloorMap": {
+      "method": "GET",
+      "path": "/floorMap"
     }
   }
 }

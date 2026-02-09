@@ -27,11 +27,36 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 14px;
     }
+    #floor-picker {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: none;
+    }
+    #floor-picker select {
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--homey-text-color, #fff);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+    #floor-picker select:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    #floor-picker select option {
+      background: #222;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
   <div id="status">Loading map…</div>
   <canvas id="map"></canvas>
+  <div id="floor-picker"><select id="floor-select"></select></div>
 
   <script>
     // Segment color palette
@@ -44,34 +69,109 @@
     var canvas = document.getElementById('map');
     var ctx = canvas.getContext('2d');
     var statusEl = document.getElementById('status');
+    var floorPickerEl = document.getElementById('floor-picker');
+    var floorSelectEl = document.getElementById('floor-select');
     var deviceId = null;
     var refreshTimer = null;
+    var selectedFloorId = null; // null = active/live floor
+    var activeFloorId = null;
+    var _homey = null;
 
     function onHomeyReady(Homey) {
       Homey.ready();
+      _homey = Homey;
 
-      // Get the selected device
-      Homey.getSettings(function(err, settings) {
-        if (settings && settings.devices && settings.devices[0]) {
-          deviceId = settings.devices[0].id;
-          fetchAndRender(Homey);
-          refreshTimer = setInterval(function() { fetchAndRender(Homey); }, 10000);
-        } else {
-          statusEl.textContent = 'Select a vacuum device';
-        }
-      });
+      var deviceIds = Homey.getDeviceIds();
+      if (deviceIds && deviceIds.length > 0) {
+        deviceId = deviceIds[0];
+        loadFloors();
+        fetchAndRender();
+        refreshTimer = setInterval(function() {
+          fetchAndRender();
+          loadFloors(); // refresh floor list periodically
+        }, 10000);
+      } else {
+        statusEl.textContent = 'Select a vacuum device in widget settings';
+      }
     }
 
-    function fetchAndRender(Homey) {
-      Homey.api('GET', '/map?deviceId=' + encodeURIComponent(deviceId), function(err, mapData) {
-        if (err || !mapData) {
-          statusEl.textContent = 'Failed to load map';
+    function loadFloors() {
+      _homey.api('GET', '/floors?deviceId=' + encodeURIComponent(deviceId))
+        .then(function(data) {
+          if (!data || !data.floors || data.floors.length <= 1) {
+            floorPickerEl.style.display = 'none';
+            return;
+          }
+          activeFloorId = data.activeFloor;
+          floorPickerEl.style.display = 'block';
+
+          // Remember current selection
+          var currentVal = floorSelectEl.value;
+
+          // Rebuild options
+          floorSelectEl.innerHTML = '';
+          for (var i = 0; i < data.floors.length; i++) {
+            var f = data.floors[i];
+            var opt = document.createElement('option');
+            opt.value = f.id;
+            opt.textContent = f.name + (f.id === data.activeFloor ? ' ●' : '');
+            if (!f.hasCachedMap && f.id !== data.activeFloor) {
+              opt.disabled = true;
+              opt.textContent = f.name + ' (no map)';
+            }
+            floorSelectEl.appendChild(opt);
+          }
+
+          // Restore selection
+          if (selectedFloorId) {
+            floorSelectEl.value = selectedFloorId;
+          } else {
+            floorSelectEl.value = data.activeFloor;
+          }
+        })
+        .catch(function() {
+          floorPickerEl.style.display = 'none';
+        });
+    }
+
+    floorSelectEl.addEventListener('change', function() {
+      var val = floorSelectEl.value;
+      selectedFloorId = val;
+      fetchAndRender();
+    });
+
+    function fetchAndRender() {
+      var floorId = selectedFloorId || activeFloorId;
+      var url;
+
+      if (floorId && floorId !== activeFloorId) {
+        // Fetch cached map for non-active floor
+        url = '/floorMap?deviceId=' + encodeURIComponent(deviceId)
+          + '&floorId=' + encodeURIComponent(floorId);
+      } else {
+        // Fetch live map for active floor
+        url = '/map?deviceId=' + encodeURIComponent(deviceId);
+      }
+
+      _homey.api('GET', url)
+        .then(function(mapData) {
+          if (!mapData) {
+            statusEl.textContent = 'No map data returned';
+            statusEl.style.display = 'block';
+            return;
+          }
+          statusEl.style.display = 'none';
+          try {
+            renderMap(mapData);
+          } catch (renderErr) {
+            statusEl.textContent = 'Render error: ' + renderErr.message;
+            statusEl.style.display = 'block';
+          }
+        })
+        .catch(function(err) {
+          statusEl.textContent = 'Error: ' + (err.message || String(err));
           statusEl.style.display = 'block';
-          return;
-        }
-        statusEl.style.display = 'none';
-        renderMap(mapData);
-      });
+        });
     }
 
     function renderMap(map) {

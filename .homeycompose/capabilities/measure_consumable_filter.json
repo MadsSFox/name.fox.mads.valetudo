@@ -1,16 +1,13 @@
 {
-  "type": "number",
+  "type": "string",
   "title": {
     "en": "Filter",
     "da": "Filter",
     "de": "Filter"
   },
-  "units": { "en": "%" },
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "insights": true,
-  "icon": "/assets/icon.svg",
-  "min": 0,
-  "max": 100
+  "insights": false,
+  "icon": "/assets/capabilities/filter.svg"
 }

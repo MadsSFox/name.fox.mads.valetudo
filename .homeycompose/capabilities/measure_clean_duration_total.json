@@ -13,6 +13,6 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "/assets/icon.svg",
+  "icon": "/assets/capabilities/clean_duration.svg",
   "insights": true
 }

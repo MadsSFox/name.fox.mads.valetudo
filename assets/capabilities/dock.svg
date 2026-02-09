@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dock backplate -->
+  <path stroke="black" stroke-width="4" fill="none" fill-opacity="0" stroke-linecap="round" stroke-linejoin="round"
+    d="M 22 82 L 22 38 C 22 24 34 14 50 14 C 66 14 78 24 78 38 L 78 82"/>
+  <!-- Base -->
+  <line x1="12" y1="82" x2="88" y2="82" stroke="black" stroke-width="4" stroke-linecap="round"/>
+  <!-- Charging contacts -->
+  <rect x="38" y="56" width="7" height="16" rx="2" fill="black"/>
+  <rect x="55" y="56" width="7" height="16" rx="2" fill="black"/>
+  <!-- Indicator light -->
+  <circle cx="50" cy="32" r="4" fill="black"/>
+</svg>

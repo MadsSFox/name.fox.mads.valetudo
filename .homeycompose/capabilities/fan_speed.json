@@ -8,7 +8,7 @@
   "getable": true,
   "setable": true,
   "uiComponent": "picker",
-  "icon": "/assets/icon.svg",
+  "icon": "/assets/capabilities/fan_speed.svg",
   "values": [
     {
       "id": "off",

@@ -33,21 +33,6 @@
     },
     "children": [
       {
-        "id": "host",
-        "type": "text",
-        "label": {
-          "en": "Valetudo Host",
-          "da": "Valetudo-vært",
-          "de": "Valetudo-Host"
-        },
-        "hint": {
-          "en": "IP address or hostname of your Valetudo instance",
-          "da": "IP-adresse eller værtsnavn for din Valetudo-instans",
-          "de": "IP-Adresse oder Hostname deiner Valetudo-Instanz"
-        },
-        "value": ""
-      },
-      {
         "id": "valetudo_auth_user",
         "type": "text",
         "label": {
@@ -173,21 +158,6 @@
     },
     "children": [
       {
-        "id": "ssh_host",
-        "type": "text",
-        "label": {
-          "en": "SSH Host",
-          "da": "SSH-vært",
-          "de": "SSH-Host"
-        },
-        "hint": {
-          "en": "Defaults to Valetudo host if empty",
-          "da": "Standard er Valetudo-vært hvis tom",
-          "de": "Verwendet Valetudo-Host wenn leer"
-        },
-        "value": ""
-      },
-      {
         "id": "ssh_port",
         "type": "number",
         "label": {
@@ -233,9 +203,9 @@
           "de": "Privater SSH-Schlüssel"
         },
         "hint": {
-          "en": "Paste your SSH private key here (the content of your key file, e.g. id_rsa). Used for key-based auth, which is required for most rooted Roborock robots. Your SSH key was generated during rooting — see https://builder.dontvacuum.me for details.",
-          "da": "Indsæt din SSH private nøgle her (indholdet af din nøglefil, f.eks. id_rsa). Bruges til nøglebaseret godkendelse, som kræves af de fleste rootede Roborock-robotter. Din SSH-nøgle blev genereret under rooting — se https://builder.dontvacuum.me for detaljer.",
-          "de": "Füge deinen privaten SSH-Schlüssel hier ein (den Inhalt deiner Schlüsseldatei, z.B. id_rsa). Wird für schlüsselbasierte Authentifizierung benötigt, die bei den meisten gerooteten Roborock-Robotern erforderlich ist. Dein SSH-Schlüssel wurde beim Rooten generiert — siehe https://builder.dontvacuum.me für Details."
+          "en": "Paste your SSH private key here. It will be saved securely and the field will be cleared. The key is stored safely in the app's secure storage. Leave empty if already configured.",
+          "da": "Indsæt din SSH private nøgle her. Den gemmes sikkert og feltet ryddes. Nøglen opbevares sikkert i appens sikre lager. Lad stå tom hvis allerede konfigureret.",
+          "de": "Füge deinen privaten SSH-Schlüssel hier ein. Er wird sicher gespeichert und das Feld wird geleert. Der Schlüssel wird sicher im App-Speicher aufbewahrt. Leer lassen, wenn bereits konfiguriert."
         },
         "value": ""
       }

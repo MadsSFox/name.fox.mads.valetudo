@@ -13,6 +13,9 @@
         }
       },
       "settings": {
+        "valetudo_url": {
+          "label": "Kort & kontrol"
+        },
         "host": {
           "label": "Valetudo-vært"
         },
@@ -48,6 +51,15 @@
         },
         "ssh_password": {
           "label": "SSH-adgangskode"
+        },
+        "ssh_private_key": {
+          "label": "SSH Privat nøgle"
+        },
+        "voice_pack_url": {
+          "label": "Stemmepakke-URL"
+        },
+        "voice_pack_language": {
+          "label": "Sprogkode"
         }
       }
     }

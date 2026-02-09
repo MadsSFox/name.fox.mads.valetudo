@@ -11,7 +11,6 @@ const CONSUMABLE_POLL_INTERVAL_MS = 3600000; // 1 hour
 const UPDATE_CHECK_INTERVAL_MS = 86400000; // 24 hours
 const CONSUMABLE_DEPLETED_THRESHOLD = 10; // percent
 const LOW_BATTERY_THRESHOLD = 20;
-const SSH_KEY_MASK = '********';
 
 // Map Valetudo status values to our vacuum_state enum
 const STATE_MAP = {
@@ -32,8 +31,8 @@ class ValetudoDevice extends Homey.Device {
 
     const settings = this.getSettings();
 
-    // Migrate SSH key from settings to secure store on first run
-    await this._migrateSshKey(settings);
+    // SSH key: stored securely, textarea is only used for input (cleared after saving)
+    await this._secureSshKey(settings);
     const sshKey = this.getStoreValue('ssh_private_key') || undefined;
 
     // Initialize REST API client
@@ -79,6 +78,9 @@ class ValetudoDevice extends Homey.Device {
     this._dustbinTriggered = false;
     this._knownVersion = null;
     this._updateAlerted = false;
+    this._restFailCount = 0;
+    this._discoveryAvailable = false;
+    this._mapSnapshots = {}; // floorId -> map JSON
 
     // Register capability listeners
     this._registerCapabilityListeners();
@@ -89,31 +91,75 @@ class ValetudoDevice extends Homey.Device {
     // Set Valetudo Web UI link with actual host
     this._updateValetudoUrl(settings.host);
 
-    // Connect MQTT
+    // Connect MQTT (works independently of discovery)
     this._mqtt.connect();
 
-    // Fetch initial state from REST API
-    await this._fetchInitialState();
-
-    // On first init, save the current map as "Floor 1"
+    // On first init, register floor entry
     await this._initFirstFloor();
 
     // Set current floor display
     this._updateFloorCapability();
 
-    // Start REST polling as fallback
+    // Start REST polling (will activate once discovery marks device available)
     this._startRestPolling();
 
     // Start consumable monitoring
     this._startConsumablePolling();
 
-    // Fetch initial statistics
-    await this._updateStatistics();
-
     // Start update check polling
     this._startUpdateCheckPolling();
 
-    this.log('ValetudoDevice initialized');
+    this.log('ValetudoDevice initialized (waiting for discovery...)');
+  }
+
+  // --- Homey Discovery API callbacks ---
+
+  onDiscoveryResult(discoveryResult) {
+    // Return true if this discovery result matches our device
+    return discoveryResult.id === this.getData().id;
+  }
+
+  async onDiscoveryAvailable(discoveryResult) {
+    // Called by Homey when the device is found on the network
+    this.log(`Discovery: device available at ${discoveryResult.address}`);
+    this._discoveryAvailable = true;
+
+    // Update host from discovery (address may have changed)
+    const newHost = discoveryResult.address;
+    this._api.updateHost(newHost);
+    this._ssh.updateConfig({ host: newHost });
+    this._updateValetudoUrl(newHost);
+    await this.setSettings({ host: newHost }).catch(this.error);
+
+    // Now connect: fetch state from REST API
+    await this._fetchInitialState();
+
+    // Fetch consumables and statistics
+    await this._updateConsumables();
+    await this._updateStatistics();
+
+    // Try SSH floor backup if first floor was registered without one
+    await this._tryFloorBackup();
+
+    // Cache current map snapshot for the active floor
+    await this._cacheCurrentMap();
+  }
+
+  onDiscoveryAddressChanged(discoveryResult) {
+    // IP address changed, update connection details
+    this.log(`Discovery: address changed to ${discoveryResult.address}`);
+    const newHost = discoveryResult.address;
+    this._api.updateHost(newHost);
+    this._ssh.updateConfig({ host: newHost });
+    this._updateValetudoUrl(newHost);
+    this.setSettings({ host: newHost }).catch(this.error);
+    this._fetchInitialState().catch(this.error);
+  }
+
+  onDiscoveryLastSeenChanged(discoveryResult) {
+    // Device may have gone offline, try to reconnect
+    this.log('Discovery: last seen changed, attempting reconnect...');
+    this._fetchInitialState().catch(this.error);
   }
 
   // Expose for driver flow card access
@@ -143,6 +189,7 @@ class ValetudoDevice extends Homey.Device {
       // If no floors exist yet, save the current map as "Floor 1" first
       if (floors.length === 0) {
         this.log('No floors exist yet — saving current map as "Floor 1" first...');
+        this.setWarning('Saving current map as Floor 1…').catch(this.error);
         await this.saveFloor('Floor 1');
         this._updateFloorPicker();
         floors = this._floorManager.getFloors();
@@ -150,17 +197,57 @@ class ValetudoDevice extends Homey.Device {
 
       const name = `Floor ${floors.length + 1}`;
       this.log(`Saving current map as "${name}", then starting new map...`);
-      await this.saveFloor(name);
-      this._updateFloorPicker();
-      await this.startNewMap();
+      this.setWarning(`Saving "${name}"…`).catch(this.error);
+
+      // Run in background to avoid Homey timeout
+      this.saveFloor(name)
+        .then(async () => {
+          this._updateFloorPicker();
+          this.setWarning('Starting new map…').catch(this.error);
+          await this.startNewMap();
+          this.setWarning(`Floor "${name}" saved, new map started`).catch(this.error);
+          this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
+          this.setCapabilityValue('current_floor', name).catch(this.error);
+          this.log(`New floor "${name}" created successfully`);
+        })
+        .catch((err) => {
+          const msg = this._sshErrorMessage(err);
+          this.setWarning(msg).catch(this.error);
+          this.log(`New floor save failed: ${err.message}`);
+          this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 30000);
+        });
     });
 
     this.registerCapabilityListener('floor_picker', async (value) => {
       const activeId = this._floorManager.getActiveFloor();
-      if (value !== activeId) {
-        await this.switchFloor(value);
-        this._updateFloorPicker();
+      if (value === activeId) return;
+
+      const floorName = this._floorManager.getFloorName(value) || value;
+
+      // Reset picker to current floor immediately — only update on confirmed success
+      if (activeId) {
+        this.setCapabilityValue('floor_picker', activeId).catch(this.error);
       }
+
+      // Give immediate feedback and run in background (avoids Homey timeout)
+      this.setWarning(`Switching to ${floorName}…`).catch(this.error);
+
+      this.switchFloor(value)
+        .then(() => {
+          // Now confirmed — update picker to the new floor
+          this.setCapabilityValue('floor_picker', value).catch(this.error);
+          this._updateFloorPicker();
+          this.setWarning(`Switched to ${floorName}`).catch(this.error);
+          this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
+          this.setCapabilityValue('current_floor', floorName).catch(this.error);
+          this.log(`Floor switch to "${floorName}" complete`);
+        })
+        .catch((err) => {
+          const msg = this._sshErrorMessage(err);
+          this.setWarning(msg).catch(this.error);
+          this.log(`Floor switch failed: ${err.message}`);
+          this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 30000);
+        });
     });
   }
 
@@ -288,10 +375,15 @@ class ValetudoDevice extends Homey.Device {
         }
       }
 
+      this._restFailCount = 0;
       await this.setAvailable();
     } catch (err) {
-      this.log('Failed to fetch initial state:', err.message);
-      await this.setUnavailable('Cannot reach Valetudo');
+      this._restFailCount++;
+      this.log(`Failed to fetch state (attempt ${this._restFailCount}):`, err.message);
+      // Only mark unavailable after 3 consecutive failures (90 seconds)
+      if (this._restFailCount >= 3) {
+        await this.setUnavailable('Cannot reach Valetudo');
+      }
     }
   }
 
@@ -320,8 +412,9 @@ class ValetudoDevice extends Homey.Device {
 
   _startRestPolling() {
     this._pollInterval = this.homey.setInterval(async () => {
-      // Only poll REST if MQTT is not connected
+      // Only poll REST if MQTT is not connected and discovery has found us
       if (this._mqtt.connected) return;
+      if (!this._discoveryAvailable) return;
 
       try {
         await this._fetchInitialState();
@@ -331,26 +424,38 @@ class ValetudoDevice extends Homey.Device {
     }, REST_POLL_INTERVAL_MS);
   }
 
+  async _tryFloorBackup() {
+    const floors = this._floorManager.getFloors();
+    if (floors.length === 0) return;
+
+    const activeId = this._floorManager.getActiveFloor();
+    if (!activeId) return;
+
+    // Check if the floor already has a map backup on the robot
+    try {
+      const hasSaved = await this._floorManager.isFloorSaved(activeId);
+      if (!hasSaved) {
+        this.log('Attempting SSH floor backup for:', activeId);
+        await this._floorManager.saveCurrentFloor(activeId);
+        this.log('Floor backup saved successfully');
+      }
+    } catch (err) {
+      this.log('Floor backup skipped:', err.message);
+    }
+  }
+
   _updateValetudoUrl(host) {
     const url = host ? `http://${host}` : 'http://';
     this.setSettings({ valetudo_url: url }).catch(this.error);
   }
 
-  async _migrateSshKey(settings) {
+  async _secureSshKey(settings) {
     const settingsKey = settings.ssh_private_key;
-    const storedKey = this.getStoreValue('ssh_private_key');
-
-    // If settings has a real key (not the mask and not empty), migrate it to store
-    if (settingsKey && settingsKey !== SSH_KEY_MASK) {
+    if (settingsKey) {
+      // User pasted a key in the textarea — move it to secure store and clear the field
       await this.setStoreValue('ssh_private_key', settingsKey);
-      // Mask it in settings so it's not visible in the UI
-      await this.setSettings({ ssh_private_key: SSH_KEY_MASK });
-      this.log('SSH key migrated to secure store');
-    } else if (!storedKey && (!settingsKey || settingsKey === SSH_KEY_MASK)) {
-      // No key anywhere — ensure settings shows empty
-      if (settingsKey === SSH_KEY_MASK) {
-        await this.setSettings({ ssh_private_key: '' });
-      }
+      await this.setSettings({ ssh_private_key: '' });
+      this.log('SSH key saved to secure store');
     }
   }
 
@@ -358,12 +463,29 @@ class ValetudoDevice extends Homey.Device {
     const floors = this._floorManager.getFloors();
     if (floors.length > 0) return;
 
+    const name = 'Floor 1';
+    const id = 'floor_1';
+
+    // Always register the floor in the store so the UI shows it
     try {
-      this.log('First init: saving current map as "Floor 1"...');
-      await this._floorManager.saveAsNewFloor('Floor 1', true);
-      this.log('First floor saved successfully');
+      await this._floorManager.addFloor(id, name);
+      await this._floorManager.setFloorDock(id, true);
+      // Set as active floor
+      const config = this._floorManager._getStore();
+      config.activeFloor = id;
+      await this._floorManager._setStore(config);
+      this.log(`Registered "${name}" in floor config`);
     } catch (err) {
-      this.log('Could not save initial floor (SSH may not be configured yet):', err.message);
+      this.log('Could not register initial floor:', err.message);
+      return;
+    }
+
+    // Try to backup map files via SSH (optional, will work when SSH is available)
+    try {
+      await this._floorManager.saveCurrentFloor(id);
+      this.log('First floor map backup saved successfully');
+    } catch (err) {
+      this.log('Map backup skipped (SSH not available yet):', err.message);
     }
   }
 
@@ -431,13 +553,19 @@ class ValetudoDevice extends Homey.Device {
   }
 
   async switchFloor(floorId) {
+    // Cache current floor's map before switching
+    await this._cacheCurrentMap();
     const floor = await this._floorManager.switchFloor(floorId);
     this._updateFloorCapability();
+    // Cache the new floor's map after switch
+    await this._cacheCurrentMap();
     this.driver._floorSwitchedTrigger.trigger(this, { floor_name: floor.name }).catch(this.error);
     return floor;
   }
 
   async saveFloor(name, hasDock = true) {
+    // Cache current map before saving as new floor
+    await this._cacheCurrentMap();
     const floor = await this._floorManager.saveAsNewFloor(name, hasDock);
     this._updateFloorCapability();
     return floor;
@@ -581,6 +709,7 @@ class ValetudoDevice extends Homey.Device {
     // Current session stats
     try {
       const current = await this._api.getCurrentStatistics();
+      this.log(`Current statistics: ${JSON.stringify(current)}`);
       for (const stat of current) {
         if (stat.type === 'area') {
           await this.setCapabilityValue('measure_clean_area_last', Math.round(stat.value / 10000));
@@ -588,13 +717,14 @@ class ValetudoDevice extends Homey.Device {
           await this.setCapabilityValue('measure_clean_duration_last', Math.round(stat.value / 60));
         }
       }
-    } catch {
-      // Not all robots support CurrentStatisticsCapability
+    } catch (err) {
+      this.log('Current statistics update failed:', err.message);
     }
 
     // Total stats
     try {
       const total = await this._api.getTotalStatistics();
+      this.log(`Total statistics: ${JSON.stringify(total)}`);
       for (const stat of total) {
         if (stat.type === 'area') {
           await this.setCapabilityValue('measure_clean_area_total', Math.round(stat.value / 10000));
@@ -602,16 +732,14 @@ class ValetudoDevice extends Homey.Device {
           await this.setCapabilityValue('measure_clean_duration_total', Math.round(stat.value / 3600)); // sec -> hrs
         }
       }
-    } catch {
-      // Not all robots support TotalStatisticsCapability
+    } catch (err) {
+      this.log('Total statistics update failed:', err.message);
     }
   }
 
   _startConsumablePolling() {
-    // Fetch immediately on startup
-    this._updateConsumables();
-
     this._consumablePollInterval = this.homey.setInterval(async () => {
+      if (!this._discoveryAvailable && !this._mqtt.connected) return;
       await this._updateConsumables();
     }, CONSUMABLE_POLL_INTERVAL_MS);
   }
@@ -619,38 +747,146 @@ class ValetudoDevice extends Homey.Device {
   async _updateConsumables() {
     try {
       const consumables = await this._api.getConsumables();
+      this.log(`Consumables: ${consumables.length} items`);
+
+      // Track which consumable capabilities are reported by the robot
+      const reportedCaps = new Set();
+
       for (const c of consumables) {
-        // Update capability value
         const capId = this._consumableCapabilityId(c.type, c.subType);
-        if (capId && c.remaining && c.remaining.unit === 'percent') {
-          this.setCapabilityValue(capId, c.remaining.value).catch(this.error);
+        if (!capId || !c.remaining) continue;
+
+        reportedCaps.add(capId);
+
+        // Dynamically add capability if not present
+        if (!this.hasCapability(capId)) {
+          await this.addCapability(capId);
+          this.log(`Added consumable capability: ${capId}`);
         }
 
-        // Trigger depleted alert
-        if (c.remaining && c.remaining.unit === 'percent'
-            && c.remaining.value <= CONSUMABLE_DEPLETED_THRESHOLD) {
+        let minutes;
+        if (c.remaining.unit === 'minutes') {
+          minutes = c.remaining.value;
+        } else if (c.remaining.unit === 'percent') {
+          this.setCapabilityValue(capId, `${c.remaining.value}%`).catch(this.error);
+          continue;
+        } else {
+          continue;
+        }
+
+        const formatted = this._formatMinutes(minutes);
+        this.setCapabilityValue(capId, formatted).catch(this.error);
+
+        // Trigger depleted alert when less than 5% of typical max remains
+        const maxMinutes = this._consumableMaxMinutes(c.type, c.subType);
+        const pct = (minutes / maxMinutes) * 100;
+        if (pct <= CONSUMABLE_DEPLETED_THRESHOLD) {
           this.driver._consumableDepletedTrigger.trigger(this, {
             consumable_type: c.type,
             consumable_sub_type: c.subType || 'none',
-            remaining: c.remaining.value,
+            remaining: formatted,
           }).catch(this.error);
         }
       }
-    } catch {
-      // Consumable monitoring is optional — not all robots support it
+
+      // Remove consumable capabilities the robot doesn't report
+      const allConsumableCaps = [
+        'measure_consumable_filter',
+        'measure_consumable_main_brush',
+        'measure_consumable_side_brush',
+        'measure_consumable_mop',
+        'measure_consumable_sensor',
+      ];
+      for (const capId of allConsumableCaps) {
+        if (!reportedCaps.has(capId) && this.hasCapability(capId)) {
+          await this.removeCapability(capId);
+          this.log(`Removed unsupported consumable capability: ${capId}`);
+        }
+      }
+    } catch (err) {
+      this.log('Consumable update failed:', err.message);
     }
+  }
+
+  _formatMinutes(totalMinutes) {
+    const days = Math.floor(totalMinutes / 1440);
+    const hours = Math.floor((totalMinutes % 1440) / 60);
+    const mins = Math.round(totalMinutes % 60);
+    const parts = [];
+    if (days > 0) parts.push(`${days}d`);
+    if (hours > 0 || days > 0) parts.push(`${hours}h`);
+    parts.push(`${mins}m`);
+    return parts.join(' ');
   }
 
   _consumableCapabilityId(type, subType) {
     const key = `${type}:${subType || 'none'}`;
     const map = {
       'filter:none': 'measure_consumable_filter',
+      'filter:main': 'measure_consumable_filter',
       'brush:main': 'measure_consumable_main_brush',
       'brush:side_right': 'measure_consumable_side_brush',
       'mop:none': 'measure_consumable_mop',
+      'mop:main': 'measure_consumable_mop',
       'sensor:all': 'measure_consumable_sensor',
+      'cleaning:sensor': 'measure_consumable_sensor',
     };
     return map[key] || null;
+  }
+
+  async _cacheCurrentMap() {
+    try {
+      const activeId = this._floorManager.getActiveFloor();
+      if (!activeId) return;
+      const mapData = await this._api.getMap();
+      this._mapSnapshots[activeId] = mapData;
+      this.log(`Cached map snapshot for ${activeId}`);
+    } catch (err) {
+      this.log('Map cache failed:', err.message);
+    }
+  }
+
+  getMapSnapshot(floorId) {
+    return this._mapSnapshots[floorId] || null;
+  }
+
+  getFloorList() {
+    const floors = this._floorManager.getFloors();
+    const activeId = this._floorManager.getActiveFloor();
+    return {
+      floors: floors.map((f) => ({
+        id: f.id,
+        name: f.name,
+        hasCachedMap: !!this._mapSnapshots[f.id],
+      })),
+      activeFloor: activeId,
+    };
+  }
+
+  _sshErrorMessage(err) {
+    const msg = err.message || String(err);
+    if (msg.includes('authentication') || msg.includes('auth')) {
+      return 'SSH login failed — configure SSH password or key in device settings';
+    }
+    if (msg.includes('ECONNREFUSED') || msg.includes('EHOSTUNREACH') || msg.includes('ETIMEDOUT')) {
+      return 'Cannot reach robot via SSH — check SSH host/port in settings';
+    }
+    return `Floor switch failed: ${msg}`;
+  }
+
+  _consumableMaxMinutes(type, subType) {
+    const key = `${type}:${subType || 'none'}`;
+    const defaults = {
+      'brush:main': 18000,
+      'brush:side_right': 12000,
+      'filter:main': 9000,
+      'filter:none': 9000,
+      'cleaning:sensor': 1800,
+      'sensor:all': 1800,
+      'mop:none': 12000,
+      'mop:main': 12000,
+    };
+    return defaults[key] || 18000;
   }
 
   _startUpdateCheckPolling() {
@@ -725,22 +961,14 @@ class ValetudoDevice extends Homey.Device {
     if (changedKeys.some((k) => k.startsWith('ssh_'))) {
       let sshKey = this.getStoreValue('ssh_private_key') || undefined;
 
-      if (changedKeys.includes('ssh_private_key')) {
-        const newKey = newSettings.ssh_private_key;
-        if (newKey && newKey !== SSH_KEY_MASK) {
-          // User entered a new real key — save to store and mask in settings
-          await this.setStoreValue('ssh_private_key', newKey);
-          sshKey = newKey;
-          // Schedule masking after settings save completes
-          setTimeout(() => {
-            this.setSettings({ ssh_private_key: SSH_KEY_MASK }).catch(this.error);
-          }, 500);
-        } else if (!newKey) {
-          // User cleared the key
-          await this.setStoreValue('ssh_private_key', '');
-          sshKey = undefined;
-        }
-        // If newKey === SSH_KEY_MASK, the user didn't change it — keep stored key
+      if (changedKeys.includes('ssh_private_key') && newSettings.ssh_private_key) {
+        // User pasted a new key — save to secure store and clear the textarea
+        sshKey = newSettings.ssh_private_key;
+        await this.setStoreValue('ssh_private_key', sshKey);
+        this.homey.setTimeout(() => {
+          this.setSettings({ ssh_private_key: '' }).catch(this.error);
+        }, 500);
+        this.log('SSH key saved to secure store');
       }
 
       this._ssh.updateConfig({

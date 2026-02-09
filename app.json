@@ -121,36 +121,6 @@
           "da": "Rengøring afsluttet",
           "de": "Reinigung beendet"
         },
-        "tokens": [
-          {
-            "name": "area_m2",
-            "type": "number",
-            "title": {
-              "en": "Area Cleaned (m2)",
-              "da": "Rengjort areal (m2)",
-              "de": "Gereinigte Fläche (m2)"
-            },
-            "example": {
-              "en": "42",
-              "da": "42",
-              "de": "42"
-            }
-          },
-          {
-            "name": "duration_min",
-            "type": "number",
-            "title": {
-              "en": "Duration (min)",
-              "da": "Varighed (min)",
-              "de": "Dauer (Min)"
-            },
-            "example": {
-              "en": "35",
-              "da": "35",
-              "de": "35"
-            }
-          }
-        ],
         "args": [
           {
             "type": "device",
@@ -233,55 +203,6 @@
             "type": "device",
             "name": "device",
             "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "battery_level_reached",
-        "title": {
-          "en": "Battery dropped below threshold",
-          "da": "Batteri faldet under grænse",
-          "de": "Akku unter Schwellenwert gefallen"
-        },
-        "titleFormatted": {
-          "en": "Battery dropped below [[threshold]]%",
-          "da": "Batteri faldet under [[threshold]]%",
-          "de": "Akku unter [[threshold]]% gefallen"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "number",
-            "name": "threshold",
-            "title": {
-              "en": "Battery %",
-              "da": "Batteri %",
-              "de": "Akku %"
-            },
-            "min": 5,
-            "max": 95,
-            "step": 5,
-            "value": 20
-          }
-        ],
-        "tokens": [
-          {
-            "name": "battery_level",
-            "type": "number",
-            "title": {
-              "en": "Battery Level",
-              "da": "Batteriniveau",
-              "de": "Akkustand"
-            },
-            "example": {
-              "en": "15",
-              "da": "15",
-              "de": "15"
-            }
           }
         ]
       },
@@ -1756,6 +1677,54 @@
         ]
       },
       {
+        "id": "rename_segment",
+        "title": {
+          "en": "Rename segment",
+          "da": "Omdøb segment",
+          "de": "Segment umbenennen"
+        },
+        "titleFormatted": {
+          "en": "Rename segment [[segment]] to [[name]]",
+          "da": "Omdøb segment [[segment]] til [[name]]",
+          "de": "Segment [[segment]] in [[name]] umbenennen"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment",
+            "title": {
+              "en": "Segment (Room)",
+              "da": "Segment (rum)",
+              "de": "Segment (Raum)"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          },
+          {
+            "type": "text",
+            "name": "name",
+            "title": {
+              "en": "New Name",
+              "da": "Nyt navn",
+              "de": "Neuer Name"
+            },
+            "placeholder": {
+              "en": "Kitchen",
+              "da": "Køkken",
+              "de": "Küche"
+            }
+          }
+        ]
+      },
+      {
         "id": "start_new_map",
         "title": {
           "en": "Start building a new map",
@@ -1930,21 +1899,6 @@
           },
           "children": [
             {
-              "id": "host",
-              "type": "text",
-              "label": {
-                "en": "Valetudo Host",
-                "da": "Valetudo-vært",
-                "de": "Valetudo-Host"
-              },
-              "hint": {
-                "en": "IP address or hostname of your Valetudo instance",
-                "da": "IP-adresse eller værtsnavn for din Valetudo-instans",
-                "de": "IP-Adresse oder Hostname deiner Valetudo-Instanz"
-              },
-              "value": ""
-            },
-            {
               "id": "valetudo_auth_user",
               "type": "text",
               "label": {
@@ -2070,21 +2024,6 @@
           },
           "children": [
             {
-              "id": "ssh_host",
-              "type": "text",
-              "label": {
-                "en": "SSH Host",
-                "da": "SSH-vært",
-                "de": "SSH-Host"
-              },
-              "hint": {
-                "en": "Defaults to Valetudo host if empty",
-                "da": "Standard er Valetudo-vært hvis tom",
-                "de": "Verwendet Valetudo-Host wenn leer"
-              },
-              "value": ""
-            },
-            {
               "id": "ssh_port",
               "type": "number",
               "label": {
@@ -2130,9 +2069,9 @@
                 "de": "Privater SSH-Schlüssel"
               },
               "hint": {
-                "en": "Paste your SSH private key here (the content of your key file, e.g. id_rsa). Used for key-based auth, which is required for most rooted Roborock robots. Your SSH key was generated during rooting — see https://builder.dontvacuum.me for details.",
-                "da": "Indsæt din SSH private nøgle her (indholdet af din nøglefil, f.eks. id_rsa). Bruges til nøglebaseret godkendelse, som kræves af de fleste rootede Roborock-robotter. Din SSH-nøgle blev genereret under rooting — se https://builder.dontvacuum.me for detaljer.",
-                "de": "Füge deinen privaten SSH-Schlüssel hier ein (den Inhalt deiner Schlüsseldatei, z.B. id_rsa). Wird für schlüsselbasierte Authentifizierung benötigt, die bei den meisten gerooteten Roborock-Robotern erforderlich ist. Dein SSH-Schlüssel wurde beim Rooten generiert — siehe https://builder.dontvacuum.me für Details."
+                "en": "Paste your SSH private key here. It will be saved securely and the field will be cleared. The key is stored safely in the app's secure storage. Leave empty if already configured.",
+                "da": "Indsæt din SSH private nøgle her. Den gemmes sikkert og feltet ryddes. Nøglen opbevares sikkert i appens sikre lager. Lad stå tom hvis allerede konfigureret.",
+                "de": "Füge deinen privaten SSH-Schlüssel hier ein. Er wird sicher gespeichert und das Feld wird geleert. Der Schlüssel wird sicher im App-Speicher aufbewahrt. Leer lassen, wenn bereits konfiguriert."
               },
               "value": ""
             }
@@ -2181,6 +2120,36 @@
       ]
     }
   ],
+  "widgets": {
+    "vacuum-map": {
+      "name": {
+        "en": "Vacuum Map",
+        "da": "Støvsugerkort",
+        "de": "Staubsaugerkarte"
+      },
+      "height": 300,
+      "devices": {
+        "type": "app",
+        "singular": true
+      },
+      "api": {
+        "getMap": {
+          "method": "GET",
+          "path": "/map"
+        },
+        "getFloors": {
+          "method": "GET",
+          "path": "/floors"
+        },
+        "getFloorMap": {
+          "method": "GET",
+          "path": "/floorMap"
+        }
+      },
+      "id": "vacuum-map",
+      "settings": []
+    }
+  },
   "capabilities": {
     "button_dock": {
       "type": "boolean",
@@ -2192,7 +2161,7 @@
       "getable": false,
       "setable": true,
       "uiComponent": "button",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/dock.svg"
     },
     "button_new_floor": {
       "type": "boolean",
@@ -2204,7 +2173,7 @@
       "getable": false,
       "setable": true,
       "uiComponent": "button",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/floor.svg"
     },
     "current_floor": {
       "type": "string",
@@ -2216,7 +2185,8 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/floor.svg",
+      "insights": true
     },
     "fan_speed": {
       "type": "enum",
@@ -2228,7 +2198,7 @@
       "getable": true,
       "setable": true,
       "uiComponent": "picker",
-      "icon": "/assets/icon.svg",
+      "icon": "/assets/capabilities/fan_speed.svg",
       "values": [
         {
           "id": "off",
@@ -2286,7 +2256,8 @@
             "de": "Max"
           }
         }
-      ]
+      ],
+      "insights": true
     },
     "floor_picker": {
       "type": "enum",
@@ -2324,7 +2295,8 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/clean_area.svg",
+      "insights": true
     },
     "measure_clean_area_total": {
       "type": "number",
@@ -2341,7 +2313,8 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/clean_area.svg",
+      "insights": true
     },
     "measure_clean_duration_last": {
       "type": "number",
@@ -2358,7 +2331,8 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/clean_duration.svg",
+      "insights": true
     },
     "measure_clean_duration_total": {
       "type": "number",
@@ -2375,7 +2349,73 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/clean_duration.svg",
+      "insights": true
+    },
+    "measure_consumable_filter": {
+      "type": "string",
+      "title": {
+        "en": "Filter",
+        "da": "Filter",
+        "de": "Filter"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/filter.svg"
+    },
+    "measure_consumable_main_brush": {
+      "type": "string",
+      "title": {
+        "en": "Main Brush",
+        "da": "Hovedbørste",
+        "de": "Hauptbürste"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/main_brush.svg"
+    },
+    "measure_consumable_mop": {
+      "type": "string",
+      "title": {
+        "en": "Mop",
+        "da": "Moppe",
+        "de": "Wischmopp"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/mop.svg"
+    },
+    "measure_consumable_sensor": {
+      "type": "string",
+      "title": {
+        "en": "Sensors",
+        "da": "Sensorer",
+        "de": "Sensoren"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/sensor.svg"
+    },
+    "measure_consumable_side_brush": {
+      "type": "string",
+      "title": {
+        "en": "Side Brush",
+        "da": "Sidebørste",
+        "de": "Seitenbürste"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/side_brush.svg"
     },
     "vacuum_error": {
       "type": "string",
@@ -2387,7 +2427,8 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg"
+      "icon": "/assets/capabilities/error.svg",
+      "insights": true
     },
     "vacuum_state": {
       "type": "enum",
@@ -2399,7 +2440,7 @@
       "getable": true,
       "setable": false,
       "uiComponent": "sensor",
-      "icon": "/assets/icon.svg",
+      "icon": "/assets/capabilities/vacuum_state.svg",
       "values": [
         {
           "id": "cleaning",
@@ -2465,17 +2506,18 @@
             "de": "Bewegt sich"
           }
         }
-      ]
+      ],
+      "insights": true
     }
   },
   "discovery": {
     "valetudo": {
       "type": "mdns-sd",
       "mdns-sd": {
-        "name": "_valetudo._tcp.local.",
+        "name": "valetudo",
         "protocol": "tcp"
       },
-      "id": "{{name}}"
+      "id": "{{txt.id}}"
     }
   }
 }

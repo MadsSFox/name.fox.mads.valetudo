@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Center hub -->
+  <circle cx="50" cy="50" r="10" stroke="black" stroke-width="3" fill="none" fill-opacity="0"/>
+  <!-- Three arms with bristles (star/propeller pattern like a real side brush) -->
+  <line x1="50" y1="40" x2="50" y2="12" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="45" y1="14" x2="55" y2="14" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="59" y1="55" x2="83" y2="69" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="80" y1="63" x2="83" y2="74" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="41" y1="55" x2="17" y2="69" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="17" y1="63" x2="20" y2="74" stroke="black" stroke-width="3" stroke-linecap="round"/>
+</svg>

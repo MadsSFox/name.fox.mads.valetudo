@@ -1,8 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
-  <circle cx="480" cy="480" r="432" fill="none" stroke="#1a73e8" stroke-width="38.4"/>
-  <circle cx="480" cy="480" r="336" fill="none" stroke="#1a73e8" stroke-width="19.2"/>
-  <circle cx="480" cy="365" r="57.6" fill="#1a73e8"/>
-  <rect x="365" y="528" width="230.4" height="57.6" rx="28.8" fill="#1a73e8"/>
-  <line x1="192" y1="480" x2="288" y2="480" stroke="#1a73e8" stroke-width="19.2" stroke-linecap="round"/>
-  <line x1="672" y1="480" x2="768" y2="480" stroke="#1a73e8" stroke-width="19.2" stroke-linecap="round"/>
+  <!-- Robot vacuum body - top-down view, slightly right-angled -->
+  <circle cx="500" cy="500" r="340" fill="none" stroke="#1a73e8" stroke-width="32"/>
+  <!-- Front bumper arc -->
+  <path d="M 220 380 A 380 380 0 0 1 780 380" fill="none" stroke="#1a73e8" stroke-width="24" stroke-linecap="round"/>
+  <!-- LIDAR turret on top -->
+  <circle cx="500" cy="420" r="80" fill="none" stroke="#1a73e8" stroke-width="24"/>
+  <circle cx="500" cy="420" r="20" fill="#1a73e8"/>
+  <!-- Side brushes -->
+  <circle cx="280" cy="620" r="48" fill="none" stroke="#1a73e8" stroke-width="16" stroke-dasharray="20 15"/>
+  <circle cx="720" cy="620" r="48" fill="none" stroke="#1a73e8" stroke-width="16" stroke-dasharray="20 15"/>
+  <!-- Main brush roller -->
+  <rect x="360" y="580" width="280" height="32" rx="16" fill="#1a73e8" opacity="0.6"/>
+  <!-- Direction indicator -->
+  <path d="M 480 240 L 500 200 L 520 240" fill="none" stroke="#1a73e8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

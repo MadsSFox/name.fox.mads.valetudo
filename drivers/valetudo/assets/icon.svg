@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960">
-  <circle cx="480" cy="480" r="432" fill="none" stroke="#1a73e8" stroke-width="38.4"/>
-  <circle cx="480" cy="480" r="336" fill="none" stroke="#1a73e8" stroke-width="19.2"/>
-  <circle cx="480" cy="365" r="57.6" fill="#1a73e8"/>
-  <rect x="365" y="528" width="230.4" height="57.6" rx="28.8" fill="#1a73e8"/>
-  <line x1="192" y1="480" x2="288" y2="480" stroke="#1a73e8" stroke-width="19.2" stroke-linecap="round"/>
-  <line x1="672" y1="480" x2="768" y2="480" stroke="#1a73e8" stroke-width="19.2" stroke-linecap="round"/>
+  <circle cx="480" cy="480" r="432" fill="none" stroke="#ffffff" stroke-width="38.4"/>
+  <circle cx="480" cy="480" r="336" fill="none" stroke="#ffffff" stroke-width="19.2"/>
+  <circle cx="480" cy="365" r="57.6" fill="#ffffff"/>
+  <rect x="365" y="528" width="230.4" height="57.6" rx="28.8" fill="#ffffff"/>
+  <line x1="192" y1="480" x2="288" y2="480" stroke="#ffffff" stroke-width="19.2" stroke-linecap="round"/>
+  <line x1="672" y1="480" x2="768" y2="480" stroke="#ffffff" stroke-width="19.2" stroke-linecap="round"/>
 </svg>

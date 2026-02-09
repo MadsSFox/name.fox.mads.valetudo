@@ -6,6 +6,7 @@ jobs:
   main:
     name: Publish Homey App
     runs-on: ubuntu-latest
+    environment: homey-app-store
     steps:
       - uses: actions/checkout@v4
 

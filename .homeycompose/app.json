@@ -1,6 +1,6 @@
 {
   "id": "name.fox.mads.valetudo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -30,9 +30,51 @@
   },
   "brandColor": "#1a73e8",
   "tags": {
-    "en": ["valetudo", "vacuum", "robot", "roborock", "dreame", "xiaomi", "viomi", "eureka", "cecotec", "mova", "proscenic", "mqtt", "multi-floor"],
-    "da": ["valetudo", "støvsuger", "robot", "roborock", "dreame", "xiaomi", "viomi", "eureka", "cecotec", "mova", "proscenic", "mqtt", "multi-etage"],
-    "de": ["valetudo", "staubsauger", "roboter", "roborock", "dreame", "xiaomi", "viomi", "eureka", "cecotec", "mova", "proscenic", "mqtt", "multi-etage"]
+    "en": [
+      "valetudo",
+      "vacuum",
+      "robot",
+      "roborock",
+      "dreame",
+      "xiaomi",
+      "viomi",
+      "eureka",
+      "cecotec",
+      "mova",
+      "proscenic",
+      "mqtt",
+      "multi-floor"
+    ],
+    "da": [
+      "valetudo",
+      "støvsuger",
+      "robot",
+      "roborock",
+      "dreame",
+      "xiaomi",
+      "viomi",
+      "eureka",
+      "cecotec",
+      "mova",
+      "proscenic",
+      "mqtt",
+      "multi-etage"
+    ],
+    "de": [
+      "valetudo",
+      "staubsauger",
+      "roboter",
+      "roborock",
+      "dreame",
+      "xiaomi",
+      "viomi",
+      "eureka",
+      "cecotec",
+      "mova",
+      "proscenic",
+      "mqtt",
+      "multi-etage"
+    ]
   },
   "source": "https://github.com/MadsSFox/homey-valetudo",
   "homepage": "https://github.com/MadsSFox/homey-valetudo",

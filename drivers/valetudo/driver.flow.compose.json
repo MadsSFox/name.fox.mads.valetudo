@@ -30,7 +30,12 @@
             "de": "Erdgeschoss"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Floor was switched",
+        "da": "Etage blev skiftet",
+        "de": "Stockwerk wurde gewechselt"
+      }
     },
     {
       "id": "cleaning_started",
@@ -46,7 +51,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Cleaning started",
+        "da": "Rengøring startet",
+        "de": "Reinigung gestartet"
+      }
     },
     {
       "id": "cleaning_finished",
@@ -62,7 +72,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Cleaning finished",
+        "da": "Rengøring afsluttet",
+        "de": "Reinigung beendet"
+      }
     },
     {
       "id": "error_occurred",
@@ -94,7 +109,12 @@
             "de": "An Kante hängengeblieben"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "An error occurred",
+        "da": "Der opstod en fejl",
+        "de": "Ein Fehler ist aufgetreten"
+      }
     },
     {
       "id": "robot_stuck",
@@ -126,7 +146,12 @@
             "de": "Festgefahren: bitte Roboter versetzen"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Robot is stuck",
+        "da": "Robotten sidder fast",
+        "de": "Roboter steckt fest"
+      }
     },
     {
       "id": "dustbin_full",
@@ -142,7 +167,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Dustbin needs emptying",
+        "da": "Støvbeholderen skal tømmes",
+        "de": "Staubbehälter muss geleert werden"
+      }
     },
     {
       "id": "segment_cleaning_started",
@@ -188,7 +218,12 @@
             "de": "17"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Started cleaning a segment",
+        "da": "Begyndte rengøring af segment",
+        "de": "Segmentreinigung gestartet"
+      }
     },
     {
       "id": "segment_cleaning_finished",
@@ -234,7 +269,12 @@
             "de": "17"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Finished cleaning a segment",
+        "da": "Afsluttede rengøring af segment",
+        "de": "Segmentreinigung beendet"
+      }
     },
     {
       "id": "consumable_depleted",
@@ -294,7 +334,12 @@
             "de": "5"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "A consumable needs replacement",
+        "da": "En forbrugsdel skal udskiftes",
+        "de": "Ein Verbrauchsteil muss ersetzt werden"
+      }
     },
     {
       "id": "valetudo_updated",
@@ -340,7 +385,12 @@
             "de": "2026.02.0"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Valetudo was updated",
+        "da": "Valetudo blev opdateret",
+        "de": "Valetudo wurde aktualisiert"
+      }
     },
     {
       "id": "update_available",
@@ -372,7 +422,12 @@
             "de": "2026.02.0"
           }
         }
-      ]
+      ],
+      "titleFormatted": {
+        "en": "A Valetudo update is available",
+        "da": "En Valetudo-opdatering er tilgængelig",
+        "de": "Ein Valetudo-Update ist verfügbar"
+      }
     }
   ],
   "conditions": [
@@ -555,7 +610,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Current floor has a dock",
+        "da": "Nuværende etage har en dock",
+        "de": "Aktuelles Stockwerk hat eine Ladestation"
+      }
     },
     {
       "id": "is_on_carpet",
@@ -581,7 +641,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Is on carpet",
+        "da": "Er på tæppe",
+        "de": "Ist auf Teppich"
+      }
     },
     {
       "id": "is_in_segment",
@@ -654,7 +719,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Do Not Disturb is enabled",
+        "da": "Forstyr ikke er aktiveret",
+        "de": "Bitte nicht stören ist aktiviert"
+      }
     },
     {
       "id": "is_carpet_mode_enabled",
@@ -680,7 +750,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Carpet boost mode is enabled",
+        "da": "Tæppe-boost er aktiveret",
+        "de": "Teppich-Boost ist aktiviert"
+      }
     }
   ],
   "actions": [
@@ -877,7 +952,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Start cleaning",
+        "da": "Start rengøring",
+        "de": "Reinigung starten"
+      }
     },
     {
       "id": "stop_cleaning",
@@ -893,7 +973,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Stop cleaning",
+        "da": "Stop rengøring",
+        "de": "Reinigung stoppen"
+      }
     },
     {
       "id": "pause_cleaning",
@@ -909,7 +994,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Pause cleaning",
+        "da": "Pause rengøring",
+        "de": "Reinigung pausieren"
+      }
     },
     {
       "id": "return_to_dock",
@@ -925,7 +1015,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Return to dock",
+        "da": "Kør til dock",
+        "de": "Zur Ladestation zurückkehren"
+      }
     },
     {
       "id": "clean_segment",
@@ -1431,7 +1526,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Play test sound",
+        "da": "Afspil testlyd",
+        "de": "Testton abspielen"
+      }
     },
     {
       "id": "locate",
@@ -1447,7 +1547,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Locate robot",
+        "da": "Find robot",
+        "de": "Roboter finden"
+      }
     },
     {
       "id": "trigger_auto_empty",
@@ -1463,7 +1568,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Empty dustbin",
+        "da": "Tøm støvbeholder",
+        "de": "Staubbehälter leeren"
+      }
     },
     {
       "id": "set_dnd",
@@ -1749,7 +1859,12 @@
       },
       "platforms": [
         "local"
-      ]
+      ],
+      "titleFormatted": {
+        "en": "Start building a new map",
+        "da": "Start opbygning af nyt kort",
+        "de": "Neue Karte erstellen"
+      }
     },
     {
       "id": "install_voice_pack",

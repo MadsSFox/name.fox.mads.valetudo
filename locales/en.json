@@ -55,6 +55,9 @@
         "ssh_private_key": {
           "label": "SSH Private Key"
         },
+        "map_refresh_interval": {
+          "label": "Refresh interval (while active)"
+        },
         "voice_pack_url": {
           "label": "Voice Pack URL"
         },

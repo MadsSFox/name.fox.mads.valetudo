@@ -21,6 +21,7 @@
     "measure_clean_duration_last",
     "measure_clean_area_total",
     "measure_clean_duration_total",
+    "button_locate",
     "button_dock",
     "floor_picker",
     "button_new_floor"

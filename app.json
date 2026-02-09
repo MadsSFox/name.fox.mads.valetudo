@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "name.fox.mads.valetudo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -1813,6 +1813,7 @@
         "measure_clean_duration_last",
         "measure_clean_area_total",
         "measure_clean_duration_total",
+        "button_locate",
         "button_dock",
         "floor_picker",
         "button_new_floor"
@@ -2080,6 +2081,57 @@
         {
           "type": "group",
           "label": {
+            "en": "Map Widget",
+            "da": "Kort-widget",
+            "de": "Karten-Widget"
+          },
+          "children": [
+            {
+              "id": "map_refresh_interval",
+              "type": "dropdown",
+              "label": {
+                "en": "Refresh interval (while active)",
+                "da": "Opdateringsinterval (under rengøring)",
+                "de": "Aktualisierungsintervall (während Reinigung)"
+              },
+              "hint": {
+                "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
+                "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
+                "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
+              },
+              "value": "10",
+              "values": [
+                {
+                  "id": "10",
+                  "label": {
+                    "en": "10 seconds",
+                    "da": "10 sekunder",
+                    "de": "10 Sekunden"
+                  }
+                },
+                {
+                  "id": "20",
+                  "label": {
+                    "en": "20 seconds",
+                    "da": "20 sekunder",
+                    "de": "20 Sekunden"
+                  }
+                },
+                {
+                  "id": "30",
+                  "label": {
+                    "en": "30 seconds",
+                    "da": "30 sekunder",
+                    "de": "30 Sekunden"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
             "en": "Voice Packs",
             "da": "Stemmepakker",
             "de": "Sprachpakete"
@@ -2144,6 +2196,10 @@
         "getFloorMap": {
           "method": "GET",
           "path": "/floorMap"
+        },
+        "getState": {
+          "method": "GET",
+          "path": "/state"
         }
       },
       "id": "vacuum-map",
@@ -2162,6 +2218,18 @@
       "setable": true,
       "uiComponent": "button",
       "icon": "/assets/capabilities/dock.svg"
+    },
+    "button_locate": {
+      "type": "boolean",
+      "title": {
+        "en": "Find Robot",
+        "da": "Find robot",
+        "de": "Roboter finden"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/capabilities/locate.svg"
     },
     "button_new_floor": {
       "type": "boolean",

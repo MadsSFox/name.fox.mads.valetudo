@@ -214,6 +214,36 @@
   {
     "type": "group",
     "label": {
+      "en": "Map Widget",
+      "da": "Kort-widget",
+      "de": "Karten-Widget"
+    },
+    "children": [
+      {
+        "id": "map_refresh_interval",
+        "type": "dropdown",
+        "label": {
+          "en": "Refresh interval (while active)",
+          "da": "Opdateringsinterval (under rengøring)",
+          "de": "Aktualisierungsintervall (während Reinigung)"
+        },
+        "hint": {
+          "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
+          "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
+          "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
+        },
+        "value": "10",
+        "values": [
+          { "id": "10", "label": { "en": "10 seconds", "da": "10 sekunder", "de": "10 Sekunden" } },
+          { "id": "20", "label": { "en": "20 seconds", "da": "20 sekunder", "de": "20 Sekunden" } },
+          { "id": "30", "label": { "en": "30 seconds", "da": "30 sekunder", "de": "30 Sekunden" } }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
       "en": "Voice Packs",
       "da": "Stemmepakker",
       "de": "Sprachpakete"

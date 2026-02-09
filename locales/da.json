@@ -55,6 +55,9 @@
         "ssh_private_key": {
           "label": "SSH Privat nøgle"
         },
+        "map_refresh_interval": {
+          "label": "Opdateringsinterval (under rengøring)"
+        },
         "voice_pack_url": {
           "label": "Stemmepakke-URL"
         },

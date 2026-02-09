@@ -55,6 +55,9 @@
         "ssh_private_key": {
           "label": "Privater SSH-Schlüssel"
         },
+        "map_refresh_interval": {
+          "label": "Aktualisierungsintervall (während Reinigung)"
+        },
         "voice_pack_url": {
           "label": "Sprachpaket-URL"
         },

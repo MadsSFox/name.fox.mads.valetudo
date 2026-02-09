@@ -179,6 +179,10 @@ class ValetudoDevice extends Homey.Device {
       await this.setFanSpeed(value);
     });
 
+    this.registerCapabilityListener('button_locate', async () => {
+      await this.locateRobot();
+    });
+
     this.registerCapabilityListener('button_dock', async () => {
       await this.returnToDock();
     });
@@ -569,6 +573,10 @@ class ValetudoDevice extends Homey.Device {
     const floor = await this._floorManager.saveAsNewFloor(name, hasDock);
     this._updateFloorCapability();
     return floor;
+  }
+
+  getVacuumState() {
+    return this.getCapabilityValue('vacuum_state') || 'idle';
   }
 
   isOnCarpet() {

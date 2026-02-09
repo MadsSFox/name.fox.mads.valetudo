@@ -73,9 +73,26 @@
     var floorSelectEl = document.getElementById('floor-select');
     var deviceId = null;
     var refreshTimer = null;
+    var currentRefreshMs = 10000;
     var selectedFloorId = null; // null = active/live floor
     var activeFloorId = null;
     var _homey = null;
+
+    function scheduleRefresh() {
+      refreshTimer = setTimeout(function() {
+        fetchAndRender();
+        loadFloors();
+        // Check state to determine next refresh interval
+        _homey.api('GET', '/state?deviceId=' + encodeURIComponent(deviceId))
+          .then(function(data) {
+            currentRefreshMs = data.refreshInterval || 10000;
+          })
+          .catch(function() {})
+          .then(function() {
+            scheduleRefresh();
+          });
+      }, currentRefreshMs);
+    }
 
     function onHomeyReady(Homey) {
       Homey.ready();
@@ -86,10 +103,15 @@
         deviceId = deviceIds[0];
         loadFloors();
         fetchAndRender();
-        refreshTimer = setInterval(function() {
-          fetchAndRender();
-          loadFloors(); // refresh floor list periodically
-        }, 10000);
+        // Fetch initial refresh interval, then start adaptive refresh
+        _homey.api('GET', '/state?deviceId=' + encodeURIComponent(deviceId))
+          .then(function(data) {
+            currentRefreshMs = data.refreshInterval || 10000;
+          })
+          .catch(function() {})
+          .then(function() {
+            scheduleRefresh();
+          });
       } else {
         statusEl.textContent = 'Select a vacuum device in widget settings';
       }

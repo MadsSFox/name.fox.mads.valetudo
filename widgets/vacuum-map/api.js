@@ -36,6 +36,19 @@ module.exports = {
     return device.getFloorList();
   },
 
+  async getState({ homey, query }) {
+    const device = findDevice(homey, query.deviceId);
+    const state = device.getVacuumState();
+    const settings = device.getSettings();
+    const activeInterval = parseInt(settings.map_refresh_interval || '10', 10) * 1000;
+    const activeStates = ['cleaning', 'returning', 'moving', 'manual_control'];
+    const isActive = activeStates.includes(state);
+    return {
+      state,
+      refreshInterval: isActive ? activeInterval : activeInterval * 5,
+    };
+  },
+
   async getFloorMap({ homey, query }) {
     const device = findDevice(homey, query.deviceId);
     const floorId = query.floorId;

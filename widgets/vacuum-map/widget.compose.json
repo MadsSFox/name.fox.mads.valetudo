@@ -21,6 +21,10 @@
     "getFloorMap": {
       "method": "GET",
       "path": "/floorMap"
+    },
+    "getState": {
+      "method": "GET",
+      "path": "/state"
     }
   }
 }

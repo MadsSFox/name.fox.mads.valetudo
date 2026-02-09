@@ -27,36 +27,259 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 14px;
     }
-    #floor-picker {
+
+    /* Floor bar */
+    #floor-bar {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 0;
+      left: 0;
+      right: 0;
       display: none;
-    }
-    #floor-picker select {
-      background: rgba(0, 0, 0, 0.6);
-      color: var(--homey-text-color, #fff);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
-      padding: 4px 8px;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 8px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 12px;
+      overflow-x: auto;
+      white-space: nowrap;
+      z-index: 10;
+    }
+    #floor-bar::-webkit-scrollbar { display: none; }
+    .floor-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--homey-text-color, #ccc);
       cursor: pointer;
-      outline: none;
+      flex-shrink: 0;
+      transition: background 0.15s, border-color 0.15s;
     }
-    #floor-picker select:hover {
+    .floor-tab:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .floor-tab.selected {
+      background: rgba(255, 255, 255, 0.2);
       border-color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
     }
-    #floor-picker select option {
-      background: #222;
+    .floor-tab.disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    .floor-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4caf50;
+      display: none;
+    }
+    .floor-tab.active .floor-dot { display: inline-block; }
+    .floor-gear {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--homey-text-color, #ccc);
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+    .floor-gear:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Switch floor button */
+    #switch-floor-btn {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      padding: 4px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(76, 175, 80, 0.5);
+      background: rgba(76, 175, 80, 0.2);
+      color: #4caf50;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.15s;
+    }
+    #switch-floor-btn:hover {
+      background: rgba(76, 175, 80, 0.35);
+    }
+    #switch-floor-btn.switching {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    /* Toast */
+    #toast {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 16px;
+      border-radius: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
       color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 20;
+      white-space: nowrap;
+      max-width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #toast.show { opacity: 1; }
+    #toast.info { background: rgba(33, 150, 243, 0.85); }
+    #toast.success { background: rgba(76, 175, 80, 0.85); }
+    #toast.error { background: rgba(244, 67, 54, 0.85); }
+
+    /* Floor management overlay */
+    #floor-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+    }
+    #floor-overlay.show { display: flex; }
+    #floor-panel {
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 240px;
+      max-width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--homey-text-color, #eee);
+    }
+    #floor-panel h3 {
+      font-size: 14px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .floor-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .floor-item:last-child { border-bottom: none; }
+    .floor-item-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .floor-item-dot.active-dot { background: #4caf50; }
+    .floor-item-dot.inactive-dot { background: rgba(255, 255, 255, 0.2); }
+    .floor-item-name {
+      flex: 1;
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: inherit;
+      font-size: 13px;
+      padding: 2px 4px;
+      font-family: inherit;
+      outline: none;
+      min-width: 0;
+    }
+    .floor-item-name:focus {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .floor-item-delete {
+      background: none;
+      border: none;
+      color: #f44336;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+    .floor-item-delete:hover { opacity: 1; }
+    .floor-item-delete:disabled { opacity: 0.15; cursor: default; }
+    #floor-panel-close {
+      display: block;
+      margin: 12px auto 0;
+      padding: 6px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--homey-text-color, #ccc);
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .floor-item-confirm {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #f44336;
+    }
+    .floor-item-confirm.show { display: flex; }
+    .floor-item-confirm button {
+      background: none;
+      border: 1px solid;
+      border-radius: 4px;
+      padding: 1px 8px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .floor-item-confirm .confirm-yes {
+      color: #f44336;
+      border-color: #f44336;
+    }
+    .floor-item-confirm .confirm-no {
+      color: #aaa;
+      border-color: #aaa;
     }
   </style>
 </head>
 <body>
   <div id="status">Loading map…</div>
   <canvas id="map"></canvas>
-  <div id="floor-picker"><select id="floor-select"></select></div>
+
+  <div id="floor-bar"></div>
+  <button id="switch-floor-btn">Switch robot to this floor</button>
+
+  <div id="toast"></div>
+
+  <div id="floor-overlay">
+    <div id="floor-panel">
+      <h3>Manage Floors</h3>
+      <div id="floor-list"></div>
+      <button id="floor-panel-close">Close</button>
+    </div>
+  </div>
 
   <script>
     // Segment color palette
@@ -69,23 +292,297 @@
     var canvas = document.getElementById('map');
     var ctx = canvas.getContext('2d');
     var statusEl = document.getElementById('status');
-    var floorPickerEl = document.getElementById('floor-picker');
-    var floorSelectEl = document.getElementById('floor-select');
+    var floorBarEl = document.getElementById('floor-bar');
+    var switchFloorBtn = document.getElementById('switch-floor-btn');
+    var toastEl = document.getElementById('toast');
+    var floorOverlayEl = document.getElementById('floor-overlay');
+    var floorListEl = document.getElementById('floor-list');
     var deviceId = null;
     var refreshTimer = null;
     var currentRefreshMs = 10000;
     var selectedFloorId = null; // null = active/live floor
     var activeFloorId = null;
+    var floorsData = []; // cached floors array
     var _homey = null;
+    var lastManualSelection = 0;
+    var toastTimer = null;
+    var switchPollTimer = null;
+    var isSwitching = false;
+
+    // --- Toast ---
+    function showToast(message, type) {
+      type = type || 'info';
+      toastEl.textContent = message;
+      toastEl.className = type + ' show';
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() {
+        toastEl.classList.remove('show');
+      }, type === 'error' ? 5000 : 3000);
+    }
+
+    // --- Floor Bar ---
+    function buildFloorBar() {
+      floorBarEl.innerHTML = '';
+      if (!floorsData || floorsData.length <= 1) {
+        floorBarEl.style.display = 'none';
+        switchFloorBtn.style.display = 'none';
+        return;
+      }
+      floorBarEl.style.display = 'flex';
+
+      var viewingId = selectedFloorId || activeFloorId;
+
+      for (var i = 0; i < floorsData.length; i++) {
+        (function(f) {
+          var tab = document.createElement('div');
+          tab.className = 'floor-tab';
+          if (f.id === activeFloorId) tab.classList.add('active');
+          if (f.id === viewingId) tab.classList.add('selected');
+          if (!f.hasCachedMap && f.id !== activeFloorId) tab.classList.add('disabled');
+
+          var dot = document.createElement('span');
+          dot.className = 'floor-dot';
+          tab.appendChild(dot);
+
+          var label = document.createElement('span');
+          label.textContent = f.name;
+          tab.appendChild(label);
+
+          if (!tab.classList.contains('disabled')) {
+            tab.addEventListener('click', function() {
+              selectedFloorId = f.id;
+              lastManualSelection = Date.now();
+              buildFloorBar();
+              fetchAndRender();
+              updateSwitchButton();
+            });
+          }
+
+          floorBarEl.appendChild(tab);
+        })(floorsData[i]);
+      }
+
+      // Gear button
+      var gear = document.createElement('div');
+      gear.className = 'floor-gear';
+      gear.textContent = '\u2699';
+      gear.addEventListener('click', function() { openFloorOverlay(); });
+      floorBarEl.appendChild(gear);
+
+      updateSwitchButton();
+    }
+
+    function updateSwitchButton() {
+      var viewingId = selectedFloorId || activeFloorId;
+      if (floorsData.length <= 1 || !viewingId || viewingId === activeFloorId || isSwitching) {
+        switchFloorBtn.style.display = 'none';
+      } else {
+        switchFloorBtn.style.display = 'block';
+      }
+    }
+
+    // --- Switch Floor ---
+    switchFloorBtn.addEventListener('click', function() {
+      var floorId = selectedFloorId;
+      if (!floorId || floorId === activeFloorId || isSwitching) return;
+
+      var floorName = '';
+      for (var i = 0; i < floorsData.length; i++) {
+        if (floorsData[i].id === floorId) { floorName = floorsData[i].name; break; }
+      }
+
+      isSwitching = true;
+      switchFloorBtn.classList.add('switching');
+      switchFloorBtn.textContent = 'Switching…';
+      updateSwitchButton();
+      showToast('Switching to ' + floorName + '…', 'info');
+
+      _homey.api('POST', '/switchFloor', { deviceId: deviceId, floorId: floorId })
+        .then(function() {
+          // Poll for active floor change
+          var attempts = 0;
+          var maxAttempts = 40; // 2 min at 3s intervals
+          if (switchPollTimer) clearInterval(switchPollTimer);
+          switchPollTimer = setInterval(function() {
+            attempts++;
+            _homey.api('GET', '/floors?deviceId=' + encodeURIComponent(deviceId))
+              .then(function(data) {
+                if (data && data.activeFloor === floorId) {
+                  clearInterval(switchPollTimer);
+                  switchPollTimer = null;
+                  isSwitching = false;
+                  activeFloorId = floorId;
+                  selectedFloorId = null;
+                  showToast('Switched to ' + floorName, 'success');
+                  switchFloorBtn.classList.remove('switching');
+                  switchFloorBtn.textContent = 'Switch robot to this floor';
+                  loadFloors();
+                  fetchAndRender();
+                }
+              })
+              .catch(function() {});
+
+            if (attempts >= maxAttempts) {
+              clearInterval(switchPollTimer);
+              switchPollTimer = null;
+              isSwitching = false;
+              showToast('Floor switch timed out', 'error');
+              switchFloorBtn.classList.remove('switching');
+              switchFloorBtn.textContent = 'Switch robot to this floor';
+              updateSwitchButton();
+            }
+          }, 3000);
+        })
+        .catch(function(err) {
+          isSwitching = false;
+          switchFloorBtn.classList.remove('switching');
+          switchFloorBtn.textContent = 'Switch robot to this floor';
+          showToast('Switch failed: ' + (err.message || String(err)), 'error');
+          updateSwitchButton();
+        });
+    });
+
+    // --- Floor Management Overlay ---
+    function openFloorOverlay() {
+      floorOverlayEl.classList.add('show');
+      renderFloorList();
+    }
+
+    function closeFloorOverlay() {
+      floorOverlayEl.classList.remove('show');
+    }
+
+    document.getElementById('floor-panel-close').addEventListener('click', closeFloorOverlay);
+    floorOverlayEl.addEventListener('click', function(e) {
+      if (e.target === floorOverlayEl) closeFloorOverlay();
+    });
+
+    function renderFloorList() {
+      floorListEl.innerHTML = '';
+      for (var i = 0; i < floorsData.length; i++) {
+        (function(f) {
+          var item = document.createElement('div');
+          item.className = 'floor-item';
+
+          // Active dot
+          var dot = document.createElement('div');
+          dot.className = 'floor-item-dot ' + (f.id === activeFloorId ? 'active-dot' : 'inactive-dot');
+          item.appendChild(dot);
+
+          // Editable name
+          var nameInput = document.createElement('input');
+          nameInput.className = 'floor-item-name';
+          nameInput.type = 'text';
+          nameInput.value = f.name;
+          var originalName = f.name;
+
+          nameInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              nameInput.blur();
+            }
+            if (e.key === 'Escape') {
+              nameInput.value = originalName;
+              nameInput.blur();
+            }
+          });
+
+          nameInput.addEventListener('blur', function() {
+            var newName = nameInput.value.trim();
+            if (!newName || newName === originalName) {
+              nameInput.value = originalName;
+              return;
+            }
+            _homey.api('POST', '/renameFloor', { deviceId: deviceId, floorId: f.id, newName: newName })
+              .then(function() {
+                originalName = newName;
+                showToast('Renamed to "' + newName + '"', 'success');
+                loadFloors();
+              })
+              .catch(function(err) {
+                nameInput.value = originalName;
+                showToast('Rename failed: ' + (err.message || String(err)), 'error');
+              });
+          });
+
+          item.appendChild(nameInput);
+
+          // Delete button
+          var delBtn = document.createElement('button');
+          delBtn.className = 'floor-item-delete';
+          delBtn.textContent = '\u2715';
+          delBtn.title = 'Delete floor';
+          if (f.id === activeFloorId) delBtn.disabled = true;
+
+          // Confirmation row
+          var confirmRow = document.createElement('div');
+          confirmRow.className = 'floor-item-confirm';
+          var confirmLabel = document.createTextNode('Delete? ');
+          var yesBtn = document.createElement('button');
+          yesBtn.className = 'confirm-yes';
+          yesBtn.textContent = 'Yes';
+          var noBtn = document.createElement('button');
+          noBtn.className = 'confirm-no';
+          noBtn.textContent = 'No';
+          confirmRow.appendChild(confirmLabel);
+          confirmRow.appendChild(yesBtn);
+          confirmRow.appendChild(noBtn);
+
+          delBtn.addEventListener('click', function() {
+            confirmRow.classList.add('show');
+          });
+
+          noBtn.addEventListener('click', function() {
+            confirmRow.classList.remove('show');
+          });
+
+          yesBtn.addEventListener('click', function() {
+            _homey.api('POST', '/deleteFloor', { deviceId: deviceId, floorId: f.id })
+              .then(function() {
+                showToast('Deleted "' + f.name + '"', 'success');
+                if (selectedFloorId === f.id) selectedFloorId = null;
+                loadFloors().then(function() { renderFloorList(); });
+              })
+              .catch(function(err) {
+                showToast('Delete failed: ' + (err.message || String(err)), 'error');
+                confirmRow.classList.remove('show');
+              });
+          });
+
+          item.appendChild(delBtn);
+          item.appendChild(confirmRow);
+
+          floorListEl.appendChild(item);
+        })(floorsData[i]);
+      }
+    }
+
+    // --- Auto-Switch ---
+    function checkAutoSwitch(robotState) {
+      var activeStates = ['cleaning', 'returning', 'moving', 'manual_control'];
+      if (!activeStates.includes(robotState)) return;
+      if (!activeFloorId) return;
+
+      // Don't fight a manual selection within the last 30 seconds
+      if (Date.now() - lastManualSelection < 30000) return;
+
+      // Auto-switch view to the active floor
+      if (selectedFloorId && selectedFloorId !== activeFloorId) {
+        selectedFloorId = null;
+        buildFloorBar();
+        fetchAndRender();
+      }
+    }
 
     function scheduleRefresh() {
       refreshTimer = setTimeout(function() {
         fetchAndRender();
         loadFloors();
-        // Check state to determine next refresh interval
+        // Check state to determine next refresh interval + auto-switch
         _homey.api('GET', '/state?deviceId=' + encodeURIComponent(deviceId))
           .then(function(data) {
             currentRefreshMs = data.refreshInterval || 10000;
+            checkAutoSwitch(data.state);
           })
           .catch(function() {})
           .then(function() {
@@ -118,49 +615,24 @@
     }
 
     function loadFloors() {
-      _homey.api('GET', '/floors?deviceId=' + encodeURIComponent(deviceId))
+      return _homey.api('GET', '/floors?deviceId=' + encodeURIComponent(deviceId))
         .then(function(data) {
           if (!data || !data.floors || data.floors.length <= 1) {
-            floorPickerEl.style.display = 'none';
+            floorsData = (data && data.floors) || [];
+            activeFloorId = data ? data.activeFloor : null;
+            floorBarEl.style.display = 'none';
+            switchFloorBtn.style.display = 'none';
             return;
           }
           activeFloorId = data.activeFloor;
-          floorPickerEl.style.display = 'block';
-
-          // Remember current selection
-          var currentVal = floorSelectEl.value;
-
-          // Rebuild options
-          floorSelectEl.innerHTML = '';
-          for (var i = 0; i < data.floors.length; i++) {
-            var f = data.floors[i];
-            var opt = document.createElement('option');
-            opt.value = f.id;
-            opt.textContent = f.name + (f.id === data.activeFloor ? ' ●' : '');
-            if (!f.hasCachedMap && f.id !== data.activeFloor) {
-              opt.disabled = true;
-              opt.textContent = f.name + ' (no map)';
-            }
-            floorSelectEl.appendChild(opt);
-          }
-
-          // Restore selection
-          if (selectedFloorId) {
-            floorSelectEl.value = selectedFloorId;
-          } else {
-            floorSelectEl.value = data.activeFloor;
-          }
+          floorsData = data.floors;
+          buildFloorBar();
         })
         .catch(function() {
-          floorPickerEl.style.display = 'none';
+          floorBarEl.style.display = 'none';
+          switchFloorBtn.style.display = 'none';
         });
     }
-
-    floorSelectEl.addEventListener('change', function() {
-      var val = floorSelectEl.value;
-      selectedFloorId = val;
-      fetchAndRender();
-    });
 
     function fetchAndRender() {
       var floorId = selectedFloorId || activeFloorId;

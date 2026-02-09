@@ -7,7 +7,10 @@
   "height": 300,
   "devices": {
     "type": "app",
-    "singular": true
+    "singular": true,
+    "filter": {
+      "class": "vacuumcleaner"
+    }
   },
   "api": {
     "getMap": {
@@ -25,6 +28,18 @@
     "getState": {
       "method": "GET",
       "path": "/state"
+    },
+    "renameFloor": {
+      "method": "POST",
+      "path": "/renameFloor"
+    },
+    "deleteFloor": {
+      "method": "POST",
+      "path": "/deleteFloor"
+    },
+    "switchFloor": {
+      "method": "POST",
+      "path": "/switchFloor"
     }
   }
 }

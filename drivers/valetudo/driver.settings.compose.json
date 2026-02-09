@@ -2,6 +2,46 @@
   {
     "type": "group",
     "label": {
+      "en": "Robot Info",
+      "da": "Robotinfo",
+      "de": "Roboter-Info"
+    },
+    "children": [
+      {
+        "id": "robot_model",
+        "type": "label",
+        "label": {
+          "en": "Model",
+          "da": "Model",
+          "de": "Modell"
+        },
+        "value": "Unknown"
+      },
+      {
+        "id": "robot_manufacturer",
+        "type": "label",
+        "label": {
+          "en": "Manufacturer",
+          "da": "Producent",
+          "de": "Hersteller"
+        },
+        "value": "Unknown"
+      },
+      {
+        "id": "valetudo_version",
+        "type": "label",
+        "label": {
+          "en": "Valetudo Version",
+          "da": "Valetudo-version",
+          "de": "Valetudo-Version"
+        },
+        "value": "Unknown"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
       "en": "Valetudo Web UI",
       "da": "Valetudo Web UI",
       "de": "Valetudo Web-UI"
@@ -21,6 +61,36 @@
           "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
         },
         "value": "http://"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Map Widget",
+      "da": "Kort-widget",
+      "de": "Karten-Widget"
+    },
+    "children": [
+      {
+        "id": "map_refresh_interval",
+        "type": "dropdown",
+        "label": {
+          "en": "Refresh interval (while active)",
+          "da": "Opdateringsinterval (under rengøring)",
+          "de": "Aktualisierungsintervall (während Reinigung)"
+        },
+        "hint": {
+          "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
+          "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
+          "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
+        },
+        "value": "10",
+        "values": [
+          { "id": "10", "label": { "en": "10 seconds", "da": "10 sekunder", "de": "10 Sekunden" } },
+          { "id": "20", "label": { "en": "20 seconds", "da": "20 sekunder", "de": "20 Sekunden" } },
+          { "id": "30", "label": { "en": "30 seconds", "da": "30 sekunder", "de": "30 Sekunden" } }
+        ]
       }
     ]
   },
@@ -208,36 +278,6 @@
           "de": "Füge deinen privaten SSH-Schlüssel hier ein. Er wird sicher gespeichert und das Feld wird geleert. Der Schlüssel wird sicher im App-Speicher aufbewahrt. Leer lassen, wenn bereits konfiguriert."
         },
         "value": ""
-      }
-    ]
-  },
-  {
-    "type": "group",
-    "label": {
-      "en": "Map Widget",
-      "da": "Kort-widget",
-      "de": "Karten-Widget"
-    },
-    "children": [
-      {
-        "id": "map_refresh_interval",
-        "type": "dropdown",
-        "label": {
-          "en": "Refresh interval (while active)",
-          "da": "Opdateringsinterval (under rengøring)",
-          "de": "Aktualisierungsintervall (während Reinigung)"
-        },
-        "hint": {
-          "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
-          "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
-          "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
-        },
-        "value": "10",
-        "values": [
-          { "id": "10", "label": { "en": "10 seconds", "da": "10 sekunder", "de": "10 Sekunden" } },
-          { "id": "20", "label": { "en": "20 seconds", "da": "20 sekunder", "de": "20 Sekunden" } },
-          { "id": "30", "label": { "en": "30 seconds", "da": "30 sekunder", "de": "30 Sekunden" } }
-        ]
       }
     ]
   },

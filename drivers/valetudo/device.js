@@ -100,6 +100,11 @@ class ValetudoDevice extends Homey.Device {
     // Set current floor display
     this._updateFloorCapability();
 
+    // Default "new floor has dock" toggle to true
+    if (this.getCapabilityValue('new_floor_has_dock') === null) {
+      this.setCapabilityValue('new_floor_has_dock', true).catch(this.error);
+    }
+
     // Start REST polling (will activate once discovery marks device available)
     this._startRestPolling();
 
@@ -133,6 +138,9 @@ class ValetudoDevice extends Homey.Device {
 
     // Now connect: fetch state from REST API
     await this._fetchInitialState();
+
+    // Populate robot diagnostics
+    await this._fetchRobotDiagnostics();
 
     // Fetch consumables and statistics
     await this._updateConsumables();
@@ -187,24 +195,30 @@ class ValetudoDevice extends Homey.Device {
       await this.returnToDock();
     });
 
+    this.registerCapabilityListener('new_floor_has_dock', async (value) => {
+      // Just stores the value — read by button_new_floor when pressed
+      this.log(`New floor dock toggle set to: ${value}`);
+    });
+
     this.registerCapabilityListener('button_new_floor', async () => {
+      const hasDock = this.getCapabilityValue('new_floor_has_dock') !== false;
       let floors = this._floorManager.getFloors();
 
       // If no floors exist yet, save the current map as "Floor 1" first
       if (floors.length === 0) {
         this.log('No floors exist yet — saving current map as "Floor 1" first...');
         this.setWarning('Saving current map as Floor 1…').catch(this.error);
-        await this.saveFloor('Floor 1');
+        await this.saveFloor('Floor 1', hasDock);
         this._updateFloorPicker();
         floors = this._floorManager.getFloors();
       }
 
       const name = `Floor ${floors.length + 1}`;
-      this.log(`Saving current map as "${name}", then starting new map...`);
+      this.log(`Saving current map as "${name}" (dock: ${hasDock}), then starting new map...`);
       this.setWarning(`Saving "${name}"…`).catch(this.error);
 
       // Run in background to avoid Homey timeout
-      this.saveFloor(name)
+      this.saveFloor(name, hasDock)
         .then(async () => {
           this._updateFloorPicker();
           this.setWarning('Starting new map…').catch(this.error);
@@ -351,6 +365,24 @@ class ValetudoDevice extends Homey.Device {
     }
   }
 
+  async _fetchRobotDiagnostics() {
+    try {
+      const robotInfo = await this._api.getRobotInfo();
+      await this.setSettings({
+        robot_model: robotInfo.modelName || 'Unknown',
+        robot_manufacturer: robotInfo.manufacturer || 'Unknown',
+      });
+    } catch (err) {
+      this.log('Robot info fetch failed:', err.message);
+    }
+    try {
+      const version = await this._api.getVersion();
+      await this.setSettings({ valetudo_version: version.release || 'Unknown' });
+    } catch (err) {
+      this.log('Valetudo version fetch failed:', err.message);
+    }
+  }
+
   async _fetchInitialState() {
     try {
       const attrs = await this._api.getStateAttributes();
@@ -491,6 +523,23 @@ class ValetudoDevice extends Homey.Device {
     } catch (err) {
       this.log('Map backup skipped (SSH not available yet):', err.message);
     }
+  }
+
+  // --- Public methods for widget floor management ---
+
+  async renameFloor(floorId, newName) {
+    await this._floorManager.renameFloor(floorId, newName);
+    this._updateFloorCapability();
+    this._updateFloorPicker();
+  }
+
+  async deleteFloor(floorId) {
+    const activeId = this._floorManager.getActiveFloor();
+    if (floorId === activeId) throw new Error('Cannot delete the active floor');
+    await this._floorManager.removeFloor(floorId);
+    delete this._mapSnapshots[floorId];
+    this._updateFloorCapability();
+    this._updateFloorPicker();
   }
 
   // --- Public methods for flow card actions ---

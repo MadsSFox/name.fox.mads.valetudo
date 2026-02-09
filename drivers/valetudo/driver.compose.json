@@ -24,6 +24,7 @@
     "button_locate",
     "button_dock",
     "floor_picker",
+    "new_floor_has_dock",
     "button_new_floor"
   ],
   "capabilitiesOptions": {

@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "New Floor Has Dock",
+    "da": "Ny etage har dock",
+    "de": "Neues Stockwerk hat Ladestation"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "toggle",
+  "icon": "/assets/capabilities/dock.svg"
+}

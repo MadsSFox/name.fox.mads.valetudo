@@ -63,6 +63,15 @@
         },
         "voice_pack_language": {
           "label": "Language Code"
+        },
+        "robot_model": {
+          "label": "Model"
+        },
+        "robot_manufacturer": {
+          "label": "Manufacturer"
+        },
+        "valetudo_version": {
+          "label": "Valetudo Version"
         }
       }
     }

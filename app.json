@@ -1816,6 +1816,7 @@
         "button_locate",
         "button_dock",
         "floor_picker",
+        "new_floor_has_dock",
         "button_new_floor"
       ],
       "capabilitiesOptions": {
@@ -1869,6 +1870,46 @@
         {
           "type": "group",
           "label": {
+            "en": "Robot Info",
+            "da": "Robotinfo",
+            "de": "Roboter-Info"
+          },
+          "children": [
+            {
+              "id": "robot_model",
+              "type": "label",
+              "label": {
+                "en": "Model",
+                "da": "Model",
+                "de": "Modell"
+              },
+              "value": "Unknown"
+            },
+            {
+              "id": "robot_manufacturer",
+              "type": "label",
+              "label": {
+                "en": "Manufacturer",
+                "da": "Producent",
+                "de": "Hersteller"
+              },
+              "value": "Unknown"
+            },
+            {
+              "id": "valetudo_version",
+              "type": "label",
+              "label": {
+                "en": "Valetudo Version",
+                "da": "Valetudo-version",
+                "de": "Valetudo-Version"
+              },
+              "value": "Unknown"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
             "en": "Valetudo Web UI",
             "da": "Valetudo Web UI",
             "de": "Valetudo Web-UI"
@@ -1888,6 +1929,57 @@
                 "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
               },
               "value": "http://"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Map Widget",
+            "da": "Kort-widget",
+            "de": "Karten-Widget"
+          },
+          "children": [
+            {
+              "id": "map_refresh_interval",
+              "type": "dropdown",
+              "label": {
+                "en": "Refresh interval (while active)",
+                "da": "Opdateringsinterval (under rengøring)",
+                "de": "Aktualisierungsintervall (während Reinigung)"
+              },
+              "hint": {
+                "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
+                "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
+                "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
+              },
+              "value": "10",
+              "values": [
+                {
+                  "id": "10",
+                  "label": {
+                    "en": "10 seconds",
+                    "da": "10 sekunder",
+                    "de": "10 Sekunden"
+                  }
+                },
+                {
+                  "id": "20",
+                  "label": {
+                    "en": "20 seconds",
+                    "da": "20 sekunder",
+                    "de": "20 Sekunden"
+                  }
+                },
+                {
+                  "id": "30",
+                  "label": {
+                    "en": "30 seconds",
+                    "da": "30 sekunder",
+                    "de": "30 Sekunden"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -2081,57 +2173,6 @@
         {
           "type": "group",
           "label": {
-            "en": "Map Widget",
-            "da": "Kort-widget",
-            "de": "Karten-Widget"
-          },
-          "children": [
-            {
-              "id": "map_refresh_interval",
-              "type": "dropdown",
-              "label": {
-                "en": "Refresh interval (while active)",
-                "da": "Opdateringsinterval (under rengøring)",
-                "de": "Aktualisierungsintervall (während Reinigung)"
-              },
-              "hint": {
-                "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
-                "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
-                "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
-              },
-              "value": "10",
-              "values": [
-                {
-                  "id": "10",
-                  "label": {
-                    "en": "10 seconds",
-                    "da": "10 sekunder",
-                    "de": "10 Sekunden"
-                  }
-                },
-                {
-                  "id": "20",
-                  "label": {
-                    "en": "20 seconds",
-                    "da": "20 sekunder",
-                    "de": "20 Sekunden"
-                  }
-                },
-                {
-                  "id": "30",
-                  "label": {
-                    "en": "30 seconds",
-                    "da": "30 sekunder",
-                    "de": "30 Sekunden"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
             "en": "Voice Packs",
             "da": "Stemmepakker",
             "de": "Sprachpakete"
@@ -2182,7 +2223,10 @@
       "height": 300,
       "devices": {
         "type": "app",
-        "singular": true
+        "singular": true,
+        "filter": {
+          "class": "vacuumcleaner"
+        }
       },
       "api": {
         "getMap": {
@@ -2200,6 +2244,18 @@
         "getState": {
           "method": "GET",
           "path": "/state"
+        },
+        "renameFloor": {
+          "method": "POST",
+          "path": "/renameFloor"
+        },
+        "deleteFloor": {
+          "method": "POST",
+          "path": "/deleteFloor"
+        },
+        "switchFloor": {
+          "method": "POST",
+          "path": "/switchFloor"
         }
       },
       "id": "vacuum-map",
@@ -2484,6 +2540,18 @@
       "uiComponent": "sensor",
       "insights": false,
       "icon": "/assets/capabilities/side_brush.svg"
+    },
+    "new_floor_has_dock": {
+      "type": "boolean",
+      "title": {
+        "en": "New Floor Has Dock",
+        "da": "Ny etage har dock",
+        "de": "Neues Stockwerk hat Ladestation"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "icon": "/assets/capabilities/dock.svg"
     },
     "vacuum_error": {
       "type": "string",

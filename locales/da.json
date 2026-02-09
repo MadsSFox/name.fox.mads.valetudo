@@ -63,6 +63,15 @@
         },
         "voice_pack_language": {
           "label": "Sprogkode"
+        },
+        "robot_model": {
+          "label": "Model"
+        },
+        "robot_manufacturer": {
+          "label": "Producent"
+        },
+        "valetudo_version": {
+          "label": "Valetudo-version"
         }
       }
     }

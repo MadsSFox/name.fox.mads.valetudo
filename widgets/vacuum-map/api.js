@@ -70,4 +70,23 @@ module.exports = {
     }
     return snapshot;
   },
+
+  async renameFloor({ homey, body }) {
+    const device = findDevice(homey, body.deviceId);
+    await device.renameFloor(body.floorId, body.newName);
+    return { success: true };
+  },
+
+  async deleteFloor({ homey, body }) {
+    const device = findDevice(homey, body.deviceId);
+    await device.deleteFloor(body.floorId);
+    return { success: true };
+  },
+
+  async switchFloor({ homey, body }) {
+    const device = findDevice(homey, body.deviceId);
+    // Fire-and-forget — switching takes time (SSH + reboot)
+    device.switchFloor(body.floorId).catch(() => {});
+    return { success: true, message: 'Floor switch initiated' };
+  },
 };

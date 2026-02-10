@@ -4,5 +4,8 @@
   },
   "0.0.2": {
     "en": "Changing driver icon color"
+  },
+  "0.0.3": {
+    "en": "Replace widget preview pictures + replace driver image + Add licens comment in description"
   }
 }

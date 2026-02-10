@@ -12,9 +12,9 @@
     "de": "Valetudo"
   },
   "description": {
-    "en": "Smart multi-floor control for your Valetudo robot vacuum",
-    "da": "Smart multi-etage styring af din Valetudo robotstøvsuger",
-    "de": "Smarte Multi-Etagen-Steuerung für deinen Valetudo Saugroboter"
+    "en": "Smart multi-floor control for your Valetudo robot vacuum. This app is an unofficial integration and is not affiliated with or endorsed by the Valetudo project.",
+    "da": "Smart multi-etage styring af din Valetudo robotstøvsuger. Denne app er en uofficiel integration og er ikke tilknyttet eller godkendt af Valetudo-projektet.",
+    "de": "Smarte Multi-Etagen-Steuerung für deinen Valetudo Saugroboter. Diese App ist eine inoffizielle Integration und steht in keiner Verbindung zum Valetudo-Projekt."
   },
   "category": [
     "appliances"

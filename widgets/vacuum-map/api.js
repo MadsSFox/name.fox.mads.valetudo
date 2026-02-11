@@ -83,6 +83,13 @@ module.exports = {
     return { success: true };
   },
 
+  async setFloorDock({ homey, body }) {
+    const device = findDevice(homey, body.deviceId);
+    await device.floorManager.setFloorDock(body.floorId, body.hasDock === true);
+    device._updateFloorCapability();
+    return { success: true };
+  },
+
   async switchFloor({ homey, body }) {
     const device = findDevice(homey, body.deviceId);
     // Fire-and-forget — switching takes time (SSH + reboot)

@@ -214,6 +214,23 @@
       border-color: rgba(255, 255, 255, 0.3);
       background: rgba(255, 255, 255, 0.08);
     }
+    .floor-item-dock {
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px 6px;
+      opacity: 0.5;
+      transition: opacity 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .floor-item-dock:hover { opacity: 0.8; }
+    .floor-item-dock.has-dock {
+      opacity: 1;
+      border-color: rgba(76, 175, 80, 0.6);
+    }
     .floor-item-delete {
       background: none;
       border: none;
@@ -506,6 +523,26 @@
           });
 
           item.appendChild(nameInput);
+
+          // Dock toggle button
+          var dockBtn = document.createElement('button');
+          dockBtn.className = 'floor-item-dock' + (f.hasDock ? ' has-dock' : '');
+          dockBtn.textContent = '\u2693'; // anchor symbol
+          dockBtn.title = f.hasDock ? 'Has dock (click to remove)' : 'No dock (click to add)';
+          dockBtn.addEventListener('click', function() {
+            var newVal = !f.hasDock;
+            _homey.api('POST', '/setFloorDock', { deviceId: deviceId, floorId: f.id, hasDock: newVal })
+              .then(function() {
+                f.hasDock = newVal;
+                dockBtn.className = 'floor-item-dock' + (newVal ? ' has-dock' : '');
+                dockBtn.title = newVal ? 'Has dock (click to remove)' : 'No dock (click to add)';
+                showToast((newVal ? 'Dock enabled' : 'Dock disabled') + ' for "' + f.name + '"', 'success');
+              })
+              .catch(function(err) {
+                showToast('Failed: ' + (err.message || String(err)), 'error');
+              });
+          });
+          item.appendChild(dockBtn);
 
           // Delete button
           var delBtn = document.createElement('button');

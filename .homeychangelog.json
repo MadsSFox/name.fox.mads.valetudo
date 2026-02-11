@@ -7,5 +7,8 @@
   },
   "0.0.3": {
     "en": "Replace widget preview pictures + replace driver image + Add licens comment in description"
+  },
+  "0.0.4": {
+    "en": "Fixing the multi floor support"
   }
 }

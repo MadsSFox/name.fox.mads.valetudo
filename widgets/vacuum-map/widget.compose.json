@@ -37,6 +37,10 @@
       "method": "POST",
       "path": "/deleteFloor"
     },
+    "setFloorDock": {
+      "method": "POST",
+      "path": "/setFloorDock"
+    },
     "switchFloor": {
       "method": "POST",
       "path": "/switchFloor"

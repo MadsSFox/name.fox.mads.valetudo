@@ -203,6 +203,7 @@ class ValetudoDevice extends Homey.Device {
     this.registerCapabilityListener('button_new_floor', async () => {
       const hasDock = this.getCapabilityValue('new_floor_has_dock') !== false;
       let floors = this._floorManager.getFloors();
+      const activeFloorId = this._floorManager.getActiveFloor();
 
       // If no floors exist yet, save the current map as "Floor 1" first
       if (floors.length === 0) {
@@ -213,17 +214,26 @@ class ValetudoDevice extends Homey.Device {
         floors = this._floorManager.getFloors();
       }
 
-      const name = `Floor ${floors.length + 1}`;
-      this.log(`Saving current map as "${name}" (dock: ${hasDock}), then starting new map...`);
-      this.setWarning(`Saving "${name}"…`).catch(this.error);
+      // Backup the CURRENT floor's map before resetting (this is the key step —
+      // the current map belongs to the active floor, not the new one)
+      if (activeFloorId) {
+        this.log(`Backing up current floor "${activeFloorId}" before creating new floor...`);
+        this.setWarning('Backing up current floor…').catch(this.error);
+        await this._floorManager.saveCurrentFloor(activeFloorId);
+      }
 
-      // Run in background to avoid Homey timeout
-      this.saveFloor(name, hasDock)
-        .then(async () => {
+      const name = `Floor ${floors.length + 1}`;
+      this.log(`Creating new floor "${name}" (dock: ${hasDock}), then starting new map...`);
+      this.setWarning(`Creating "${name}"…`).catch(this.error);
+
+      // Create the new floor entry (store-only — no map files yet, the robot
+      // will build them via startNewMap)
+      const newFloorOp = this._floorManager.createEmptyFloor(name, hasDock)
+        .then(async (newFloor) => {
           this._updateFloorPicker();
           this.setWarning('Starting new map…').catch(this.error);
           await this.startNewMap();
-          this.setWarning(`Floor "${name}" saved, new map started`).catch(this.error);
+          this.setWarning(`Floor "${name}" created, new map started`).catch(this.error);
           this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
           this.setCapabilityValue('current_floor', name).catch(this.error);
           this.log(`New floor "${name}" created successfully`);
@@ -231,7 +241,7 @@ class ValetudoDevice extends Homey.Device {
         .catch((err) => {
           const msg = this._sshErrorMessage(err);
           this.setWarning(msg).catch(this.error);
-          this.log(`New floor save failed: ${err.message}`);
+          this.log(`New floor creation failed: ${err.message}`);
           this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 30000);
         });
     });
@@ -914,6 +924,7 @@ class ValetudoDevice extends Homey.Device {
       floors: floors.map((f) => ({
         id: f.id,
         name: f.name,
+        hasDock: f.hasDock !== false,
         hasCachedMap: !!this._mapSnapshots[f.id],
       })),
       activeFloor: activeId,

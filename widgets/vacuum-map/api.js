@@ -46,6 +46,7 @@ module.exports = {
     return {
       state,
       available: device.getAvailable(),
+      mapping: typeof device.isMappingNewFloor === 'function' ? device.isMappingNewFloor() : false,
       refreshInterval: isActive ? activeInterval : activeInterval * 5,
     };
   },

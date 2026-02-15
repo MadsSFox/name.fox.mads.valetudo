@@ -252,6 +252,14 @@ class ValetudoDevice extends Homey.Device {
       const activeId = this._floorManager.getActiveFloor();
       if (value === activeId) return;
 
+      if (this._pendingNewFloor) {
+        // Reset picker and warn
+        if (activeId) this.setCapabilityValue('floor_picker', activeId).catch(this.error);
+        this.setWarning('Cannot switch floors while mapping is in progress').catch(this.error);
+        this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
+        return;
+      }
+
       const floorName = this._floorManager.getFloorName(value) || value;
 
       // Reset picker to current floor immediately — only update on confirmed success
@@ -665,7 +673,14 @@ class ValetudoDevice extends Homey.Device {
     }
   }
 
+  isMappingNewFloor() {
+    return !!this._pendingNewFloor;
+  }
+
   async switchFloor(floorId) {
+    if (this._pendingNewFloor) {
+      throw new Error('Cannot switch floors while mapping is in progress. Wait for the new map to be finalized.');
+    }
     // Cache current floor's map before switching
     await this._cacheCurrentMap();
     const floor = await this._floorManager.switchFloor(floorId);

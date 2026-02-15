@@ -396,6 +396,18 @@ class ValetudoDevice extends Homey.Device {
     this.log(`Mapping run finished — waiting for firmware to finalize map with segments before saving "${name}"`);
     this.setWarning(`Waiting for "${name}" map to finalize…`).catch(this.error);
 
+    // For no-dock floors, firmware won't segment automatically (requires docking).
+    // Trigger segmentation manually via quirk API or config patch + reboot.
+    if (!hasDock) {
+      this.log('Floor has no dock — triggering manual segmentation...');
+      this.setWarning(`Triggering segmentation for "${name}"…`).catch(this.error);
+      try {
+        await this._floorManager.triggerSegmentation();
+      } catch (err) {
+        this.log('Manual segmentation trigger failed:', err.message);
+      }
+    }
+
     // Poll map API until segment layers appear (firmware processes segments after cleaning ends)
     const startTime = Date.now();
     let segmentsFound = false;

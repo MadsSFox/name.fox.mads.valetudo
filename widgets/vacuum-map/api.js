@@ -47,6 +47,7 @@ module.exports = {
       state,
       available: device.getAvailable(),
       mapping: typeof device.isMappingNewFloor === 'function' ? device.isMappingNewFloor() : false,
+      waitingForSegments: !!device._waitingForSegments,
       refreshInterval: isActive ? activeInterval : activeInterval * 5,
     };
   },

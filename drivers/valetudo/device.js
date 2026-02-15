@@ -521,10 +521,19 @@ class ValetudoDevice extends Homey.Device {
     // Check if the floor already has a map backup on the robot
     try {
       const hasSaved = await this._floorManager.isFloorSaved(activeId);
-      if (!hasSaved) {
-        this.log('Attempting SSH floor backup for:', activeId);
+      if (hasSaved) {
+        this.log(`Floor "${activeId}" already has a map backup`);
+        return;
+      }
+
+      // Check if the robot has an existing map (last_map) that we can preserve
+      const robotHasMap = await this._ssh.fileExists('/mnt/data/rockrobo/last_map');
+      if (robotHasMap) {
+        this.log(`Robot has an existing map — preserving it as "${activeId}" backup`);
         await this._floorManager.saveCurrentFloor(activeId);
-        this.log('Floor backup saved successfully');
+        this.log('Existing map preserved as floor backup successfully');
+      } else {
+        this.log('Robot has no existing map to preserve');
       }
     } catch (err) {
       this.log('Floor backup skipped:', err.message);

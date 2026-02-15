@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "name.fox.mads.valetudo",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -2459,6 +2459,55 @@
                     "en": "30 seconds",
                     "da": "30 sekunder",
                     "de": "30 Sekunden"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "segment_wait_timeout",
+              "type": "dropdown",
+              "label": {
+                "en": "Map finalization timeout",
+                "da": "Kort-finaliseringstimeout",
+                "de": "Karten-Finalisierungs-Timeout"
+              },
+              "hint": {
+                "en": "After a new floor mapping finishes, the app waits for the robot firmware to split the map into room segments before saving. Increase this if your robot is slow to finalize maps.",
+                "da": "Efter en ny etagekortlægning venter appen på, at robottens firmware opdeler kortet i rumsegmenter, inden det gemmes. Øg denne værdi, hvis din robot er langsom til at færdiggøre kort.",
+                "de": "Nach einer neuen Etagenkartierung wartet die App, bis die Roboter-Firmware die Karte in Raumsegmente aufteilt, bevor sie gespeichert wird. Erhöhe diesen Wert, wenn dein Roboter langsam bei der Kartenfinalisierung ist."
+              },
+              "value": "300",
+              "values": [
+                {
+                  "id": "120",
+                  "label": {
+                    "en": "2 minutes",
+                    "da": "2 minutter",
+                    "de": "2 Minuten"
+                  }
+                },
+                {
+                  "id": "300",
+                  "label": {
+                    "en": "5 minutes (default)",
+                    "da": "5 minutter (standard)",
+                    "de": "5 Minuten (Standard)"
+                  }
+                },
+                {
+                  "id": "600",
+                  "label": {
+                    "en": "10 minutes",
+                    "da": "10 minutter",
+                    "de": "10 Minuten"
+                  }
+                },
+                {
+                  "id": "900",
+                  "label": {
+                    "en": "15 minutes",
+                    "da": "15 minutter",
+                    "de": "15 Minuten"
                   }
                 }
               ]

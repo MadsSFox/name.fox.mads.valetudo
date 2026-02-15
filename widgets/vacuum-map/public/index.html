@@ -382,6 +382,7 @@
     var switchPollTimer = null;
     var isSwitching = false;
     var robotAvailable = true;
+    var isMapping = false;
 
     // --- Toast ---
     function showToast(message, type) {
@@ -448,7 +449,7 @@
 
     function updateSwitchButton() {
       var viewingId = selectedFloorId || activeFloorId;
-      if (floorsData.length <= 1 || !viewingId || viewingId === activeFloorId || isSwitching) {
+      if (floorsData.length <= 1 || !viewingId || viewingId === activeFloorId || isSwitching || isMapping) {
         switchFloorBtn.style.display = 'none';
       } else {
         switchFloorBtn.style.display = 'block';
@@ -472,7 +473,7 @@
 
     switchFloorBtn.addEventListener('click', function() {
       var floorId = selectedFloorId;
-      if (!floorId || floorId === activeFloorId || isSwitching) return;
+      if (!floorId || floorId === activeFloorId || isSwitching || isMapping) return;
 
       var floorName = '';
       for (var i = 0; i < floorsData.length; i++) {
@@ -729,6 +730,15 @@
               showDisconnected();
             } else {
               showConnected();
+              var wasMapping = isMapping;
+              isMapping = !!data.mapping;
+              if (wasMapping !== isMapping) {
+                updateSwitchButton();
+                if (wasMapping && !isMapping) {
+                  showToast('New floor map finalized', 'success');
+                  loadFloors();
+                }
+              }
               fetchAndRender();
               loadFloors();
               checkAutoSwitch(data.state);

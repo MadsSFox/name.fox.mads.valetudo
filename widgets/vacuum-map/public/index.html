@@ -26,6 +26,18 @@
       color: var(--homey-text-color, #aaa);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    #status .status-icon {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    #status .status-hint {
+      font-size: 11px;
+      opacity: 0.6;
+      margin-top: 4px;
     }
 
     /* Floor bar */
@@ -325,6 +337,7 @@
     var toastTimer = null;
     var switchPollTimer = null;
     var isSwitching = false;
+    var robotAvailable = true;
 
     // --- Toast ---
     function showToast(message, type) {
@@ -611,17 +624,46 @@
       }
     }
 
+    // --- Connection Check ---
+    function showDisconnected() {
+      robotAvailable = false;
+      canvas.width = 0;
+      canvas.height = 0;
+      floorBarEl.style.display = 'none';
+      switchFloorBtn.style.display = 'none';
+      statusEl.innerHTML = '<span class="status-icon">&#x1F50C;</span>'
+        + 'Robot not reachable'
+        + '<span class="status-hint">Waiting for connection…</span>';
+      statusEl.style.display = 'block';
+    }
+
+    function showConnected() {
+      if (!robotAvailable) {
+        robotAvailable = true;
+        statusEl.style.display = 'none';
+        loadFloors();
+        fetchAndRender();
+      }
+    }
+
     function scheduleRefresh() {
       refreshTimer = setTimeout(function() {
-        fetchAndRender();
-        loadFloors();
-        // Check state to determine next refresh interval + auto-switch
+        // Check state first to determine connectivity + refresh interval
         _homey.api('GET', '/state?deviceId=' + encodeURIComponent(deviceId))
           .then(function(data) {
             currentRefreshMs = data.refreshInterval || 10000;
-            checkAutoSwitch(data.state);
+            if (data.available === false) {
+              showDisconnected();
+            } else {
+              showConnected();
+              fetchAndRender();
+              loadFloors();
+              checkAutoSwitch(data.state);
+            }
           })
-          .catch(function() {})
+          .catch(function() {
+            showDisconnected();
+          })
           .then(function() {
             scheduleRefresh();
           });
@@ -635,14 +677,20 @@
       var deviceIds = Homey.getDeviceIds();
       if (deviceIds && deviceIds.length > 0) {
         deviceId = deviceIds[0];
-        loadFloors();
-        fetchAndRender();
-        // Fetch initial refresh interval, then start adaptive refresh
+        // Check connectivity before loading anything
         _homey.api('GET', '/state?deviceId=' + encodeURIComponent(deviceId))
           .then(function(data) {
             currentRefreshMs = data.refreshInterval || 10000;
+            if (data.available === false) {
+              showDisconnected();
+            } else {
+              loadFloors();
+              fetchAndRender();
+            }
           })
-          .catch(function() {})
+          .catch(function() {
+            showDisconnected();
+          })
           .then(function() {
             scheduleRefresh();
           });

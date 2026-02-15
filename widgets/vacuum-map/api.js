@@ -45,6 +45,7 @@ module.exports = {
     const isActive = activeStates.includes(state);
     return {
       state,
+      available: device.getAvailable(),
       refreshInterval: isActive ? activeInterval : activeInterval * 5,
     };
   },

@@ -326,11 +326,13 @@ class ValetudoDevice extends Homey.Device {
     });
 
     this._mqtt.on('connected', () => {
+      this.log('MQTT connected — robot available');
       this.setAvailable().catch(this.error);
+      this._restFailCount = 0;
     });
 
     this._mqtt.on('disconnected', () => {
-      // Don't mark unavailable immediately — REST polling will handle it
+      this.log('MQTT disconnected — will rely on REST polling');
     });
   }
 
@@ -428,7 +430,12 @@ class ValetudoDevice extends Homey.Device {
       this.log(`Failed to fetch state (attempt ${this._restFailCount}):`, err.message);
       // Only mark unavailable after 3 consecutive failures (90 seconds)
       if (this._restFailCount >= 3) {
-        await this.setUnavailable('Cannot reach Valetudo');
+        const host = this.getSettings().host || 'unknown';
+        const reason = err.code === 'ECONNREFUSED' ? 'Connection refused'
+          : err.code === 'ETIMEDOUT' ? 'Connection timed out'
+            : err.code === 'EHOSTUNREACH' ? 'Host unreachable'
+              : 'Cannot connect';
+        await this.setUnavailable(`${reason} — check that the robot (${host}) is powered on and on the network`);
       }
     }
   }

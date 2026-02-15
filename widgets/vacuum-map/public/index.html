@@ -195,6 +195,37 @@
       font-weight: 600;
       margin-bottom: 4px;
     }
+    .switching-spinner.error {
+      animation: none;
+      border-color: transparent;
+      border-top-color: transparent;
+      width: auto;
+      height: auto;
+      font-size: 32px;
+      line-height: 1;
+    }
+    .switching-spinner.success {
+      animation: none;
+      border-color: transparent;
+      border-top-color: transparent;
+      width: auto;
+      height: auto;
+      font-size: 32px;
+      line-height: 1;
+    }
+    .switching-dismiss {
+      margin-top: 14px;
+      padding: 6px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--homey-text-color, #ccc);
+      cursor: pointer;
+      font-size: 12px;
+      font-family: inherit;
+      display: none;
+    }
+    .switching-dismiss.show { display: block; }
     .switching-step {
       font-size: 11px;
       opacity: 0.7;
@@ -339,9 +370,10 @@
   <div id="toast"></div>
 
   <div id="switching-overlay">
-    <div class="switching-spinner"></div>
-    <div class="switching-title">Switching floor…</div>
+    <div class="switching-spinner" id="switching-spinner"></div>
+    <div class="switching-title" id="switching-title">Switching floor…</div>
     <div class="switching-step" id="switching-step">Preparing…</div>
+    <button class="switching-dismiss" id="switching-dismiss">OK</button>
   </div>
 
   <div id="floor-overlay">
@@ -369,7 +401,10 @@
     var floorOverlayEl = document.getElementById('floor-overlay');
     var floorListEl = document.getElementById('floor-list');
     var switchingOverlayEl = document.getElementById('switching-overlay');
+    var switchingSpinnerEl = document.getElementById('switching-spinner');
+    var switchingTitleEl = document.getElementById('switching-title');
     var switchingStepEl = document.getElementById('switching-step');
+    var switchingDismissEl = document.getElementById('switching-dismiss');
     var deviceId = null;
     var refreshTimer = null;
     var currentRefreshMs = 10000;
@@ -458,9 +493,25 @@
 
     // --- Switch Floor ---
     function showSwitchingOverlay(floorName) {
-      switchingOverlayEl.querySelector('.switching-title').textContent = 'Switching to ' + floorName + '…';
+      switchingSpinnerEl.className = 'switching-spinner';
+      switchingSpinnerEl.textContent = '';
+      switchingTitleEl.textContent = 'Switching to ' + floorName + '…';
       switchingStepEl.textContent = 'Preparing…';
+      switchingDismissEl.classList.remove('show');
       switchingOverlayEl.classList.add('show');
+    }
+
+    function showSwitchingResult(type, title, detail) {
+      if (type === 'error') {
+        switchingSpinnerEl.className = 'switching-spinner error';
+        switchingSpinnerEl.textContent = '\u26A0'; // warning sign
+      } else {
+        switchingSpinnerEl.className = 'switching-spinner success';
+        switchingSpinnerEl.textContent = '\u2714'; // checkmark
+      }
+      switchingTitleEl.textContent = title;
+      switchingStepEl.textContent = detail;
+      switchingDismissEl.classList.add('show');
     }
 
     function updateSwitchingStep(text) {
@@ -470,6 +521,10 @@
     function hideSwitchingOverlay() {
       switchingOverlayEl.classList.remove('show');
     }
+
+    switchingDismissEl.addEventListener('click', function() {
+      hideSwitchingOverlay();
+    });
 
     switchFloorBtn.addEventListener('click', function() {
       var floorId = selectedFloorId;
@@ -514,8 +569,7 @@
                   isSwitching = false;
                   activeFloorId = floorId;
                   selectedFloorId = null;
-                  hideSwitchingOverlay();
-                  showToast('Switched to ' + floorName, 'success');
+                  showSwitchingResult('success', 'Switched to ' + floorName, 'Map loaded successfully');
                   switchFloorBtn.classList.remove('switching');
                   switchFloorBtn.textContent = 'Switch robot to this floor';
                   loadFloors();
@@ -528,8 +582,8 @@
               clearInterval(switchPollTimer);
               switchPollTimer = null;
               isSwitching = false;
-              hideSwitchingOverlay();
-              showToast('Floor switch timed out', 'error');
+              showSwitchingResult('error', 'Floor switch timed out',
+                'The robot did not come back online within 2 minutes. Check that it is powered on.');
               switchFloorBtn.classList.remove('switching');
               switchFloorBtn.textContent = 'Switch robot to this floor';
               updateSwitchButton();
@@ -538,10 +592,10 @@
         })
         .catch(function(err) {
           isSwitching = false;
-          hideSwitchingOverlay();
+          showSwitchingResult('error', 'Floor switch failed',
+            err.message || String(err));
           switchFloorBtn.classList.remove('switching');
           switchFloorBtn.textContent = 'Switch robot to this floor';
-          showToast('Switch failed: ' + (err.message || String(err)), 'error');
           updateSwitchButton();
         });
     });

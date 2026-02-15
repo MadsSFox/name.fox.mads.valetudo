@@ -80,7 +80,8 @@ class ValetudoDevice extends Homey.Device {
     this._updateAlerted = false;
     this._restFailCount = 0;
     this._discoveryAvailable = false;
-    this._mapSnapshots = {}; // floorId -> map JSON
+    this._mapSnapshots = {}; // floorId -> map JSON (in-memory cache for widget preview)
+    this._pendingNewFloor = null; // { name, hasDock } when mapping a new floor
 
     // Register capability listeners
     this._registerCapabilityListeners();
@@ -227,16 +228,17 @@ class ValetudoDevice extends Homey.Device {
       this.setWarning(`Creating "${name}"…`).catch(this.error);
 
       // Create the new floor entry (store-only — no map files yet, the robot
-      // will build them via startNewMap)
-      const newFloorOp = this._floorManager.createEmptyFloor(name, hasDock)
-        .then(async (newFloor) => {
+      // will build them via startNewMap). Auto-save triggers when mapping finishes.
+      this._floorManager.createEmptyFloor(name, hasDock)
+        .then(async () => {
           this._updateFloorPicker();
           this.setWarning('Starting new map…').catch(this.error);
           await this.startNewMap();
-          this.setWarning(`Floor "${name}" created, new map started`).catch(this.error);
-          this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
-          this.setCapabilityValue('current_floor', name).catch(this.error);
-          this.log(`New floor "${name}" created successfully`);
+          // Set pending flag — auto-save will happen when mapping finishes
+          this._pendingNewFloor = { name, hasDock };
+          this.setWarning(`Mapping new floor… will auto-save as "${name}" when done`).catch(this.error);
+          this.setCapabilityValue('current_floor', `${name} (mapping)`).catch(this.error);
+          this.log(`New floor mapping started, will auto-save as "${name}"`);
         })
         .catch((err) => {
           const msg = this._sshErrorMessage(err);
@@ -352,6 +354,38 @@ class ValetudoDevice extends Homey.Device {
       if (previous === 'cleaning' && state !== 'cleaning' && state !== 'paused') {
         this._triggerCleaningFinished();
       }
+
+      // Auto-save new floor when mapping run finishes
+      // Robot transitions to idle (no dock) or docked (with dock) or error (dock not found)
+      if (this._pendingNewFloor && (state === 'idle' || state === 'docked' || state === 'error')) {
+        if (previous === 'cleaning' || previous === 'returning' || previous === 'moving') {
+          this._autoSaveNewFloor();
+        }
+      }
+    }
+  }
+
+  async _autoSaveNewFloor() {
+    const pending = this._pendingNewFloor;
+    if (!pending) return;
+    this._pendingNewFloor = null;
+
+    const { name, hasDock } = pending;
+    this.log(`Mapping finished — auto-saving as "${name}" (dock: ${hasDock})`);
+    this.setWarning(`Saving "${name}"…`).catch(this.error);
+
+    try {
+      await this.saveFloor(name, hasDock);
+      this._updateFloorPicker();
+      this.setCapabilityValue('current_floor', name).catch(this.error);
+      this.setWarning(`Floor "${name}" saved`).catch(this.error);
+      this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
+      this.log(`Auto-saved new floor "${name}" successfully`);
+    } catch (err) {
+      const msg = this._sshErrorMessage(err);
+      this.setWarning(`Auto-save failed: ${msg}`).catch(this.error);
+      this.log(`Auto-save of "${name}" failed: ${err.message}`);
+      this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 30000);
     }
   }
 

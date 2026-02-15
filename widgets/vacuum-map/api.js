@@ -63,12 +63,15 @@ module.exports = {
       return device._api.getMap();
     }
 
-    // Otherwise return cached snapshot
+    // Return cached snapshot if available
     const snapshot = device.getMapSnapshot(floorId);
-    if (!snapshot) {
-      throw new Error(`No cached map for floor "${floorId}"`);
+    if (snapshot) {
+      return snapshot;
     }
-    return snapshot;
+
+    // No in-memory snapshot — map files exist on robot but we can't render
+    // them without switching. Return null so the widget can show a message.
+    return null;
   },
 
   async renameFloor({ homey, body }) {

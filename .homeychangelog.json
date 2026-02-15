@@ -10,5 +10,8 @@
   },
   "0.0.4": {
     "en": "Fixing the multi floor support"
+  },
+  "0.0.5": {
+    "en": "Fixing floor mapping and switching issues"
   }
 }

@@ -687,8 +687,11 @@
       _homey.api('GET', url)
         .then(function(mapData) {
           if (!mapData) {
-            statusEl.textContent = 'No map data returned';
+            // Map files exist on robot but no cached preview available
+            statusEl.textContent = 'Switch robot to this floor to view the map';
             statusEl.style.display = 'block';
+            canvas.width = 0;
+            canvas.height = 0;
             return;
           }
           statusEl.style.display = 'none';

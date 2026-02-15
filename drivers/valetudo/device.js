@@ -925,7 +925,8 @@ class ValetudoDevice extends Homey.Device {
         id: f.id,
         name: f.name,
         hasDock: f.hasDock !== false,
-        hasCachedMap: !!this._mapSnapshots[f.id],
+        // All registered floors have verified map files on the robot
+        hasCachedMap: true,
       })),
       activeFloor: activeId,
     };

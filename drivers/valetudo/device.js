@@ -11,6 +11,7 @@ const CONSUMABLE_POLL_INTERVAL_MS = 3600000; // 1 hour
 const UPDATE_CHECK_INTERVAL_MS = 86400000; // 24 hours
 const CONSUMABLE_DEPLETED_THRESHOLD = 10; // percent
 const LOW_BATTERY_THRESHOLD = 20;
+const SEGMENT_POLL_INTERVAL_MS = 10000;
 
 // Map Valetudo status values to our vacuum_state enum
 const STATE_MAP = {
@@ -82,6 +83,7 @@ class ValetudoDevice extends Homey.Device {
     this._discoveryAvailable = false;
     this._mapSnapshots = {}; // floorId -> map JSON (in-memory cache for widget preview)
     this._pendingNewFloor = null; // { name, hasDock } when mapping a new floor
+    this._waitingForSegments = false; // true while polling map for segment finalization
 
     // Register capability listeners
     this._registerCapabilityListeners();
@@ -202,6 +204,12 @@ class ValetudoDevice extends Homey.Device {
     });
 
     this.registerCapabilityListener('button_new_floor', async () => {
+      if (this._pendingNewFloor) {
+        this.setWarning('A new floor is already being mapped — wait for it to finish').catch(this.error);
+        this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
+        return;
+      }
+
       const hasDock = this.getCapabilityValue('new_floor_has_dock') !== false;
       let floors = this._floorManager.getFloors();
       const activeFloorId = this._floorManager.getActiveFloor();
@@ -378,20 +386,69 @@ class ValetudoDevice extends Homey.Device {
   async _autoSaveNewFloor() {
     const pending = this._pendingNewFloor;
     if (!pending) return;
-    this._pendingNewFloor = null;
+    if (this._waitingForSegments) return; // prevent re-entry from repeated state changes
 
+    this._waitingForSegments = true;
     const { name, hasDock } = pending;
-    this.log(`Mapping finished — auto-saving as "${name}" (dock: ${hasDock})`);
-    this.setWarning(`Saving "${name}"…`).catch(this.error);
+    const settings = this.getSettings();
+    const timeoutMs = parseInt(settings.segment_wait_timeout || '300', 10) * 1000;
 
+    this.log(`Mapping run finished — waiting for firmware to finalize map with segments before saving "${name}"`);
+    this.setWarning(`Waiting for "${name}" map to finalize…`).catch(this.error);
+
+    // Poll map API until segment layers appear (firmware processes segments after cleaning ends)
+    const startTime = Date.now();
+    let segmentsFound = false;
+
+    while (Date.now() - startTime < timeoutMs) {
+      await new Promise((resolve) => { this.homey.setTimeout(resolve, SEGMENT_POLL_INTERVAL_MS); });
+
+      // Safety: abort if _pendingNewFloor was cleared externally
+      if (!this._pendingNewFloor) {
+        this.log('Segment wait aborted — pending floor was cleared');
+        this._waitingForSegments = false;
+        return;
+      }
+
+      try {
+        const mapData = await this._api.getMap();
+        if (mapData && mapData.layers) {
+          const hasSegments = mapData.layers.some((l) => l.type === 'segment');
+          if (hasSegments) {
+            const elapsed = Math.round((Date.now() - startTime) / 1000);
+            this.log(`Segments found in map after ${elapsed}s — map is finalized`);
+            segmentsFound = true;
+            break;
+          }
+        }
+        const waited = Math.round((Date.now() - startTime) / 1000);
+        this.log(`No segments in map yet (${waited}s elapsed), continuing to wait…`);
+        this.setWarning(`Waiting for "${name}" map to finalize… (${waited}s)`).catch(this.error);
+      } catch (err) {
+        this.log('Map poll failed during segment wait:', err.message);
+      }
+    }
+
+    if (!segmentsFound) {
+      this.log(`Timed out waiting for segments after ${timeoutMs / 1000}s — saving map without segments`);
+      this.setWarning(`Map finalization timed out — saving "${name}" without segments`).catch(this.error);
+    } else {
+      this.setWarning(`Map finalized — saving "${name}"…`).catch(this.error);
+    }
+
+    // Save the floor
     try {
       await this.saveFloor(name, hasDock);
+      this._pendingNewFloor = null;
+      this._waitingForSegments = false;
       this._updateFloorPicker();
       this.setCapabilityValue('current_floor', name).catch(this.error);
       this.setWarning(`Floor "${name}" saved`).catch(this.error);
       this.homey.setTimeout(() => this.unsetWarning().catch(this.error), 10000);
       this.log(`Auto-saved new floor "${name}" successfully`);
     } catch (err) {
+      this._pendingNewFloor = null;
+      this._waitingForSegments = false;
       const msg = this._sshErrorMessage(err);
       this.setWarning(`Auto-save failed: ${msg}`).catch(this.error);
       this.log(`Auto-save of "${name}" failed: ${err.message}`);
@@ -613,6 +670,9 @@ class ValetudoDevice extends Homey.Device {
   // --- Public methods for flow card actions ---
 
   async startCleaning() {
+    if (this._pendingNewFloor) {
+      throw new Error('Cannot start cleaning while a new floor map is being finalized');
+    }
     if (this._mqtt.connected) {
       this._mqtt.basicControl('start');
     } else {
@@ -658,6 +718,9 @@ class ValetudoDevice extends Homey.Device {
   }
 
   async cleanSegment(segmentId, iterations = 1) {
+    if (this._pendingNewFloor) {
+      throw new Error('Cannot start segment cleaning while a new floor map is being finalized');
+    }
     if (this._mqtt.connected) {
       this._mqtt.cleanSegments([segmentId], iterations);
     } else {

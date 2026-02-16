@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 0 20px 20px;
+    color: #333;
+    margin: 0;
+  }
+  .view { display: none; }
+  .view.active { display: block; }
+  .center { text-align: center; }
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #e0e0e0;
+    border-top-color: #007AFF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 20px auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .device-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  .device-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .device-item:hover {
+    background: #f0f7ff;
+    border-color: #007AFF;
+  }
+  .device-name { font-weight: 600; font-size: 1em; }
+  .device-ip { color: #888; font-size: 0.85em; margin-top: 2px; }
+  .device-arrow { color: #007AFF; font-size: 1.2em; }
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 16px;
+    color: #999;
+    font-size: 0.85em;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+  }
+  .divider::before { margin-right: 12px; }
+  .divider::after { margin-left: 12px; }
+  .info-box {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: center;
+    color: #666;
+    line-height: 1.5;
+  }
+  label {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 4px;
+    margin-top: 14px;
+  }
+  input[type="text"], input[type="password"], textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-family: inherit;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-size: 0.85em;
+    font-family: monospace;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+  }
+  .collapsible-toggle {
+    color: #007AFF;
+    font-size: 0.9em;
+    cursor: pointer;
+    margin-top: 16px;
+    display: inline-block;
+  }
+  .collapsible-content {
+    display: none;
+    margin-top: 4px;
+  }
+  .collapsible-content.open { display: block; }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: #007AFF;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 18px;
+    -webkit-appearance: none;
+  }
+  .btn:hover { background: #0066d6; }
+  .btn:disabled { background: #ccc; cursor: not-allowed; }
+  .error-msg {
+    color: #d32f2f;
+    background: #fdecea;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9em;
+    margin-top: 12px;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+</style>
+</head>
+<body>
+
+<!-- State: Searching -->
+<div id="state-loading" class="view active">
+  <div class="center" style="padding-top: 30px;">
+    <p style="font-size: 1.1em;">Searching for Roborock S5<br>on your network&hellip;</p>
+    <div class="spinner"></div>
+    <p style="color: #999; font-size: 0.85em;">Checking mDNS and scanning local network</p>
+  </div>
+</div>
+
+<!-- State: Results -->
+<div id="state-results" class="view">
+  <!-- Shown when devices were found -->
+  <div id="found-section" style="display:none;">
+    <p style="font-weight: 600; margin-bottom: 4px;">Found on your network:</p>
+    <ul class="device-list" id="device-list"></ul>
+    <div class="divider">or enter manually</div>
+  </div>
+
+  <!-- Shown when no devices were found -->
+  <div id="not-found-section" style="display:none;">
+    <div class="info-box">
+      No Roborock S5 robots were found automatically.<br>
+      Please enter the IP address of your robot below.
+    </div>
+  </div>
+
+  <!-- Manual entry (always visible in results state) -->
+  <div>
+    <label for="host">Valetudo IP address or hostname</label>
+    <input type="text" id="host" placeholder="e.g. 192.168.1.100" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <label for="password">HTTP auth password <span style="color:#999">(optional)</span></label>
+    <input type="password" id="password" placeholder="Leave empty if not configured">
+    <div class="collapsible-toggle" id="ssh-toggle">&#9654; SSH key (for multi-floor support)</div>
+    <div class="collapsible-content" id="ssh-section">
+      <label for="ssh_key">SSH Private Key <span style="color:#999">(optional)</span></label>
+      <textarea id="ssh_key" rows="5" placeholder="Paste your SSH private key here (e.g. id_rsa). Required for multi-floor map swapping. See https://builder.dontvacuum.me"></textarea>
+    </div>
+    <button class="btn" id="connect-btn">Connect</button>
+    <div id="error-msg" class="error-msg"></div>
+  </div>
+</div>
+
+<!-- State: Validating -->
+<div id="state-validating" class="view">
+  <div class="center" style="padding-top: 30px;">
+    <p style="font-size: 1.1em;">Connecting to robot&hellip;</p>
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<script>
+  function showState(id) {
+    var views = document.querySelectorAll('.view');
+    for (var i = 0; i < views.length; i++) views[i].classList.remove('active');
+    document.getElementById('state-' + id).classList.add('active');
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('error-msg');
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+
+  function hideError() {
+    document.getElementById('error-msg').classList.remove('visible');
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // Start discovery
+  Homey.emit('discover', null, function(err, devices) {
+    showState('results');
+
+    if (err || !devices || devices.length === 0) {
+      document.getElementById('not-found-section').style.display = 'block';
+      // Focus the IP input for convenience
+      setTimeout(function() { document.getElementById('host').focus(); }, 100);
+    } else {
+      document.getElementById('found-section').style.display = 'block';
+      var list = document.getElementById('device-list');
+
+      devices.forEach(function(d) {
+        var li = document.createElement('li');
+        li.className = 'device-item';
+        li.innerHTML = '<div><div class="device-name">' + escapeHtml(d.name) + '</div>'
+          + '<div class="device-ip">' + escapeHtml(d.host) + '</div></div>'
+          + '<div class="device-arrow">&#x203A;</div>';
+        li.addEventListener('click', function() {
+          document.getElementById('host').value = d.host;
+          var sshKey = document.getElementById('ssh_key').value;
+          tryConnect(d.host, '', sshKey, d.name, d.id);
+        });
+        list.appendChild(li);
+      });
+    }
+  });
+
+  // SSH section toggle
+  document.getElementById('ssh-toggle').addEventListener('click', function() {
+    var section = document.getElementById('ssh-section');
+    var toggle = document.getElementById('ssh-toggle');
+    section.classList.toggle('open');
+    toggle.innerHTML = section.classList.contains('open')
+      ? '&#9660; SSH key (for multi-floor support)'
+      : '&#9654; SSH key (for multi-floor support)';
+  });
+
+  // Connect button
+  document.getElementById('connect-btn').addEventListener('click', function() {
+    var host = document.getElementById('host').value.trim();
+    var password = document.getElementById('password').value;
+    var sshKey = document.getElementById('ssh_key').value;
+
+    if (!host) {
+      showError('Please enter the IP address or hostname of your robot.');
+      return;
+    }
+
+    tryConnect(host, password, sshKey);
+  });
+
+  // Enter key support
+  document.getElementById('host').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') document.getElementById('connect-btn').click();
+  });
+  document.getElementById('password').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') document.getElementById('connect-btn').click();
+  });
+
+  function tryConnect(host, password, sshKey, mdnsName, mdnsId) {
+    hideError();
+    showState('validating');
+
+    Homey.emit('validate', { host: host, password: password, ssh_private_key: sshKey || '', name: mdnsName || '', id: mdnsId || '' }, function(err) {
+      if (err) {
+        showState('results');
+        showError(err.message || 'Could not connect to Valetudo at ' + host);
+        return;
+      }
+
+      Homey.showView('list_devices');
+    });
+  }
+</script>
+
+</body>
+</html>

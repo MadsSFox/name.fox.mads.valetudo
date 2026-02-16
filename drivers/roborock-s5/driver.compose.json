@@ -1,8 +1,8 @@
 {
   "name": {
-    "en": "Valetudo Robot Vacuum (Experimental)",
-    "da": "Valetudo Robotstøvsuger (Eksperimentel)",
-    "de": "Valetudo Saugroboter (Experimentell)"
+    "en": "Roborock S5 (Valetudo)",
+    "da": "Roborock S5 (Valetudo)",
+    "de": "Roborock S5 (Valetudo)"
   },
   "class": "vacuumcleaner",
   "platforms": ["local"],
@@ -33,7 +33,7 @@
     "onoff": {
       "title": {
         "en": "Cleaning",
-        "da": "Rengøring",
+        "da": "Rengoring",
         "de": "Reinigung"
       },
       "greyout": false

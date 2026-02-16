@@ -1,8 +1,17 @@
 'use strict';
 
 function findDevice(homey, deviceId) {
-  const driver = homey.drivers.getDriver('valetudo');
-  const devices = driver.getDevices();
+  const driverIds = ['valetudo', 'roborock-s5'];
+  const devices = [];
+
+  for (const driverId of driverIds) {
+    try {
+      const driver = homey.drivers.getDriver(driverId);
+      devices.push(...driver.getDevices());
+    } catch {
+      // Driver not installed or not ready
+    }
+  }
 
   let device = devices.find((d) => d.getData().id === deviceId);
   if (!device) {

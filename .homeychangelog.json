@@ -25,5 +25,8 @@
   },
   "0.0.9": {
     "en": "Always trigger segmentation after mapping if segments don't appear"
+  },
+  "0.1.0": {
+    "en": "Add Roborock S5 driver, error alarm insights, widget multi-driver support, auto segmentation trigger, wait for map after reboot, Roborock S5 product images"
   }
 }

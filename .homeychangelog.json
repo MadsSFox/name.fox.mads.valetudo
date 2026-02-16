@@ -16,5 +16,8 @@
   },
   "0.0.6": {
     "en": "Trying to fix floor finalizing by adding waittime for finalization"
+  },
+  "0.0.7": {
+    "en": "Fix map file handling, add no-dock segmentation trigger, fix SSH reboot path, add Roborock S5 driver"
   }
 }

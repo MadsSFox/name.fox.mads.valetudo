@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "name.fox.mads.valetudo",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -83,6 +83,962 @@
   "bugs": {
     "url": "https://github.com/MadsSFox/homey-valetudo/issues"
   },
+  "drivers": [
+    {
+      "name": {
+        "en": "Roborock S5 (Valetudo)",
+        "da": "Roborock S5 (Valetudo)",
+        "de": "Roborock S5 (Valetudo)"
+      },
+      "class": "vacuumcleaner",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/roborock-s5/assets/images/small.png",
+        "large": "/drivers/roborock-s5/assets/images/large.png"
+      },
+      "capabilities": [
+        "onoff",
+        "vacuum_state",
+        "fan_speed",
+        "measure_battery",
+        "alarm_battery",
+        "current_floor",
+        "vacuum_error",
+        "measure_clean_area_last",
+        "measure_clean_duration_last",
+        "measure_clean_area_total",
+        "measure_clean_duration_total",
+        "button_locate",
+        "button_dock",
+        "floor_picker",
+        "new_floor_has_dock",
+        "button_new_floor"
+      ],
+      "capabilitiesOptions": {
+        "onoff": {
+          "title": {
+            "en": "Cleaning",
+            "da": "Rengoring",
+            "de": "Reinigung"
+          },
+          "greyout": false
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery",
+            "da": "Batteri",
+            "de": "Akku"
+          }
+        },
+        "alarm_battery": {
+          "title": {
+            "en": "Low Battery",
+            "da": "Lavt batteri",
+            "de": "Akku schwach"
+          }
+        }
+      },
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "discovery": "valetudo",
+      "pair": [
+        {
+          "id": "discover"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "roborock-s5",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Robot Info",
+            "da": "Robotinfo",
+            "de": "Roboter-Info"
+          },
+          "children": [
+            {
+              "id": "robot_model",
+              "type": "label",
+              "label": {
+                "en": "Model",
+                "da": "Model",
+                "de": "Modell"
+              },
+              "value": "Unknown"
+            },
+            {
+              "id": "robot_manufacturer",
+              "type": "label",
+              "label": {
+                "en": "Manufacturer",
+                "da": "Producent",
+                "de": "Hersteller"
+              },
+              "value": "Unknown"
+            },
+            {
+              "id": "valetudo_version",
+              "type": "label",
+              "label": {
+                "en": "Valetudo Version",
+                "da": "Valetudo-version",
+                "de": "Valetudo-Version"
+              },
+              "value": "Unknown"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Valetudo Web UI",
+            "da": "Valetudo Web UI",
+            "de": "Valetudo Web-UI"
+          },
+          "children": [
+            {
+              "id": "valetudo_url",
+              "type": "label",
+              "label": {
+                "en": "Map & Controls",
+                "da": "Kort & kontrol",
+                "de": "Karte & Steuerung"
+              },
+              "hint": {
+                "en": "Open this URL in your browser to view the live map, manage rooms, and configure your robot.",
+                "da": "Åbn denne URL i din browser for at se live-kortet, administrere rum og konfigurere din robot.",
+                "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
+              },
+              "value": "http://"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Map Widget",
+            "da": "Kort-widget",
+            "de": "Karten-Widget"
+          },
+          "children": [
+            {
+              "id": "map_refresh_interval",
+              "type": "dropdown",
+              "label": {
+                "en": "Refresh interval (while active)",
+                "da": "Opdateringsinterval (under rengøring)",
+                "de": "Aktualisierungsintervall (während Reinigung)"
+              },
+              "hint": {
+                "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
+                "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
+                "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
+              },
+              "value": "10",
+              "values": [
+                {
+                  "id": "10",
+                  "label": {
+                    "en": "10 seconds",
+                    "da": "10 sekunder",
+                    "de": "10 Sekunden"
+                  }
+                },
+                {
+                  "id": "20",
+                  "label": {
+                    "en": "20 seconds",
+                    "da": "20 sekunder",
+                    "de": "20 Sekunden"
+                  }
+                },
+                {
+                  "id": "30",
+                  "label": {
+                    "en": "30 seconds",
+                    "da": "30 sekunder",
+                    "de": "30 Sekunden"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "segment_wait_timeout",
+              "type": "dropdown",
+              "label": {
+                "en": "Map finalization timeout",
+                "da": "Kort-finaliseringstimeout",
+                "de": "Karten-Finalisierungs-Timeout"
+              },
+              "hint": {
+                "en": "After a new floor mapping finishes, the app waits for the robot firmware to split the map into room segments before saving. Increase this if your robot is slow to finalize maps.",
+                "da": "Efter en ny etagekortlægning venter appen på, at robottens firmware opdeler kortet i rumsegmenter, inden det gemmes. Øg denne værdi, hvis din robot er langsom til at færdiggøre kort.",
+                "de": "Nach einer neuen Etagenkartierung wartet die App, bis die Roboter-Firmware die Karte in Raumsegmente aufteilt, bevor sie gespeichert wird. Erhöhe diesen Wert, wenn dein Roboter langsam bei der Kartenfinalisierung ist."
+              },
+              "value": "300",
+              "values": [
+                {
+                  "id": "120",
+                  "label": {
+                    "en": "2 minutes",
+                    "da": "2 minutter",
+                    "de": "2 Minuten"
+                  }
+                },
+                {
+                  "id": "300",
+                  "label": {
+                    "en": "5 minutes (default)",
+                    "da": "5 minutter (standard)",
+                    "de": "5 Minuten (Standard)"
+                  }
+                },
+                {
+                  "id": "600",
+                  "label": {
+                    "en": "10 minutes",
+                    "da": "10 minutter",
+                    "de": "10 Minuten"
+                  }
+                },
+                {
+                  "id": "900",
+                  "label": {
+                    "en": "15 minutes",
+                    "da": "15 minutter",
+                    "de": "15 Minuten"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Valetudo Connection",
+            "da": "Valetudo-forbindelse",
+            "de": "Valetudo-Verbindung"
+          },
+          "children": [
+            {
+              "id": "valetudo_auth_user",
+              "type": "text",
+              "label": {
+                "en": "HTTP Auth Username",
+                "da": "HTTP-brugernavn",
+                "de": "HTTP-Benutzername"
+              },
+              "hint": {
+                "en": "Leave empty if HTTP basic auth is not enabled",
+                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+              },
+              "value": ""
+            },
+            {
+              "id": "valetudo_auth_pass",
+              "type": "password",
+              "label": {
+                "en": "HTTP Auth Password",
+                "da": "HTTP-adgangskode",
+                "de": "HTTP-Passwort"
+              },
+              "hint": {
+                "en": "Leave empty if HTTP basic auth is not enabled",
+                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT",
+            "da": "MQTT",
+            "de": "MQTT"
+          },
+          "children": [
+            {
+              "id": "mqtt_broker",
+              "type": "text",
+              "label": {
+                "en": "MQTT Broker URL",
+                "da": "MQTT Broker URL",
+                "de": "MQTT-Broker-URL"
+              },
+              "hint": {
+                "en": "e.g. mqtt://192.168.1.10",
+                "da": "f.eks. mqtt://192.168.1.10",
+                "de": "z.B. mqtt://192.168.1.10"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_username",
+              "type": "text",
+              "label": {
+                "en": "MQTT Username",
+                "da": "MQTT Brugernavn",
+                "de": "MQTT-Benutzername"
+              },
+              "hint": {
+                "en": "Optional",
+                "da": "Valgfri",
+                "de": "Optional"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_password",
+              "type": "password",
+              "label": {
+                "en": "MQTT Password",
+                "da": "MQTT Adgangskode",
+                "de": "MQTT-Passwort"
+              },
+              "hint": {
+                "en": "Optional",
+                "da": "Valgfri",
+                "de": "Optional"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_topic_prefix",
+              "type": "text",
+              "label": {
+                "en": "MQTT Topic Prefix",
+                "da": "MQTT Emne-præfiks",
+                "de": "MQTT-Topic-Präfix"
+              },
+              "hint": {
+                "en": "Valetudo MQTT topic prefix (default: valetudo)",
+                "da": "Valetudo MQTT emne-præfiks (standard: valetudo)",
+                "de": "Valetudo MQTT-Topic-Präfix (Standard: valetudo)"
+              },
+              "value": "valetudo"
+            },
+            {
+              "id": "mqtt_identifier",
+              "type": "text",
+              "label": {
+                "en": "Robot MQTT Identifier",
+                "da": "Robot MQTT-identifikator",
+                "de": "Roboter-MQTT-Kennung"
+              },
+              "hint": {
+                "en": "The robot's MQTT identifier (auto-discovered during pairing)",
+                "da": "Robottens MQTT-identifikator (opdaget automatisk under parring)",
+                "de": "Die MQTT-Kennung des Roboters (automatisch beim Pairing erkannt)"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "SSH (for Multi-Floor)",
+            "da": "SSH (til multi-etage)",
+            "de": "SSH (für Multi-Stockwerk)"
+          },
+          "children": [
+            {
+              "id": "ssh_port",
+              "type": "number",
+              "label": {
+                "en": "SSH Port",
+                "da": "SSH-port",
+                "de": "SSH-Port"
+              },
+              "value": 22,
+              "min": 1,
+              "max": 65535
+            },
+            {
+              "id": "ssh_user",
+              "type": "text",
+              "label": {
+                "en": "SSH Username",
+                "da": "SSH-brugernavn",
+                "de": "SSH-Benutzername"
+              },
+              "value": "root"
+            },
+            {
+              "id": "ssh_password",
+              "type": "password",
+              "label": {
+                "en": "SSH Password",
+                "da": "SSH-adgangskode",
+                "de": "SSH-Passwort"
+              },
+              "hint": {
+                "en": "Used for password-based SSH authentication",
+                "da": "Bruges til adgangskodebaseret SSH-godkendelse",
+                "de": "Für passwortbasierte SSH-Authentifizierung"
+              },
+              "value": ""
+            },
+            {
+              "id": "ssh_private_key",
+              "type": "textarea",
+              "label": {
+                "en": "SSH Private Key",
+                "da": "SSH Privat nøgle",
+                "de": "Privater SSH-Schlüssel"
+              },
+              "hint": {
+                "en": "Paste your SSH private key here. It will be saved securely and the field will be cleared. The key is stored safely in the app's secure storage. Leave empty if already configured.",
+                "da": "Indsæt din SSH private nøgle her. Den gemmes sikkert og feltet ryddes. Nøglen opbevares sikkert i appens sikre lager. Lad stå tom hvis allerede konfigureret.",
+                "de": "Füge deinen privaten SSH-Schlüssel hier ein. Er wird sicher gespeichert und das Feld wird geleert. Der Schlüssel wird sicher im App-Speicher aufbewahrt. Leer lassen, wenn bereits konfiguriert."
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Voice Packs",
+            "da": "Stemmepakker",
+            "de": "Sprachpakete"
+          },
+          "children": [
+            {
+              "id": "voice_pack_url",
+              "type": "text",
+              "label": {
+                "en": "Voice Pack URL",
+                "da": "Stemmepakke-URL",
+                "de": "Sprachpaket-URL"
+              },
+              "hint": {
+                "en": "URL to a Valetudo-compatible voice pack (.pkg or .tar.gz). You can find community voice packs at github.com/Hypfer/Valetudo/discussions",
+                "da": "URL til en Valetudo-kompatibel stemmepakke (.pkg eller .tar.gz). Du kan finde stemmepakker på github.com/Hypfer/Valetudo/discussions",
+                "de": "URL zu einem Valetudo-kompatiblen Sprachpaket (.pkg oder .tar.gz). Community-Sprachpakete findest du unter github.com/Hypfer/Valetudo/discussions"
+              },
+              "value": ""
+            },
+            {
+              "id": "voice_pack_language",
+              "type": "text",
+              "label": {
+                "en": "Language Code",
+                "da": "Sprogkode",
+                "de": "Sprachcode"
+              },
+              "hint": {
+                "en": "e.g. en, de, fr",
+                "da": "f.eks. en, da, de",
+                "de": "z.B. en, de, fr"
+              },
+              "value": "en"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Valetudo Robot Vacuum (Experimental)",
+        "da": "Valetudo Robotstøvsuger (Eksperimentel)",
+        "de": "Valetudo Saugroboter (Experimentell)"
+      },
+      "class": "vacuumcleaner",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/valetudo/assets/images/small.png",
+        "large": "/drivers/valetudo/assets/images/large.png"
+      },
+      "capabilities": [
+        "onoff",
+        "vacuum_state",
+        "fan_speed",
+        "measure_battery",
+        "alarm_battery",
+        "current_floor",
+        "vacuum_error",
+        "measure_clean_area_last",
+        "measure_clean_duration_last",
+        "measure_clean_area_total",
+        "measure_clean_duration_total",
+        "button_locate",
+        "button_dock",
+        "floor_picker",
+        "new_floor_has_dock",
+        "button_new_floor"
+      ],
+      "capabilitiesOptions": {
+        "onoff": {
+          "title": {
+            "en": "Cleaning",
+            "da": "Rengøring",
+            "de": "Reinigung"
+          },
+          "greyout": false
+        },
+        "measure_battery": {
+          "title": {
+            "en": "Battery",
+            "da": "Batteri",
+            "de": "Akku"
+          }
+        },
+        "alarm_battery": {
+          "title": {
+            "en": "Low Battery",
+            "da": "Lavt batteri",
+            "de": "Akku schwach"
+          }
+        }
+      },
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "discovery": "valetudo",
+      "pair": [
+        {
+          "id": "discover"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "id": "valetudo",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Robot Info",
+            "da": "Robotinfo",
+            "de": "Roboter-Info"
+          },
+          "children": [
+            {
+              "id": "robot_model",
+              "type": "label",
+              "label": {
+                "en": "Model",
+                "da": "Model",
+                "de": "Modell"
+              },
+              "value": "Unknown"
+            },
+            {
+              "id": "robot_manufacturer",
+              "type": "label",
+              "label": {
+                "en": "Manufacturer",
+                "da": "Producent",
+                "de": "Hersteller"
+              },
+              "value": "Unknown"
+            },
+            {
+              "id": "valetudo_version",
+              "type": "label",
+              "label": {
+                "en": "Valetudo Version",
+                "da": "Valetudo-version",
+                "de": "Valetudo-Version"
+              },
+              "value": "Unknown"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Valetudo Web UI",
+            "da": "Valetudo Web UI",
+            "de": "Valetudo Web-UI"
+          },
+          "children": [
+            {
+              "id": "valetudo_url",
+              "type": "label",
+              "label": {
+                "en": "Map & Controls",
+                "da": "Kort & kontrol",
+                "de": "Karte & Steuerung"
+              },
+              "hint": {
+                "en": "Open this URL in your browser to view the live map, manage rooms, and configure your robot.",
+                "da": "Åbn denne URL i din browser for at se live-kortet, administrere rum og konfigurere din robot.",
+                "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
+              },
+              "value": "http://"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Map Widget",
+            "da": "Kort-widget",
+            "de": "Karten-Widget"
+          },
+          "children": [
+            {
+              "id": "map_refresh_interval",
+              "type": "dropdown",
+              "label": {
+                "en": "Refresh interval (while active)",
+                "da": "Opdateringsinterval (under rengøring)",
+                "de": "Aktualisierungsintervall (während Reinigung)"
+              },
+              "hint": {
+                "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
+                "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
+                "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
+              },
+              "value": "10",
+              "values": [
+                {
+                  "id": "10",
+                  "label": {
+                    "en": "10 seconds",
+                    "da": "10 sekunder",
+                    "de": "10 Sekunden"
+                  }
+                },
+                {
+                  "id": "20",
+                  "label": {
+                    "en": "20 seconds",
+                    "da": "20 sekunder",
+                    "de": "20 Sekunden"
+                  }
+                },
+                {
+                  "id": "30",
+                  "label": {
+                    "en": "30 seconds",
+                    "da": "30 sekunder",
+                    "de": "30 Sekunden"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "segment_wait_timeout",
+              "type": "dropdown",
+              "label": {
+                "en": "Map finalization timeout",
+                "da": "Kort-finaliseringstimeout",
+                "de": "Karten-Finalisierungs-Timeout"
+              },
+              "hint": {
+                "en": "After a new floor mapping finishes, the app waits for the robot firmware to split the map into room segments before saving. Increase this if your robot is slow to finalize maps.",
+                "da": "Efter en ny etagekortlægning venter appen på, at robottens firmware opdeler kortet i rumsegmenter, inden det gemmes. Øg denne værdi, hvis din robot er langsom til at færdiggøre kort.",
+                "de": "Nach einer neuen Etagenkartierung wartet die App, bis die Roboter-Firmware die Karte in Raumsegmente aufteilt, bevor sie gespeichert wird. Erhöhe diesen Wert, wenn dein Roboter langsam bei der Kartenfinalisierung ist."
+              },
+              "value": "300",
+              "values": [
+                {
+                  "id": "120",
+                  "label": {
+                    "en": "2 minutes",
+                    "da": "2 minutter",
+                    "de": "2 Minuten"
+                  }
+                },
+                {
+                  "id": "300",
+                  "label": {
+                    "en": "5 minutes (default)",
+                    "da": "5 minutter (standard)",
+                    "de": "5 Minuten (Standard)"
+                  }
+                },
+                {
+                  "id": "600",
+                  "label": {
+                    "en": "10 minutes",
+                    "da": "10 minutter",
+                    "de": "10 Minuten"
+                  }
+                },
+                {
+                  "id": "900",
+                  "label": {
+                    "en": "15 minutes",
+                    "da": "15 minutter",
+                    "de": "15 Minuten"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Valetudo Connection",
+            "da": "Valetudo-forbindelse",
+            "de": "Valetudo-Verbindung"
+          },
+          "children": [
+            {
+              "id": "valetudo_auth_user",
+              "type": "text",
+              "label": {
+                "en": "HTTP Auth Username",
+                "da": "HTTP-brugernavn",
+                "de": "HTTP-Benutzername"
+              },
+              "hint": {
+                "en": "Leave empty if HTTP basic auth is not enabled",
+                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+              },
+              "value": ""
+            },
+            {
+              "id": "valetudo_auth_pass",
+              "type": "password",
+              "label": {
+                "en": "HTTP Auth Password",
+                "da": "HTTP-adgangskode",
+                "de": "HTTP-Passwort"
+              },
+              "hint": {
+                "en": "Leave empty if HTTP basic auth is not enabled",
+                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
+                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "MQTT",
+            "da": "MQTT",
+            "de": "MQTT"
+          },
+          "children": [
+            {
+              "id": "mqtt_broker",
+              "type": "text",
+              "label": {
+                "en": "MQTT Broker URL",
+                "da": "MQTT Broker URL",
+                "de": "MQTT-Broker-URL"
+              },
+              "hint": {
+                "en": "e.g. mqtt://192.168.1.10",
+                "da": "f.eks. mqtt://192.168.1.10",
+                "de": "z.B. mqtt://192.168.1.10"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_username",
+              "type": "text",
+              "label": {
+                "en": "MQTT Username",
+                "da": "MQTT Brugernavn",
+                "de": "MQTT-Benutzername"
+              },
+              "hint": {
+                "en": "Optional",
+                "da": "Valgfri",
+                "de": "Optional"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_password",
+              "type": "password",
+              "label": {
+                "en": "MQTT Password",
+                "da": "MQTT Adgangskode",
+                "de": "MQTT-Passwort"
+              },
+              "hint": {
+                "en": "Optional",
+                "da": "Valgfri",
+                "de": "Optional"
+              },
+              "value": ""
+            },
+            {
+              "id": "mqtt_topic_prefix",
+              "type": "text",
+              "label": {
+                "en": "MQTT Topic Prefix",
+                "da": "MQTT Emne-præfiks",
+                "de": "MQTT-Topic-Präfix"
+              },
+              "hint": {
+                "en": "Valetudo MQTT topic prefix (default: valetudo)",
+                "da": "Valetudo MQTT emne-præfiks (standard: valetudo)",
+                "de": "Valetudo MQTT-Topic-Präfix (Standard: valetudo)"
+              },
+              "value": "valetudo"
+            },
+            {
+              "id": "mqtt_identifier",
+              "type": "text",
+              "label": {
+                "en": "Robot MQTT Identifier",
+                "da": "Robot MQTT-identifikator",
+                "de": "Roboter-MQTT-Kennung"
+              },
+              "hint": {
+                "en": "The robot's MQTT identifier (auto-discovered during pairing)",
+                "da": "Robottens MQTT-identifikator (opdaget automatisk under parring)",
+                "de": "Die MQTT-Kennung des Roboters (automatisch beim Pairing erkannt)"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "SSH (for Multi-Floor)",
+            "da": "SSH (til multi-etage)",
+            "de": "SSH (für Multi-Stockwerk)"
+          },
+          "children": [
+            {
+              "id": "ssh_port",
+              "type": "number",
+              "label": {
+                "en": "SSH Port",
+                "da": "SSH-port",
+                "de": "SSH-Port"
+              },
+              "value": 22,
+              "min": 1,
+              "max": 65535
+            },
+            {
+              "id": "ssh_user",
+              "type": "text",
+              "label": {
+                "en": "SSH Username",
+                "da": "SSH-brugernavn",
+                "de": "SSH-Benutzername"
+              },
+              "value": "root"
+            },
+            {
+              "id": "ssh_password",
+              "type": "password",
+              "label": {
+                "en": "SSH Password",
+                "da": "SSH-adgangskode",
+                "de": "SSH-Passwort"
+              },
+              "hint": {
+                "en": "Used for password-based SSH authentication",
+                "da": "Bruges til adgangskodebaseret SSH-godkendelse",
+                "de": "Für passwortbasierte SSH-Authentifizierung"
+              },
+              "value": ""
+            },
+            {
+              "id": "ssh_private_key",
+              "type": "textarea",
+              "label": {
+                "en": "SSH Private Key",
+                "da": "SSH Privat nøgle",
+                "de": "Privater SSH-Schlüssel"
+              },
+              "hint": {
+                "en": "Paste your SSH private key here. It will be saved securely and the field will be cleared. The key is stored safely in the app's secure storage. Leave empty if already configured.",
+                "da": "Indsæt din SSH private nøgle her. Den gemmes sikkert og feltet ryddes. Nøglen opbevares sikkert i appens sikre lager. Lad stå tom hvis allerede konfigureret.",
+                "de": "Füge deinen privaten SSH-Schlüssel hier ein. Er wird sicher gespeichert und das Feld wird geleert. Der Schlüssel wird sicher im App-Speicher aufbewahrt. Leer lassen, wenn bereits konfiguriert."
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Voice Packs",
+            "da": "Stemmepakker",
+            "de": "Sprachpakete"
+          },
+          "children": [
+            {
+              "id": "voice_pack_url",
+              "type": "text",
+              "label": {
+                "en": "Voice Pack URL",
+                "da": "Stemmepakke-URL",
+                "de": "Sprachpaket-URL"
+              },
+              "hint": {
+                "en": "URL to a Valetudo-compatible voice pack (.pkg or .tar.gz). You can find community voice packs at github.com/Hypfer/Valetudo/discussions",
+                "da": "URL til en Valetudo-kompatibel stemmepakke (.pkg eller .tar.gz). Du kan finde stemmepakker på github.com/Hypfer/Valetudo/discussions",
+                "de": "URL zu einem Valetudo-kompatiblen Sprachpaket (.pkg oder .tar.gz). Community-Sprachpakete findest du unter github.com/Hypfer/Valetudo/discussions"
+              },
+              "value": ""
+            },
+            {
+              "id": "voice_pack_language",
+              "type": "text",
+              "label": {
+                "en": "Language Code",
+                "da": "Sprogkode",
+                "de": "Sprachcode"
+              },
+              "hint": {
+                "en": "e.g. en, de, fr",
+                "da": "f.eks. en, da, de",
+                "de": "z.B. en, de, fr"
+              },
+              "value": "en"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "flow": {
     "triggers": [
       {
@@ -2265,485 +3221,6 @@
       }
     ]
   },
-  "drivers": [
-    {
-      "name": {
-        "en": "Valetudo Robot Vacuum",
-        "da": "Valetudo Robotstøvsuger",
-        "de": "Valetudo Saugroboter"
-      },
-      "class": "vacuumcleaner",
-      "platforms": [
-        "local"
-      ],
-      "connectivity": [
-        "lan"
-      ],
-      "images": {
-        "small": "/drivers/valetudo/assets/images/small.png",
-        "large": "/drivers/valetudo/assets/images/large.png"
-      },
-      "capabilities": [
-        "onoff",
-        "vacuum_state",
-        "fan_speed",
-        "measure_battery",
-        "alarm_battery",
-        "current_floor",
-        "vacuum_error",
-        "measure_clean_area_last",
-        "measure_clean_duration_last",
-        "measure_clean_area_total",
-        "measure_clean_duration_total",
-        "button_locate",
-        "button_dock",
-        "floor_picker",
-        "new_floor_has_dock",
-        "button_new_floor"
-      ],
-      "capabilitiesOptions": {
-        "onoff": {
-          "title": {
-            "en": "Cleaning",
-            "da": "Rengøring",
-            "de": "Reinigung"
-          },
-          "greyout": false
-        },
-        "measure_battery": {
-          "title": {
-            "en": "Battery",
-            "da": "Batteri",
-            "de": "Akku"
-          }
-        },
-        "alarm_battery": {
-          "title": {
-            "en": "Low Battery",
-            "da": "Lavt batteri",
-            "de": "Akku schwach"
-          }
-        }
-      },
-      "energy": {
-        "batteries": [
-          "INTERNAL"
-        ]
-      },
-      "discovery": "valetudo",
-      "pair": [
-        {
-          "id": "discover"
-        },
-        {
-          "id": "list_devices",
-          "template": "list_devices",
-          "navigation": {
-            "next": "add_devices"
-          }
-        },
-        {
-          "id": "add_devices",
-          "template": "add_devices"
-        }
-      ],
-      "id": "valetudo",
-      "settings": [
-        {
-          "type": "group",
-          "label": {
-            "en": "Robot Info",
-            "da": "Robotinfo",
-            "de": "Roboter-Info"
-          },
-          "children": [
-            {
-              "id": "robot_model",
-              "type": "label",
-              "label": {
-                "en": "Model",
-                "da": "Model",
-                "de": "Modell"
-              },
-              "value": "Unknown"
-            },
-            {
-              "id": "robot_manufacturer",
-              "type": "label",
-              "label": {
-                "en": "Manufacturer",
-                "da": "Producent",
-                "de": "Hersteller"
-              },
-              "value": "Unknown"
-            },
-            {
-              "id": "valetudo_version",
-              "type": "label",
-              "label": {
-                "en": "Valetudo Version",
-                "da": "Valetudo-version",
-                "de": "Valetudo-Version"
-              },
-              "value": "Unknown"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Valetudo Web UI",
-            "da": "Valetudo Web UI",
-            "de": "Valetudo Web-UI"
-          },
-          "children": [
-            {
-              "id": "valetudo_url",
-              "type": "label",
-              "label": {
-                "en": "Map & Controls",
-                "da": "Kort & kontrol",
-                "de": "Karte & Steuerung"
-              },
-              "hint": {
-                "en": "Open this URL in your browser to view the live map, manage rooms, and configure your robot.",
-                "da": "Åbn denne URL i din browser for at se live-kortet, administrere rum og konfigurere din robot.",
-                "de": "Öffne diese URL in deinem Browser, um die Live-Karte anzuzeigen, Räume zu verwalten und deinen Roboter zu konfigurieren."
-              },
-              "value": "http://"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Map Widget",
-            "da": "Kort-widget",
-            "de": "Karten-Widget"
-          },
-          "children": [
-            {
-              "id": "map_refresh_interval",
-              "type": "dropdown",
-              "label": {
-                "en": "Refresh interval (while active)",
-                "da": "Opdateringsinterval (under rengøring)",
-                "de": "Aktualisierungsintervall (während Reinigung)"
-              },
-              "hint": {
-                "en": "How often the map updates when the robot is cleaning. When idle, refresh is 5x slower.",
-                "da": "Hvor ofte kortet opdateres, når robotten rengør. I hvile er opdatering 5x langsommere.",
-                "de": "Wie oft die Karte aktualisiert wird, während der Roboter reinigt. Im Ruhezustand 5x langsamer."
-              },
-              "value": "10",
-              "values": [
-                {
-                  "id": "10",
-                  "label": {
-                    "en": "10 seconds",
-                    "da": "10 sekunder",
-                    "de": "10 Sekunden"
-                  }
-                },
-                {
-                  "id": "20",
-                  "label": {
-                    "en": "20 seconds",
-                    "da": "20 sekunder",
-                    "de": "20 Sekunden"
-                  }
-                },
-                {
-                  "id": "30",
-                  "label": {
-                    "en": "30 seconds",
-                    "da": "30 sekunder",
-                    "de": "30 Sekunden"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "segment_wait_timeout",
-              "type": "dropdown",
-              "label": {
-                "en": "Map finalization timeout",
-                "da": "Kort-finaliseringstimeout",
-                "de": "Karten-Finalisierungs-Timeout"
-              },
-              "hint": {
-                "en": "After a new floor mapping finishes, the app waits for the robot firmware to split the map into room segments before saving. Increase this if your robot is slow to finalize maps.",
-                "da": "Efter en ny etagekortlægning venter appen på, at robottens firmware opdeler kortet i rumsegmenter, inden det gemmes. Øg denne værdi, hvis din robot er langsom til at færdiggøre kort.",
-                "de": "Nach einer neuen Etagenkartierung wartet die App, bis die Roboter-Firmware die Karte in Raumsegmente aufteilt, bevor sie gespeichert wird. Erhöhe diesen Wert, wenn dein Roboter langsam bei der Kartenfinalisierung ist."
-              },
-              "value": "300",
-              "values": [
-                {
-                  "id": "120",
-                  "label": {
-                    "en": "2 minutes",
-                    "da": "2 minutter",
-                    "de": "2 Minuten"
-                  }
-                },
-                {
-                  "id": "300",
-                  "label": {
-                    "en": "5 minutes (default)",
-                    "da": "5 minutter (standard)",
-                    "de": "5 Minuten (Standard)"
-                  }
-                },
-                {
-                  "id": "600",
-                  "label": {
-                    "en": "10 minutes",
-                    "da": "10 minutter",
-                    "de": "10 Minuten"
-                  }
-                },
-                {
-                  "id": "900",
-                  "label": {
-                    "en": "15 minutes",
-                    "da": "15 minutter",
-                    "de": "15 Minuten"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Valetudo Connection",
-            "da": "Valetudo-forbindelse",
-            "de": "Valetudo-Verbindung"
-          },
-          "children": [
-            {
-              "id": "valetudo_auth_user",
-              "type": "text",
-              "label": {
-                "en": "HTTP Auth Username",
-                "da": "HTTP-brugernavn",
-                "de": "HTTP-Benutzername"
-              },
-              "hint": {
-                "en": "Leave empty if HTTP basic auth is not enabled",
-                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
-                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
-              },
-              "value": ""
-            },
-            {
-              "id": "valetudo_auth_pass",
-              "type": "password",
-              "label": {
-                "en": "HTTP Auth Password",
-                "da": "HTTP-adgangskode",
-                "de": "HTTP-Passwort"
-              },
-              "hint": {
-                "en": "Leave empty if HTTP basic auth is not enabled",
-                "da": "Lad stå tom hvis HTTP-godkendelse ikke er aktiveret",
-                "de": "Leer lassen, wenn HTTP-Authentifizierung nicht aktiviert ist"
-              },
-              "value": ""
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "MQTT",
-            "da": "MQTT",
-            "de": "MQTT"
-          },
-          "children": [
-            {
-              "id": "mqtt_broker",
-              "type": "text",
-              "label": {
-                "en": "MQTT Broker URL",
-                "da": "MQTT Broker URL",
-                "de": "MQTT-Broker-URL"
-              },
-              "hint": {
-                "en": "e.g. mqtt://192.168.1.10",
-                "da": "f.eks. mqtt://192.168.1.10",
-                "de": "z.B. mqtt://192.168.1.10"
-              },
-              "value": ""
-            },
-            {
-              "id": "mqtt_username",
-              "type": "text",
-              "label": {
-                "en": "MQTT Username",
-                "da": "MQTT Brugernavn",
-                "de": "MQTT-Benutzername"
-              },
-              "hint": {
-                "en": "Optional",
-                "da": "Valgfri",
-                "de": "Optional"
-              },
-              "value": ""
-            },
-            {
-              "id": "mqtt_password",
-              "type": "password",
-              "label": {
-                "en": "MQTT Password",
-                "da": "MQTT Adgangskode",
-                "de": "MQTT-Passwort"
-              },
-              "hint": {
-                "en": "Optional",
-                "da": "Valgfri",
-                "de": "Optional"
-              },
-              "value": ""
-            },
-            {
-              "id": "mqtt_topic_prefix",
-              "type": "text",
-              "label": {
-                "en": "MQTT Topic Prefix",
-                "da": "MQTT Emne-præfiks",
-                "de": "MQTT-Topic-Präfix"
-              },
-              "hint": {
-                "en": "Valetudo MQTT topic prefix (default: valetudo)",
-                "da": "Valetudo MQTT emne-præfiks (standard: valetudo)",
-                "de": "Valetudo MQTT-Topic-Präfix (Standard: valetudo)"
-              },
-              "value": "valetudo"
-            },
-            {
-              "id": "mqtt_identifier",
-              "type": "text",
-              "label": {
-                "en": "Robot MQTT Identifier",
-                "da": "Robot MQTT-identifikator",
-                "de": "Roboter-MQTT-Kennung"
-              },
-              "hint": {
-                "en": "The robot's MQTT identifier (auto-discovered during pairing)",
-                "da": "Robottens MQTT-identifikator (opdaget automatisk under parring)",
-                "de": "Die MQTT-Kennung des Roboters (automatisch beim Pairing erkannt)"
-              },
-              "value": ""
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "SSH (for Multi-Floor)",
-            "da": "SSH (til multi-etage)",
-            "de": "SSH (für Multi-Stockwerk)"
-          },
-          "children": [
-            {
-              "id": "ssh_port",
-              "type": "number",
-              "label": {
-                "en": "SSH Port",
-                "da": "SSH-port",
-                "de": "SSH-Port"
-              },
-              "value": 22,
-              "min": 1,
-              "max": 65535
-            },
-            {
-              "id": "ssh_user",
-              "type": "text",
-              "label": {
-                "en": "SSH Username",
-                "da": "SSH-brugernavn",
-                "de": "SSH-Benutzername"
-              },
-              "value": "root"
-            },
-            {
-              "id": "ssh_password",
-              "type": "password",
-              "label": {
-                "en": "SSH Password",
-                "da": "SSH-adgangskode",
-                "de": "SSH-Passwort"
-              },
-              "hint": {
-                "en": "Used for password-based SSH authentication",
-                "da": "Bruges til adgangskodebaseret SSH-godkendelse",
-                "de": "Für passwortbasierte SSH-Authentifizierung"
-              },
-              "value": ""
-            },
-            {
-              "id": "ssh_private_key",
-              "type": "textarea",
-              "label": {
-                "en": "SSH Private Key",
-                "da": "SSH Privat nøgle",
-                "de": "Privater SSH-Schlüssel"
-              },
-              "hint": {
-                "en": "Paste your SSH private key here. It will be saved securely and the field will be cleared. The key is stored safely in the app's secure storage. Leave empty if already configured.",
-                "da": "Indsæt din SSH private nøgle her. Den gemmes sikkert og feltet ryddes. Nøglen opbevares sikkert i appens sikre lager. Lad stå tom hvis allerede konfigureret.",
-                "de": "Füge deinen privaten SSH-Schlüssel hier ein. Er wird sicher gespeichert und das Feld wird geleert. Der Schlüssel wird sicher im App-Speicher aufbewahrt. Leer lassen, wenn bereits konfiguriert."
-              },
-              "value": ""
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "label": {
-            "en": "Voice Packs",
-            "da": "Stemmepakker",
-            "de": "Sprachpakete"
-          },
-          "children": [
-            {
-              "id": "voice_pack_url",
-              "type": "text",
-              "label": {
-                "en": "Voice Pack URL",
-                "da": "Stemmepakke-URL",
-                "de": "Sprachpaket-URL"
-              },
-              "hint": {
-                "en": "URL to a Valetudo-compatible voice pack (.pkg or .tar.gz). You can find community voice packs at github.com/Hypfer/Valetudo/discussions",
-                "da": "URL til en Valetudo-kompatibel stemmepakke (.pkg eller .tar.gz). Du kan finde stemmepakker på github.com/Hypfer/Valetudo/discussions",
-                "de": "URL zu einem Valetudo-kompatiblen Sprachpaket (.pkg oder .tar.gz). Community-Sprachpakete findest du unter github.com/Hypfer/Valetudo/discussions"
-              },
-              "value": ""
-            },
-            {
-              "id": "voice_pack_language",
-              "type": "text",
-              "label": {
-                "en": "Language Code",
-                "da": "Sprogkode",
-                "de": "Sprachcode"
-              },
-              "hint": {
-                "en": "e.g. en, de, fr",
-                "da": "f.eks. en, da, de",
-                "de": "z.B. en, de, fr"
-              },
-              "value": "en"
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "widgets": {
     "vacuum-map": {
       "name": {

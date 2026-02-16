@@ -19,5 +19,8 @@
   },
   "0.0.7": {
     "en": "Fix map file handling, add no-dock segmentation trigger, fix SSH reboot path, add Roborock S5 driver"
+  },
+  "0.0.8": {
+    "en": "Add error alarm for Homey Insights, fix widget for multi-driver support"
   }
 }

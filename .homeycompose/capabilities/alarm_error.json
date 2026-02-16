@@ -1,0 +1,23 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Error",
+    "da": "Fejl",
+    "de": "Fehler"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/error.svg",
+  "insights": true,
+  "insightsTitleTrue": {
+    "en": "Error active",
+    "da": "Fejl aktiv",
+    "de": "Fehler aktiv"
+  },
+  "insightsTitleFalse": {
+    "en": "No error",
+    "da": "Ingen fejl",
+    "de": "Kein Fehler"
+  }
+}

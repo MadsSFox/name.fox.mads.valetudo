@@ -1,0 +1,42 @@
+{
+  "id": "robot_stuck",
+  "title": {
+    "en": "Robot is stuck",
+    "da": "Robotten sidder fast",
+    "de": "Roboter steckt fest"
+  },
+  "titleFormatted": {
+    "en": "Robot is stuck",
+    "da": "Robotten sidder fast",
+    "de": "Roboter steckt fest"
+  },
+  "hint": {
+    "en": "Triggers specifically when the robot is physically stuck and needs help.",
+    "da": "Udløses specifikt når robotten sidder fysisk fast og har brug for hjælp.",
+    "de": "Wird speziell ausgelöst, wenn der Roboter physisch feststeckt und Hilfe benötigt."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "error_message",
+      "type": "string",
+      "title": {
+        "en": "Error Message",
+        "da": "Fejlmeddelelse",
+        "de": "Fehlermeldung"
+      },
+      "example": {
+        "en": "Stuck: please move robot",
+        "da": "Sidder fast: flyt venligst robotten",
+        "de": "Festgefahren: bitte Roboter versetzen"
+      }
+    }
+  ]
+}

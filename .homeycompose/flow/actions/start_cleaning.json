@@ -1,0 +1,26 @@
+{
+  "id": "start_cleaning",
+  "title": {
+    "en": "Start cleaning",
+    "da": "Start rengøring",
+    "de": "Reinigung starten"
+  },
+  "titleFormatted": {
+    "en": "Start cleaning",
+    "da": "Start rengøring",
+    "de": "Reinigung starten"
+  },
+  "hint": {
+    "en": "Starts a full cleaning of the current floor map.",
+    "da": "Starter en fuld rengøring af det aktuelle etagekort.",
+    "de": "Startet eine vollständige Reinigung der aktuellen Etagenkarte."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

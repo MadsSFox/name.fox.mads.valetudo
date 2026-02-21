@@ -1,0 +1,26 @@
+{
+  "id": "dustbin_full",
+  "title": {
+    "en": "Dustbin needs emptying",
+    "da": "Støvbeholderen skal tømmes",
+    "de": "Staubbehälter muss geleert werden"
+  },
+  "titleFormatted": {
+    "en": "Dustbin needs emptying",
+    "da": "Støvbeholderen skal tømmes",
+    "de": "Staubbehälter muss geleert werden"
+  },
+  "hint": {
+    "en": "Triggers when the robot reports its dustbin is full.",
+    "da": "Udløses når robotten melder at støvbeholderen er fuld.",
+    "de": "Wird ausgelöst, wenn der Roboter meldet, dass der Staubbehälter voll ist."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

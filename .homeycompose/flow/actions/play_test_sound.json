@@ -1,0 +1,26 @@
+{
+  "id": "play_test_sound",
+  "title": {
+    "en": "Play test sound",
+    "da": "Afspil testlyd",
+    "de": "Testton abspielen"
+  },
+  "titleFormatted": {
+    "en": "Play test sound",
+    "da": "Afspil testlyd",
+    "de": "Testton abspielen"
+  },
+  "hint": {
+    "en": "Plays a sound on the robot to test the speaker volume.",
+    "da": "Afspiller en lyd på robotten for at teste højtalervolumen.",
+    "de": "Spielt einen Ton auf dem Roboter ab, um die Lautstärke zu testen."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "segment_cleaning_finished",
+  "title": {
+    "en": "Finished cleaning a segment",
+    "da": "Afsluttede rengøring af segment",
+    "de": "Segmentreinigung beendet"
+  },
+  "titleFormatted": {
+    "en": "Finished cleaning a segment",
+    "da": "Afsluttede rengøring af segment",
+    "de": "Segmentreinigung beendet"
+  },
+  "hint": {
+    "en": "Triggers when the robot finishes cleaning a specific room segment.",
+    "da": "Udløses når robotten afslutter rengøring af et bestemt rumsegment.",
+    "de": "Wird ausgelöst, wenn der Roboter die Reinigung eines bestimmten Raumsegments abschließt."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "segment_name",
+      "type": "string",
+      "title": {
+        "en": "Segment Name",
+        "da": "Segmentnavn",
+        "de": "Segmentname"
+      },
+      "example": {
+        "en": "Kitchen",
+        "da": "Køkken",
+        "de": "Küche"
+      }
+    },
+    {
+      "name": "segment_id",
+      "type": "string",
+      "title": {
+        "en": "Segment ID",
+        "da": "Segment-ID",
+        "de": "Segment-ID"
+      },
+      "example": {
+        "en": "17",
+        "da": "17",
+        "de": "17"
+      }
+    }
+  ]
+}

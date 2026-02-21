@@ -1,0 +1,68 @@
+{
+  "id": "save_zone",
+  "title": {
+    "en": "Save zone at coordinates",
+    "da": "Gem zone ved koordinater",
+    "de": "Zone an Koordinaten speichern"
+  },
+  "titleFormatted": {
+    "en": "Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
+    "da": "Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
+    "de": "Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
+  },
+  "hint": {
+    "en": "Saves a rectangular zone by map coordinates. Find coordinates in the Valetudo web UI.",
+    "da": "Gemmer en rektangulær zone ud fra kortkoordinater. Find koordinater i Valetudo web-UI.",
+    "de": "Speichert eine rechteckige Zone anhand von Kartenkoordinaten. Koordinaten findest du in der Valetudo Web-UI."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "text",
+      "name": "name",
+      "title": {
+        "en": "Zone Name",
+        "da": "Zonenavn",
+        "de": "Zonenname"
+      },
+      "placeholder": {
+        "en": "e.g. Under Kitchen Table",
+        "da": "f.eks. Under køkkenbordet",
+        "de": "z.B. Unter dem Küchentisch"
+      }
+    },
+    {
+      "type": "number",
+      "name": "x1",
+      "title": { "en": "Top-left X", "da": "Øverste venstre X", "de": "Oben-links X" },
+      "min": 0,
+      "step": 1
+    },
+    {
+      "type": "number",
+      "name": "y1",
+      "title": { "en": "Top-left Y", "da": "Øverste venstre Y", "de": "Oben-links Y" },
+      "min": 0,
+      "step": 1
+    },
+    {
+      "type": "number",
+      "name": "x2",
+      "title": { "en": "Bottom-right X", "da": "Nederste højre X", "de": "Unten-rechts X" },
+      "min": 0,
+      "step": 1
+    },
+    {
+      "type": "number",
+      "name": "y2",
+      "title": { "en": "Bottom-right Y", "da": "Nederste højre Y", "de": "Unten-rechts Y" },
+      "min": 0,
+      "step": 1
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "switch_floor",
+  "title": {
+    "en": "Switch to floor",
+    "da": "Skift til etage",
+    "de": "Stockwerk wechseln"
+  },
+  "titleFormatted": {
+    "en": "Switch to floor [[floor]]",
+    "da": "Skift til etage [[floor]]",
+    "de": "Wechsle zu Stockwerk [[floor]]"
+  },
+  "hint": {
+    "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
+    "da": "Skifter robottens kort via SSH. Robotten genstarter under skiftet.",
+    "de": "Tauscht die Roboterkarte per SSH. Der Roboter startet beim Wechsel neu."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "floor",
+      "title": {
+        "en": "Floor",
+        "da": "Etage",
+        "de": "Stockwerk"
+      },
+      "placeholder": {
+        "en": "Select a floor...",
+        "da": "Vælg en etage...",
+        "de": "Stockwerk auswählen..."
+      }
+    }
+  ]
+}

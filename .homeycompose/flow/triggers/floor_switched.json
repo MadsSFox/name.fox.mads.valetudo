@@ -1,0 +1,42 @@
+{
+  "id": "floor_switched",
+  "title": {
+    "en": "Floor was switched",
+    "da": "Etage blev skiftet",
+    "de": "Stockwerk wurde gewechselt"
+  },
+  "titleFormatted": {
+    "en": "Floor was switched",
+    "da": "Etage blev skiftet",
+    "de": "Stockwerk wurde gewechselt"
+  },
+  "hint": {
+    "en": "Triggers when the robot switches to a different floor map via SSH.",
+    "da": "Udløses når robotten skifter til et andet etagekort via SSH.",
+    "de": "Wird ausgelöst, wenn der Roboter über SSH zu einer anderen Etagenkarte wechselt."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "floor_name",
+      "type": "string",
+      "title": {
+        "en": "Floor Name",
+        "da": "Etage",
+        "de": "Stockwerk"
+      },
+      "example": {
+        "en": "Ground Floor",
+        "da": "Stueetage",
+        "de": "Erdgeschoss"
+      }
+    }
+  ]
+}

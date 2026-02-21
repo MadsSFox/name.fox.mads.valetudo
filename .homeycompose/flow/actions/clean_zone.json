@@ -1,0 +1,52 @@
+{
+  "id": "clean_zone",
+  "title": {
+    "en": "Clean zone",
+    "da": "Rengør zone",
+    "de": "Zone reinigen"
+  },
+  "titleFormatted": {
+    "en": "Clean zone [[zone]] ([[iterations]]x)",
+    "da": "Rengør zone [[zone]] ([[iterations]]x)",
+    "de": "Zone [[zone]] reinigen ([[iterations]]x)"
+  },
+  "hint": {
+    "en": "Cleans a previously saved rectangular zone.",
+    "da": "Rengør en tidligere gemt rektangulær zone.",
+    "de": "Reinigt eine zuvor gespeicherte rechteckige Zone."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "zone",
+      "title": {
+        "en": "Zone",
+        "da": "Zone",
+        "de": "Zone"
+      },
+      "placeholder": {
+        "en": "Select a saved zone...",
+        "da": "Vælg en gemt zone...",
+        "de": "Gespeicherte Zone auswählen..."
+      }
+    },
+    {
+      "type": "number",
+      "name": "iterations",
+      "title": {
+        "en": "Iterations",
+        "da": "Gentagelser",
+        "de": "Durchgänge"
+      },
+      "min": 1,
+      "step": 1,
+      "value": 1
+    }
+  ]
+}

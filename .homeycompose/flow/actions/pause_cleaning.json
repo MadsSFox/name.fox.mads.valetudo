@@ -1,0 +1,26 @@
+{
+  "id": "pause_cleaning",
+  "title": {
+    "en": "Pause cleaning",
+    "da": "Pause rengøring",
+    "de": "Reinigung pausieren"
+  },
+  "titleFormatted": {
+    "en": "Pause cleaning",
+    "da": "Pause rengøring",
+    "de": "Reinigung pausieren"
+  },
+  "hint": {
+    "en": "Pauses cleaning. The robot can resume from where it stopped.",
+    "da": "Sætter rengøringen på pause. Robotten kan genoptage fra hvor den stoppede.",
+    "de": "Pausiert die Reinigung. Der Roboter kann dort fortsetzen, wo er aufgehört hat."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

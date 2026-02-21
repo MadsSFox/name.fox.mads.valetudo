@@ -1,0 +1,26 @@
+{
+  "id": "cleaning_finished",
+  "title": {
+    "en": "Cleaning finished",
+    "da": "Rengøring afsluttet",
+    "de": "Reinigung beendet"
+  },
+  "titleFormatted": {
+    "en": "Cleaning finished",
+    "da": "Rengøring afsluttet",
+    "de": "Reinigung beendet"
+  },
+  "hint": {
+    "en": "Triggers when the robot completes a cleaning session.",
+    "da": "Udløses når robotten afslutter en rengøring.",
+    "de": "Wird ausgelöst, wenn der Roboter eine Reinigung abschließt."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

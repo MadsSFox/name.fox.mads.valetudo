@@ -1,0 +1,42 @@
+{
+  "id": "error_occurred",
+  "title": {
+    "en": "An error occurred",
+    "da": "Der opstod en fejl",
+    "de": "Ein Fehler ist aufgetreten"
+  },
+  "titleFormatted": {
+    "en": "An error occurred",
+    "da": "Der opstod en fejl",
+    "de": "Ein Fehler ist aufgetreten"
+  },
+  "hint": {
+    "en": "Triggers on any robot error, including stuck, sensor, or hardware issues.",
+    "da": "Udløses ved enhver robotfejl, herunder fastkørt, sensor- eller hardwareproblemer.",
+    "de": "Wird bei jedem Roboterfehler ausgelöst, einschließlich Feststecken, Sensor- oder Hardwareproblemen."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "error_message",
+      "type": "string",
+      "title": {
+        "en": "Error Message",
+        "da": "Fejlmeddelelse",
+        "de": "Fehlermeldung"
+      },
+      "example": {
+        "en": "Stuck near cliff",
+        "da": "Sidder fast ved kant",
+        "de": "An Kante hängengeblieben"
+      }
+    }
+  ]
+}

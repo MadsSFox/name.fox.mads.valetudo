@@ -1,0 +1,40 @@
+{
+  "id": "set_fan_speed",
+  "title": {
+    "en": "Set fan speed",
+    "da": "Indstil blæserhastighed",
+    "de": "Saugstärke einstellen"
+  },
+  "titleFormatted": {
+    "en": "Set fan speed to [[speed]]",
+    "da": "Indstil blæserhastighed til [[speed]]",
+    "de": "Saugstärke auf [[speed]] einstellen"
+  },
+  "hint": {
+    "en": "Controls the vacuum suction power.",
+    "da": "Styrer støvsugerens sugestyrke.",
+    "de": "Steuert die Saugleistung des Staubsaugers."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "dropdown",
+      "name": "speed",
+      "title": { "en": "Speed", "da": "Hastighed", "de": "Stufe" },
+      "values": [
+        { "id": "off", "label": { "en": "Off", "da": "Slukket", "de": "Aus" } },
+        { "id": "min", "label": { "en": "Min", "da": "Min", "de": "Min" } },
+        { "id": "low", "label": { "en": "Low", "da": "Lav", "de": "Niedrig" } },
+        { "id": "medium", "label": { "en": "Medium", "da": "Medium", "de": "Mittel" } },
+        { "id": "high", "label": { "en": "High", "da": "Høj", "de": "Hoch" } },
+        { "id": "turbo", "label": { "en": "Turbo", "da": "Turbo", "de": "Turbo" } },
+        { "id": "max", "label": { "en": "Max", "da": "Maks", "de": "Max" } }
+      ]
+    }
+  ]
+}

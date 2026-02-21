@@ -1,0 +1,42 @@
+{
+  "id": "install_voice_pack",
+  "title": {
+    "en": "Install voice pack",
+    "da": "Installer stemmepakke",
+    "de": "Sprachpaket installieren"
+  },
+  "titleFormatted": {
+    "en": "Install voice pack from [[url]] (language: [[language]])",
+    "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])",
+    "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])"
+  },
+  "hint": {
+    "en": "Downloads and installs a custom voice pack on the robot.",
+    "da": "Downloader og installerer en brugerdefineret stemmepakke på robotten.",
+    "de": "Lädt ein benutzerdefiniertes Sprachpaket herunter und installiert es auf dem Roboter."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "text",
+      "name": "url",
+      "title": { "en": "Voice Pack URL", "da": "Stemmepakke-URL", "de": "Sprachpaket-URL" },
+      "placeholder": {
+        "en": "https://example.com/voice.pkg",
+        "da": "https://example.com/voice.pkg",
+        "de": "https://example.com/voice.pkg"
+      }
+    },
+    {
+      "type": "text",
+      "name": "language",
+      "title": { "en": "Language Code", "da": "Sprogkode", "de": "Sprachcode" },
+      "placeholder": { "en": "en", "da": "da", "de": "de" }
+    }
+  ]
+}

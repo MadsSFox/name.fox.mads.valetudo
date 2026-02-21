@@ -1,0 +1,50 @@
+{
+  "id": "is_in_segment",
+  "title": {
+    "en": "Is in segment",
+    "da": "Er i segment",
+    "de": "Ist in Segment"
+  },
+  "titleFormatted": {
+    "en": "Is in segment [[segment]]",
+    "da": "Er i segment [[segment]]",
+    "de": "Ist in Segment [[segment]]"
+  },
+  "titleTrue": {
+    "en": "Is in segment [[segment]]",
+    "da": "Er i segment [[segment]]",
+    "de": "Ist in Segment [[segment]]"
+  },
+  "titleFalse": {
+    "en": "Is not in segment [[segment]]",
+    "da": "Er ikke i segment [[segment]]",
+    "de": "Ist nicht in Segment [[segment]]"
+  },
+  "hint": {
+    "en": "Checks if the robot is currently in a specific room on the map.",
+    "da": "Tjekker om robotten aktuelt er i et bestemt rum på kortet.",
+    "de": "Prüft, ob der Roboter sich aktuell in einem bestimmten Raum auf der Karte befindet."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "segment",
+      "title": {
+        "en": "Segment (Room)",
+        "da": "Segment (rum)",
+        "de": "Segment (Raum)"
+      },
+      "placeholder": {
+        "en": "Select a room...",
+        "da": "Vælg et rum...",
+        "de": "Raum auswählen..."
+      }
+    }
+  ]
+}

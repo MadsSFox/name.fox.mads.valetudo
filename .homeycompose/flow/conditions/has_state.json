@@ -1,0 +1,55 @@
+{
+  "id": "has_state",
+  "title": {
+    "en": "State is",
+    "da": "Status er",
+    "de": "Status ist"
+  },
+  "titleFormatted": {
+    "en": "State is [[state]]",
+    "da": "Status er [[state]]",
+    "de": "Status ist [[state]]"
+  },
+  "titleTrue": {
+    "en": "State is [[state]]",
+    "da": "Status er [[state]]",
+    "de": "Status ist [[state]]"
+  },
+  "titleFalse": {
+    "en": "State is not [[state]]",
+    "da": "Status er ikke [[state]]",
+    "de": "Status ist nicht [[state]]"
+  },
+  "hint": {
+    "en": "Checks the current robot state such as cleaning, docked, or idle.",
+    "da": "Tjekker den aktuelle robotstatus som rengøring, i dock eller inaktiv.",
+    "de": "Prüft den aktuellen Roboterstatus wie Reinigung, angedockt oder bereit."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "dropdown",
+      "name": "state",
+      "title": {
+        "en": "State",
+        "da": "Status",
+        "de": "Status"
+      },
+      "values": [
+        { "id": "cleaning", "label": { "en": "Cleaning", "da": "Rengører", "de": "Reinigt" } },
+        { "id": "docked", "label": { "en": "Docked", "da": "I dock", "de": "Angedockt" } },
+        { "id": "idle", "label": { "en": "Idle", "da": "Inaktiv", "de": "Bereit" } },
+        { "id": "returning", "label": { "en": "Returning", "da": "Returnerer", "de": "Kehrt zurück" } },
+        { "id": "paused", "label": { "en": "Paused", "da": "Pauseret", "de": "Pausiert" } },
+        { "id": "error", "label": { "en": "Error", "da": "Fejl", "de": "Fehler" } },
+        { "id": "manual_control", "label": { "en": "Manual Control", "da": "Manuel styring", "de": "Manuelle Steuerung" } },
+        { "id": "moving", "label": { "en": "Moving", "da": "Bevæger sig", "de": "Bewegt sich" } }
+      ]
+    }
+  ]
+}

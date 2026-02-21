@@ -25,5 +25,8 @@
   },
   "0.0.9": {
     "en": "Always trigger segmentation after mapping if segments don't appear"
+  },
+  "0.1.0": {
+    "en": "Multi-driver flow card support: all flow triggers, conditions and actions are now available for both the Valetudo and Roborock S5 drivers. Mop-only actions (set water usage, operation mode, auto-empty) remain Valetudo-driver exclusive as the S5 does not support these features."
   }
 }

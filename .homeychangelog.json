@@ -28,5 +28,8 @@
   },
   "0.1.0": {
     "en": "Multi-driver flow card support: all flow triggers, conditions and actions are now available for both the Valetudo and Roborock S5 drivers. Mop-only actions (set water usage, operation mode, auto-empty) remain Valetudo-driver exclusive as the S5 does not support these features."
+  },
+  "0.2.0": {
+    "en": "Multi-driver flow card support: all flow triggers, conditions and actions are now shared between the Valetudo and Roborock S5 drivers. Mop and auto-empty dock actions remain Valetudo-driver exclusive as the S5 does not support these features."
   }
 }

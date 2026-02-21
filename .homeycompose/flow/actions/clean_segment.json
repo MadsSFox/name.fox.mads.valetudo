@@ -6,16 +6,18 @@
     "de": "Segment reinigen"
   },
   "titleFormatted": {
-    "en": "Clean segment [[segment]] ([[iterations]]x)",
-    "da": "Rengør segment [[segment]] ([[iterations]]x)",
-    "de": "Segment [[segment]] reinigen ([[iterations]]x)"
+    "en": "[[device]] Clean segment [[segment]] ([[iterations]]x)",
+    "da": "[[device]] Rengør segment [[segment]] ([[iterations]]x)",
+    "de": "[[device]] Segment [[segment]] reinigen ([[iterations]]x)"
   },
   "hint": {
     "en": "Cleans a specific room on the map. Segments are defined in the Valetudo web UI.",
     "da": "Rengør et bestemt rum på kortet. Segmenter defineres i Valetudo web-UI.",
     "de": "Reinigt einen bestimmten Raum auf der Karte. Segmente werden in der Valetudo Web-UI definiert."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

@@ -6,16 +6,18 @@
     "de": "Stockwerk wechseln"
   },
   "titleFormatted": {
-    "en": "Switch to floor [[floor]]",
-    "da": "Skift til etage [[floor]]",
-    "de": "Wechsle zu Stockwerk [[floor]]"
+    "en": "[[device]] Switch to floor [[floor]]",
+    "da": "[[device]] Skift til etage [[floor]]",
+    "de": "[[device]] Wechsle zu Stockwerk [[floor]]"
   },
   "hint": {
     "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
     "da": "Skifter robottens kort via SSH. Robotten genstarter under skiftet.",
     "de": "Tauscht die Roboterkarte per SSH. Der Roboter startet beim Wechsel neu."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

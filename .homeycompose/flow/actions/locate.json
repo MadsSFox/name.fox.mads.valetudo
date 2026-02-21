@@ -6,16 +6,18 @@
     "de": "Roboter finden"
   },
   "titleFormatted": {
-    "en": "Locate robot",
-    "da": "Find robot",
-    "de": "Roboter finden"
+    "en": "[[device]] Locate robot",
+    "da": "[[device]] Find robot",
+    "de": "[[device]] Roboter finden"
   },
   "hint": {
     "en": "Makes the robot play a sound so you can find it.",
     "da": "Får robotten til at afspille en lyd så du kan finde den.",
     "de": "Lässt den Roboter einen Ton abspielen, damit du ihn finden kannst."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

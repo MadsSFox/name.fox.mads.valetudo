@@ -6,16 +6,18 @@
     "de": "Segmentreinigung gestartet"
   },
   "titleFormatted": {
-    "en": "Started cleaning a segment",
-    "da": "Begyndte rengøring af segment",
-    "de": "Segmentreinigung gestartet"
+    "en": "[[device]] Started cleaning a segment",
+    "da": "[[device]] Begyndte rengøring af segment",
+    "de": "[[device]] Segmentreinigung gestartet"
   },
   "hint": {
     "en": "Triggers when the robot starts cleaning a specific room segment.",
     "da": "Udløses når robotten begynder at rengøre et bestemt rumsegment.",
     "de": "Wird ausgelöst, wenn der Roboter mit der Reinigung eines bestimmten Raumsegments beginnt."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

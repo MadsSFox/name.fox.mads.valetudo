@@ -6,16 +6,18 @@
     "de": "Ein Verbrauchsteil muss ersetzt werden"
   },
   "titleFormatted": {
-    "en": "A consumable needs replacement",
-    "da": "En forbrugsdel skal udskiftes",
-    "de": "Ein Verbrauchsteil muss ersetzt werden"
+    "en": "[[device]] A consumable needs replacement",
+    "da": "[[device]] En forbrugsdel skal udskiftes",
+    "de": "[[device]] Ein Verbrauchsteil muss ersetzt werden"
   },
   "hint": {
     "en": "Triggers when a consumable like filter, brush, or mop is worn out.",
     "da": "Udløses når en forbrugsdel som filter, børste eller moppe er slidt.",
     "de": "Wird ausgelöst, wenn ein Verbrauchsteil wie Filter, Bürste oder Wischmopp verschlissen ist."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

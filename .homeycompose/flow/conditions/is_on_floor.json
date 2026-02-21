@@ -6,26 +6,28 @@
     "de": "Ist auf Stockwerk"
   },
   "titleFormatted": {
-    "en": "Is on floor [[floor]]",
-    "da": "Er på etage [[floor]]",
-    "de": "Ist auf Stockwerk [[floor]]"
+    "en": "[[device]] Is on floor [[floor]]",
+    "da": "[[device]] Er på etage [[floor]]",
+    "de": "[[device]] Ist auf Stockwerk [[floor]]"
   },
   "titleTrue": {
-    "en": "Is on floor [[floor]]",
-    "da": "Er på etage [[floor]]",
-    "de": "Ist auf Stockwerk [[floor]]"
+    "en": "[[device]] Is on floor [[floor]]",
+    "da": "[[device]] Er på etage [[floor]]",
+    "de": "[[device]] Ist auf Stockwerk [[floor]]"
   },
   "titleFalse": {
-    "en": "Is not on floor [[floor]]",
-    "da": "Er ikke på etage [[floor]]",
-    "de": "Ist nicht auf Stockwerk [[floor]]"
+    "en": "[[device]] Is not on floor [[floor]]",
+    "da": "[[device]] Er ikke på etage [[floor]]",
+    "de": "[[device]] Ist nicht auf Stockwerk [[floor]]"
   },
   "hint": {
     "en": "Checks which floor map is currently active on the robot.",
     "da": "Tjekker hvilket etagekort der aktuelt er aktivt på robotten.",
     "de": "Prüft, welche Etagenkarte aktuell auf dem Roboter aktiv ist."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

@@ -6,16 +6,18 @@
     "de": "Sprachpaket installieren"
   },
   "titleFormatted": {
-    "en": "Install voice pack from [[url]] (language: [[language]])",
-    "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])",
-    "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])"
+    "en": "[[device]] Install voice pack from [[url]] (language: [[language]])",
+    "da": "[[device]] Installer stemmepakke fra [[url]] (sprog: [[language]])",
+    "de": "[[device]] Sprachpaket von [[url]] installieren (Sprache: [[language]])"
   },
   "hint": {
     "en": "Downloads and installs a custom voice pack on the robot.",
     "da": "Downloader og installerer en brugerdefineret stemmepakke på robotten.",
     "de": "Lädt ein benutzerdefiniertes Sprachpaket herunter und installiert es auf dem Roboter."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",
@@ -25,7 +27,11 @@
     {
       "type": "text",
       "name": "url",
-      "title": { "en": "Voice Pack URL", "da": "Stemmepakke-URL", "de": "Sprachpaket-URL" },
+      "title": {
+        "en": "Voice Pack URL",
+        "da": "Stemmepakke-URL",
+        "de": "Sprachpaket-URL"
+      },
       "placeholder": {
         "en": "https://example.com/voice.pkg",
         "da": "https://example.com/voice.pkg",
@@ -35,8 +41,16 @@
     {
       "type": "text",
       "name": "language",
-      "title": { "en": "Language Code", "da": "Sprogkode", "de": "Sprachcode" },
-      "placeholder": { "en": "en", "da": "da", "de": "de" }
+      "title": {
+        "en": "Language Code",
+        "da": "Sprogkode",
+        "de": "Sprachcode"
+      },
+      "placeholder": {
+        "en": "en",
+        "da": "da",
+        "de": "de"
+      }
     }
   ]
 }

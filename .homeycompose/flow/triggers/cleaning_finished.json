@@ -6,16 +6,18 @@
     "de": "Reinigung beendet"
   },
   "titleFormatted": {
-    "en": "Cleaning finished",
-    "da": "Rengøring afsluttet",
-    "de": "Reinigung beendet"
+    "en": "[[device]] Cleaning finished",
+    "da": "[[device]] Rengøring afsluttet",
+    "de": "[[device]] Reinigung beendet"
   },
   "hint": {
     "en": "Triggers when the robot completes a cleaning session.",
     "da": "Udløses når robotten afslutter en rengøring.",
     "de": "Wird ausgelöst, wenn der Roboter eine Reinigung abschließt."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

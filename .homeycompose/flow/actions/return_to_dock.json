@@ -6,16 +6,18 @@
     "de": "Zur Ladestation zurückkehren"
   },
   "titleFormatted": {
-    "en": "Return to dock",
-    "da": "Kør til dock",
-    "de": "Zur Ladestation zurückkehren"
+    "en": "[[device]] Return to dock",
+    "da": "[[device]] Kør til dock",
+    "de": "[[device]] Zur Ladestation zurückkehren"
   },
   "hint": {
     "en": "Sends the robot back to its charging dock.",
     "da": "Sender robotten tilbage til ladestationen.",
     "de": "Schickt den Roboter zurück zur Ladestation."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

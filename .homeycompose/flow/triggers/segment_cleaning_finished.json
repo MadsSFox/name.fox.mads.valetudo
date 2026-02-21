@@ -6,16 +6,18 @@
     "de": "Segmentreinigung beendet"
   },
   "titleFormatted": {
-    "en": "Finished cleaning a segment",
-    "da": "Afsluttede rengøring af segment",
-    "de": "Segmentreinigung beendet"
+    "en": "[[device]] Finished cleaning a segment",
+    "da": "[[device]] Afsluttede rengøring af segment",
+    "de": "[[device]] Segmentreinigung beendet"
   },
   "hint": {
     "en": "Triggers when the robot finishes cleaning a specific room segment.",
     "da": "Udløses når robotten afslutter rengøring af et bestemt rumsegment.",
     "de": "Wird ausgelöst, wenn der Roboter die Reinigung eines bestimmten Raumsegments abschließt."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

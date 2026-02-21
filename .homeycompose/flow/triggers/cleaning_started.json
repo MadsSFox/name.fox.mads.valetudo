@@ -6,16 +6,18 @@
     "de": "Reinigung gestartet"
   },
   "titleFormatted": {
-    "en": "Cleaning started",
-    "da": "Rengøring startet",
-    "de": "Reinigung gestartet"
+    "en": "[[device]] Cleaning started",
+    "da": "[[device]] Rengøring startet",
+    "de": "[[device]] Reinigung gestartet"
   },
   "hint": {
     "en": "Triggers when the robot begins a cleaning session.",
     "da": "Udløses når robotten begynder en rengøring.",
     "de": "Wird ausgelöst, wenn der Roboter eine Reinigung startet."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

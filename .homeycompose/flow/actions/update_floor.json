@@ -6,16 +6,18 @@
     "de": "Stockwerk aktualisieren"
   },
   "titleFormatted": {
-    "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
-    "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
-    "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+    "en": "[[device]] Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+    "da": "[[device]] Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+    "de": "[[device]] Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
   },
   "hint": {
     "en": "Renames a saved floor and updates its dock setting.",
     "da": "Omdøber en gemt etage og opdaterer dens dock-indstilling.",
     "de": "Benennt ein gespeichertes Stockwerk um und aktualisiert die Ladestationseinstellung."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",
@@ -59,8 +61,22 @@
         "de": "Hat Ladestation"
       },
       "values": [
-        { "id": "yes", "label": { "en": "Yes", "da": "Ja", "de": "Ja" } },
-        { "id": "no", "label": { "en": "No", "da": "Nej", "de": "Nein" } }
+        {
+          "id": "yes",
+          "label": {
+            "en": "Yes",
+            "da": "Ja",
+            "de": "Ja"
+          }
+        },
+        {
+          "id": "no",
+          "label": {
+            "en": "No",
+            "da": "Nej",
+            "de": "Nein"
+          }
+        }
       ]
     }
   ]

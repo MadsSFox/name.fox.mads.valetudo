@@ -6,16 +6,18 @@
     "de": "Testton abspielen"
   },
   "titleFormatted": {
-    "en": "Play test sound",
-    "da": "Afspil testlyd",
-    "de": "Testton abspielen"
+    "en": "[[device]] Play test sound",
+    "da": "[[device]] Afspil testlyd",
+    "de": "[[device]] Testton abspielen"
   },
   "hint": {
     "en": "Plays a sound on the robot to test the speaker volume.",
     "da": "Afspiller en lyd på robotten for at teste højtalervolumen.",
     "de": "Spielt einen Ton auf dem Roboter ab, um die Lautstärke zu testen."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

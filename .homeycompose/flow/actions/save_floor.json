@@ -6,16 +6,18 @@
     "de": "Aktuelle Karte als Stockwerk speichern"
   },
   "titleFormatted": {
-    "en": "Save current map as floor [[floor_name]] (dock: [[has_dock]])",
-    "da": "Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
-    "de": "Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
+    "en": "[[device]] Save current map as floor [[floor_name]] (dock: [[has_dock]])",
+    "da": "[[device]] Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
+    "de": "[[device]] Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
   },
   "hint": {
     "en": "Saves a backup of the robot's current map as a named floor via SSH.",
     "da": "Gemmer en kopi af robottens nuværende kort som en navngivet etage via SSH.",
     "de": "Speichert eine Sicherungskopie der aktuellen Roboterkarte als benanntes Stockwerk per SSH."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",
@@ -45,8 +47,22 @@
         "de": "Hat Ladestation"
       },
       "values": [
-        { "id": "yes", "label": { "en": "Yes", "da": "Ja", "de": "Ja" } },
-        { "id": "no", "label": { "en": "No", "da": "Nej", "de": "Nein" } }
+        {
+          "id": "yes",
+          "label": {
+            "en": "Yes",
+            "da": "Ja",
+            "de": "Ja"
+          }
+        },
+        {
+          "id": "no",
+          "label": {
+            "en": "No",
+            "da": "Nej",
+            "de": "Nein"
+          }
+        }
       ]
     }
   ]

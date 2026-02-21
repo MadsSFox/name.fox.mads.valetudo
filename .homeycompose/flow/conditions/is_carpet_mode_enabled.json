@@ -6,26 +6,28 @@
     "de": "Teppich-Boost ist aktiviert"
   },
   "titleFormatted": {
-    "en": "Carpet boost mode is enabled",
-    "da": "Tæppe-boost er aktiveret",
-    "de": "Teppich-Boost ist aktiviert"
+    "en": "[[device]] Carpet boost mode is enabled",
+    "da": "[[device]] Tæppe-boost er aktiveret",
+    "de": "[[device]] Teppich-Boost ist aktiviert"
   },
   "titleTrue": {
-    "en": "Carpet boost mode is enabled",
-    "da": "Tæppe-boost er aktiveret",
-    "de": "Teppich-Boost ist aktiviert"
+    "en": "[[device]] Carpet boost mode is enabled",
+    "da": "[[device]] Tæppe-boost er aktiveret",
+    "de": "[[device]] Teppich-Boost ist aktiviert"
   },
   "titleFalse": {
-    "en": "Carpet boost mode is disabled",
-    "da": "Tæppe-boost er deaktiveret",
-    "de": "Teppich-Boost ist deaktiviert"
+    "en": "[[device]] Carpet boost mode is disabled",
+    "da": "[[device]] Tæppe-boost er deaktiveret",
+    "de": "[[device]] Teppich-Boost ist deaktiviert"
   },
   "hint": {
     "en": "When enabled, suction power automatically increases on carpets.",
     "da": "Når aktiveret øges sugestyrken automatisk på tæpper.",
     "de": "Wenn aktiviert, erhöht sich die Saugleistung automatisch auf Teppichen."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

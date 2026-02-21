@@ -6,16 +6,18 @@
     "de": "Roboter steckt fest"
   },
   "titleFormatted": {
-    "en": "Robot is stuck",
-    "da": "Robotten sidder fast",
-    "de": "Roboter steckt fest"
+    "en": "[[device]] Robot is stuck",
+    "da": "[[device]] Robotten sidder fast",
+    "de": "[[device]] Roboter steckt fest"
   },
   "hint": {
     "en": "Triggers specifically when the robot is physically stuck and needs help.",
     "da": "Udløses specifikt når robotten sidder fysisk fast og har brug for hjælp.",
     "de": "Wird speziell ausgelöst, wenn der Roboter physisch feststeckt und Hilfe benötigt."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

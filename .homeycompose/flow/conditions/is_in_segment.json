@@ -6,26 +6,28 @@
     "de": "Ist in Segment"
   },
   "titleFormatted": {
-    "en": "Is in segment [[segment]]",
-    "da": "Er i segment [[segment]]",
-    "de": "Ist in Segment [[segment]]"
+    "en": "[[device]] Is in segment [[segment]]",
+    "da": "[[device]] Er i segment [[segment]]",
+    "de": "[[device]] Ist in Segment [[segment]]"
   },
   "titleTrue": {
-    "en": "Is in segment [[segment]]",
-    "da": "Er i segment [[segment]]",
-    "de": "Ist in Segment [[segment]]"
+    "en": "[[device]] Is in segment [[segment]]",
+    "da": "[[device]] Er i segment [[segment]]",
+    "de": "[[device]] Ist in Segment [[segment]]"
   },
   "titleFalse": {
-    "en": "Is not in segment [[segment]]",
-    "da": "Er ikke i segment [[segment]]",
-    "de": "Ist nicht in Segment [[segment]]"
+    "en": "[[device]] Is not in segment [[segment]]",
+    "da": "[[device]] Er ikke i segment [[segment]]",
+    "de": "[[device]] Ist nicht in Segment [[segment]]"
   },
   "hint": {
     "en": "Checks if the robot is currently in a specific room on the map.",
     "da": "Tjekker om robotten aktuelt er i et bestemt rum på kortet.",
     "de": "Prüft, ob der Roboter sich aktuell in einem bestimmten Raum auf der Karte befindet."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

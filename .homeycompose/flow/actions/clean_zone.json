@@ -6,16 +6,18 @@
     "de": "Zone reinigen"
   },
   "titleFormatted": {
-    "en": "Clean zone [[zone]] ([[iterations]]x)",
-    "da": "Rengør zone [[zone]] ([[iterations]]x)",
-    "de": "Zone [[zone]] reinigen ([[iterations]]x)"
+    "en": "[[device]] Clean zone [[zone]] ([[iterations]]x)",
+    "da": "[[device]] Rengør zone [[zone]] ([[iterations]]x)",
+    "de": "[[device]] Zone [[zone]] reinigen ([[iterations]]x)"
   },
   "hint": {
     "en": "Cleans a previously saved rectangular zone.",
     "da": "Rengør en tidligere gemt rektangulær zone.",
     "de": "Reinigt eine zuvor gespeicherte rechteckige Zone."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

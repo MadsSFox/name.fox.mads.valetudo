@@ -6,16 +6,18 @@
     "de": "Valetudo wurde aktualisiert"
   },
   "titleFormatted": {
-    "en": "Valetudo was updated",
-    "da": "Valetudo blev opdateret",
-    "de": "Valetudo wurde aktualisiert"
+    "en": "[[device]] Valetudo was updated",
+    "da": "[[device]] Valetudo blev opdateret",
+    "de": "[[device]] Valetudo wurde aktualisiert"
   },
   "hint": {
     "en": "Triggers when the Valetudo firmware version changes on the robot.",
     "da": "Udløses når Valetudo-firmwareversionen ændres på robotten.",
     "de": "Wird ausgelöst, wenn sich die Valetudo-Firmware-Version auf dem Roboter ändert."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

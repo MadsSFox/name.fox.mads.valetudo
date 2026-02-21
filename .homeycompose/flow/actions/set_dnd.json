@@ -6,16 +6,18 @@
     "de": "Bitte nicht stören einstellen"
   },
   "titleFormatted": {
-    "en": "Set Do Not Disturb [[enabled]]",
-    "da": "Indstil Forstyr ikke [[enabled]]",
-    "de": "Bitte nicht stören [[enabled]]"
+    "en": "[[device]] Set Do Not Disturb [[enabled]]",
+    "da": "[[device]] Indstil Forstyr ikke [[enabled]]",
+    "de": "[[device]] Bitte nicht stören [[enabled]]"
   },
   "hint": {
     "en": "Silences the robot and prevents scheduled cleanings.",
     "da": "Gør robotten lydløs og forhindrer planlagte rengøringer.",
     "de": "Schaltet den Roboter stumm und verhindert geplante Reinigungen."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",
@@ -25,10 +27,28 @@
     {
       "type": "dropdown",
       "name": "enabled",
-      "title": { "en": "State", "da": "Tilstand", "de": "Status" },
+      "title": {
+        "en": "State",
+        "da": "Tilstand",
+        "de": "Status"
+      },
       "values": [
-        { "id": "enable", "label": { "en": "Enabled", "da": "Aktiveret", "de": "Aktiviert" } },
-        { "id": "disable", "label": { "en": "Disabled", "da": "Deaktiveret", "de": "Deaktiviert" } }
+        {
+          "id": "enable",
+          "label": {
+            "en": "Enabled",
+            "da": "Aktiveret",
+            "de": "Aktiviert"
+          }
+        },
+        {
+          "id": "disable",
+          "label": {
+            "en": "Disabled",
+            "da": "Deaktiveret",
+            "de": "Deaktiviert"
+          }
+        }
       ]
     }
   ]

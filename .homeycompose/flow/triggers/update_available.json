@@ -6,16 +6,18 @@
     "de": "Ein Valetudo-Update ist verfügbar"
   },
   "titleFormatted": {
-    "en": "A Valetudo update is available",
-    "da": "En Valetudo-opdatering er tilgængelig",
-    "de": "Ein Valetudo-Update ist verfügbar"
+    "en": "[[device]] A Valetudo update is available",
+    "da": "[[device]] En Valetudo-opdatering er tilgængelig",
+    "de": "[[device]] Ein Valetudo-Update ist verfügbar"
   },
   "hint": {
     "en": "Triggers when Valetudo detects a newer version is available.",
     "da": "Udløses når Valetudo registrerer at en nyere version er tilgængelig.",
     "de": "Wird ausgelöst, wenn Valetudo erkennt, dass eine neuere Version verfügbar ist."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

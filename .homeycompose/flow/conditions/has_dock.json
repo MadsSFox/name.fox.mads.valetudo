@@ -6,26 +6,28 @@
     "de": "Aktuelles Stockwerk hat eine Ladestation"
   },
   "titleFormatted": {
-    "en": "Current floor has a dock",
-    "da": "Nuværende etage har en dock",
-    "de": "Aktuelles Stockwerk hat eine Ladestation"
+    "en": "[[device]] Current floor has a dock",
+    "da": "[[device]] Nuværende etage har en dock",
+    "de": "[[device]] Aktuelles Stockwerk hat eine Ladestation"
   },
   "titleTrue": {
-    "en": "Current floor has a dock",
-    "da": "Nuværende etage har en dock",
-    "de": "Aktuelles Stockwerk hat eine Ladestation"
+    "en": "[[device]] Current floor has a dock",
+    "da": "[[device]] Nuværende etage har en dock",
+    "de": "[[device]] Aktuelles Stockwerk hat eine Ladestation"
   },
   "titleFalse": {
-    "en": "Current floor has no dock",
-    "da": "Nuværende etage har ingen dock",
-    "de": "Aktuelles Stockwerk hat keine Ladestation"
+    "en": "[[device]] Current floor has no dock",
+    "da": "[[device]] Nuværende etage har ingen dock",
+    "de": "[[device]] Aktuelles Stockwerk hat keine Ladestation"
   },
   "hint": {
     "en": "Useful to prevent sending the robot to dock on floors without a charging station.",
     "da": "Nyttigt for at undgå at sende robotten til dock på etager uden ladestation.",
     "de": "Nützlich, um zu verhindern, dass der Roboter auf Etagen ohne Ladestation zum Dock geschickt wird."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

@@ -6,26 +6,28 @@
     "de": "Ist auf Teppich"
   },
   "titleFormatted": {
-    "en": "Is on carpet",
-    "da": "Er på tæppe",
-    "de": "Ist auf Teppich"
+    "en": "[[device]] Is on carpet",
+    "da": "[[device]] Er på tæppe",
+    "de": "[[device]] Ist auf Teppich"
   },
   "titleTrue": {
-    "en": "Is on carpet",
-    "da": "Er på tæppe",
-    "de": "Ist auf Teppich"
+    "en": "[[device]] Is on carpet",
+    "da": "[[device]] Er på tæppe",
+    "de": "[[device]] Ist auf Teppich"
   },
   "titleFalse": {
-    "en": "Is not on carpet",
-    "da": "Er ikke på tæppe",
-    "de": "Ist nicht auf Teppich"
+    "en": "[[device]] Is not on carpet",
+    "da": "[[device]] Er ikke på tæppe",
+    "de": "[[device]] Ist nicht auf Teppich"
   },
   "hint": {
     "en": "Checks if the robot is currently on a carpet surface.",
     "da": "Tjekker om robotten aktuelt er på en tæppeoverflade.",
     "de": "Prüft, ob der Roboter sich aktuell auf einem Teppich befindet."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

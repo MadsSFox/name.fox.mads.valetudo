@@ -6,16 +6,18 @@
     "de": "Lautstärke einstellen"
   },
   "titleFormatted": {
-    "en": "Set speaker volume to [[volume]]%",
-    "da": "Indstil højtalervolumen til [[volume]]%",
-    "de": "Lautstärke auf [[volume]]% einstellen"
+    "en": "[[device]] Set speaker volume to [[volume]]%",
+    "da": "[[device]] Indstil højtalervolumen til [[volume]]%",
+    "de": "[[device]] Lautstärke auf [[volume]]% einstellen"
   },
   "hint": {
     "en": "Controls the robot's voice and notification volume.",
     "da": "Styrer robottens stemme- og notifikationsvolumen.",
     "de": "Steuert die Sprach- und Benachrichtigungslautstärke des Roboters."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",
@@ -25,7 +27,11 @@
     {
       "type": "number",
       "name": "volume",
-      "title": { "en": "Volume %", "da": "Volumen %", "de": "Lautstärke %" },
+      "title": {
+        "en": "Volume %",
+        "da": "Volumen %",
+        "de": "Lautstärke %"
+      },
       "min": 0,
       "max": 100,
       "step": 10,

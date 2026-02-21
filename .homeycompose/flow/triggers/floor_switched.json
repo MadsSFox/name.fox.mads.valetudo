@@ -6,16 +6,18 @@
     "de": "Stockwerk wurde gewechselt"
   },
   "titleFormatted": {
-    "en": "Floor was switched",
-    "da": "Etage blev skiftet",
-    "de": "Stockwerk wurde gewechselt"
+    "en": "[[device]] Floor was switched",
+    "da": "[[device]] Etage blev skiftet",
+    "de": "[[device]] Stockwerk wurde gewechselt"
   },
   "hint": {
     "en": "Triggers when the robot switches to a different floor map via SSH.",
     "da": "Udløses når robotten skifter til et andet etagekort via SSH.",
     "de": "Wird ausgelöst, wenn der Roboter über SSH zu einer anderen Etagenkarte wechselt."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",

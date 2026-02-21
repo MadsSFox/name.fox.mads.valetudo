@@ -6,16 +6,18 @@
     "de": "Segment umbenennen"
   },
   "titleFormatted": {
-    "en": "Rename segment [[segment]] to [[name]]",
-    "da": "Omdøb segment [[segment]] til [[name]]",
-    "de": "Segment [[segment]] in [[name]] umbenennen"
+    "en": "[[device]] Rename segment [[segment]] to [[name]]",
+    "da": "[[device]] Omdøb segment [[segment]] til [[name]]",
+    "de": "[[device]] Segment [[segment]] in [[name]] umbenennen"
   },
   "hint": {
     "en": "Renames a room segment on the robot's map.",
     "da": "Omdøber et rumsegment på robottens kort.",
     "de": "Benennt ein Raumsegment auf der Roboterkarte um."
   },
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "args": [
     {
       "name": "device",
@@ -25,7 +27,11 @@
     {
       "type": "autocomplete",
       "name": "segment",
-      "title": { "en": "Segment (Room)", "da": "Segment (rum)", "de": "Segment (Raum)" },
+      "title": {
+        "en": "Segment (Room)",
+        "da": "Segment (rum)",
+        "de": "Segment (Raum)"
+      },
       "placeholder": {
         "en": "Select a room...",
         "da": "Vælg et rum...",
@@ -35,8 +41,16 @@
     {
       "type": "text",
       "name": "name",
-      "title": { "en": "New Name", "da": "Nyt navn", "de": "Neuer Name" },
-      "placeholder": { "en": "Kitchen", "da": "Køkken", "de": "Küche" }
+      "title": {
+        "en": "New Name",
+        "da": "Nyt navn",
+        "de": "Neuer Name"
+      },
+      "placeholder": {
+        "en": "Kitchen",
+        "da": "Køkken",
+        "de": "Küche"
+      }
     }
   ]
 }

@@ -1305,6 +1305,34 @@
         ]
       },
       {
+        "id": "refresh_segments",
+        "title": {
+          "en": "Refresh room segments",
+          "da": "Opdater rumsegmenter",
+          "de": "Raumsegmente aktualisieren"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Refresh room segments",
+          "da": "[[device]] Opdater rumsegmenter",
+          "de": "[[device]] Raumsegmente aktualisieren"
+        },
+        "hint": {
+          "en": "Fetches the current room segments from the robot. Use this if rooms are missing from other flow card autocomplete lists.",
+          "da": "Henter de aktuelle rumsegmenter fra robotten. Brug dette hvis rum mangler i andre flow-korts autofuldførelses-lister.",
+          "de": "Ruft die aktuellen Raumsegmente vom Roboter ab. Verwende dies, wenn Räume in Autovervollständigungslisten anderer Flow-Karten fehlen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
         "id": "rename_segment",
         "title": {
           "en": "Rename segment",

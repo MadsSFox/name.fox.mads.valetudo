@@ -31,5 +31,8 @@
   },
   "0.1.1": {
     "en": "Fix flow cards not being available on the Roborock S5 driver. Flow triggers, conditions and actions are now shared between the Valetudo and Roborock S5 drivers as originally intended."
+  },
+  "0.1.2": {
+    "en": "Fix segment room names not appearing in flow card autocompletes. Segments are now fetched via REST on discovery, reconnect, and after cleaning — ensuring the list is always populated regardless of MQTT configuration."
   }
 }

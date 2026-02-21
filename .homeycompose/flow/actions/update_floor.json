@@ -1,0 +1,83 @@
+{
+  "id": "update_floor",
+  "title": {
+    "en": "Update floor",
+    "da": "Opdater etage",
+    "de": "Stockwerk aktualisieren"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+    "da": "[[device]] Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+    "de": "[[device]] Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+  },
+  "hint": {
+    "en": "Renames a saved floor and updates its dock setting.",
+    "da": "Omdøber en gemt etage og opdaterer dens dock-indstilling.",
+    "de": "Benennt ein gespeichertes Stockwerk um und aktualisiert die Ladestationseinstellung."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "floor",
+      "title": {
+        "en": "Floor",
+        "da": "Etage",
+        "de": "Stockwerk"
+      },
+      "placeholder": {
+        "en": "Select a floor...",
+        "da": "Vælg en etage...",
+        "de": "Stockwerk auswählen..."
+      }
+    },
+    {
+      "type": "text",
+      "name": "new_name",
+      "title": {
+        "en": "New Name",
+        "da": "Nyt navn",
+        "de": "Neuer Name"
+      },
+      "placeholder": {
+        "en": "e.g. Kitchen Floor",
+        "da": "f.eks. Køkkenetage",
+        "de": "z.B. Küchengeschoss"
+      }
+    },
+    {
+      "type": "dropdown",
+      "name": "has_dock",
+      "title": {
+        "en": "Has Dock",
+        "da": "Har dock",
+        "de": "Hat Ladestation"
+      },
+      "values": [
+        {
+          "id": "yes",
+          "label": {
+            "en": "Yes",
+            "da": "Ja",
+            "de": "Ja"
+          }
+        },
+        {
+          "id": "no",
+          "label": {
+            "en": "No",
+            "da": "Nej",
+            "de": "Nein"
+          }
+        }
+      ]
+    }
+  ]
+}

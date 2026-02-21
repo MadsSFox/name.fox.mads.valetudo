@@ -1,0 +1,55 @@
+{
+  "id": "set_dnd",
+  "title": {
+    "en": "Set Do Not Disturb",
+    "da": "Indstil Forstyr ikke",
+    "de": "Bitte nicht stören einstellen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Set Do Not Disturb [[enabled]]",
+    "da": "[[device]] Indstil Forstyr ikke [[enabled]]",
+    "de": "[[device]] Bitte nicht stören [[enabled]]"
+  },
+  "hint": {
+    "en": "Silences the robot and prevents scheduled cleanings.",
+    "da": "Gør robotten lydløs og forhindrer planlagte rengøringer.",
+    "de": "Schaltet den Roboter stumm und verhindert geplante Reinigungen."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "dropdown",
+      "name": "enabled",
+      "title": {
+        "en": "State",
+        "da": "Tilstand",
+        "de": "Status"
+      },
+      "values": [
+        {
+          "id": "enable",
+          "label": {
+            "en": "Enabled",
+            "da": "Aktiveret",
+            "de": "Aktiviert"
+          }
+        },
+        {
+          "id": "disable",
+          "label": {
+            "en": "Disabled",
+            "da": "Deaktiveret",
+            "de": "Deaktiviert"
+          }
+        }
+      ]
+    }
+  ]
+}

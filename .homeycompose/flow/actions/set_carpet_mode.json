@@ -1,0 +1,55 @@
+{
+  "id": "set_carpet_mode",
+  "title": {
+    "en": "Set carpet boost mode",
+    "da": "Indstil tæppe-boost",
+    "de": "Teppich-Boost einstellen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Set carpet boost mode [[enabled]]",
+    "da": "[[device]] Indstil tæppe-boost [[enabled]]",
+    "de": "[[device]] Teppich-Boost [[enabled]]"
+  },
+  "hint": {
+    "en": "Automatically increases suction power when the robot detects carpet.",
+    "da": "Øger automatisk sugestyrken når robotten registrerer tæppe.",
+    "de": "Erhöht automatisch die Saugleistung, wenn der Roboter Teppich erkennt."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "dropdown",
+      "name": "enabled",
+      "title": {
+        "en": "State",
+        "da": "Tilstand",
+        "de": "Status"
+      },
+      "values": [
+        {
+          "id": "enable",
+          "label": {
+            "en": "Enabled",
+            "da": "Aktiveret",
+            "de": "Aktiviert"
+          }
+        },
+        {
+          "id": "disable",
+          "label": {
+            "en": "Disabled",
+            "da": "Deaktiveret",
+            "de": "Deaktiviert"
+          }
+        }
+      ]
+    }
+  ]
+}

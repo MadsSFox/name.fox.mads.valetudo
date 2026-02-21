@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "name.fox.mads.valetudo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -82,6 +82,2188 @@
   "support": "https://github.com/MadsSFox/homey-valetudo/issues",
   "bugs": {
     "url": "https://github.com/MadsSFox/homey-valetudo/issues"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "cleaning_finished",
+        "title": {
+          "en": "Cleaning finished",
+          "da": "Rengøring afsluttet",
+          "de": "Reinigung beendet"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Cleaning finished",
+          "da": "[[device]] Rengøring afsluttet",
+          "de": "[[device]] Reinigung beendet"
+        },
+        "hint": {
+          "en": "Triggers when the robot completes a cleaning session.",
+          "da": "Udløses når robotten afslutter en rengøring.",
+          "de": "Wird ausgelöst, wenn der Roboter eine Reinigung abschließt."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "cleaning_started",
+        "title": {
+          "en": "Cleaning started",
+          "da": "Rengøring startet",
+          "de": "Reinigung gestartet"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Cleaning started",
+          "da": "[[device]] Rengøring startet",
+          "de": "[[device]] Reinigung gestartet"
+        },
+        "hint": {
+          "en": "Triggers when the robot begins a cleaning session.",
+          "da": "Udløses når robotten begynder en rengøring.",
+          "de": "Wird ausgelöst, wenn der Roboter eine Reinigung startet."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "consumable_depleted",
+        "title": {
+          "en": "A consumable needs replacement",
+          "da": "En forbrugsdel skal udskiftes",
+          "de": "Ein Verbrauchsteil muss ersetzt werden"
+        },
+        "titleFormatted": {
+          "en": "[[device]] A consumable needs replacement",
+          "da": "[[device]] En forbrugsdel skal udskiftes",
+          "de": "[[device]] Ein Verbrauchsteil muss ersetzt werden"
+        },
+        "hint": {
+          "en": "Triggers when a consumable like filter, brush, or mop is worn out.",
+          "da": "Udløses når en forbrugsdel som filter, børste eller moppe er slidt.",
+          "de": "Wird ausgelöst, wenn ein Verbrauchsteil wie Filter, Bürste oder Wischmopp verschlissen ist."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "consumable_type",
+            "type": "string",
+            "title": {
+              "en": "Consumable Type",
+              "da": "Forbrugsdelstype",
+              "de": "Verbrauchsteiltyp"
+            },
+            "example": {
+              "en": "filter",
+              "da": "filter",
+              "de": "Filter"
+            }
+          },
+          {
+            "name": "consumable_sub_type",
+            "type": "string",
+            "title": {
+              "en": "Consumable Sub-Type",
+              "da": "Forbrugsdels-undertype",
+              "de": "Verbrauchsteil-Untertyp"
+            },
+            "example": {
+              "en": "main",
+              "da": "hoved",
+              "de": "Haupt"
+            }
+          },
+          {
+            "name": "remaining",
+            "type": "number",
+            "title": {
+              "en": "Remaining %",
+              "da": "Resterende %",
+              "de": "Verbleibend %"
+            },
+            "example": {
+              "en": "5",
+              "da": "5",
+              "de": "5"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dustbin_full",
+        "title": {
+          "en": "Dustbin needs emptying",
+          "da": "Støvbeholderen skal tømmes",
+          "de": "Staubbehälter muss geleert werden"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Dustbin needs emptying",
+          "da": "[[device]] Støvbeholderen skal tømmes",
+          "de": "[[device]] Staubbehälter muss geleert werden"
+        },
+        "hint": {
+          "en": "Triggers when the robot reports its dustbin is full.",
+          "da": "Udløses når robotten melder at støvbeholderen er fuld.",
+          "de": "Wird ausgelöst, wenn der Roboter meldet, dass der Staubbehälter voll ist."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "error_occurred",
+        "title": {
+          "en": "An error occurred",
+          "da": "Der opstod en fejl",
+          "de": "Ein Fehler ist aufgetreten"
+        },
+        "titleFormatted": {
+          "en": "[[device]] An error occurred",
+          "da": "[[device]] Der opstod en fejl",
+          "de": "[[device]] Ein Fehler ist aufgetreten"
+        },
+        "hint": {
+          "en": "Triggers on any robot error, including stuck, sensor, or hardware issues.",
+          "da": "Udløses ved enhver robotfejl, herunder fastkørt, sensor- eller hardwareproblemer.",
+          "de": "Wird bei jedem Roboterfehler ausgelöst, einschließlich Feststecken, Sensor- oder Hardwareproblemen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "title": {
+              "en": "Error Message",
+              "da": "Fejlmeddelelse",
+              "de": "Fehlermeldung"
+            },
+            "example": {
+              "en": "Stuck near cliff",
+              "da": "Sidder fast ved kant",
+              "de": "An Kante hängengeblieben"
+            }
+          }
+        ]
+      },
+      {
+        "id": "floor_switched",
+        "title": {
+          "en": "Floor was switched",
+          "da": "Etage blev skiftet",
+          "de": "Stockwerk wurde gewechselt"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Floor was switched",
+          "da": "[[device]] Etage blev skiftet",
+          "de": "[[device]] Stockwerk wurde gewechselt"
+        },
+        "hint": {
+          "en": "Triggers when the robot switches to a different floor map via SSH.",
+          "da": "Udløses når robotten skifter til et andet etagekort via SSH.",
+          "de": "Wird ausgelöst, wenn der Roboter über SSH zu einer anderen Etagenkarte wechselt."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "floor_name",
+            "type": "string",
+            "title": {
+              "en": "Floor Name",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "example": {
+              "en": "Ground Floor",
+              "da": "Stueetage",
+              "de": "Erdgeschoss"
+            }
+          }
+        ]
+      },
+      {
+        "id": "robot_stuck",
+        "title": {
+          "en": "Robot is stuck",
+          "da": "Robotten sidder fast",
+          "de": "Roboter steckt fest"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Robot is stuck",
+          "da": "[[device]] Robotten sidder fast",
+          "de": "[[device]] Roboter steckt fest"
+        },
+        "hint": {
+          "en": "Triggers specifically when the robot is physically stuck and needs help.",
+          "da": "Udløses specifikt når robotten sidder fysisk fast og har brug for hjælp.",
+          "de": "Wird speziell ausgelöst, wenn der Roboter physisch feststeckt und Hilfe benötigt."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "title": {
+              "en": "Error Message",
+              "da": "Fejlmeddelelse",
+              "de": "Fehlermeldung"
+            },
+            "example": {
+              "en": "Stuck: please move robot",
+              "da": "Sidder fast: flyt venligst robotten",
+              "de": "Festgefahren: bitte Roboter versetzen"
+            }
+          }
+        ]
+      },
+      {
+        "id": "segment_cleaning_finished",
+        "title": {
+          "en": "Finished cleaning a segment",
+          "da": "Afsluttede rengøring af segment",
+          "de": "Segmentreinigung beendet"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Finished cleaning a segment",
+          "da": "[[device]] Afsluttede rengøring af segment",
+          "de": "[[device]] Segmentreinigung beendet"
+        },
+        "hint": {
+          "en": "Triggers when the robot finishes cleaning a specific room segment.",
+          "da": "Udløses når robotten afslutter rengøring af et bestemt rumsegment.",
+          "de": "Wird ausgelöst, wenn der Roboter die Reinigung eines bestimmten Raumsegments abschließt."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "segment_name",
+            "type": "string",
+            "title": {
+              "en": "Segment Name",
+              "da": "Segmentnavn",
+              "de": "Segmentname"
+            },
+            "example": {
+              "en": "Kitchen",
+              "da": "Køkken",
+              "de": "Küche"
+            }
+          },
+          {
+            "name": "segment_id",
+            "type": "string",
+            "title": {
+              "en": "Segment ID",
+              "da": "Segment-ID",
+              "de": "Segment-ID"
+            },
+            "example": {
+              "en": "17",
+              "da": "17",
+              "de": "17"
+            }
+          }
+        ]
+      },
+      {
+        "id": "segment_cleaning_started",
+        "title": {
+          "en": "Started cleaning a segment",
+          "da": "Begyndte rengøring af segment",
+          "de": "Segmentreinigung gestartet"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Started cleaning a segment",
+          "da": "[[device]] Begyndte rengøring af segment",
+          "de": "[[device]] Segmentreinigung gestartet"
+        },
+        "hint": {
+          "en": "Triggers when the robot starts cleaning a specific room segment.",
+          "da": "Udløses når robotten begynder at rengøre et bestemt rumsegment.",
+          "de": "Wird ausgelöst, wenn der Roboter mit der Reinigung eines bestimmten Raumsegments beginnt."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "segment_name",
+            "type": "string",
+            "title": {
+              "en": "Segment Name",
+              "da": "Segmentnavn",
+              "de": "Segmentname"
+            },
+            "example": {
+              "en": "Kitchen",
+              "da": "Køkken",
+              "de": "Küche"
+            }
+          },
+          {
+            "name": "segment_id",
+            "type": "string",
+            "title": {
+              "en": "Segment ID",
+              "da": "Segment-ID",
+              "de": "Segment-ID"
+            },
+            "example": {
+              "en": "17",
+              "da": "17",
+              "de": "17"
+            }
+          }
+        ]
+      },
+      {
+        "id": "update_available",
+        "title": {
+          "en": "A Valetudo update is available",
+          "da": "En Valetudo-opdatering er tilgængelig",
+          "de": "Ein Valetudo-Update ist verfügbar"
+        },
+        "titleFormatted": {
+          "en": "[[device]] A Valetudo update is available",
+          "da": "[[device]] En Valetudo-opdatering er tilgængelig",
+          "de": "[[device]] Ein Valetudo-Update ist verfügbar"
+        },
+        "hint": {
+          "en": "Triggers when Valetudo detects a newer version is available.",
+          "da": "Udløses når Valetudo registrerer at en nyere version er tilgængelig.",
+          "de": "Wird ausgelöst, wenn Valetudo erkennt, dass eine neuere Version verfügbar ist."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "current_version",
+            "type": "string",
+            "title": {
+              "en": "Current Version",
+              "da": "Nuværende version",
+              "de": "Aktuelle Version"
+            },
+            "example": {
+              "en": "2026.02.0",
+              "da": "2026.02.0",
+              "de": "2026.02.0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "valetudo_updated",
+        "title": {
+          "en": "Valetudo was updated",
+          "da": "Valetudo blev opdateret",
+          "de": "Valetudo wurde aktualisiert"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Valetudo was updated",
+          "da": "[[device]] Valetudo blev opdateret",
+          "de": "[[device]] Valetudo wurde aktualisiert"
+        },
+        "hint": {
+          "en": "Triggers when the Valetudo firmware version changes on the robot.",
+          "da": "Udløses når Valetudo-firmwareversionen ændres på robotten.",
+          "de": "Wird ausgelöst, wenn sich die Valetudo-Firmware-Version auf dem Roboter ändert."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "old_version",
+            "type": "string",
+            "title": {
+              "en": "Previous Version",
+              "da": "Tidligere version",
+              "de": "Vorherige Version"
+            },
+            "example": {
+              "en": "2026.01.0",
+              "da": "2026.01.0",
+              "de": "2026.01.0"
+            }
+          },
+          {
+            "name": "new_version",
+            "type": "string",
+            "title": {
+              "en": "New Version",
+              "da": "Ny version",
+              "de": "Neue Version"
+            },
+            "example": {
+              "en": "2026.02.0",
+              "da": "2026.02.0",
+              "de": "2026.02.0"
+            }
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "has_dock",
+        "title": {
+          "en": "Current floor has a dock",
+          "da": "Nuværende etage har en dock",
+          "de": "Aktuelles Stockwerk hat eine Ladestation"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Current floor has a dock",
+          "da": "[[device]] Nuværende etage har en dock",
+          "de": "[[device]] Aktuelles Stockwerk hat eine Ladestation"
+        },
+        "titleTrue": {
+          "en": "[[device]] Current floor has a dock",
+          "da": "[[device]] Nuværende etage har en dock",
+          "de": "[[device]] Aktuelles Stockwerk hat eine Ladestation"
+        },
+        "titleFalse": {
+          "en": "[[device]] Current floor has no dock",
+          "da": "[[device]] Nuværende etage har ingen dock",
+          "de": "[[device]] Aktuelles Stockwerk hat keine Ladestation"
+        },
+        "hint": {
+          "en": "Useful to prevent sending the robot to dock on floors without a charging station.",
+          "da": "Nyttigt for at undgå at sende robotten til dock på etager uden ladestation.",
+          "de": "Nützlich, um zu verhindern, dass der Roboter auf Etagen ohne Ladestation zum Dock geschickt wird."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "has_state",
+        "title": {
+          "en": "State is",
+          "da": "Status er",
+          "de": "Status ist"
+        },
+        "titleFormatted": {
+          "en": "[[device]] State is [[state]]",
+          "da": "[[device]] Status er [[state]]",
+          "de": "[[device]] Status ist [[state]]"
+        },
+        "titleTrue": {
+          "en": "[[device]] State is [[state]]",
+          "da": "[[device]] Status er [[state]]",
+          "de": "[[device]] Status ist [[state]]"
+        },
+        "titleFalse": {
+          "en": "[[device]] State is not [[state]]",
+          "da": "[[device]] Status er ikke [[state]]",
+          "de": "[[device]] Status ist nicht [[state]]"
+        },
+        "hint": {
+          "en": "Checks the current robot state such as cleaning, docked, or idle.",
+          "da": "Tjekker den aktuelle robotstatus som rengøring, i dock eller inaktiv.",
+          "de": "Prüft den aktuellen Roboterstatus wie Reinigung, angedockt oder bereit."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "state",
+            "title": {
+              "en": "State",
+              "da": "Status",
+              "de": "Status"
+            },
+            "values": [
+              {
+                "id": "cleaning",
+                "label": {
+                  "en": "Cleaning",
+                  "da": "Rengører",
+                  "de": "Reinigt"
+                }
+              },
+              {
+                "id": "docked",
+                "label": {
+                  "en": "Docked",
+                  "da": "I dock",
+                  "de": "Angedockt"
+                }
+              },
+              {
+                "id": "idle",
+                "label": {
+                  "en": "Idle",
+                  "da": "Inaktiv",
+                  "de": "Bereit"
+                }
+              },
+              {
+                "id": "returning",
+                "label": {
+                  "en": "Returning",
+                  "da": "Returnerer",
+                  "de": "Kehrt zurück"
+                }
+              },
+              {
+                "id": "paused",
+                "label": {
+                  "en": "Paused",
+                  "da": "Pauseret",
+                  "de": "Pausiert"
+                }
+              },
+              {
+                "id": "error",
+                "label": {
+                  "en": "Error",
+                  "da": "Fejl",
+                  "de": "Fehler"
+                }
+              },
+              {
+                "id": "manual_control",
+                "label": {
+                  "en": "Manual Control",
+                  "da": "Manuel styring",
+                  "de": "Manuelle Steuerung"
+                }
+              },
+              {
+                "id": "moving",
+                "label": {
+                  "en": "Moving",
+                  "da": "Bevæger sig",
+                  "de": "Bewegt sich"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "is_carpet_mode_enabled",
+        "title": {
+          "en": "Carpet boost mode is enabled",
+          "da": "Tæppe-boost er aktiveret",
+          "de": "Teppich-Boost ist aktiviert"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Carpet boost mode is enabled",
+          "da": "[[device]] Tæppe-boost er aktiveret",
+          "de": "[[device]] Teppich-Boost ist aktiviert"
+        },
+        "titleTrue": {
+          "en": "[[device]] Carpet boost mode is enabled",
+          "da": "[[device]] Tæppe-boost er aktiveret",
+          "de": "[[device]] Teppich-Boost ist aktiviert"
+        },
+        "titleFalse": {
+          "en": "[[device]] Carpet boost mode is disabled",
+          "da": "[[device]] Tæppe-boost er deaktiveret",
+          "de": "[[device]] Teppich-Boost ist deaktiviert"
+        },
+        "hint": {
+          "en": "When enabled, suction power automatically increases on carpets.",
+          "da": "Når aktiveret øges sugestyrken automatisk på tæpper.",
+          "de": "Wenn aktiviert, erhöht sich die Saugleistung automatisch auf Teppichen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "is_dnd_enabled",
+        "title": {
+          "en": "Do Not Disturb is enabled",
+          "da": "Forstyr ikke er aktiveret",
+          "de": "Bitte nicht stören ist aktiviert"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Do Not Disturb is enabled",
+          "da": "[[device]] Forstyr ikke er aktiveret",
+          "de": "[[device]] Bitte nicht stören ist aktiviert"
+        },
+        "titleTrue": {
+          "en": "[[device]] Do Not Disturb is enabled",
+          "da": "[[device]] Forstyr ikke er aktiveret",
+          "de": "[[device]] Bitte nicht stören ist aktiviert"
+        },
+        "titleFalse": {
+          "en": "[[device]] Do Not Disturb is disabled",
+          "da": "[[device]] Forstyr ikke er deaktiveret",
+          "de": "[[device]] Bitte nicht stören ist deaktiviert"
+        },
+        "hint": {
+          "en": "When enabled, the robot will not make sounds or start scheduled cleanings.",
+          "da": "Når aktiveret vil robotten ikke lave lyde eller starte planlagte rengøringer.",
+          "de": "Wenn aktiviert, macht der Roboter keine Geräusche und startet keine geplanten Reinigungen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "is_in_segment",
+        "title": {
+          "en": "Is in segment",
+          "da": "Er i segment",
+          "de": "Ist in Segment"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Is in segment [[segment]]",
+          "da": "[[device]] Er i segment [[segment]]",
+          "de": "[[device]] Ist in Segment [[segment]]"
+        },
+        "titleTrue": {
+          "en": "[[device]] Is in segment [[segment]]",
+          "da": "[[device]] Er i segment [[segment]]",
+          "de": "[[device]] Ist in Segment [[segment]]"
+        },
+        "titleFalse": {
+          "en": "[[device]] Is not in segment [[segment]]",
+          "da": "[[device]] Er ikke i segment [[segment]]",
+          "de": "[[device]] Ist nicht in Segment [[segment]]"
+        },
+        "hint": {
+          "en": "Checks if the robot is currently in a specific room on the map.",
+          "da": "Tjekker om robotten aktuelt er i et bestemt rum på kortet.",
+          "de": "Prüft, ob der Roboter sich aktuell in einem bestimmten Raum auf der Karte befindet."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment",
+            "title": {
+              "en": "Segment (Room)",
+              "da": "Segment (rum)",
+              "de": "Segment (Raum)"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "is_on_carpet",
+        "title": {
+          "en": "Is on carpet",
+          "da": "Er på tæppe",
+          "de": "Ist auf Teppich"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Is on carpet",
+          "da": "[[device]] Er på tæppe",
+          "de": "[[device]] Ist auf Teppich"
+        },
+        "titleTrue": {
+          "en": "[[device]] Is on carpet",
+          "da": "[[device]] Er på tæppe",
+          "de": "[[device]] Ist auf Teppich"
+        },
+        "titleFalse": {
+          "en": "[[device]] Is not on carpet",
+          "da": "[[device]] Er ikke på tæppe",
+          "de": "[[device]] Ist nicht auf Teppich"
+        },
+        "hint": {
+          "en": "Checks if the robot is currently on a carpet surface.",
+          "da": "Tjekker om robotten aktuelt er på en tæppeoverflade.",
+          "de": "Prüft, ob der Roboter sich aktuell auf einem Teppich befindet."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "is_on_floor",
+        "title": {
+          "en": "Is on floor",
+          "da": "Er på etage",
+          "de": "Ist auf Stockwerk"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Is on floor [[floor]]",
+          "da": "[[device]] Er på etage [[floor]]",
+          "de": "[[device]] Ist auf Stockwerk [[floor]]"
+        },
+        "titleTrue": {
+          "en": "[[device]] Is on floor [[floor]]",
+          "da": "[[device]] Er på etage [[floor]]",
+          "de": "[[device]] Ist auf Stockwerk [[floor]]"
+        },
+        "titleFalse": {
+          "en": "[[device]] Is not on floor [[floor]]",
+          "da": "[[device]] Er ikke på etage [[floor]]",
+          "de": "[[device]] Ist nicht auf Stockwerk [[floor]]"
+        },
+        "hint": {
+          "en": "Checks which floor map is currently active on the robot.",
+          "da": "Tjekker hvilket etagekort der aktuelt er aktivt på robotten.",
+          "de": "Prüft, welche Etagenkarte aktuell auf dem Roboter aktiv ist."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "clean_segment",
+        "title": {
+          "en": "Clean segment",
+          "da": "Rengør segment",
+          "de": "Segment reinigen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Clean segment [[segment]] ([[iterations]]x)",
+          "da": "[[device]] Rengør segment [[segment]] ([[iterations]]x)",
+          "de": "[[device]] Segment [[segment]] reinigen ([[iterations]]x)"
+        },
+        "hint": {
+          "en": "Cleans a specific room on the map. Segments are defined in the Valetudo web UI.",
+          "da": "Rengør et bestemt rum på kortet. Segmenter defineres i Valetudo web-UI.",
+          "de": "Reinigt einen bestimmten Raum auf der Karte. Segmente werden in der Valetudo Web-UI definiert."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment",
+            "title": {
+              "en": "Segment (Room)",
+              "da": "Segment (rum)",
+              "de": "Segment (Raum)"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          },
+          {
+            "type": "number",
+            "name": "iterations",
+            "title": {
+              "en": "Iterations",
+              "da": "Gentagelser",
+              "de": "Durchgänge"
+            },
+            "min": 1,
+            "step": 1,
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "clean_zone",
+        "title": {
+          "en": "Clean zone",
+          "da": "Rengør zone",
+          "de": "Zone reinigen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Clean zone [[zone]] ([[iterations]]x)",
+          "da": "[[device]] Rengør zone [[zone]] ([[iterations]]x)",
+          "de": "[[device]] Zone [[zone]] reinigen ([[iterations]]x)"
+        },
+        "hint": {
+          "en": "Cleans a previously saved rectangular zone.",
+          "da": "Rengør en tidligere gemt rektangulær zone.",
+          "de": "Reinigt eine zuvor gespeicherte rechteckige Zone."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "zone",
+            "title": {
+              "en": "Zone",
+              "da": "Zone",
+              "de": "Zone"
+            },
+            "placeholder": {
+              "en": "Select a saved zone...",
+              "da": "Vælg en gemt zone...",
+              "de": "Gespeicherte Zone auswählen..."
+            }
+          },
+          {
+            "type": "number",
+            "name": "iterations",
+            "title": {
+              "en": "Iterations",
+              "da": "Gentagelser",
+              "de": "Durchgänge"
+            },
+            "min": 1,
+            "step": 1,
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "delete_zone",
+        "title": {
+          "en": "Delete saved zone",
+          "da": "Slet gemt zone",
+          "de": "Gespeicherte Zone löschen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Delete saved zone [[zone]]",
+          "da": "[[device]] Slet gemt zone [[zone]]",
+          "de": "[[device]] Gespeicherte Zone [[zone]] löschen"
+        },
+        "hint": {
+          "en": "Permanently removes a saved zone from the app.",
+          "da": "Fjerner permanent en gemt zone fra appen.",
+          "de": "Entfernt eine gespeicherte Zone dauerhaft aus der App."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "zone",
+            "title": {
+              "en": "Zone",
+              "da": "Zone",
+              "de": "Zone"
+            },
+            "placeholder": {
+              "en": "Select a zone to delete...",
+              "da": "Vælg en zone at slette...",
+              "de": "Zone zum Löschen auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "go_to_location",
+        "title": {
+          "en": "Send robot to coordinates",
+          "da": "Send robot til koordinater",
+          "de": "Roboter zu Koordinaten schicken"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Send robot to ([[x]], [[y]])",
+          "da": "[[device]] Send robot til ([[x]], [[y]])",
+          "de": "[[device]] Roboter zu ([[x]], [[y]]) schicken"
+        },
+        "hint": {
+          "en": "Sends the robot to a specific point on the map. Find coordinates in the Valetudo web UI.",
+          "da": "Sender robotten til et bestemt punkt på kortet. Find koordinater i Valetudo web-UI.",
+          "de": "Schickt den Roboter zu einem bestimmten Punkt auf der Karte. Koordinaten findest du in der Valetudo Web-UI."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X coordinate",
+              "da": "X-koordinat",
+              "de": "X-Koordinate"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y coordinate",
+              "da": "Y-koordinat",
+              "de": "Y-Koordinate"
+            },
+            "min": 0,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "install_voice_pack",
+        "title": {
+          "en": "Install voice pack",
+          "da": "Installer stemmepakke",
+          "de": "Sprachpaket installieren"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Install voice pack from [[url]] (language: [[language]])",
+          "da": "[[device]] Installer stemmepakke fra [[url]] (sprog: [[language]])",
+          "de": "[[device]] Sprachpaket von [[url]] installieren (Sprache: [[language]])"
+        },
+        "hint": {
+          "en": "Downloads and installs a custom voice pack on the robot.",
+          "da": "Downloader og installerer en brugerdefineret stemmepakke på robotten.",
+          "de": "Lädt ein benutzerdefiniertes Sprachpaket herunter und installiert es auf dem Roboter."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "text",
+            "name": "url",
+            "title": {
+              "en": "Voice Pack URL",
+              "da": "Stemmepakke-URL",
+              "de": "Sprachpaket-URL"
+            },
+            "placeholder": {
+              "en": "https://example.com/voice.pkg",
+              "da": "https://example.com/voice.pkg",
+              "de": "https://example.com/voice.pkg"
+            }
+          },
+          {
+            "type": "text",
+            "name": "language",
+            "title": {
+              "en": "Language Code",
+              "da": "Sprogkode",
+              "de": "Sprachcode"
+            },
+            "placeholder": {
+              "en": "en",
+              "da": "da",
+              "de": "de"
+            }
+          }
+        ]
+      },
+      {
+        "id": "locate",
+        "title": {
+          "en": "Locate robot",
+          "da": "Find robot",
+          "de": "Roboter finden"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Locate robot",
+          "da": "[[device]] Find robot",
+          "de": "[[device]] Roboter finden"
+        },
+        "hint": {
+          "en": "Makes the robot play a sound so you can find it.",
+          "da": "Får robotten til at afspille en lyd så du kan finde den.",
+          "de": "Lässt den Roboter einen Ton abspielen, damit du ihn finden kannst."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "pause_cleaning",
+        "title": {
+          "en": "Pause cleaning",
+          "da": "Pause rengøring",
+          "de": "Reinigung pausieren"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Pause cleaning",
+          "da": "[[device]] Pause rengøring",
+          "de": "[[device]] Reinigung pausieren"
+        },
+        "hint": {
+          "en": "Pauses cleaning. The robot can resume from where it stopped.",
+          "da": "Sætter rengøringen på pause. Robotten kan genoptage fra hvor den stoppede.",
+          "de": "Pausiert die Reinigung. Der Roboter kann dort fortsetzen, wo er aufgehört hat."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "play_test_sound",
+        "title": {
+          "en": "Play test sound",
+          "da": "Afspil testlyd",
+          "de": "Testton abspielen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Play test sound",
+          "da": "[[device]] Afspil testlyd",
+          "de": "[[device]] Testton abspielen"
+        },
+        "hint": {
+          "en": "Plays a sound on the robot to test the speaker volume.",
+          "da": "Afspiller en lyd på robotten for at teste højtalervolumen.",
+          "de": "Spielt einen Ton auf dem Roboter ab, um die Lautstärke zu testen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "rename_segment",
+        "title": {
+          "en": "Rename segment",
+          "da": "Omdøb segment",
+          "de": "Segment umbenennen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Rename segment [[segment]] to [[name]]",
+          "da": "[[device]] Omdøb segment [[segment]] til [[name]]",
+          "de": "[[device]] Segment [[segment]] in [[name]] umbenennen"
+        },
+        "hint": {
+          "en": "Renames a room segment on the robot's map.",
+          "da": "Omdøber et rumsegment på robottens kort.",
+          "de": "Benennt ein Raumsegment auf der Roboterkarte um."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment",
+            "title": {
+              "en": "Segment (Room)",
+              "da": "Segment (rum)",
+              "de": "Segment (Raum)"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          },
+          {
+            "type": "text",
+            "name": "name",
+            "title": {
+              "en": "New Name",
+              "da": "Nyt navn",
+              "de": "Neuer Name"
+            },
+            "placeholder": {
+              "en": "Kitchen",
+              "da": "Køkken",
+              "de": "Küche"
+            }
+          }
+        ]
+      },
+      {
+        "id": "reset_consumable",
+        "title": {
+          "en": "Reset consumable",
+          "da": "Nulstil forbrugsdel",
+          "de": "Verbrauchsteil zurücksetzen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Reset consumable [[consumable]]",
+          "da": "[[device]] Nulstil forbrugsdel [[consumable]]",
+          "de": "[[device]] Verbrauchsteil [[consumable]] zurücksetzen"
+        },
+        "hint": {
+          "en": "Resets the wear counter after replacing a consumable part.",
+          "da": "Nulstiller slidtælleren efter udskiftning af en forbrugsdel.",
+          "de": "Setzt den Verschleißzähler nach dem Austausch eines Verbrauchsteils zurück."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "consumable",
+            "title": {
+              "en": "Consumable",
+              "da": "Forbrugsdel",
+              "de": "Verbrauchsteil"
+            },
+            "values": [
+              {
+                "id": "filter:none",
+                "label": {
+                  "en": "Filter",
+                  "da": "Filter",
+                  "de": "Filter"
+                }
+              },
+              {
+                "id": "brush:main",
+                "label": {
+                  "en": "Main Brush",
+                  "da": "Hovedbørste",
+                  "de": "Hauptbürste"
+                }
+              },
+              {
+                "id": "brush:side_right",
+                "label": {
+                  "en": "Side Brush",
+                  "da": "Sidebørste",
+                  "de": "Seitenbürste"
+                }
+              },
+              {
+                "id": "mop:none",
+                "label": {
+                  "en": "Mop",
+                  "da": "Moppe",
+                  "de": "Wischmopp"
+                }
+              },
+              {
+                "id": "sensor:all",
+                "label": {
+                  "en": "Sensors",
+                  "da": "Sensorer",
+                  "de": "Sensoren"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "return_to_dock",
+        "title": {
+          "en": "Return to dock",
+          "da": "Kør til dock",
+          "de": "Zur Ladestation zurückkehren"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Return to dock",
+          "da": "[[device]] Kør til dock",
+          "de": "[[device]] Zur Ladestation zurückkehren"
+        },
+        "hint": {
+          "en": "Sends the robot back to its charging dock.",
+          "da": "Sender robotten tilbage til ladestationen.",
+          "de": "Schickt den Roboter zurück zur Ladestation."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "save_floor",
+        "title": {
+          "en": "Save current map as floor",
+          "da": "Gem nuværende kort som etage",
+          "de": "Aktuelle Karte als Stockwerk speichern"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Save current map as floor [[floor_name]] (dock: [[has_dock]])",
+          "da": "[[device]] Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
+          "de": "[[device]] Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
+        },
+        "hint": {
+          "en": "Saves a backup of the robot's current map as a named floor via SSH.",
+          "da": "Gemmer en kopi af robottens nuværende kort som en navngivet etage via SSH.",
+          "de": "Speichert eine Sicherungskopie der aktuellen Roboterkarte als benanntes Stockwerk per SSH."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "text",
+            "name": "floor_name",
+            "title": {
+              "en": "Floor Name",
+              "da": "Etage",
+              "de": "Stockwerkname"
+            },
+            "placeholder": {
+              "en": "e.g. Ground Floor",
+              "da": "f.eks. Stueetage",
+              "de": "z.B. Erdgeschoss"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "has_dock",
+            "title": {
+              "en": "Has Dock",
+              "da": "Har dock",
+              "de": "Hat Ladestation"
+            },
+            "values": [
+              {
+                "id": "yes",
+                "label": {
+                  "en": "Yes",
+                  "da": "Ja",
+                  "de": "Ja"
+                }
+              },
+              {
+                "id": "no",
+                "label": {
+                  "en": "No",
+                  "da": "Nej",
+                  "de": "Nein"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "save_zone",
+        "title": {
+          "en": "Save zone at coordinates",
+          "da": "Gem zone ved koordinater",
+          "de": "Zone an Koordinaten speichern"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
+          "da": "[[device]] Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
+          "de": "[[device]] Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
+        },
+        "hint": {
+          "en": "Saves a rectangular zone by map coordinates. Find coordinates in the Valetudo web UI.",
+          "da": "Gemmer en rektangulær zone ud fra kortkoordinater. Find koordinater i Valetudo web-UI.",
+          "de": "Speichert eine rechteckige Zone anhand von Kartenkoordinaten. Koordinaten findest du in der Valetudo Web-UI."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "text",
+            "name": "name",
+            "title": {
+              "en": "Zone Name",
+              "da": "Zonenavn",
+              "de": "Zonenname"
+            },
+            "placeholder": {
+              "en": "e.g. Under Kitchen Table",
+              "da": "f.eks. Under køkkenbordet",
+              "de": "z.B. Unter dem Küchentisch"
+            }
+          },
+          {
+            "type": "number",
+            "name": "x1",
+            "title": {
+              "en": "Top-left X",
+              "da": "Øverste venstre X",
+              "de": "Oben-links X"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y1",
+            "title": {
+              "en": "Top-left Y",
+              "da": "Øverste venstre Y",
+              "de": "Oben-links Y"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "x2",
+            "title": {
+              "en": "Bottom-right X",
+              "da": "Nederste højre X",
+              "de": "Unten-rechts X"
+            },
+            "min": 0,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y2",
+            "title": {
+              "en": "Bottom-right Y",
+              "da": "Nederste højre Y",
+              "de": "Unten-rechts Y"
+            },
+            "min": 0,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "set_carpet_mode",
+        "title": {
+          "en": "Set carpet boost mode",
+          "da": "Indstil tæppe-boost",
+          "de": "Teppich-Boost einstellen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Set carpet boost mode [[enabled]]",
+          "da": "[[device]] Indstil tæppe-boost [[enabled]]",
+          "de": "[[device]] Teppich-Boost [[enabled]]"
+        },
+        "hint": {
+          "en": "Automatically increases suction power when the robot detects carpet.",
+          "da": "Øger automatisk sugestyrken når robotten registrerer tæppe.",
+          "de": "Erhöht automatisch die Saugleistung, wenn der Roboter Teppich erkennt."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "enabled",
+            "title": {
+              "en": "State",
+              "da": "Tilstand",
+              "de": "Status"
+            },
+            "values": [
+              {
+                "id": "enable",
+                "label": {
+                  "en": "Enabled",
+                  "da": "Aktiveret",
+                  "de": "Aktiviert"
+                }
+              },
+              {
+                "id": "disable",
+                "label": {
+                  "en": "Disabled",
+                  "da": "Deaktiveret",
+                  "de": "Deaktiviert"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_dnd",
+        "title": {
+          "en": "Set Do Not Disturb",
+          "da": "Indstil Forstyr ikke",
+          "de": "Bitte nicht stören einstellen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Set Do Not Disturb [[enabled]]",
+          "da": "[[device]] Indstil Forstyr ikke [[enabled]]",
+          "de": "[[device]] Bitte nicht stören [[enabled]]"
+        },
+        "hint": {
+          "en": "Silences the robot and prevents scheduled cleanings.",
+          "da": "Gør robotten lydløs og forhindrer planlagte rengøringer.",
+          "de": "Schaltet den Roboter stumm und verhindert geplante Reinigungen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "enabled",
+            "title": {
+              "en": "State",
+              "da": "Tilstand",
+              "de": "Status"
+            },
+            "values": [
+              {
+                "id": "enable",
+                "label": {
+                  "en": "Enabled",
+                  "da": "Aktiveret",
+                  "de": "Aktiviert"
+                }
+              },
+              {
+                "id": "disable",
+                "label": {
+                  "en": "Disabled",
+                  "da": "Deaktiveret",
+                  "de": "Deaktiviert"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_fan_speed",
+        "title": {
+          "en": "Set fan speed",
+          "da": "Indstil blæserhastighed",
+          "de": "Saugstärke einstellen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Set fan speed to [[speed]]",
+          "da": "[[device]] Indstil blæserhastighed til [[speed]]",
+          "de": "[[device]] Saugstärke auf [[speed]] einstellen"
+        },
+        "hint": {
+          "en": "Controls the vacuum suction power.",
+          "da": "Styrer støvsugerens sugestyrke.",
+          "de": "Steuert die Saugleistung des Staubsaugers."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "dropdown",
+            "name": "speed",
+            "title": {
+              "en": "Speed",
+              "da": "Hastighed",
+              "de": "Stufe"
+            },
+            "values": [
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "da": "Slukket",
+                  "de": "Aus"
+                }
+              },
+              {
+                "id": "min",
+                "label": {
+                  "en": "Min",
+                  "da": "Min",
+                  "de": "Min"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "da": "Lav",
+                  "de": "Niedrig"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "da": "Medium",
+                  "de": "Mittel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "da": "Høj",
+                  "de": "Hoch"
+                }
+              },
+              {
+                "id": "turbo",
+                "label": {
+                  "en": "Turbo",
+                  "da": "Turbo",
+                  "de": "Turbo"
+                }
+              },
+              {
+                "id": "max",
+                "label": {
+                  "en": "Max",
+                  "da": "Maks",
+                  "de": "Max"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_speaker_volume",
+        "title": {
+          "en": "Set speaker volume",
+          "da": "Indstil højtalervolumen",
+          "de": "Lautstärke einstellen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Set speaker volume to [[volume]]%",
+          "da": "[[device]] Indstil højtalervolumen til [[volume]]%",
+          "de": "[[device]] Lautstärke auf [[volume]]% einstellen"
+        },
+        "hint": {
+          "en": "Controls the robot's voice and notification volume.",
+          "da": "Styrer robottens stemme- og notifikationsvolumen.",
+          "de": "Steuert die Sprach- und Benachrichtigungslautstärke des Roboters."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "number",
+            "name": "volume",
+            "title": {
+              "en": "Volume %",
+              "da": "Volumen %",
+              "de": "Lautstärke %"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 10,
+            "value": 80
+          }
+        ]
+      },
+      {
+        "id": "start_cleaning",
+        "title": {
+          "en": "Start cleaning",
+          "da": "Start rengøring",
+          "de": "Reinigung starten"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Start cleaning",
+          "da": "[[device]] Start rengøring",
+          "de": "[[device]] Reinigung starten"
+        },
+        "hint": {
+          "en": "Starts a full cleaning of the current floor map.",
+          "da": "Starter en fuld rengøring af det aktuelle etagekort.",
+          "de": "Startet eine vollständige Reinigung der aktuellen Etagenkarte."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "start_new_map",
+        "title": {
+          "en": "Start building a new map",
+          "da": "Start opbygning af nyt kort",
+          "de": "Neue Karte erstellen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Start building a new map",
+          "da": "[[device]] Start opbygning af nyt kort",
+          "de": "[[device]] Neue Karte erstellen"
+        },
+        "hint": {
+          "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
+          "da": "Sletter det aktuelle kort og starter en ny kortlægning. Brug med forsigtighed.",
+          "de": "Löscht die aktuelle Karte und startet eine neue Kartierung. Mit Vorsicht verwenden."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "stop_cleaning",
+        "title": {
+          "en": "Stop cleaning",
+          "da": "Stop rengøring",
+          "de": "Reinigung stoppen"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Stop cleaning",
+          "da": "[[device]] Stop rengøring",
+          "de": "[[device]] Reinigung stoppen"
+        },
+        "hint": {
+          "en": "Stops the robot immediately. It will stay where it is.",
+          "da": "Stopper robotten med det samme. Den bliver hvor den er.",
+          "de": "Stoppt den Roboter sofort. Er bleibt, wo er ist."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          }
+        ]
+      },
+      {
+        "id": "switch_floor",
+        "title": {
+          "en": "Switch to floor",
+          "da": "Skift til etage",
+          "de": "Stockwerk wechseln"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Switch to floor [[floor]]",
+          "da": "[[device]] Skift til etage [[floor]]",
+          "de": "[[device]] Wechsle zu Stockwerk [[floor]]"
+        },
+        "hint": {
+          "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
+          "da": "Skifter robottens kort via SSH. Robotten genstarter under skiftet.",
+          "de": "Tauscht die Roboterkarte per SSH. Der Roboter startet beim Wechsel neu."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          }
+        ]
+      },
+      {
+        "id": "update_floor",
+        "title": {
+          "en": "Update floor",
+          "da": "Opdater etage",
+          "de": "Stockwerk aktualisieren"
+        },
+        "titleFormatted": {
+          "en": "[[device]] Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+          "da": "[[device]] Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+          "de": "[[device]] Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+        },
+        "hint": {
+          "en": "Renames a saved floor and updates its dock setting.",
+          "da": "Omdøber en gemt etage og opdaterer dens dock-indstilling.",
+          "de": "Benennt ein gespeichertes Stockwerk um und aktualisiert die Ladestationseinstellung."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "capability=vacuum_state"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          },
+          {
+            "type": "text",
+            "name": "new_name",
+            "title": {
+              "en": "New Name",
+              "da": "Nyt navn",
+              "de": "Neuer Name"
+            },
+            "placeholder": {
+              "en": "e.g. Kitchen Floor",
+              "da": "f.eks. Køkkenetage",
+              "de": "z.B. Küchengeschoss"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "has_dock",
+            "title": {
+              "en": "Has Dock",
+              "da": "Har dock",
+              "de": "Hat Ladestation"
+            },
+            "values": [
+              {
+                "id": "yes",
+                "label": {
+                  "en": "Yes",
+                  "da": "Ja",
+                  "de": "Ja"
+                }
+              },
+              {
+                "id": "no",
+                "label": {
+                  "en": "No",
+                  "da": "Nej",
+                  "de": "Nein"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_water_usage",
+        "title": {
+          "en": "Set water usage",
+          "da": "Indstil vandforbrug",
+          "de": "Wasserverbrauch einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set water usage to [[level]]",
+          "da": "Indstil vandforbrug til [[level]]",
+          "de": "Wasserverbrauch auf [[level]] einstellen"
+        },
+        "hint": {
+          "en": "Controls how much water the mop uses. Only available on models with mopping.",
+          "da": "Styrer hvor meget vand moppen bruger. Kun tilgængelig på modeller med moppefunktion.",
+          "de": "Steuert, wie viel Wasser der Wischmopp verwendet. Nur bei Modellen mit Wischfunktion verfügbar."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "level",
+            "title": {
+              "en": "Water Level",
+              "da": "Vandniveau",
+              "de": "Wasserstufe"
+            },
+            "values": [
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "da": "Slukket",
+                  "de": "Aus"
+                }
+              },
+              {
+                "id": "min",
+                "label": {
+                  "en": "Min",
+                  "da": "Min",
+                  "de": "Min"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low",
+                  "da": "Lav",
+                  "de": "Niedrig"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium",
+                  "da": "Medium",
+                  "de": "Mittel"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High",
+                  "da": "Høj",
+                  "de": "Hoch"
+                }
+              },
+              {
+                "id": "max",
+                "label": {
+                  "en": "Max",
+                  "da": "Maks",
+                  "de": "Max"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_operation_mode",
+        "title": {
+          "en": "Set operation mode",
+          "da": "Indstil driftstilstand",
+          "de": "Betriebsmodus einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set operation mode to [[mode]]",
+          "da": "Indstil driftstilstand til [[mode]]",
+          "de": "Betriebsmodus auf [[mode]] einstellen"
+        },
+        "hint": {
+          "en": "Switches between vacuum only, mop only, or combined modes.",
+          "da": "Skifter mellem kun støvsugning, kun mopning eller kombinerede tilstande.",
+          "de": "Wechselt zwischen nur Saugen, nur Wischen oder kombinierten Modi."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "da": "Tilstand",
+              "de": "Modus"
+            },
+            "values": [
+              {
+                "id": "vacuum",
+                "label": {
+                  "en": "Vacuum Only",
+                  "da": "Kun støvsuge",
+                  "de": "Nur Saugen"
+                }
+              },
+              {
+                "id": "mop",
+                "label": {
+                  "en": "Mop Only",
+                  "da": "Kun moppe",
+                  "de": "Nur Wischen"
+                }
+              },
+              {
+                "id": "vacuum_and_mop",
+                "label": {
+                  "en": "Vacuum & Mop",
+                  "da": "Støvsuge og moppe",
+                  "de": "Saugen & Wischen"
+                }
+              },
+              {
+                "id": "vacuum_then_mop",
+                "label": {
+                  "en": "Vacuum then Mop",
+                  "da": "Støvsuge derefter moppe",
+                  "de": "Saugen dann Wischen"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "trigger_auto_empty",
+        "title": {
+          "en": "Empty dustbin",
+          "da": "Tøm støvbeholder",
+          "de": "Staubbehälter leeren"
+        },
+        "titleFormatted": {
+          "en": "Empty dustbin",
+          "da": "Tøm støvbeholder",
+          "de": "Staubbehälter leeren"
+        },
+        "hint": {
+          "en": "Triggers the auto-empty dock to empty the robot's dustbin. Requires a compatible dock.",
+          "da": "Udløser auto-tømningsdocken til at tømme robottens støvbeholder. Kræver en kompatibel dock.",
+          "de": "Löst das automatische Entleeren des Staubbehälters über die Dockstation aus. Erfordert eine kompatible Dockstation."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=valetudo"
+          }
+        ]
+      }
+    ]
   },
   "drivers": [
     {
@@ -1041,2188 +3223,6 @@
       ]
     }
   ],
-  "flow": {
-    "triggers": [
-      {
-        "id": "floor_switched",
-        "title": {
-          "en": "Floor was switched",
-          "da": "Etage blev skiftet",
-          "de": "Stockwerk wurde gewechselt"
-        },
-        "hint": {
-          "en": "Triggers when the robot switches to a different floor map via SSH.",
-          "da": "Udløses når robotten skifter til et andet etagekort via SSH.",
-          "de": "Wird ausgelöst, wenn der Roboter über SSH zu einer anderen Etagenkarte wechselt."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "floor_name",
-            "type": "string",
-            "title": {
-              "en": "Floor Name",
-              "da": "Etage",
-              "de": "Stockwerk"
-            },
-            "example": {
-              "en": "Ground Floor",
-              "da": "Stueetage",
-              "de": "Erdgeschoss"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "Floor was switched",
-          "da": "Etage blev skiftet",
-          "de": "Stockwerk wurde gewechselt"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "cleaning_started",
-        "title": {
-          "en": "Cleaning started",
-          "da": "Rengøring startet",
-          "de": "Reinigung gestartet"
-        },
-        "hint": {
-          "en": "Triggers when the robot begins a cleaning session.",
-          "da": "Udløses når robotten begynder en rengøring.",
-          "de": "Wird ausgelöst, wenn der Roboter eine Reinigung startet."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Cleaning started",
-          "da": "Rengøring startet",
-          "de": "Reinigung gestartet"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "cleaning_finished",
-        "title": {
-          "en": "Cleaning finished",
-          "da": "Rengøring afsluttet",
-          "de": "Reinigung beendet"
-        },
-        "hint": {
-          "en": "Triggers when the robot completes a cleaning session.",
-          "da": "Udløses når robotten afslutter en rengøring.",
-          "de": "Wird ausgelöst, wenn der Roboter eine Reinigung abschließt."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Cleaning finished",
-          "da": "Rengøring afsluttet",
-          "de": "Reinigung beendet"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "error_occurred",
-        "title": {
-          "en": "An error occurred",
-          "da": "Der opstod en fejl",
-          "de": "Ein Fehler ist aufgetreten"
-        },
-        "hint": {
-          "en": "Triggers on any robot error, including stuck, sensor, or hardware issues.",
-          "da": "Udløses ved enhver robotfejl, herunder fastkørt, sensor- eller hardwareproblemer.",
-          "de": "Wird bei jedem Roboterfehler ausgelöst, einschließlich Feststecken, Sensor- oder Hardwareproblemen."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "error_message",
-            "type": "string",
-            "title": {
-              "en": "Error Message",
-              "da": "Fejlmeddelelse",
-              "de": "Fehlermeldung"
-            },
-            "example": {
-              "en": "Stuck near cliff",
-              "da": "Sidder fast ved kant",
-              "de": "An Kante hängengeblieben"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "An error occurred",
-          "da": "Der opstod en fejl",
-          "de": "Ein Fehler ist aufgetreten"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "robot_stuck",
-        "title": {
-          "en": "Robot is stuck",
-          "da": "Robotten sidder fast",
-          "de": "Roboter steckt fest"
-        },
-        "hint": {
-          "en": "Triggers specifically when the robot is physically stuck and needs help.",
-          "da": "Udløses specifikt når robotten sidder fysisk fast og har brug for hjælp.",
-          "de": "Wird speziell ausgelöst, wenn der Roboter physisch feststeckt und Hilfe benötigt."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "error_message",
-            "type": "string",
-            "title": {
-              "en": "Error Message",
-              "da": "Fejlmeddelelse",
-              "de": "Fehlermeldung"
-            },
-            "example": {
-              "en": "Stuck: please move robot",
-              "da": "Sidder fast: flyt venligst robotten",
-              "de": "Festgefahren: bitte Roboter versetzen"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "Robot is stuck",
-          "da": "Robotten sidder fast",
-          "de": "Roboter steckt fest"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "dustbin_full",
-        "title": {
-          "en": "Dustbin needs emptying",
-          "da": "Støvbeholderen skal tømmes",
-          "de": "Staubbehälter muss geleert werden"
-        },
-        "hint": {
-          "en": "Triggers when the robot reports its dustbin is full.",
-          "da": "Udløses når robotten melder at støvbeholderen er fuld.",
-          "de": "Wird ausgelöst, wenn der Roboter meldet, dass der Staubbehälter voll ist."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Dustbin needs emptying",
-          "da": "Støvbeholderen skal tømmes",
-          "de": "Staubbehälter muss geleert werden"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "segment_cleaning_started",
-        "title": {
-          "en": "Started cleaning a segment",
-          "da": "Begyndte rengøring af segment",
-          "de": "Segmentreinigung gestartet"
-        },
-        "hint": {
-          "en": "Triggers when the robot starts cleaning a specific room segment.",
-          "da": "Udløses når robotten begynder at rengøre et bestemt rumsegment.",
-          "de": "Wird ausgelöst, wenn der Roboter mit der Reinigung eines bestimmten Raumsegments beginnt."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "segment_name",
-            "type": "string",
-            "title": {
-              "en": "Segment Name",
-              "da": "Segmentnavn",
-              "de": "Segmentname"
-            },
-            "example": {
-              "en": "Kitchen",
-              "da": "Køkken",
-              "de": "Küche"
-            }
-          },
-          {
-            "name": "segment_id",
-            "type": "string",
-            "title": {
-              "en": "Segment ID",
-              "da": "Segment-ID",
-              "de": "Segment-ID"
-            },
-            "example": {
-              "en": "17",
-              "da": "17",
-              "de": "17"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "Started cleaning a segment",
-          "da": "Begyndte rengøring af segment",
-          "de": "Segmentreinigung gestartet"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "segment_cleaning_finished",
-        "title": {
-          "en": "Finished cleaning a segment",
-          "da": "Afsluttede rengøring af segment",
-          "de": "Segmentreinigung beendet"
-        },
-        "hint": {
-          "en": "Triggers when the robot finishes cleaning a specific room segment.",
-          "da": "Udløses når robotten afslutter rengøring af et bestemt rumsegment.",
-          "de": "Wird ausgelöst, wenn der Roboter die Reinigung eines bestimmten Raumsegments abschließt."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "segment_name",
-            "type": "string",
-            "title": {
-              "en": "Segment Name",
-              "da": "Segmentnavn",
-              "de": "Segmentname"
-            },
-            "example": {
-              "en": "Kitchen",
-              "da": "Køkken",
-              "de": "Küche"
-            }
-          },
-          {
-            "name": "segment_id",
-            "type": "string",
-            "title": {
-              "en": "Segment ID",
-              "da": "Segment-ID",
-              "de": "Segment-ID"
-            },
-            "example": {
-              "en": "17",
-              "da": "17",
-              "de": "17"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "Finished cleaning a segment",
-          "da": "Afsluttede rengøring af segment",
-          "de": "Segmentreinigung beendet"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "consumable_depleted",
-        "title": {
-          "en": "A consumable needs replacement",
-          "da": "En forbrugsdel skal udskiftes",
-          "de": "Ein Verbrauchsteil muss ersetzt werden"
-        },
-        "hint": {
-          "en": "Triggers when a consumable like filter, brush, or mop is worn out.",
-          "da": "Udløses når en forbrugsdel som filter, børste eller moppe er slidt.",
-          "de": "Wird ausgelöst, wenn ein Verbrauchsteil wie Filter, Bürste oder Wischmopp verschlissen ist."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "consumable_type",
-            "type": "string",
-            "title": {
-              "en": "Consumable Type",
-              "da": "Forbrugsdelstype",
-              "de": "Verbrauchsteiltyp"
-            },
-            "example": {
-              "en": "filter",
-              "da": "filter",
-              "de": "Filter"
-            }
-          },
-          {
-            "name": "consumable_sub_type",
-            "type": "string",
-            "title": {
-              "en": "Consumable Sub-Type",
-              "da": "Forbrugsdels-undertype",
-              "de": "Verbrauchsteil-Untertyp"
-            },
-            "example": {
-              "en": "main",
-              "da": "hoved",
-              "de": "Haupt"
-            }
-          },
-          {
-            "name": "remaining",
-            "type": "number",
-            "title": {
-              "en": "Remaining %",
-              "da": "Resterende %",
-              "de": "Verbleibend %"
-            },
-            "example": {
-              "en": "5",
-              "da": "5",
-              "de": "5"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "A consumable needs replacement",
-          "da": "En forbrugsdel skal udskiftes",
-          "de": "Ein Verbrauchsteil muss ersetzt werden"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "valetudo_updated",
-        "title": {
-          "en": "Valetudo was updated",
-          "da": "Valetudo blev opdateret",
-          "de": "Valetudo wurde aktualisiert"
-        },
-        "hint": {
-          "en": "Triggers when the Valetudo firmware version changes on the robot.",
-          "da": "Udløses når Valetudo-firmwareversionen ændres på robotten.",
-          "de": "Wird ausgelöst, wenn sich die Valetudo-Firmware-Version auf dem Roboter ändert."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "old_version",
-            "type": "string",
-            "title": {
-              "en": "Previous Version",
-              "da": "Tidligere version",
-              "de": "Vorherige Version"
-            },
-            "example": {
-              "en": "2026.01.0",
-              "da": "2026.01.0",
-              "de": "2026.01.0"
-            }
-          },
-          {
-            "name": "new_version",
-            "type": "string",
-            "title": {
-              "en": "New Version",
-              "da": "Ny version",
-              "de": "Neue Version"
-            },
-            "example": {
-              "en": "2026.02.0",
-              "da": "2026.02.0",
-              "de": "2026.02.0"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "Valetudo was updated",
-          "da": "Valetudo blev opdateret",
-          "de": "Valetudo wurde aktualisiert"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "update_available",
-        "title": {
-          "en": "A Valetudo update is available",
-          "da": "En Valetudo-opdatering er tilgængelig",
-          "de": "Ein Valetudo-Update ist verfügbar"
-        },
-        "hint": {
-          "en": "Triggers when Valetudo detects a newer version is available.",
-          "da": "Udløses når Valetudo registrerer at en nyere version er tilgængelig.",
-          "de": "Wird ausgelöst, wenn Valetudo erkennt, dass eine neuere Version verfügbar ist."
-        },
-        "platforms": [
-          "local"
-        ],
-        "tokens": [
-          {
-            "name": "current_version",
-            "type": "string",
-            "title": {
-              "en": "Current Version",
-              "da": "Nuværende version",
-              "de": "Aktuelle Version"
-            },
-            "example": {
-              "en": "2026.02.0",
-              "da": "2026.02.0",
-              "de": "2026.02.0"
-            }
-          }
-        ],
-        "titleFormatted": {
-          "en": "A Valetudo update is available",
-          "da": "En Valetudo-opdatering er tilgængelig",
-          "de": "Ein Valetudo-Update ist verfügbar"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      }
-    ],
-    "conditions": [
-      {
-        "id": "is_on_floor",
-        "title": {
-          "en": "Is on floor",
-          "da": "Er på etage",
-          "de": "Ist auf Stockwerk"
-        },
-        "titleFormatted": {
-          "en": "Is on floor [[floor]]",
-          "da": "Er på etage [[floor]]",
-          "de": "Ist auf Stockwerk [[floor]]"
-        },
-        "titleTrue": {
-          "en": "Is on floor [[floor]]",
-          "da": "Er på etage [[floor]]",
-          "de": "Ist auf Stockwerk [[floor]]"
-        },
-        "titleFalse": {
-          "en": "Is not on floor [[floor]]",
-          "da": "Er ikke på etage [[floor]]",
-          "de": "Ist nicht auf Stockwerk [[floor]]"
-        },
-        "hint": {
-          "en": "Checks which floor map is currently active on the robot.",
-          "da": "Tjekker hvilket etagekort der aktuelt er aktivt på robotten.",
-          "de": "Prüft, welche Etagenkarte aktuell auf dem Roboter aktiv ist."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "floor",
-            "title": {
-              "en": "Floor",
-              "da": "Etage",
-              "de": "Stockwerk"
-            },
-            "placeholder": {
-              "en": "Select a floor...",
-              "da": "Vælg en etage...",
-              "de": "Stockwerk auswählen..."
-            }
-          }
-        ]
-      },
-      {
-        "id": "has_state",
-        "title": {
-          "en": "State is",
-          "da": "Status er",
-          "de": "Status ist"
-        },
-        "titleFormatted": {
-          "en": "State is [[state]]",
-          "da": "Status er [[state]]",
-          "de": "Status ist [[state]]"
-        },
-        "titleTrue": {
-          "en": "State is [[state]]",
-          "da": "Status er [[state]]",
-          "de": "Status ist [[state]]"
-        },
-        "titleFalse": {
-          "en": "State is not [[state]]",
-          "da": "Status er ikke [[state]]",
-          "de": "Status ist nicht [[state]]"
-        },
-        "hint": {
-          "en": "Checks the current robot state such as cleaning, docked, or idle.",
-          "da": "Tjekker den aktuelle robotstatus som rengøring, i dock eller inaktiv.",
-          "de": "Prüft den aktuellen Roboterstatus wie Reinigung, angedockt oder bereit."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "state",
-            "title": {
-              "en": "State",
-              "da": "Status",
-              "de": "Status"
-            },
-            "values": [
-              {
-                "id": "cleaning",
-                "label": {
-                  "en": "Cleaning",
-                  "da": "Rengører",
-                  "de": "Reinigt"
-                }
-              },
-              {
-                "id": "docked",
-                "label": {
-                  "en": "Docked",
-                  "da": "I dock",
-                  "de": "Angedockt"
-                }
-              },
-              {
-                "id": "idle",
-                "label": {
-                  "en": "Idle",
-                  "da": "Inaktiv",
-                  "de": "Bereit"
-                }
-              },
-              {
-                "id": "returning",
-                "label": {
-                  "en": "Returning",
-                  "da": "Returnerer",
-                  "de": "Kehrt zurück"
-                }
-              },
-              {
-                "id": "paused",
-                "label": {
-                  "en": "Paused",
-                  "da": "Pauseret",
-                  "de": "Pausiert"
-                }
-              },
-              {
-                "id": "error",
-                "label": {
-                  "en": "Error",
-                  "da": "Fejl",
-                  "de": "Fehler"
-                }
-              },
-              {
-                "id": "manual_control",
-                "label": {
-                  "en": "Manual Control",
-                  "da": "Manuel styring",
-                  "de": "Manuelle Steuerung"
-                }
-              },
-              {
-                "id": "moving",
-                "label": {
-                  "en": "Moving",
-                  "da": "Bevæger sig",
-                  "de": "Bewegt sich"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "has_dock",
-        "title": {
-          "en": "Current floor has a dock",
-          "da": "Nuværende etage har en dock",
-          "de": "Aktuelles Stockwerk hat eine Ladestation"
-        },
-        "titleTrue": {
-          "en": "Current floor has a dock",
-          "da": "Nuværende etage har en dock",
-          "de": "Aktuelles Stockwerk hat eine Ladestation"
-        },
-        "titleFalse": {
-          "en": "Current floor has no dock",
-          "da": "Nuværende etage har ingen dock",
-          "de": "Aktuelles Stockwerk hat keine Ladestation"
-        },
-        "hint": {
-          "en": "Useful to prevent sending the robot to dock on floors without a charging station.",
-          "da": "Nyttigt for at undgå at sende robotten til dock på etager uden ladestation.",
-          "de": "Nützlich, um zu verhindern, dass der Roboter auf Etagen ohne Ladestation zum Dock geschickt wird."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Current floor has a dock",
-          "da": "Nuværende etage har en dock",
-          "de": "Aktuelles Stockwerk hat eine Ladestation"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "is_on_carpet",
-        "title": {
-          "en": "Is on carpet",
-          "da": "Er på tæppe",
-          "de": "Ist auf Teppich"
-        },
-        "titleTrue": {
-          "en": "Is on carpet",
-          "da": "Er på tæppe",
-          "de": "Ist auf Teppich"
-        },
-        "titleFalse": {
-          "en": "Is not on carpet",
-          "da": "Er ikke på tæppe",
-          "de": "Ist nicht auf Teppich"
-        },
-        "hint": {
-          "en": "Checks if the robot is currently on a carpet surface.",
-          "da": "Tjekker om robotten aktuelt er på en tæppeoverflade.",
-          "de": "Prüft, ob der Roboter sich aktuell auf einem Teppich befindet."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Is on carpet",
-          "da": "Er på tæppe",
-          "de": "Ist auf Teppich"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "is_in_segment",
-        "title": {
-          "en": "Is in segment",
-          "da": "Er i segment",
-          "de": "Ist in Segment"
-        },
-        "titleFormatted": {
-          "en": "Is in segment [[segment]]",
-          "da": "Er i segment [[segment]]",
-          "de": "Ist in Segment [[segment]]"
-        },
-        "titleTrue": {
-          "en": "Is in segment [[segment]]",
-          "da": "Er i segment [[segment]]",
-          "de": "Ist in Segment [[segment]]"
-        },
-        "titleFalse": {
-          "en": "Is not in segment [[segment]]",
-          "da": "Er ikke i segment [[segment]]",
-          "de": "Ist nicht in Segment [[segment]]"
-        },
-        "hint": {
-          "en": "Checks if the robot is currently in a specific room on the map.",
-          "da": "Tjekker om robotten aktuelt er i et bestemt rum på kortet.",
-          "de": "Prüft, ob der Roboter sich aktuell in einem bestimmten Raum auf der Karte befindet."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "segment",
-            "title": {
-              "en": "Segment (Room)",
-              "da": "Segment (rum)",
-              "de": "Segment (Raum)"
-            },
-            "placeholder": {
-              "en": "Select a room...",
-              "da": "Vælg et rum...",
-              "de": "Raum auswählen..."
-            }
-          }
-        ]
-      },
-      {
-        "id": "is_dnd_enabled",
-        "title": {
-          "en": "Do Not Disturb is enabled",
-          "da": "Forstyr ikke er aktiveret",
-          "de": "Bitte nicht stören ist aktiviert"
-        },
-        "titleTrue": {
-          "en": "Do Not Disturb is enabled",
-          "da": "Forstyr ikke er aktiveret",
-          "de": "Bitte nicht stören ist aktiviert"
-        },
-        "titleFalse": {
-          "en": "Do Not Disturb is disabled",
-          "da": "Forstyr ikke er deaktiveret",
-          "de": "Bitte nicht stören ist deaktiviert"
-        },
-        "hint": {
-          "en": "When enabled, the robot will not make sounds or start scheduled cleanings.",
-          "da": "Når aktiveret vil robotten ikke lave lyde eller starte planlagte rengøringer.",
-          "de": "Wenn aktiviert, macht der Roboter keine Geräusche und startet keine geplanten Reinigungen."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Do Not Disturb is enabled",
-          "da": "Forstyr ikke er aktiveret",
-          "de": "Bitte nicht stören ist aktiviert"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "is_carpet_mode_enabled",
-        "title": {
-          "en": "Carpet boost mode is enabled",
-          "da": "Tæppe-boost er aktiveret",
-          "de": "Teppich-Boost ist aktiviert"
-        },
-        "titleTrue": {
-          "en": "Carpet boost mode is enabled",
-          "da": "Tæppe-boost er aktiveret",
-          "de": "Teppich-Boost ist aktiviert"
-        },
-        "titleFalse": {
-          "en": "Carpet boost mode is disabled",
-          "da": "Tæppe-boost er deaktiveret",
-          "de": "Teppich-Boost ist deaktiviert"
-        },
-        "hint": {
-          "en": "When enabled, suction power automatically increases on carpets.",
-          "da": "Når aktiveret øges sugestyrken automatisk på tæpper.",
-          "de": "Wenn aktiviert, erhöht sich die Saugleistung automatisch auf Teppichen."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Carpet boost mode is enabled",
-          "da": "Tæppe-boost er aktiveret",
-          "de": "Teppich-Boost ist aktiviert"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      }
-    ],
-    "actions": [
-      {
-        "id": "switch_floor",
-        "title": {
-          "en": "Switch to floor",
-          "da": "Skift til etage",
-          "de": "Stockwerk wechseln"
-        },
-        "titleFormatted": {
-          "en": "Switch to floor [[floor]]",
-          "da": "Skift til etage [[floor]]",
-          "de": "Wechsle zu Stockwerk [[floor]]"
-        },
-        "hint": {
-          "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
-          "da": "Skifter robottens kort via SSH. Robotten genstarter under skiftet.",
-          "de": "Tauscht die Roboterkarte per SSH. Der Roboter startet beim Wechsel neu."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "floor",
-            "title": {
-              "en": "Floor",
-              "da": "Etage",
-              "de": "Stockwerk"
-            },
-            "placeholder": {
-              "en": "Select a floor...",
-              "da": "Vælg en etage...",
-              "de": "Stockwerk auswählen..."
-            }
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "save_floor",
-        "title": {
-          "en": "Save current map as floor",
-          "da": "Gem nuværende kort som etage",
-          "de": "Aktuelle Karte als Stockwerk speichern"
-        },
-        "titleFormatted": {
-          "en": "Save current map as floor [[floor_name]] (dock: [[has_dock]])",
-          "da": "Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
-          "de": "Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
-        },
-        "hint": {
-          "en": "Saves a backup of the robot's current map as a named floor via SSH.",
-          "da": "Gemmer en kopi af robottens nuværende kort som en navngivet etage via SSH.",
-          "de": "Speichert eine Sicherungskopie der aktuellen Roboterkarte als benanntes Stockwerk per SSH."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "text",
-            "name": "floor_name",
-            "title": {
-              "en": "Floor Name",
-              "da": "Etage",
-              "de": "Stockwerkname"
-            },
-            "placeholder": {
-              "en": "e.g. Ground Floor",
-              "da": "f.eks. Stueetage",
-              "de": "z.B. Erdgeschoss"
-            }
-          },
-          {
-            "type": "dropdown",
-            "name": "has_dock",
-            "title": {
-              "en": "Has Dock",
-              "da": "Har dock",
-              "de": "Hat Ladestation"
-            },
-            "values": [
-              {
-                "id": "yes",
-                "label": {
-                  "en": "Yes",
-                  "da": "Ja",
-                  "de": "Ja"
-                }
-              },
-              {
-                "id": "no",
-                "label": {
-                  "en": "No",
-                  "da": "Nej",
-                  "de": "Nein"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "update_floor",
-        "title": {
-          "en": "Update floor",
-          "da": "Opdater etage",
-          "de": "Stockwerk aktualisieren"
-        },
-        "titleFormatted": {
-          "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
-          "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
-          "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
-        },
-        "hint": {
-          "en": "Renames a saved floor and updates its dock setting.",
-          "da": "Omdøber en gemt etage og opdaterer dens dock-indstilling.",
-          "de": "Benennt ein gespeichertes Stockwerk um und aktualisiert die Ladestationseinstellung."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "floor",
-            "title": {
-              "en": "Floor",
-              "da": "Etage",
-              "de": "Stockwerk"
-            },
-            "placeholder": {
-              "en": "Select a floor...",
-              "da": "Vælg en etage...",
-              "de": "Stockwerk auswählen..."
-            }
-          },
-          {
-            "type": "text",
-            "name": "new_name",
-            "title": {
-              "en": "New Name",
-              "da": "Nyt navn",
-              "de": "Neuer Name"
-            },
-            "placeholder": {
-              "en": "e.g. Kitchen Floor",
-              "da": "f.eks. Køkkenetage",
-              "de": "z.B. Küchengeschoss"
-            }
-          },
-          {
-            "type": "dropdown",
-            "name": "has_dock",
-            "title": {
-              "en": "Has Dock",
-              "da": "Har dock",
-              "de": "Hat Ladestation"
-            },
-            "values": [
-              {
-                "id": "yes",
-                "label": {
-                  "en": "Yes",
-                  "da": "Ja",
-                  "de": "Ja"
-                }
-              },
-              {
-                "id": "no",
-                "label": {
-                  "en": "No",
-                  "da": "Nej",
-                  "de": "Nein"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "start_cleaning",
-        "title": {
-          "en": "Start cleaning",
-          "da": "Start rengøring",
-          "de": "Reinigung starten"
-        },
-        "hint": {
-          "en": "Starts a full cleaning of the current floor map.",
-          "da": "Starter en fuld rengøring af det aktuelle etagekort.",
-          "de": "Startet eine vollständige Reinigung der aktuellen Etagenkarte."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Start cleaning",
-          "da": "Start rengøring",
-          "de": "Reinigung starten"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "stop_cleaning",
-        "title": {
-          "en": "Stop cleaning",
-          "da": "Stop rengøring",
-          "de": "Reinigung stoppen"
-        },
-        "hint": {
-          "en": "Stops the robot immediately. It will stay where it is.",
-          "da": "Stopper robotten med det samme. Den bliver hvor den er.",
-          "de": "Stoppt den Roboter sofort. Er bleibt, wo er ist."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Stop cleaning",
-          "da": "Stop rengøring",
-          "de": "Reinigung stoppen"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "pause_cleaning",
-        "title": {
-          "en": "Pause cleaning",
-          "da": "Pause rengøring",
-          "de": "Reinigung pausieren"
-        },
-        "hint": {
-          "en": "Pauses cleaning. The robot can resume from where it stopped.",
-          "da": "Sætter rengøringen på pause. Robotten kan genoptage fra hvor den stoppede.",
-          "de": "Pausiert die Reinigung. Der Roboter kann dort fortsetzen, wo er aufgehört hat."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Pause cleaning",
-          "da": "Pause rengøring",
-          "de": "Reinigung pausieren"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "return_to_dock",
-        "title": {
-          "en": "Return to dock",
-          "da": "Kør til dock",
-          "de": "Zur Ladestation zurückkehren"
-        },
-        "hint": {
-          "en": "Sends the robot back to its charging dock.",
-          "da": "Sender robotten tilbage til ladestationen.",
-          "de": "Schickt den Roboter zurück zur Ladestation."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Return to dock",
-          "da": "Kør til dock",
-          "de": "Zur Ladestation zurückkehren"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "clean_segment",
-        "title": {
-          "en": "Clean segment",
-          "da": "Rengør segment",
-          "de": "Segment reinigen"
-        },
-        "titleFormatted": {
-          "en": "Clean segment [[segment]] ([[iterations]]x)",
-          "da": "Rengør segment [[segment]] ([[iterations]]x)",
-          "de": "Segment [[segment]] reinigen ([[iterations]]x)"
-        },
-        "hint": {
-          "en": "Cleans a specific room on the map. Segments are defined in the Valetudo web UI.",
-          "da": "Rengør et bestemt rum på kortet. Segmenter defineres i Valetudo web-UI.",
-          "de": "Reinigt einen bestimmten Raum auf der Karte. Segmente werden in der Valetudo Web-UI definiert."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "segment",
-            "title": {
-              "en": "Segment (Room)",
-              "da": "Segment (rum)",
-              "de": "Segment (Raum)"
-            },
-            "placeholder": {
-              "en": "Select a room...",
-              "da": "Vælg et rum...",
-              "de": "Raum auswählen..."
-            }
-          },
-          {
-            "type": "number",
-            "name": "iterations",
-            "title": {
-              "en": "Iterations",
-              "da": "Gentagelser",
-              "de": "Durchgänge"
-            },
-            "min": 1,
-            "step": 1,
-            "value": 1
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "clean_zone",
-        "title": {
-          "en": "Clean zone",
-          "da": "Rengør zone",
-          "de": "Zone reinigen"
-        },
-        "titleFormatted": {
-          "en": "Clean zone [[zone]] ([[iterations]]x)",
-          "da": "Rengør zone [[zone]] ([[iterations]]x)",
-          "de": "Zone [[zone]] reinigen ([[iterations]]x)"
-        },
-        "hint": {
-          "en": "Cleans a previously saved rectangular zone.",
-          "da": "Rengør en tidligere gemt rektangulær zone.",
-          "de": "Reinigt eine zuvor gespeicherte rechteckige Zone."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "zone",
-            "title": {
-              "en": "Zone",
-              "da": "Zone",
-              "de": "Zone"
-            },
-            "placeholder": {
-              "en": "Select a saved zone...",
-              "da": "Vælg en gemt zone...",
-              "de": "Gespeicherte Zone auswählen..."
-            }
-          },
-          {
-            "type": "number",
-            "name": "iterations",
-            "title": {
-              "en": "Iterations",
-              "da": "Gentagelser",
-              "de": "Durchgänge"
-            },
-            "min": 1,
-            "step": 1,
-            "value": 1
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "save_zone",
-        "title": {
-          "en": "Save zone at coordinates",
-          "da": "Gem zone ved koordinater",
-          "de": "Zone an Koordinaten speichern"
-        },
-        "titleFormatted": {
-          "en": "Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
-          "da": "Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
-          "de": "Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
-        },
-        "hint": {
-          "en": "Saves a rectangular zone by map coordinates. Find coordinates in the Valetudo web UI.",
-          "da": "Gemmer en rektangulær zone ud fra kortkoordinater. Find koordinater i Valetudo web-UI.",
-          "de": "Speichert eine rechteckige Zone anhand von Kartenkoordinaten. Koordinaten findest du in der Valetudo Web-UI."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "text",
-            "name": "name",
-            "title": {
-              "en": "Zone Name",
-              "da": "Zonenavn",
-              "de": "Zonenname"
-            },
-            "placeholder": {
-              "en": "e.g. Under Kitchen Table",
-              "da": "f.eks. Under køkkenbordet",
-              "de": "z.B. Unter dem Küchentisch"
-            }
-          },
-          {
-            "type": "number",
-            "name": "x1",
-            "title": {
-              "en": "Top-left X",
-              "da": "Øverste venstre X",
-              "de": "Oben-links X"
-            },
-            "min": 0,
-            "step": 1
-          },
-          {
-            "type": "number",
-            "name": "y1",
-            "title": {
-              "en": "Top-left Y",
-              "da": "Øverste venstre Y",
-              "de": "Oben-links Y"
-            },
-            "min": 0,
-            "step": 1
-          },
-          {
-            "type": "number",
-            "name": "x2",
-            "title": {
-              "en": "Bottom-right X",
-              "da": "Nederste højre X",
-              "de": "Unten-rechts X"
-            },
-            "min": 0,
-            "step": 1
-          },
-          {
-            "type": "number",
-            "name": "y2",
-            "title": {
-              "en": "Bottom-right Y",
-              "da": "Nederste højre Y",
-              "de": "Unten-rechts Y"
-            },
-            "min": 0,
-            "step": 1
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "delete_zone",
-        "title": {
-          "en": "Delete saved zone",
-          "da": "Slet gemt zone",
-          "de": "Gespeicherte Zone löschen"
-        },
-        "titleFormatted": {
-          "en": "Delete saved zone [[zone]]",
-          "da": "Slet gemt zone [[zone]]",
-          "de": "Gespeicherte Zone [[zone]] löschen"
-        },
-        "hint": {
-          "en": "Permanently removes a saved zone from the app.",
-          "da": "Fjerner permanent en gemt zone fra appen.",
-          "de": "Entfernt eine gespeicherte Zone dauerhaft aus der App."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "zone",
-            "title": {
-              "en": "Zone",
-              "da": "Zone",
-              "de": "Zone"
-            },
-            "placeholder": {
-              "en": "Select a zone to delete...",
-              "da": "Vælg en zone at slette...",
-              "de": "Zone zum Löschen auswählen..."
-            }
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "set_fan_speed",
-        "title": {
-          "en": "Set fan speed",
-          "da": "Indstil blæserhastighed",
-          "de": "Saugstärke einstellen"
-        },
-        "titleFormatted": {
-          "en": "Set fan speed to [[speed]]",
-          "da": "Indstil blæserhastighed til [[speed]]",
-          "de": "Saugstärke auf [[speed]] einstellen"
-        },
-        "hint": {
-          "en": "Controls the vacuum suction power.",
-          "da": "Styrer støvsugerens sugestyrke.",
-          "de": "Steuert die Saugleistung des Staubsaugers."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "speed",
-            "title": {
-              "en": "Speed",
-              "da": "Hastighed",
-              "de": "Stufe"
-            },
-            "values": [
-              {
-                "id": "off",
-                "label": {
-                  "en": "Off",
-                  "da": "Slukket",
-                  "de": "Aus"
-                }
-              },
-              {
-                "id": "min",
-                "label": {
-                  "en": "Min",
-                  "da": "Min",
-                  "de": "Min"
-                }
-              },
-              {
-                "id": "low",
-                "label": {
-                  "en": "Low",
-                  "da": "Lav",
-                  "de": "Niedrig"
-                }
-              },
-              {
-                "id": "medium",
-                "label": {
-                  "en": "Medium",
-                  "da": "Medium",
-                  "de": "Mittel"
-                }
-              },
-              {
-                "id": "high",
-                "label": {
-                  "en": "High",
-                  "da": "Høj",
-                  "de": "Hoch"
-                }
-              },
-              {
-                "id": "turbo",
-                "label": {
-                  "en": "Turbo",
-                  "da": "Turbo",
-                  "de": "Turbo"
-                }
-              },
-              {
-                "id": "max",
-                "label": {
-                  "en": "Max",
-                  "da": "Maks",
-                  "de": "Max"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "set_water_usage",
-        "title": {
-          "en": "Set water usage",
-          "da": "Indstil vandforbrug",
-          "de": "Wasserverbrauch einstellen"
-        },
-        "titleFormatted": {
-          "en": "Set water usage to [[level]]",
-          "da": "Indstil vandforbrug til [[level]]",
-          "de": "Wasserverbrauch auf [[level]] einstellen"
-        },
-        "hint": {
-          "en": "Controls how much water the mop uses. Only available on models with mopping.",
-          "da": "Styrer hvor meget vand moppen bruger. Kun tilgængelig på modeller med moppefunktion.",
-          "de": "Steuert, wie viel Wasser der Wischmopp verwendet. Nur bei Modellen mit Wischfunktion verfügbar."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "level",
-            "title": {
-              "en": "Water Level",
-              "da": "Vandniveau",
-              "de": "Wasserstufe"
-            },
-            "values": [
-              {
-                "id": "off",
-                "label": {
-                  "en": "Off",
-                  "da": "Slukket",
-                  "de": "Aus"
-                }
-              },
-              {
-                "id": "min",
-                "label": {
-                  "en": "Min",
-                  "da": "Min",
-                  "de": "Min"
-                }
-              },
-              {
-                "id": "low",
-                "label": {
-                  "en": "Low",
-                  "da": "Lav",
-                  "de": "Niedrig"
-                }
-              },
-              {
-                "id": "medium",
-                "label": {
-                  "en": "Medium",
-                  "da": "Medium",
-                  "de": "Mittel"
-                }
-              },
-              {
-                "id": "high",
-                "label": {
-                  "en": "High",
-                  "da": "Høj",
-                  "de": "Hoch"
-                }
-              },
-              {
-                "id": "max",
-                "label": {
-                  "en": "Max",
-                  "da": "Maks",
-                  "de": "Max"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "set_operation_mode",
-        "title": {
-          "en": "Set operation mode",
-          "da": "Indstil driftstilstand",
-          "de": "Betriebsmodus einstellen"
-        },
-        "titleFormatted": {
-          "en": "Set operation mode to [[mode]]",
-          "da": "Indstil driftstilstand til [[mode]]",
-          "de": "Betriebsmodus auf [[mode]] einstellen"
-        },
-        "hint": {
-          "en": "Switches between vacuum only, mop only, or combined modes.",
-          "da": "Skifter mellem kun støvsugning, kun mopning eller kombinerede tilstande.",
-          "de": "Wechselt zwischen nur Saugen, nur Wischen oder kombinierten Modi."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "mode",
-            "title": {
-              "en": "Mode",
-              "da": "Tilstand",
-              "de": "Modus"
-            },
-            "values": [
-              {
-                "id": "vacuum",
-                "label": {
-                  "en": "Vacuum Only",
-                  "da": "Kun støvsuge",
-                  "de": "Nur Saugen"
-                }
-              },
-              {
-                "id": "mop",
-                "label": {
-                  "en": "Mop Only",
-                  "da": "Kun moppe",
-                  "de": "Nur Wischen"
-                }
-              },
-              {
-                "id": "vacuum_and_mop",
-                "label": {
-                  "en": "Vacuum & Mop",
-                  "da": "Støvsuge og moppe",
-                  "de": "Saugen & Wischen"
-                }
-              },
-              {
-                "id": "vacuum_then_mop",
-                "label": {
-                  "en": "Vacuum then Mop",
-                  "da": "Støvsuge derefter moppe",
-                  "de": "Saugen dann Wischen"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "set_speaker_volume",
-        "title": {
-          "en": "Set speaker volume",
-          "da": "Indstil højtalervolumen",
-          "de": "Lautstärke einstellen"
-        },
-        "titleFormatted": {
-          "en": "Set speaker volume to [[volume]]%",
-          "da": "Indstil højtalervolumen til [[volume]]%",
-          "de": "Lautstärke auf [[volume]]% einstellen"
-        },
-        "hint": {
-          "en": "Controls the robot's voice and notification volume.",
-          "da": "Styrer robottens stemme- og notifikationsvolumen.",
-          "de": "Steuert die Sprach- und Benachrichtigungslautstärke des Roboters."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "number",
-            "name": "volume",
-            "title": {
-              "en": "Volume %",
-              "da": "Volumen %",
-              "de": "Lautstärke %"
-            },
-            "min": 0,
-            "max": 100,
-            "step": 10,
-            "value": 80
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "play_test_sound",
-        "title": {
-          "en": "Play test sound",
-          "da": "Afspil testlyd",
-          "de": "Testton abspielen"
-        },
-        "hint": {
-          "en": "Plays a sound on the robot to test the speaker volume.",
-          "da": "Afspiller en lyd på robotten for at teste højtalervolumen.",
-          "de": "Spielt einen Ton auf dem Roboter ab, um die Lautstärke zu testen."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Play test sound",
-          "da": "Afspil testlyd",
-          "de": "Testton abspielen"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "locate",
-        "title": {
-          "en": "Locate robot",
-          "da": "Find robot",
-          "de": "Roboter finden"
-        },
-        "hint": {
-          "en": "Makes the robot play a sound so you can find it.",
-          "da": "Får robotten til at afspille en lyd så du kan finde den.",
-          "de": "Lässt den Roboter einen Ton abspielen, damit du ihn finden kannst."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Locate robot",
-          "da": "Find robot",
-          "de": "Roboter finden"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "trigger_auto_empty",
-        "title": {
-          "en": "Empty dustbin",
-          "da": "Tøm støvbeholder",
-          "de": "Staubbehälter leeren"
-        },
-        "hint": {
-          "en": "Triggers the auto-empty dock to empty the robot's dustbin. Requires a compatible dock.",
-          "da": "Udløser auto-tømningsdocken til at tømme robottens støvbeholder. Kræver en kompatibel dock.",
-          "de": "Löst das automatische Entleeren des Staubbehälters über die Dockstation aus. Erfordert eine kompatible Dockstation."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Empty dustbin",
-          "da": "Tøm støvbeholder",
-          "de": "Staubbehälter leeren"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "set_dnd",
-        "title": {
-          "en": "Set Do Not Disturb",
-          "da": "Indstil Forstyr ikke",
-          "de": "Bitte nicht stören einstellen"
-        },
-        "titleFormatted": {
-          "en": "Set Do Not Disturb [[enabled]]",
-          "da": "Indstil Forstyr ikke [[enabled]]",
-          "de": "Bitte nicht stören [[enabled]]"
-        },
-        "hint": {
-          "en": "Silences the robot and prevents scheduled cleanings.",
-          "da": "Gør robotten lydløs og forhindrer planlagte rengøringer.",
-          "de": "Schaltet den Roboter stumm und verhindert geplante Reinigungen."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "enabled",
-            "title": {
-              "en": "State",
-              "da": "Tilstand",
-              "de": "Status"
-            },
-            "values": [
-              {
-                "id": "enable",
-                "label": {
-                  "en": "Enabled",
-                  "da": "Aktiveret",
-                  "de": "Aktiviert"
-                }
-              },
-              {
-                "id": "disable",
-                "label": {
-                  "en": "Disabled",
-                  "da": "Deaktiveret",
-                  "de": "Deaktiviert"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "set_carpet_mode",
-        "title": {
-          "en": "Set carpet boost mode",
-          "da": "Indstil tæppe-boost",
-          "de": "Teppich-Boost einstellen"
-        },
-        "titleFormatted": {
-          "en": "Set carpet boost mode [[enabled]]",
-          "da": "Indstil tæppe-boost [[enabled]]",
-          "de": "Teppich-Boost [[enabled]]"
-        },
-        "hint": {
-          "en": "Automatically increases suction power when the robot detects carpet.",
-          "da": "Øger automatisk sugestyrken når robotten registrerer tæppe.",
-          "de": "Erhöht automatisch die Saugleistung, wenn der Roboter Teppich erkennt."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "enabled",
-            "title": {
-              "en": "State",
-              "da": "Tilstand",
-              "de": "Status"
-            },
-            "values": [
-              {
-                "id": "enable",
-                "label": {
-                  "en": "Enabled",
-                  "da": "Aktiveret",
-                  "de": "Aktiviert"
-                }
-              },
-              {
-                "id": "disable",
-                "label": {
-                  "en": "Disabled",
-                  "da": "Deaktiveret",
-                  "de": "Deaktiviert"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "go_to_location",
-        "title": {
-          "en": "Send robot to coordinates",
-          "da": "Send robot til koordinater",
-          "de": "Roboter zu Koordinaten schicken"
-        },
-        "titleFormatted": {
-          "en": "Send robot to ([[x]], [[y]])",
-          "da": "Send robot til ([[x]], [[y]])",
-          "de": "Roboter zu ([[x]], [[y]]) schicken"
-        },
-        "hint": {
-          "en": "Sends the robot to a specific point on the map. Find coordinates in the Valetudo web UI.",
-          "da": "Sender robotten til et bestemt punkt på kortet. Find koordinater i Valetudo web-UI.",
-          "de": "Schickt den Roboter zu einem bestimmten Punkt auf der Karte. Koordinaten findest du in der Valetudo Web-UI."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "number",
-            "name": "x",
-            "title": {
-              "en": "X coordinate",
-              "da": "X-koordinat",
-              "de": "X-Koordinate"
-            },
-            "min": 0,
-            "step": 1
-          },
-          {
-            "type": "number",
-            "name": "y",
-            "title": {
-              "en": "Y coordinate",
-              "da": "Y-koordinat",
-              "de": "Y-Koordinate"
-            },
-            "min": 0,
-            "step": 1
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "reset_consumable",
-        "title": {
-          "en": "Reset consumable",
-          "da": "Nulstil forbrugsdel",
-          "de": "Verbrauchsteil zurücksetzen"
-        },
-        "titleFormatted": {
-          "en": "Reset consumable [[consumable]]",
-          "da": "Nulstil forbrugsdel [[consumable]]",
-          "de": "Verbrauchsteil [[consumable]] zurücksetzen"
-        },
-        "hint": {
-          "en": "Resets the wear counter after replacing a consumable part.",
-          "da": "Nulstiller slidtælleren efter udskiftning af en forbrugsdel.",
-          "de": "Setzt den Verschleißzähler nach dem Austausch eines Verbrauchsteils zurück."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "dropdown",
-            "name": "consumable",
-            "title": {
-              "en": "Consumable",
-              "da": "Forbrugsdel",
-              "de": "Verbrauchsteil"
-            },
-            "values": [
-              {
-                "id": "filter:none",
-                "label": {
-                  "en": "Filter",
-                  "da": "Filter",
-                  "de": "Filter"
-                }
-              },
-              {
-                "id": "brush:main",
-                "label": {
-                  "en": "Main Brush",
-                  "da": "Hovedbørste",
-                  "de": "Hauptbürste"
-                }
-              },
-              {
-                "id": "brush:side_right",
-                "label": {
-                  "en": "Side Brush",
-                  "da": "Sidebørste",
-                  "de": "Seitenbürste"
-                }
-              },
-              {
-                "id": "mop:none",
-                "label": {
-                  "en": "Mop",
-                  "da": "Moppe",
-                  "de": "Wischmopp"
-                }
-              },
-              {
-                "id": "sensor:all",
-                "label": {
-                  "en": "Sensors",
-                  "da": "Sensorer",
-                  "de": "Sensoren"
-                }
-              }
-            ]
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "rename_segment",
-        "title": {
-          "en": "Rename segment",
-          "da": "Omdøb segment",
-          "de": "Segment umbenennen"
-        },
-        "titleFormatted": {
-          "en": "Rename segment [[segment]] to [[name]]",
-          "da": "Omdøb segment [[segment]] til [[name]]",
-          "de": "Segment [[segment]] in [[name]] umbenennen"
-        },
-        "hint": {
-          "en": "Renames a room segment on the robot's map.",
-          "da": "Omdøber et rumsegment på robottens kort.",
-          "de": "Benennt ein Raumsegment auf der Roboterkarte um."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "autocomplete",
-            "name": "segment",
-            "title": {
-              "en": "Segment (Room)",
-              "da": "Segment (rum)",
-              "de": "Segment (Raum)"
-            },
-            "placeholder": {
-              "en": "Select a room...",
-              "da": "Vælg et rum...",
-              "de": "Raum auswählen..."
-            }
-          },
-          {
-            "type": "text",
-            "name": "name",
-            "title": {
-              "en": "New Name",
-              "da": "Nyt navn",
-              "de": "Neuer Name"
-            },
-            "placeholder": {
-              "en": "Kitchen",
-              "da": "Køkken",
-              "de": "Küche"
-            }
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      },
-      {
-        "id": "start_new_map",
-        "title": {
-          "en": "Start building a new map",
-          "da": "Start opbygning af nyt kort",
-          "de": "Neue Karte erstellen"
-        },
-        "hint": {
-          "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
-          "da": "Sletter det aktuelle kort og starter en ny kortlægning. Brug med forsigtighed.",
-          "de": "Löscht die aktuelle Karte und startet eine neue Kartierung. Mit Vorsicht verwenden."
-        },
-        "platforms": [
-          "local"
-        ],
-        "titleFormatted": {
-          "en": "Start building a new map",
-          "da": "Start opbygning af nyt kort",
-          "de": "Neue Karte erstellen"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          }
-        ]
-      },
-      {
-        "id": "install_voice_pack",
-        "title": {
-          "en": "Install voice pack",
-          "da": "Installer stemmepakke",
-          "de": "Sprachpaket installieren"
-        },
-        "titleFormatted": {
-          "en": "Install voice pack from [[url]] (language: [[language]])",
-          "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])",
-          "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])"
-        },
-        "hint": {
-          "en": "Downloads and installs a custom voice pack on the robot.",
-          "da": "Downloader og installerer en brugerdefineret stemmepakke på robotten.",
-          "de": "Lädt ein benutzerdefiniertes Sprachpaket herunter und installiert es auf dem Roboter."
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
-            "type": "text",
-            "name": "url",
-            "title": {
-              "en": "Voice Pack URL",
-              "da": "Stemmepakke-URL",
-              "de": "Sprachpaket-URL"
-            },
-            "placeholder": {
-              "en": "https://example.com/voice.pkg",
-              "da": "https://example.com/voice.pkg",
-              "de": "https://example.com/voice.pkg"
-            }
-          },
-          {
-            "type": "text",
-            "name": "language",
-            "title": {
-              "en": "Language Code",
-              "da": "Sprogkode",
-              "de": "Sprachcode"
-            },
-            "placeholder": {
-              "en": "en",
-              "da": "da",
-              "de": "de"
-            }
-          }
-        ],
-        "platforms": [
-          "local"
-        ]
-      }
-    ]
-  },
   "widgets": {
     "vacuum-map": {
       "name": {

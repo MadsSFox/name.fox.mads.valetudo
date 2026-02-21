@@ -1,0 +1,28 @@
+{
+  "id": "stop_cleaning",
+  "title": {
+    "en": "Stop cleaning",
+    "da": "Stop rengøring",
+    "de": "Reinigung stoppen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Stop cleaning",
+    "da": "[[device]] Stop rengøring",
+    "de": "[[device]] Reinigung stoppen"
+  },
+  "hint": {
+    "en": "Stops the robot immediately. It will stay where it is.",
+    "da": "Stopper robotten med det samme. Den bliver hvor den er.",
+    "de": "Stoppt den Roboter sofort. Er bleibt, wo er ist."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

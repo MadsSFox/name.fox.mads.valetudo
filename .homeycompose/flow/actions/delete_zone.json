@@ -1,0 +1,42 @@
+{
+  "id": "delete_zone",
+  "title": {
+    "en": "Delete saved zone",
+    "da": "Slet gemt zone",
+    "de": "Gespeicherte Zone löschen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Delete saved zone [[zone]]",
+    "da": "[[device]] Slet gemt zone [[zone]]",
+    "de": "[[device]] Gespeicherte Zone [[zone]] löschen"
+  },
+  "hint": {
+    "en": "Permanently removes a saved zone from the app.",
+    "da": "Fjerner permanent en gemt zone fra appen.",
+    "de": "Entfernt eine gespeicherte Zone dauerhaft aus der App."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "zone",
+      "title": {
+        "en": "Zone",
+        "da": "Zone",
+        "de": "Zone"
+      },
+      "placeholder": {
+        "en": "Select a zone to delete...",
+        "da": "Vælg en zone at slette...",
+        "de": "Zone zum Löschen auswählen..."
+      }
+    }
+  ]
+}

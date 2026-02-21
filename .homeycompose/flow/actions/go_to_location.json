@@ -1,0 +1,50 @@
+{
+  "id": "go_to_location",
+  "title": {
+    "en": "Send robot to coordinates",
+    "da": "Send robot til koordinater",
+    "de": "Roboter zu Koordinaten schicken"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Send robot to ([[x]], [[y]])",
+    "da": "[[device]] Send robot til ([[x]], [[y]])",
+    "de": "[[device]] Roboter zu ([[x]], [[y]]) schicken"
+  },
+  "hint": {
+    "en": "Sends the robot to a specific point on the map. Find coordinates in the Valetudo web UI.",
+    "da": "Sender robotten til et bestemt punkt på kortet. Find koordinater i Valetudo web-UI.",
+    "de": "Schickt den Roboter zu einem bestimmten Punkt auf der Karte. Koordinaten findest du in der Valetudo Web-UI."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "number",
+      "name": "x",
+      "title": {
+        "en": "X coordinate",
+        "da": "X-koordinat",
+        "de": "X-Koordinate"
+      },
+      "min": 0,
+      "step": 1
+    },
+    {
+      "type": "number",
+      "name": "y",
+      "title": {
+        "en": "Y coordinate",
+        "da": "Y-koordinat",
+        "de": "Y-Koordinate"
+      },
+      "min": 0,
+      "step": 1
+    }
+  ]
+}

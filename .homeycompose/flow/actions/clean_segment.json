@@ -1,0 +1,54 @@
+{
+  "id": "clean_segment",
+  "title": {
+    "en": "Clean segment",
+    "da": "Rengør segment",
+    "de": "Segment reinigen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Clean segment [[segment]] ([[iterations]]x)",
+    "da": "[[device]] Rengør segment [[segment]] ([[iterations]]x)",
+    "de": "[[device]] Segment [[segment]] reinigen ([[iterations]]x)"
+  },
+  "hint": {
+    "en": "Cleans a specific room on the map. Segments are defined in the Valetudo web UI.",
+    "da": "Rengør et bestemt rum på kortet. Segmenter defineres i Valetudo web-UI.",
+    "de": "Reinigt einen bestimmten Raum auf der Karte. Segmente werden in der Valetudo Web-UI definiert."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "segment",
+      "title": {
+        "en": "Segment (Room)",
+        "da": "Segment (rum)",
+        "de": "Segment (Raum)"
+      },
+      "placeholder": {
+        "en": "Select a room...",
+        "da": "Vælg et rum...",
+        "de": "Raum auswählen..."
+      }
+    },
+    {
+      "type": "number",
+      "name": "iterations",
+      "title": {
+        "en": "Iterations",
+        "da": "Gentagelser",
+        "de": "Durchgänge"
+      },
+      "min": 1,
+      "step": 1,
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "is_dnd_enabled",
+  "title": {
+    "en": "Do Not Disturb is enabled",
+    "da": "Forstyr ikke er aktiveret",
+    "de": "Bitte nicht stören ist aktiviert"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Do Not Disturb is enabled",
+    "da": "[[device]] Forstyr ikke er aktiveret",
+    "de": "[[device]] Bitte nicht stören ist aktiviert"
+  },
+  "titleTrue": {
+    "en": "[[device]] Do Not Disturb is enabled",
+    "da": "[[device]] Forstyr ikke er aktiveret",
+    "de": "[[device]] Bitte nicht stören ist aktiviert"
+  },
+  "titleFalse": {
+    "en": "[[device]] Do Not Disturb is disabled",
+    "da": "[[device]] Forstyr ikke er deaktiveret",
+    "de": "[[device]] Bitte nicht stören ist deaktiviert"
+  },
+  "hint": {
+    "en": "When enabled, the robot will not make sounds or start scheduled cleanings.",
+    "da": "Når aktiveret vil robotten ikke lave lyde eller starte planlagte rengøringer.",
+    "de": "Wenn aktiviert, macht der Roboter keine Geräusche und startet keine geplanten Reinigungen."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

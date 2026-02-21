@@ -1,0 +1,79 @@
+{
+  "id": "reset_consumable",
+  "title": {
+    "en": "Reset consumable",
+    "da": "Nulstil forbrugsdel",
+    "de": "Verbrauchsteil zurücksetzen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Reset consumable [[consumable]]",
+    "da": "[[device]] Nulstil forbrugsdel [[consumable]]",
+    "de": "[[device]] Verbrauchsteil [[consumable]] zurücksetzen"
+  },
+  "hint": {
+    "en": "Resets the wear counter after replacing a consumable part.",
+    "da": "Nulstiller slidtælleren efter udskiftning af en forbrugsdel.",
+    "de": "Setzt den Verschleißzähler nach dem Austausch eines Verbrauchsteils zurück."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "dropdown",
+      "name": "consumable",
+      "title": {
+        "en": "Consumable",
+        "da": "Forbrugsdel",
+        "de": "Verbrauchsteil"
+      },
+      "values": [
+        {
+          "id": "filter:none",
+          "label": {
+            "en": "Filter",
+            "da": "Filter",
+            "de": "Filter"
+          }
+        },
+        {
+          "id": "brush:main",
+          "label": {
+            "en": "Main Brush",
+            "da": "Hovedbørste",
+            "de": "Hauptbürste"
+          }
+        },
+        {
+          "id": "brush:side_right",
+          "label": {
+            "en": "Side Brush",
+            "da": "Sidebørste",
+            "de": "Seitenbürste"
+          }
+        },
+        {
+          "id": "mop:none",
+          "label": {
+            "en": "Mop",
+            "da": "Moppe",
+            "de": "Wischmopp"
+          }
+        },
+        {
+          "id": "sensor:all",
+          "label": {
+            "en": "Sensors",
+            "da": "Sensorer",
+            "de": "Sensoren"
+          }
+        }
+      ]
+    }
+  ]
+}

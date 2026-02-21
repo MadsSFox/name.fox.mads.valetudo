@@ -1,0 +1,28 @@
+{
+  "id": "start_new_map",
+  "title": {
+    "en": "Start building a new map",
+    "da": "Start opbygning af nyt kort",
+    "de": "Neue Karte erstellen"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Start building a new map",
+    "da": "[[device]] Start opbygning af nyt kort",
+    "de": "[[device]] Neue Karte erstellen"
+  },
+  "hint": {
+    "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
+    "da": "Sletter det aktuelle kort og starter en ny kortlægning. Brug med forsigtighed.",
+    "de": "Löscht die aktuelle Karte und startet eine neue Kartierung. Mit Vorsicht verwenden."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    }
+  ]
+}

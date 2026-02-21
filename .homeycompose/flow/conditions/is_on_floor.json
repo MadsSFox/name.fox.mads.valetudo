@@ -1,0 +1,52 @@
+{
+  "id": "is_on_floor",
+  "title": {
+    "en": "Is on floor",
+    "da": "Er på etage",
+    "de": "Ist auf Stockwerk"
+  },
+  "titleFormatted": {
+    "en": "[[device]] Is on floor [[floor]]",
+    "da": "[[device]] Er på etage [[floor]]",
+    "de": "[[device]] Ist auf Stockwerk [[floor]]"
+  },
+  "titleTrue": {
+    "en": "[[device]] Is on floor [[floor]]",
+    "da": "[[device]] Er på etage [[floor]]",
+    "de": "[[device]] Ist auf Stockwerk [[floor]]"
+  },
+  "titleFalse": {
+    "en": "[[device]] Is not on floor [[floor]]",
+    "da": "[[device]] Er ikke på etage [[floor]]",
+    "de": "[[device]] Ist nicht auf Stockwerk [[floor]]"
+  },
+  "hint": {
+    "en": "Checks which floor map is currently active on the robot.",
+    "da": "Tjekker hvilket etagekort der aktuelt er aktivt på robotten.",
+    "de": "Prüft, welche Etagenkarte aktuell auf dem Roboter aktiv ist."
+  },
+  "platforms": [
+    "local"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "capability=vacuum_state"
+    },
+    {
+      "type": "autocomplete",
+      "name": "floor",
+      "title": {
+        "en": "Floor",
+        "da": "Etage",
+        "de": "Stockwerk"
+      },
+      "placeholder": {
+        "en": "Select a floor...",
+        "da": "Vælg en etage...",
+        "de": "Stockwerk auswählen..."
+      }
+    }
+  ]
+}

@@ -34,5 +34,8 @@
   },
   "0.1.2": {
     "en": "Fix segment room names not appearing in flow card autocompletes. Segments are now fetched via REST on discovery, reconnect, and after cleaning — ensuring the list is always populated regardless of MQTT configuration."
+  },
+  "0.1.3": {
+    "en": "Add 'Refresh room segments' flow action. Clear stale segment cache when switching floors."
   }
 }

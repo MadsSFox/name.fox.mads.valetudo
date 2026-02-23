@@ -6,9 +6,9 @@
     "de": "Ein Fehler ist aufgetreten"
   },
   "titleFormatted": {
-    "en": "[[device]] An error occurred",
-    "da": "[[device]] Der opstod en fejl",
-    "de": "[[device]] Ein Fehler ist aufgetreten"
+    "en": "An error occurred",
+    "da": "Der opstod en fejl",
+    "de": "Ein Fehler ist aufgetreten"
   },
   "hint": {
     "en": "Triggers on any robot error, including stuck, sensor, or hardware issues.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

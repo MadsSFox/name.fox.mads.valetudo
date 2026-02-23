@@ -6,9 +6,9 @@
     "de": "Aktuelles Stockwerk hat eine Ladestation"
   },
   "titleFormatted": {
-    "en": "[[device]] Current floor has a dock",
-    "da": "[[device]] Nuværende etage har en dock",
-    "de": "[[device]] Aktuelles Stockwerk hat eine Ladestation"
+    "en": "Current floor has a dock",
+    "da": "Nuværende etage har en dock",
+    "de": "Aktuelles Stockwerk hat eine Ladestation"
   },
   "titleTrue": {
     "en": "[[device]] Current floor has a dock",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

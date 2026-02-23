@@ -6,9 +6,9 @@
     "de": "Ist auf Teppich"
   },
   "titleFormatted": {
-    "en": "[[device]] Is on carpet",
-    "da": "[[device]] Er på tæppe",
-    "de": "[[device]] Ist auf Teppich"
+    "en": "Is on carpet",
+    "da": "Er på tæppe",
+    "de": "Ist auf Teppich"
   },
   "titleTrue": {
     "en": "[[device]] Is on carpet",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

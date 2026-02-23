@@ -6,9 +6,9 @@
     "de": "Neue Karte erstellen"
   },
   "titleFormatted": {
-    "en": "[[device]] Start building a new map",
-    "da": "[[device]] Start opbygning af nyt kort",
-    "de": "[[device]] Neue Karte erstellen"
+    "en": "Start building a new map",
+    "da": "Start opbygning af nyt kort",
+    "de": "Neue Karte erstellen"
   },
   "hint": {
     "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

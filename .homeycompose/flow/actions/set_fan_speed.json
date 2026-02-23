@@ -6,9 +6,9 @@
     "de": "Saugstärke einstellen"
   },
   "titleFormatted": {
-    "en": "[[device]] Set fan speed to [[speed]]",
-    "da": "[[device]] Indstil blæserhastighed til [[speed]]",
-    "de": "[[device]] Saugstärke auf [[speed]] einstellen"
+    "en": "Set fan speed to [[speed]]",
+    "da": "Indstil blæserhastighed til [[speed]]",
+    "de": "Saugstärke auf [[speed]] einstellen"
   },
   "hint": {
     "en": "Controls the vacuum suction power.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "dropdown",

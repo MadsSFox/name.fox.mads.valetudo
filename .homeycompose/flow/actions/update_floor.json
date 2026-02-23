@@ -6,9 +6,9 @@
     "de": "Stockwerk aktualisieren"
   },
   "titleFormatted": {
-    "en": "[[device]] Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
-    "da": "[[device]] Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
-    "de": "[[device]] Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+    "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+    "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+    "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
   },
   "hint": {
     "en": "Renames a saved floor and updates its dock setting.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

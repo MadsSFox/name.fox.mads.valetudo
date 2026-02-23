@@ -6,9 +6,9 @@
     "de": "Status ist"
   },
   "titleFormatted": {
-    "en": "[[device]] State is [[state]]",
-    "da": "[[device]] Status er [[state]]",
-    "de": "[[device]] Status ist [[state]]"
+    "en": "State is [[state]]",
+    "da": "Status er [[state]]",
+    "de": "Status ist [[state]]"
   },
   "titleTrue": {
     "en": "[[device]] State is [[state]]",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "dropdown",

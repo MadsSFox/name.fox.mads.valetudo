@@ -6,9 +6,9 @@
     "de": "Stockwerk wurde gewechselt"
   },
   "titleFormatted": {
-    "en": "[[device]] Floor was switched",
-    "da": "[[device]] Etage blev skiftet",
-    "de": "[[device]] Stockwerk wurde gewechselt"
+    "en": "Floor was switched",
+    "da": "Etage blev skiftet",
+    "de": "Stockwerk wurde gewechselt"
   },
   "hint": {
     "en": "Triggers when the robot switches to a different floor map via SSH.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

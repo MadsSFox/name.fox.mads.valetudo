@@ -93,9 +93,9 @@
           "de": "Reinigung beendet"
         },
         "titleFormatted": {
-          "en": "[[device]] Cleaning finished",
-          "da": "[[device]] Rengøring afsluttet",
-          "de": "[[device]] Reinigung beendet"
+          "en": "Cleaning finished",
+          "da": "Rengøring afsluttet",
+          "de": "Reinigung beendet"
         },
         "hint": {
           "en": "Triggers when the robot completes a cleaning session.",
@@ -109,7 +109,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -121,9 +121,9 @@
           "de": "Reinigung gestartet"
         },
         "titleFormatted": {
-          "en": "[[device]] Cleaning started",
-          "da": "[[device]] Rengøring startet",
-          "de": "[[device]] Reinigung gestartet"
+          "en": "Cleaning started",
+          "da": "Rengøring startet",
+          "de": "Reinigung gestartet"
         },
         "hint": {
           "en": "Triggers when the robot begins a cleaning session.",
@@ -137,7 +137,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -149,9 +149,9 @@
           "de": "Ein Verbrauchsteil muss ersetzt werden"
         },
         "titleFormatted": {
-          "en": "[[device]] A consumable needs replacement",
-          "da": "[[device]] En forbrugsdel skal udskiftes",
-          "de": "[[device]] Ein Verbrauchsteil muss ersetzt werden"
+          "en": "A consumable needs replacement",
+          "da": "En forbrugsdel skal udskiftes",
+          "de": "Ein Verbrauchsteil muss ersetzt werden"
         },
         "hint": {
           "en": "Triggers when a consumable like filter, brush, or mop is worn out.",
@@ -165,7 +165,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -221,9 +221,9 @@
           "de": "Staubbehälter muss geleert werden"
         },
         "titleFormatted": {
-          "en": "[[device]] Dustbin needs emptying",
-          "da": "[[device]] Støvbeholderen skal tømmes",
-          "de": "[[device]] Staubbehälter muss geleert werden"
+          "en": "Dustbin needs emptying",
+          "da": "Støvbeholderen skal tømmes",
+          "de": "Staubbehälter muss geleert werden"
         },
         "hint": {
           "en": "Triggers when the robot reports its dustbin is full.",
@@ -237,7 +237,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -249,9 +249,9 @@
           "de": "Ein Fehler ist aufgetreten"
         },
         "titleFormatted": {
-          "en": "[[device]] An error occurred",
-          "da": "[[device]] Der opstod en fejl",
-          "de": "[[device]] Ein Fehler ist aufgetreten"
+          "en": "An error occurred",
+          "da": "Der opstod en fejl",
+          "de": "Ein Fehler ist aufgetreten"
         },
         "hint": {
           "en": "Triggers on any robot error, including stuck, sensor, or hardware issues.",
@@ -265,7 +265,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -293,9 +293,9 @@
           "de": "Stockwerk wurde gewechselt"
         },
         "titleFormatted": {
-          "en": "[[device]] Floor was switched",
-          "da": "[[device]] Etage blev skiftet",
-          "de": "[[device]] Stockwerk wurde gewechselt"
+          "en": "Floor was switched",
+          "da": "Etage blev skiftet",
+          "de": "Stockwerk wurde gewechselt"
         },
         "hint": {
           "en": "Triggers when the robot switches to a different floor map via SSH.",
@@ -309,7 +309,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -337,9 +337,9 @@
           "de": "Roboter steckt fest"
         },
         "titleFormatted": {
-          "en": "[[device]] Robot is stuck",
-          "da": "[[device]] Robotten sidder fast",
-          "de": "[[device]] Roboter steckt fest"
+          "en": "Robot is stuck",
+          "da": "Robotten sidder fast",
+          "de": "Roboter steckt fest"
         },
         "hint": {
           "en": "Triggers specifically when the robot is physically stuck and needs help.",
@@ -353,7 +353,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -381,9 +381,9 @@
           "de": "Segmentreinigung beendet"
         },
         "titleFormatted": {
-          "en": "[[device]] Finished cleaning a segment",
-          "da": "[[device]] Afsluttede rengøring af segment",
-          "de": "[[device]] Segmentreinigung beendet"
+          "en": "Finished cleaning a segment",
+          "da": "Afsluttede rengøring af segment",
+          "de": "Segmentreinigung beendet"
         },
         "hint": {
           "en": "Triggers when the robot finishes cleaning a specific room segment.",
@@ -397,7 +397,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -439,9 +439,9 @@
           "de": "Segmentreinigung gestartet"
         },
         "titleFormatted": {
-          "en": "[[device]] Started cleaning a segment",
-          "da": "[[device]] Begyndte rengøring af segment",
-          "de": "[[device]] Segmentreinigung gestartet"
+          "en": "Started cleaning a segment",
+          "da": "Begyndte rengøring af segment",
+          "de": "Segmentreinigung gestartet"
         },
         "hint": {
           "en": "Triggers when the robot starts cleaning a specific room segment.",
@@ -455,7 +455,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -497,9 +497,9 @@
           "de": "Ein Valetudo-Update ist verfügbar"
         },
         "titleFormatted": {
-          "en": "[[device]] A Valetudo update is available",
-          "da": "[[device]] En Valetudo-opdatering er tilgængelig",
-          "de": "[[device]] Ein Valetudo-Update ist verfügbar"
+          "en": "A Valetudo update is available",
+          "da": "En Valetudo-opdatering er tilgængelig",
+          "de": "Ein Valetudo-Update ist verfügbar"
         },
         "hint": {
           "en": "Triggers when Valetudo detects a newer version is available.",
@@ -513,7 +513,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -541,9 +541,9 @@
           "de": "Valetudo wurde aktualisiert"
         },
         "titleFormatted": {
-          "en": "[[device]] Valetudo was updated",
-          "da": "[[device]] Valetudo blev opdateret",
-          "de": "[[device]] Valetudo wurde aktualisiert"
+          "en": "Valetudo was updated",
+          "da": "Valetudo blev opdateret",
+          "de": "Valetudo wurde aktualisiert"
         },
         "hint": {
           "en": "Triggers when the Valetudo firmware version changes on the robot.",
@@ -557,7 +557,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ],
         "tokens": [
@@ -601,9 +601,9 @@
           "de": "Aktuelles Stockwerk hat eine Ladestation"
         },
         "titleFormatted": {
-          "en": "[[device]] Current floor has a dock",
-          "da": "[[device]] Nuværende etage har en dock",
-          "de": "[[device]] Aktuelles Stockwerk hat eine Ladestation"
+          "en": "Current floor has a dock",
+          "da": "Nuværende etage har en dock",
+          "de": "Aktuelles Stockwerk hat eine Ladestation"
         },
         "titleTrue": {
           "en": "[[device]] Current floor has a dock",
@@ -627,7 +627,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -639,9 +639,9 @@
           "de": "Status ist"
         },
         "titleFormatted": {
-          "en": "[[device]] State is [[state]]",
-          "da": "[[device]] Status er [[state]]",
-          "de": "[[device]] Status ist [[state]]"
+          "en": "State is [[state]]",
+          "da": "Status er [[state]]",
+          "de": "Status ist [[state]]"
         },
         "titleTrue": {
           "en": "[[device]] State is [[state]]",
@@ -665,7 +665,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "dropdown",
@@ -752,9 +752,9 @@
           "de": "Teppich-Boost ist aktiviert"
         },
         "titleFormatted": {
-          "en": "[[device]] Carpet boost mode is enabled",
-          "da": "[[device]] Tæppe-boost er aktiveret",
-          "de": "[[device]] Teppich-Boost ist aktiviert"
+          "en": "Carpet boost mode is enabled",
+          "da": "Tæppe-boost er aktiveret",
+          "de": "Teppich-Boost ist aktiviert"
         },
         "titleTrue": {
           "en": "[[device]] Carpet boost mode is enabled",
@@ -778,7 +778,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -790,9 +790,9 @@
           "de": "Bitte nicht stören ist aktiviert"
         },
         "titleFormatted": {
-          "en": "[[device]] Do Not Disturb is enabled",
-          "da": "[[device]] Forstyr ikke er aktiveret",
-          "de": "[[device]] Bitte nicht stören ist aktiviert"
+          "en": "Do Not Disturb is enabled",
+          "da": "Forstyr ikke er aktiveret",
+          "de": "Bitte nicht stören ist aktiviert"
         },
         "titleTrue": {
           "en": "[[device]] Do Not Disturb is enabled",
@@ -816,7 +816,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -828,9 +828,9 @@
           "de": "Ist in Segment"
         },
         "titleFormatted": {
-          "en": "[[device]] Is in segment [[segment]]",
-          "da": "[[device]] Er i segment [[segment]]",
-          "de": "[[device]] Ist in Segment [[segment]]"
+          "en": "Is in segment [[segment]]",
+          "da": "Er i segment [[segment]]",
+          "de": "Ist in Segment [[segment]]"
         },
         "titleTrue": {
           "en": "[[device]] Is in segment [[segment]]",
@@ -854,7 +854,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -880,9 +880,9 @@
           "de": "Ist auf Teppich"
         },
         "titleFormatted": {
-          "en": "[[device]] Is on carpet",
-          "da": "[[device]] Er på tæppe",
-          "de": "[[device]] Ist auf Teppich"
+          "en": "Is on carpet",
+          "da": "Er på tæppe",
+          "de": "Ist auf Teppich"
         },
         "titleTrue": {
           "en": "[[device]] Is on carpet",
@@ -906,7 +906,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -918,9 +918,9 @@
           "de": "Ist auf Stockwerk"
         },
         "titleFormatted": {
-          "en": "[[device]] Is on floor [[floor]]",
-          "da": "[[device]] Er på etage [[floor]]",
-          "de": "[[device]] Ist auf Stockwerk [[floor]]"
+          "en": "Is on floor [[floor]]",
+          "da": "Er på etage [[floor]]",
+          "de": "Ist auf Stockwerk [[floor]]"
         },
         "titleTrue": {
           "en": "[[device]] Is on floor [[floor]]",
@@ -944,7 +944,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -972,9 +972,9 @@
           "de": "Segment reinigen"
         },
         "titleFormatted": {
-          "en": "[[device]] Clean segment [[segment]] ([[iterations]]x)",
-          "da": "[[device]] Rengør segment [[segment]] ([[iterations]]x)",
-          "de": "[[device]] Segment [[segment]] reinigen ([[iterations]]x)"
+          "en": "Clean segment [[segment]] ([[iterations]]x)",
+          "da": "Rengør segment [[segment]] ([[iterations]]x)",
+          "de": "Segment [[segment]] reinigen ([[iterations]]x)"
         },
         "hint": {
           "en": "Cleans a specific room on the map. Segments are defined in the Valetudo web UI.",
@@ -988,7 +988,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -1026,9 +1026,9 @@
           "de": "Zone reinigen"
         },
         "titleFormatted": {
-          "en": "[[device]] Clean zone [[zone]] ([[iterations]]x)",
-          "da": "[[device]] Rengør zone [[zone]] ([[iterations]]x)",
-          "de": "[[device]] Zone [[zone]] reinigen ([[iterations]]x)"
+          "en": "Clean zone [[zone]] ([[iterations]]x)",
+          "da": "Rengør zone [[zone]] ([[iterations]]x)",
+          "de": "Zone [[zone]] reinigen ([[iterations]]x)"
         },
         "hint": {
           "en": "Cleans a previously saved rectangular zone.",
@@ -1042,7 +1042,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -1080,9 +1080,9 @@
           "de": "Gespeicherte Zone löschen"
         },
         "titleFormatted": {
-          "en": "[[device]] Delete saved zone [[zone]]",
-          "da": "[[device]] Slet gemt zone [[zone]]",
-          "de": "[[device]] Gespeicherte Zone [[zone]] löschen"
+          "en": "Delete saved zone [[zone]]",
+          "da": "Slet gemt zone [[zone]]",
+          "de": "Gespeicherte Zone [[zone]] löschen"
         },
         "hint": {
           "en": "Permanently removes a saved zone from the app.",
@@ -1096,7 +1096,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -1122,9 +1122,9 @@
           "de": "Roboter zu Koordinaten schicken"
         },
         "titleFormatted": {
-          "en": "[[device]] Send robot to ([[x]], [[y]])",
-          "da": "[[device]] Send robot til ([[x]], [[y]])",
-          "de": "[[device]] Roboter zu ([[x]], [[y]]) schicken"
+          "en": "Send robot to ([[x]], [[y]])",
+          "da": "Send robot til ([[x]], [[y]])",
+          "de": "Roboter zu ([[x]], [[y]]) schicken"
         },
         "hint": {
           "en": "Sends the robot to a specific point on the map. Find coordinates in the Valetudo web UI.",
@@ -1138,7 +1138,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "number",
@@ -1172,9 +1172,9 @@
           "de": "Sprachpaket installieren"
         },
         "titleFormatted": {
-          "en": "[[device]] Install voice pack from [[url]] (language: [[language]])",
-          "da": "[[device]] Installer stemmepakke fra [[url]] (sprog: [[language]])",
-          "de": "[[device]] Sprachpaket von [[url]] installieren (Sprache: [[language]])"
+          "en": "Install voice pack from [[url]] (language: [[language]])",
+          "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])",
+          "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])"
         },
         "hint": {
           "en": "Downloads and installs a custom voice pack on the robot.",
@@ -1188,7 +1188,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "text",
@@ -1228,9 +1228,9 @@
           "de": "Roboter finden"
         },
         "titleFormatted": {
-          "en": "[[device]] Locate robot",
-          "da": "[[device]] Find robot",
-          "de": "[[device]] Roboter finden"
+          "en": "Locate robot",
+          "da": "Find robot",
+          "de": "Roboter finden"
         },
         "hint": {
           "en": "Makes the robot play a sound so you can find it.",
@@ -1244,7 +1244,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1256,9 +1256,9 @@
           "de": "Reinigung pausieren"
         },
         "titleFormatted": {
-          "en": "[[device]] Pause cleaning",
-          "da": "[[device]] Pause rengøring",
-          "de": "[[device]] Reinigung pausieren"
+          "en": "Pause cleaning",
+          "da": "Pause rengøring",
+          "de": "Reinigung pausieren"
         },
         "hint": {
           "en": "Pauses cleaning. The robot can resume from where it stopped.",
@@ -1272,7 +1272,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1284,9 +1284,9 @@
           "de": "Testton abspielen"
         },
         "titleFormatted": {
-          "en": "[[device]] Play test sound",
-          "da": "[[device]] Afspil testlyd",
-          "de": "[[device]] Testton abspielen"
+          "en": "Play test sound",
+          "da": "Afspil testlyd",
+          "de": "Testton abspielen"
         },
         "hint": {
           "en": "Plays a sound on the robot to test the speaker volume.",
@@ -1300,7 +1300,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1312,9 +1312,9 @@
           "de": "Raumsegmente aktualisieren"
         },
         "titleFormatted": {
-          "en": "[[device]] Refresh room segments",
-          "da": "[[device]] Opdater rumsegmenter",
-          "de": "[[device]] Raumsegmente aktualisieren"
+          "en": "Refresh room segments",
+          "da": "Opdater rumsegmenter",
+          "de": "Raumsegmente aktualisieren"
         },
         "hint": {
           "en": "Fetches the current room segments from the robot. Use this if rooms are missing from other flow card autocomplete lists.",
@@ -1328,7 +1328,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1340,9 +1340,9 @@
           "de": "Segment umbenennen"
         },
         "titleFormatted": {
-          "en": "[[device]] Rename segment [[segment]] to [[name]]",
-          "da": "[[device]] Omdøb segment [[segment]] til [[name]]",
-          "de": "[[device]] Segment [[segment]] in [[name]] umbenennen"
+          "en": "Rename segment [[segment]] to [[name]]",
+          "da": "Omdøb segment [[segment]] til [[name]]",
+          "de": "Segment [[segment]] in [[name]] umbenennen"
         },
         "hint": {
           "en": "Renames a room segment on the robot's map.",
@@ -1356,7 +1356,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -1396,9 +1396,9 @@
           "de": "Verbrauchsteil zurücksetzen"
         },
         "titleFormatted": {
-          "en": "[[device]] Reset consumable [[consumable]]",
-          "da": "[[device]] Nulstil forbrugsdel [[consumable]]",
-          "de": "[[device]] Verbrauchsteil [[consumable]] zurücksetzen"
+          "en": "Reset consumable [[consumable]]",
+          "da": "Nulstil forbrugsdel [[consumable]]",
+          "de": "Verbrauchsteil [[consumable]] zurücksetzen"
         },
         "hint": {
           "en": "Resets the wear counter after replacing a consumable part.",
@@ -1412,7 +1412,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "dropdown",
@@ -1475,9 +1475,9 @@
           "de": "Zur Ladestation zurückkehren"
         },
         "titleFormatted": {
-          "en": "[[device]] Return to dock",
-          "da": "[[device]] Kør til dock",
-          "de": "[[device]] Zur Ladestation zurückkehren"
+          "en": "Return to dock",
+          "da": "Kør til dock",
+          "de": "Zur Ladestation zurückkehren"
         },
         "hint": {
           "en": "Sends the robot back to its charging dock.",
@@ -1491,7 +1491,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1503,9 +1503,9 @@
           "de": "Aktuelle Karte als Stockwerk speichern"
         },
         "titleFormatted": {
-          "en": "[[device]] Save current map as floor [[floor_name]] (dock: [[has_dock]])",
-          "da": "[[device]] Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
-          "de": "[[device]] Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
+          "en": "Save current map as floor [[floor_name]] (dock: [[has_dock]])",
+          "da": "Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
+          "de": "Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
         },
         "hint": {
           "en": "Saves a backup of the robot's current map as a named floor via SSH.",
@@ -1519,7 +1519,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "text",
@@ -1572,9 +1572,9 @@
           "de": "Zone an Koordinaten speichern"
         },
         "titleFormatted": {
-          "en": "[[device]] Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
-          "da": "[[device]] Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
-          "de": "[[device]] Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
+          "en": "Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
+          "da": "Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
+          "de": "Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
         },
         "hint": {
           "en": "Saves a rectangular zone by map coordinates. Find coordinates in the Valetudo web UI.",
@@ -1588,7 +1588,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "text",
@@ -1658,9 +1658,9 @@
           "de": "Teppich-Boost einstellen"
         },
         "titleFormatted": {
-          "en": "[[device]] Set carpet boost mode [[enabled]]",
-          "da": "[[device]] Indstil tæppe-boost [[enabled]]",
-          "de": "[[device]] Teppich-Boost [[enabled]]"
+          "en": "Set carpet boost mode [[enabled]]",
+          "da": "Indstil tæppe-boost [[enabled]]",
+          "de": "Teppich-Boost [[enabled]]"
         },
         "hint": {
           "en": "Automatically increases suction power when the robot detects carpet.",
@@ -1674,7 +1674,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "dropdown",
@@ -1713,9 +1713,9 @@
           "de": "Bitte nicht stören einstellen"
         },
         "titleFormatted": {
-          "en": "[[device]] Set Do Not Disturb [[enabled]]",
-          "da": "[[device]] Indstil Forstyr ikke [[enabled]]",
-          "de": "[[device]] Bitte nicht stören [[enabled]]"
+          "en": "Set Do Not Disturb [[enabled]]",
+          "da": "Indstil Forstyr ikke [[enabled]]",
+          "de": "Bitte nicht stören [[enabled]]"
         },
         "hint": {
           "en": "Silences the robot and prevents scheduled cleanings.",
@@ -1729,7 +1729,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "dropdown",
@@ -1768,9 +1768,9 @@
           "de": "Saugstärke einstellen"
         },
         "titleFormatted": {
-          "en": "[[device]] Set fan speed to [[speed]]",
-          "da": "[[device]] Indstil blæserhastighed til [[speed]]",
-          "de": "[[device]] Saugstärke auf [[speed]] einstellen"
+          "en": "Set fan speed to [[speed]]",
+          "da": "Indstil blæserhastighed til [[speed]]",
+          "de": "Saugstärke auf [[speed]] einstellen"
         },
         "hint": {
           "en": "Controls the vacuum suction power.",
@@ -1784,7 +1784,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "dropdown",
@@ -1863,9 +1863,9 @@
           "de": "Lautstärke einstellen"
         },
         "titleFormatted": {
-          "en": "[[device]] Set speaker volume to [[volume]]%",
-          "da": "[[device]] Indstil højtalervolumen til [[volume]]%",
-          "de": "[[device]] Lautstärke auf [[volume]]% einstellen"
+          "en": "Set speaker volume to [[volume]]%",
+          "da": "Indstil højtalervolumen til [[volume]]%",
+          "de": "Lautstärke auf [[volume]]% einstellen"
         },
         "hint": {
           "en": "Controls the robot's voice and notification volume.",
@@ -1879,7 +1879,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "number",
@@ -1904,9 +1904,9 @@
           "de": "Reinigung starten"
         },
         "titleFormatted": {
-          "en": "[[device]] Start cleaning",
-          "da": "[[device]] Start rengøring",
-          "de": "[[device]] Reinigung starten"
+          "en": "Start cleaning",
+          "da": "Start rengøring",
+          "de": "Reinigung starten"
         },
         "hint": {
           "en": "Starts a full cleaning of the current floor map.",
@@ -1920,7 +1920,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1932,9 +1932,9 @@
           "de": "Neue Karte erstellen"
         },
         "titleFormatted": {
-          "en": "[[device]] Start building a new map",
-          "da": "[[device]] Start opbygning af nyt kort",
-          "de": "[[device]] Neue Karte erstellen"
+          "en": "Start building a new map",
+          "da": "Start opbygning af nyt kort",
+          "de": "Neue Karte erstellen"
         },
         "hint": {
           "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
@@ -1948,7 +1948,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1960,9 +1960,9 @@
           "de": "Reinigung stoppen"
         },
         "titleFormatted": {
-          "en": "[[device]] Stop cleaning",
-          "da": "[[device]] Stop rengøring",
-          "de": "[[device]] Reinigung stoppen"
+          "en": "Stop cleaning",
+          "da": "Stop rengøring",
+          "de": "Reinigung stoppen"
         },
         "hint": {
           "en": "Stops the robot immediately. It will stay where it is.",
@@ -1976,7 +1976,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           }
         ]
       },
@@ -1988,9 +1988,9 @@
           "de": "Stockwerk wechseln"
         },
         "titleFormatted": {
-          "en": "[[device]] Switch to floor [[floor]]",
-          "da": "[[device]] Skift til etage [[floor]]",
-          "de": "[[device]] Wechsle zu Stockwerk [[floor]]"
+          "en": "Switch to floor [[floor]]",
+          "da": "Skift til etage [[floor]]",
+          "de": "Wechsle zu Stockwerk [[floor]]"
         },
         "hint": {
           "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
@@ -2004,7 +2004,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -2030,9 +2030,9 @@
           "de": "Stockwerk aktualisieren"
         },
         "titleFormatted": {
-          "en": "[[device]] Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
-          "da": "[[device]] Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
-          "de": "[[device]] Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+          "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+          "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+          "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
         },
         "hint": {
           "en": "Renames a saved floor and updates its dock setting.",
@@ -2046,7 +2046,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "capability=vacuum_state"
+            "filter": "driver_id=valetudo"
           },
           {
             "type": "autocomplete",
@@ -2113,9 +2113,9 @@
           "de": "Wasserverbrauch einstellen"
         },
         "titleFormatted": {
-          "en": "Set water usage to [[level]]",
-          "da": "Indstil vandforbrug til [[level]]",
-          "de": "Wasserverbrauch auf [[level]] einstellen"
+          "en": "[[device]] Set water usage to [[level]]",
+          "da": "[[device]] Indstil vandforbrug til [[level]]",
+          "de": "[[device]] Wasserverbrauch auf [[level]] einstellen"
         },
         "hint": {
           "en": "Controls how much water the mop uses. Only available on models with mopping.",
@@ -2129,6 +2129,11 @@
           {
             "type": "device",
             "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "name": "device",
+            "type": "device",
             "filter": "driver_id=valetudo"
           },
           {
@@ -2200,9 +2205,9 @@
           "de": "Betriebsmodus einstellen"
         },
         "titleFormatted": {
-          "en": "Set operation mode to [[mode]]",
-          "da": "Indstil driftstilstand til [[mode]]",
-          "de": "Betriebsmodus auf [[mode]] einstellen"
+          "en": "[[device]] Set operation mode to [[mode]]",
+          "da": "[[device]] Indstil driftstilstand til [[mode]]",
+          "de": "[[device]] Betriebsmodus auf [[mode]] einstellen"
         },
         "hint": {
           "en": "Switches between vacuum only, mop only, or combined modes.",
@@ -2216,6 +2221,11 @@
           {
             "type": "device",
             "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "name": "device",
+            "type": "device",
             "filter": "driver_id=valetudo"
           },
           {
@@ -2271,9 +2281,9 @@
           "de": "Staubbehälter leeren"
         },
         "titleFormatted": {
-          "en": "Empty dustbin",
-          "da": "Tøm støvbeholder",
-          "de": "Staubbehälter leeren"
+          "en": "[[device]] Empty dustbin",
+          "da": "[[device]] Tøm støvbeholder",
+          "de": "[[device]] Staubbehälter leeren"
         },
         "hint": {
           "en": "Triggers the auto-empty dock to empty the robot's dustbin. Requires a compatible dock.",
@@ -2287,6 +2297,11 @@
           {
             "type": "device",
             "name": "device",
+            "filter": "driver_id=valetudo"
+          },
+          {
+            "name": "device",
+            "type": "device",
             "filter": "driver_id=valetudo"
           }
         ]

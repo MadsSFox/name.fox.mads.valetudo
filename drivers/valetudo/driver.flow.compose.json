@@ -10,9 +10,9 @@
         "de": "Wasserverbrauch einstellen"
       },
       "titleFormatted": {
-        "en": "Set water usage to [[level]]",
-        "da": "Indstil vandforbrug til [[level]]",
-        "de": "Wasserverbrauch auf [[level]] einstellen"
+        "en": "[[device]] Set water usage to [[level]]",
+        "da": "[[device]] Indstil vandforbrug til [[level]]",
+        "de": "[[device]] Wasserverbrauch auf [[level]] einstellen"
       },
       "hint": {
         "en": "Controls how much water the mop uses. Only available on models with mopping.",
@@ -21,6 +21,11 @@
       },
       "platforms": ["local"],
       "args": [
+        {
+          "name": "device",
+          "type": "device",
+          "filter": "driver_id=valetudo"
+        },
         {
           "type": "dropdown",
           "name": "level",
@@ -44,9 +49,9 @@
         "de": "Betriebsmodus einstellen"
       },
       "titleFormatted": {
-        "en": "Set operation mode to [[mode]]",
-        "da": "Indstil driftstilstand til [[mode]]",
-        "de": "Betriebsmodus auf [[mode]] einstellen"
+        "en": "[[device]] Set operation mode to [[mode]]",
+        "da": "[[device]] Indstil driftstilstand til [[mode]]",
+        "de": "[[device]] Betriebsmodus auf [[mode]] einstellen"
       },
       "hint": {
         "en": "Switches between vacuum only, mop only, or combined modes.",
@@ -55,6 +60,11 @@
       },
       "platforms": ["local"],
       "args": [
+        {
+          "name": "device",
+          "type": "device",
+          "filter": "driver_id=valetudo"
+        },
         {
           "type": "dropdown",
           "name": "mode",
@@ -76,9 +86,9 @@
         "de": "Staubbehälter leeren"
       },
       "titleFormatted": {
-        "en": "Empty dustbin",
-        "da": "Tøm støvbeholder",
-        "de": "Staubbehälter leeren"
+        "en": "[[device]] Empty dustbin",
+        "da": "[[device]] Tøm støvbeholder",
+        "de": "[[device]] Staubbehälter leeren"
       },
       "hint": {
         "en": "Triggers the auto-empty dock to empty the robot's dustbin. Requires a compatible dock.",
@@ -86,7 +96,13 @@
         "de": "Löst das automatische Entleeren des Staubbehälters über die Dockstation aus. Erfordert eine kompatible Dockstation."
       },
       "platforms": ["local"],
-      "args": []
+      "args": [
+        {
+          "name": "device",
+          "type": "device",
+          "filter": "driver_id=valetudo"
+        }
+      ]
     }
   ]
 }

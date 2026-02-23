@@ -6,9 +6,9 @@
     "de": "Testton abspielen"
   },
   "titleFormatted": {
-    "en": "[[device]] Play test sound",
-    "da": "[[device]] Afspil testlyd",
-    "de": "[[device]] Testton abspielen"
+    "en": "Play test sound",
+    "da": "Afspil testlyd",
+    "de": "Testton abspielen"
   },
   "hint": {
     "en": "Plays a sound on the robot to test the speaker volume.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

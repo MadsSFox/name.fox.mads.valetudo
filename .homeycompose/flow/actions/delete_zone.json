@@ -6,9 +6,9 @@
     "de": "Gespeicherte Zone löschen"
   },
   "titleFormatted": {
-    "en": "[[device]] Delete saved zone [[zone]]",
-    "da": "[[device]] Slet gemt zone [[zone]]",
-    "de": "[[device]] Gespeicherte Zone [[zone]] löschen"
+    "en": "Delete saved zone [[zone]]",
+    "da": "Slet gemt zone [[zone]]",
+    "de": "Gespeicherte Zone [[zone]] löschen"
   },
   "hint": {
     "en": "Permanently removes a saved zone from the app.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

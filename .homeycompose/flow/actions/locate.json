@@ -6,9 +6,9 @@
     "de": "Roboter finden"
   },
   "titleFormatted": {
-    "en": "[[device]] Locate robot",
-    "da": "[[device]] Find robot",
-    "de": "[[device]] Roboter finden"
+    "en": "Locate robot",
+    "da": "Find robot",
+    "de": "Roboter finden"
   },
   "hint": {
     "en": "Makes the robot play a sound so you can find it.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

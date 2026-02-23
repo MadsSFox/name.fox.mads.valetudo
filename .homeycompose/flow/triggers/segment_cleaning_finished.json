@@ -6,9 +6,9 @@
     "de": "Segmentreinigung beendet"
   },
   "titleFormatted": {
-    "en": "[[device]] Finished cleaning a segment",
-    "da": "[[device]] Afsluttede rengøring af segment",
-    "de": "[[device]] Segmentreinigung beendet"
+    "en": "Finished cleaning a segment",
+    "da": "Afsluttede rengøring af segment",
+    "de": "Segmentreinigung beendet"
   },
   "hint": {
     "en": "Triggers when the robot finishes cleaning a specific room segment.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

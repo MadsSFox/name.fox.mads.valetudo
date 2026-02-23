@@ -6,9 +6,9 @@
     "de": "Ist auf Stockwerk"
   },
   "titleFormatted": {
-    "en": "[[device]] Is on floor [[floor]]",
-    "da": "[[device]] Er på etage [[floor]]",
-    "de": "[[device]] Ist auf Stockwerk [[floor]]"
+    "en": "Is on floor [[floor]]",
+    "da": "Er på etage [[floor]]",
+    "de": "Ist auf Stockwerk [[floor]]"
   },
   "titleTrue": {
     "en": "[[device]] Is on floor [[floor]]",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

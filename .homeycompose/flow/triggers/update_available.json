@@ -6,9 +6,9 @@
     "de": "Ein Valetudo-Update ist verfügbar"
   },
   "titleFormatted": {
-    "en": "[[device]] A Valetudo update is available",
-    "da": "[[device]] En Valetudo-opdatering er tilgængelig",
-    "de": "[[device]] Ein Valetudo-Update ist verfügbar"
+    "en": "A Valetudo update is available",
+    "da": "En Valetudo-opdatering er tilgængelig",
+    "de": "Ein Valetudo-Update ist verfügbar"
   },
   "hint": {
     "en": "Triggers when Valetudo detects a newer version is available.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

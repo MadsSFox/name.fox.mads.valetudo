@@ -6,9 +6,9 @@
     "de": "Stockwerk wechseln"
   },
   "titleFormatted": {
-    "en": "[[device]] Switch to floor [[floor]]",
-    "da": "[[device]] Skift til etage [[floor]]",
-    "de": "[[device]] Wechsle zu Stockwerk [[floor]]"
+    "en": "Switch to floor [[floor]]",
+    "da": "Skift til etage [[floor]]",
+    "de": "Wechsle zu Stockwerk [[floor]]"
   },
   "hint": {
     "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

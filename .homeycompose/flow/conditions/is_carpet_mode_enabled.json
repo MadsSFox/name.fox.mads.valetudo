@@ -6,9 +6,9 @@
     "de": "Teppich-Boost ist aktiviert"
   },
   "titleFormatted": {
-    "en": "[[device]] Carpet boost mode is enabled",
-    "da": "[[device]] Tæppe-boost er aktiveret",
-    "de": "[[device]] Teppich-Boost ist aktiviert"
+    "en": "Carpet boost mode is enabled",
+    "da": "Tæppe-boost er aktiveret",
+    "de": "Teppich-Boost ist aktiviert"
   },
   "titleTrue": {
     "en": "[[device]] Carpet boost mode is enabled",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

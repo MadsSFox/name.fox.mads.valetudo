@@ -6,9 +6,9 @@
     "de": "Reinigung gestartet"
   },
   "titleFormatted": {
-    "en": "[[device]] Cleaning started",
-    "da": "[[device]] Rengøring startet",
-    "de": "[[device]] Reinigung gestartet"
+    "en": "Cleaning started",
+    "da": "Rengøring startet",
+    "de": "Reinigung gestartet"
   },
   "hint": {
     "en": "Triggers when the robot begins a cleaning session.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

@@ -6,9 +6,9 @@
     "de": "Staubbehälter muss geleert werden"
   },
   "titleFormatted": {
-    "en": "[[device]] Dustbin needs emptying",
-    "da": "[[device]] Støvbeholderen skal tømmes",
-    "de": "[[device]] Staubbehälter muss geleert werden"
+    "en": "Dustbin needs emptying",
+    "da": "Støvbeholderen skal tømmes",
+    "de": "Staubbehälter muss geleert werden"
   },
   "hint": {
     "en": "Triggers when the robot reports its dustbin is full.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

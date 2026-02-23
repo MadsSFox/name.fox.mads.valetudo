@@ -6,9 +6,9 @@
     "de": "Ein Verbrauchsteil muss ersetzt werden"
   },
   "titleFormatted": {
-    "en": "[[device]] A consumable needs replacement",
-    "da": "[[device]] En forbrugsdel skal udskiftes",
-    "de": "[[device]] Ein Verbrauchsteil muss ersetzt werden"
+    "en": "A consumable needs replacement",
+    "da": "En forbrugsdel skal udskiftes",
+    "de": "Ein Verbrauchsteil muss ersetzt werden"
   },
   "hint": {
     "en": "Triggers when a consumable like filter, brush, or mop is worn out.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

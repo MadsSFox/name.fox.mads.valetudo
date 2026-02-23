@@ -6,9 +6,9 @@
     "de": "Lautstärke einstellen"
   },
   "titleFormatted": {
-    "en": "[[device]] Set speaker volume to [[volume]]%",
-    "da": "[[device]] Indstil højtalervolumen til [[volume]]%",
-    "de": "[[device]] Lautstärke auf [[volume]]% einstellen"
+    "en": "Set speaker volume to [[volume]]%",
+    "da": "Indstil højtalervolumen til [[volume]]%",
+    "de": "Lautstärke auf [[volume]]% einstellen"
   },
   "hint": {
     "en": "Controls the robot's voice and notification volume.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "number",

@@ -6,9 +6,9 @@
     "de": "Bitte nicht stören ist aktiviert"
   },
   "titleFormatted": {
-    "en": "[[device]] Do Not Disturb is enabled",
-    "da": "[[device]] Forstyr ikke er aktiveret",
-    "de": "[[device]] Bitte nicht stören ist aktiviert"
+    "en": "Do Not Disturb is enabled",
+    "da": "Forstyr ikke er aktiveret",
+    "de": "Bitte nicht stören ist aktiviert"
   },
   "titleTrue": {
     "en": "[[device]] Do Not Disturb is enabled",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

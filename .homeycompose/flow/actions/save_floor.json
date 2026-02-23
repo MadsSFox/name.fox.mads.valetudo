@@ -6,9 +6,9 @@
     "de": "Aktuelle Karte als Stockwerk speichern"
   },
   "titleFormatted": {
-    "en": "[[device]] Save current map as floor [[floor_name]] (dock: [[has_dock]])",
-    "da": "[[device]] Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
-    "de": "[[device]] Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
+    "en": "Save current map as floor [[floor_name]] (dock: [[has_dock]])",
+    "da": "Gem nuværende kort som etage [[floor_name]] (dock: [[has_dock]])",
+    "de": "Aktuelle Karte als Stockwerk [[floor_name]] speichern (Ladestation: [[has_dock]])"
   },
   "hint": {
     "en": "Saves a backup of the robot's current map as a named floor via SSH.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "text",

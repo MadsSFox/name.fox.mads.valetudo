@@ -6,9 +6,9 @@
     "de": "Zone reinigen"
   },
   "titleFormatted": {
-    "en": "[[device]] Clean zone [[zone]] ([[iterations]]x)",
-    "da": "[[device]] Rengør zone [[zone]] ([[iterations]]x)",
-    "de": "[[device]] Zone [[zone]] reinigen ([[iterations]]x)"
+    "en": "Clean zone [[zone]] ([[iterations]]x)",
+    "da": "Rengør zone [[zone]] ([[iterations]]x)",
+    "de": "Zone [[zone]] reinigen ([[iterations]]x)"
   },
   "hint": {
     "en": "Cleans a previously saved rectangular zone.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

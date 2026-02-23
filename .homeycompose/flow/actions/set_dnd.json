@@ -6,9 +6,9 @@
     "de": "Bitte nicht stören einstellen"
   },
   "titleFormatted": {
-    "en": "[[device]] Set Do Not Disturb [[enabled]]",
-    "da": "[[device]] Indstil Forstyr ikke [[enabled]]",
-    "de": "[[device]] Bitte nicht stören [[enabled]]"
+    "en": "Set Do Not Disturb [[enabled]]",
+    "da": "Indstil Forstyr ikke [[enabled]]",
+    "de": "Bitte nicht stören [[enabled]]"
   },
   "hint": {
     "en": "Silences the robot and prevents scheduled cleanings.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "dropdown",

@@ -6,9 +6,9 @@
     "de": "Sprachpaket installieren"
   },
   "titleFormatted": {
-    "en": "[[device]] Install voice pack from [[url]] (language: [[language]])",
-    "da": "[[device]] Installer stemmepakke fra [[url]] (sprog: [[language]])",
-    "de": "[[device]] Sprachpaket von [[url]] installieren (Sprache: [[language]])"
+    "en": "Install voice pack from [[url]] (language: [[language]])",
+    "da": "Installer stemmepakke fra [[url]] (sprog: [[language]])",
+    "de": "Sprachpaket von [[url]] installieren (Sprache: [[language]])"
   },
   "hint": {
     "en": "Downloads and installs a custom voice pack on the robot.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "text",

@@ -6,9 +6,9 @@
     "de": "Zone an Koordinaten speichern"
   },
   "titleFormatted": {
-    "en": "[[device]] Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
-    "da": "[[device]] Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
-    "de": "[[device]] Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
+    "en": "Save zone [[name]] at ([[x1]],[[y1]]) to ([[x2]],[[y2]])",
+    "da": "Gem zone [[name]] ved ([[x1]],[[y1]]) til ([[x2]],[[y2]])",
+    "de": "Zone [[name]] speichern von ([[x1]],[[y1]]) bis ([[x2]],[[y2]])"
   },
   "hint": {
     "en": "Saves a rectangular zone by map coordinates. Find coordinates in the Valetudo web UI.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "text",

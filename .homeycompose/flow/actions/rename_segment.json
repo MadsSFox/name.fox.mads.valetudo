@@ -6,9 +6,9 @@
     "de": "Segment umbenennen"
   },
   "titleFormatted": {
-    "en": "[[device]] Rename segment [[segment]] to [[name]]",
-    "da": "[[device]] Omdøb segment [[segment]] til [[name]]",
-    "de": "[[device]] Segment [[segment]] in [[name]] umbenennen"
+    "en": "Rename segment [[segment]] to [[name]]",
+    "da": "Omdøb segment [[segment]] til [[name]]",
+    "de": "Segment [[segment]] in [[name]] umbenennen"
   },
   "hint": {
     "en": "Renames a room segment on the robot's map.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

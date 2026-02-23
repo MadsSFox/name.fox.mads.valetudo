@@ -6,9 +6,9 @@
     "de": "Reinigung beendet"
   },
   "titleFormatted": {
-    "en": "[[device]] Cleaning finished",
-    "da": "[[device]] Rengøring afsluttet",
-    "de": "[[device]] Reinigung beendet"
+    "en": "Cleaning finished",
+    "da": "Rengøring afsluttet",
+    "de": "Reinigung beendet"
   },
   "hint": {
     "en": "Triggers when the robot completes a cleaning session.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

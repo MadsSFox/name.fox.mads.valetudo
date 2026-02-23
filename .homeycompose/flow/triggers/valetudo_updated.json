@@ -6,9 +6,9 @@
     "de": "Valetudo wurde aktualisiert"
   },
   "titleFormatted": {
-    "en": "[[device]] Valetudo was updated",
-    "da": "[[device]] Valetudo blev opdateret",
-    "de": "[[device]] Valetudo wurde aktualisiert"
+    "en": "Valetudo was updated",
+    "da": "Valetudo blev opdateret",
+    "de": "Valetudo wurde aktualisiert"
   },
   "hint": {
     "en": "Triggers when the Valetudo firmware version changes on the robot.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

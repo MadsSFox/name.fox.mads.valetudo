@@ -6,9 +6,9 @@
     "de": "Ist in Segment"
   },
   "titleFormatted": {
-    "en": "[[device]] Is in segment [[segment]]",
-    "da": "[[device]] Er i segment [[segment]]",
-    "de": "[[device]] Ist in Segment [[segment]]"
+    "en": "Is in segment [[segment]]",
+    "da": "Er i segment [[segment]]",
+    "de": "Ist in Segment [[segment]]"
   },
   "titleTrue": {
     "en": "[[device]] Is in segment [[segment]]",
@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "autocomplete",

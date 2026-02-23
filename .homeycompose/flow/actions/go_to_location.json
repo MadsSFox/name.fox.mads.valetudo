@@ -6,9 +6,9 @@
     "de": "Roboter zu Koordinaten schicken"
   },
   "titleFormatted": {
-    "en": "[[device]] Send robot to ([[x]], [[y]])",
-    "da": "[[device]] Send robot til ([[x]], [[y]])",
-    "de": "[[device]] Roboter zu ([[x]], [[y]]) schicken"
+    "en": "Send robot to ([[x]], [[y]])",
+    "da": "Send robot til ([[x]], [[y]])",
+    "de": "Roboter zu ([[x]], [[y]]) schicken"
   },
   "hint": {
     "en": "Sends the robot to a specific point on the map. Find coordinates in the Valetudo web UI.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "number",

@@ -6,9 +6,9 @@
     "de": "Verbrauchsteil zurücksetzen"
   },
   "titleFormatted": {
-    "en": "[[device]] Reset consumable [[consumable]]",
-    "da": "[[device]] Nulstil forbrugsdel [[consumable]]",
-    "de": "[[device]] Verbrauchsteil [[consumable]] zurücksetzen"
+    "en": "Reset consumable [[consumable]]",
+    "da": "Nulstil forbrugsdel [[consumable]]",
+    "de": "Verbrauchsteil [[consumable]] zurücksetzen"
   },
   "hint": {
     "en": "Resets the wear counter after replacing a consumable part.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "dropdown",

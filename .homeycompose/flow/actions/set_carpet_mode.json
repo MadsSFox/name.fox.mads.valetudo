@@ -6,9 +6,9 @@
     "de": "Teppich-Boost einstellen"
   },
   "titleFormatted": {
-    "en": "[[device]] Set carpet boost mode [[enabled]]",
-    "da": "[[device]] Indstil tæppe-boost [[enabled]]",
-    "de": "[[device]] Teppich-Boost [[enabled]]"
+    "en": "Set carpet boost mode [[enabled]]",
+    "da": "Indstil tæppe-boost [[enabled]]",
+    "de": "Teppich-Boost [[enabled]]"
   },
   "hint": {
     "en": "Automatically increases suction power when the robot detects carpet.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     },
     {
       "type": "dropdown",

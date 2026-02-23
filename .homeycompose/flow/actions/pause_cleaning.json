@@ -6,9 +6,9 @@
     "de": "Reinigung pausieren"
   },
   "titleFormatted": {
-    "en": "[[device]] Pause cleaning",
-    "da": "[[device]] Pause rengøring",
-    "de": "[[device]] Reinigung pausieren"
+    "en": "Pause cleaning",
+    "da": "Pause rengøring",
+    "de": "Reinigung pausieren"
   },
   "hint": {
     "en": "Pauses cleaning. The robot can resume from where it stopped.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

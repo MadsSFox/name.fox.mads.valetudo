@@ -6,9 +6,9 @@
     "de": "Reinigung stoppen"
   },
   "titleFormatted": {
-    "en": "[[device]] Stop cleaning",
-    "da": "[[device]] Stop rengøring",
-    "de": "[[device]] Reinigung stoppen"
+    "en": "Stop cleaning",
+    "da": "Stop rengøring",
+    "de": "Reinigung stoppen"
   },
   "hint": {
     "en": "Stops the robot immediately. It will stay where it is.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ]
 }

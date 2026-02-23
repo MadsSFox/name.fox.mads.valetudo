@@ -6,9 +6,9 @@
     "de": "Segmentreinigung gestartet"
   },
   "titleFormatted": {
-    "en": "[[device]] Started cleaning a segment",
-    "da": "[[device]] Begyndte rengøring af segment",
-    "de": "[[device]] Segmentreinigung gestartet"
+    "en": "Started cleaning a segment",
+    "da": "Begyndte rengøring af segment",
+    "de": "Segmentreinigung gestartet"
   },
   "hint": {
     "en": "Triggers when the robot starts cleaning a specific room segment.",
@@ -22,7 +22,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "capability=vacuum_state"
+      "filter": "driver_id=valetudo"
     }
   ],
   "tokens": [

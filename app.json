@@ -2819,6 +2819,7 @@
         "measure_clean_duration_total",
         "button_locate",
         "button_dock",
+        "button_refresh_segments",
         "floor_picker",
         "new_floor_has_dock",
         "button_new_floor"
@@ -3378,6 +3379,18 @@
       "setable": true,
       "uiComponent": "button",
       "icon": "/assets/capabilities/floor.svg"
+    },
+    "button_refresh_segments": {
+      "type": "boolean",
+      "title": {
+        "en": "Refresh Rooms",
+        "da": "Opdater rum",
+        "de": "Räume aktualisieren"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "/assets/capabilities/clean_area.svg"
     },
     "current_floor": {
       "type": "string",

@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Refresh Rooms",
+    "da": "Opdater rum",
+    "de": "Räume aktualisieren"
+  },
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button",
+  "icon": "/assets/capabilities/clean_area.svg"
+}

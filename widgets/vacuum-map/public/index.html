@@ -83,8 +83,7 @@
       font-weight: 600;
     }
     .floor-tab.disabled {
-      opacity: 0.4;
-      cursor: default;
+      opacity: 0.45;
     }
     .floor-dot {
       width: 6px;
@@ -458,15 +457,13 @@
           label.textContent = f.name;
           tab.appendChild(label);
 
-          if (!tab.classList.contains('disabled')) {
-            tab.addEventListener('click', function() {
-              selectedFloorId = f.id;
-              lastManualSelection = Date.now();
-              buildFloorBar();
-              fetchAndRender();
-              updateSwitchButton();
-            });
-          }
+          tab.addEventListener('click', function() {
+            selectedFloorId = f.id;
+            lastManualSelection = Date.now();
+            buildFloorBar();
+            fetchAndRender();
+            updateSwitchButton();
+          });
 
           floorBarEl.appendChild(tab);
         })(floorsData[i]);

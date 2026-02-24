@@ -107,6 +107,9 @@ module.exports = {
 
   async switchFloor({ homey, body }) {
     const device = findDevice(homey, body.deviceId);
+    if (device._pendingNewFloor) {
+      throw new Error('Cannot switch floors while mapping is in progress');
+    }
     // Fire-and-forget — switching takes time (SSH + reboot)
     device.switchFloor(body.floorId).catch(() => {});
     return { success: true, message: 'Floor switch initiated' };

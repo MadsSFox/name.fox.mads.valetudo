@@ -46,5 +46,8 @@
   },
   "0.1.6": {
     "en": "Fix flow cards not appearing for Roborock S5 devices, add Detect Floors button to scan robot filesystem for unregistered maps, add Refresh Rooms button to Roborock S5 device card"
+  },
+  "0.1.7": {
+    "en": "Fix widget floor switch blocked during mapping now errors immediately instead of timing out, fix widget showing robot default map for newly detected floors, make detected floor tabs clickable to reveal the switch button"
   }
 }

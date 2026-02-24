@@ -32,7 +32,7 @@
     {
       "name": "device",
       "type": "device",
-      "filter": "driver_id=valetudo"
+      "filter": "driver_id=valetudo|driver_id=roborock-s5"
     },
     {
       "type": "autocomplete",

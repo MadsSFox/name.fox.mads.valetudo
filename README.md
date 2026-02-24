@@ -46,7 +46,8 @@ The device page shows real-time robot status and provides quick controls:
 | Total Duration | Lifetime cleaning time (hours) |
 | Find Robot | Button — makes the robot beep |
 | Return to Dock | Button — sends robot home (stops on dockless floors) |
-| Refresh Rooms | Button — fetches the latest room list from the robot |
+| Refresh Rooms | Button — fetches the latest room/segment list from the robot |
+| Detect Floors | Button — SSH-scans the robot and registers any undetected floor maps |
 | Floor | Picker — switch between floors or create a new one |
 
 ## Flow Cards
@@ -137,7 +138,7 @@ The device page shows real-time robot status and provides quick controls:
 
 ## Supported Robots
 
-This app works with any robot vacuum running [Valetudo](https://valetudo.cloud/). For a list of supported robots and rooting instructions, see the Valetudo documentation:
+This app works with any robot vacuum running [Valetudo](https://valetudo.cloud/). Flow cards are supported for all device types, including the Roborock S5 driver. For a list of supported robots and rooting instructions, see the Valetudo documentation:
 
 - [Supported Robots](https://valetudo.cloud/pages/general/supported-robots.html)
 - [Buying Supported Robots](https://valetudo.cloud/pages/general/buying-supported-robots.html)
@@ -167,6 +168,10 @@ The floor switch operation will: stop the robot if cleaning, back up the current
 Each floor can be marked as having a dock or not. On floors without a dock, the "Return to dock" button and action will stop the robot instead of trying to send it home.
 
 Floors can be renamed using the "Rename floor" flow action card.
+
+### Detecting existing floors
+
+If SSH credentials are configured after the device was first added, use the **Detect Floors** button on the device page to scan the robot filesystem and register any maps that were not detected at initial connection. The button also imports any `user_map1`, `user_map2`, etc. firmware maps stored on the robot.
 
 ## Zone Cleaning
 

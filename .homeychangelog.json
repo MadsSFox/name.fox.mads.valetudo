@@ -43,5 +43,8 @@
   },
   "0.1.5": {
     "en": "Auto-detect additional maps stored on robot (user_map1, user_map2, etc.) and register as extra floors on connection. Fixed flow card device picker not showing devices. Added Refresh Rooms button on device card; segment room list now always fetched fresh from the robot."
+  },
+  "0.1.6": {
+    "en": "Fix flow cards not appearing for Roborock S5 devices, add Detect Floors button to scan robot filesystem for unregistered maps, add Refresh Rooms button to Roborock S5 device card"
   }
 }

@@ -22,7 +22,7 @@ Control your Valetudo-powered robot vacuum from Homey. Full vacuum control, real
 - **Voice Pack Installation**: Install custom voice packs via URL
 - **Robot Locate**: Make the robot beep to find it
 - **Update Notifications**: Triggers when Valetudo is updated or a new version is available
-- **Multi-Floor Maps**: Save, switch, and rename floor maps via SSH with dock-aware behavior
+- **Multi-Floor Maps**: Save, switch, and rename floor maps via SSH with dock-aware behavior; additional maps already stored on the robot are detected and imported automatically on connection
 - **New Map Building**: Reset the current map and start a fresh mapping run
 - **Cleaning Statistics**: Last session and lifetime area/duration on device page
 - **Auto-Discovery**: Finds Valetudo robots on your network via mDNS and subnet scanning
@@ -44,6 +44,7 @@ The device page shows real-time robot status and provides quick controls:
 | Last Clean Duration | Duration of last session (min) |
 | Total Area | Lifetime area cleaned (m2) |
 | Total Duration | Lifetime cleaning time (hours) |
+| Find Robot | Button — makes the robot beep |
 | Return to Dock | Button — sends robot home (stops on dockless floors) |
 | Refresh Rooms | Button — fetches the latest room/segment list from the robot |
 | Detect Floors | Button — SSH-scans the robot and registers any undetected floor maps |
@@ -97,6 +98,7 @@ The device page shows real-time robot status and provides quick controls:
 | Action | Args |
 |---|---|
 | Clean segment | autocomplete room, iterations (no max) |
+| Refresh rooms | — (fetches latest room list from robot) |
 | Clean zone | autocomplete zone, iterations (no max) |
 | Save zone | name, x1, y1, x2, y2 |
 | Delete saved zone | autocomplete zone |
@@ -150,6 +152,10 @@ This app works with any robot vacuum running [Valetudo](https://valetudo.cloud/)
 4. Configure SSH credentials in device settings for multi-floor support
 
 ## Multi-Floor Setup
+
+If your robot already has multiple maps stored in its firmware (`user_map0`, `user_map1`, etc.), they will be detected and imported automatically the first time the device connects.
+
+To set up floors from scratch:
 
 1. Place the robot on floor 1 and let it create a complete map
 2. Use the floor picker on the device page and select "New Floor..." or use the "Save current map as floor" action card

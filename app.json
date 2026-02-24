@@ -109,7 +109,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -137,7 +137,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -165,7 +165,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -237,7 +237,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -265,7 +265,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -309,7 +309,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -353,7 +353,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -397,7 +397,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -455,7 +455,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -513,7 +513,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -557,7 +557,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ],
         "tokens": [
@@ -627,7 +627,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -665,7 +665,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "dropdown",
@@ -778,7 +778,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -816,7 +816,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -854,7 +854,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "autocomplete",
@@ -906,7 +906,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -944,7 +944,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "autocomplete",
@@ -988,7 +988,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "autocomplete",
@@ -1042,7 +1042,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "autocomplete",
@@ -1096,7 +1096,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "autocomplete",
@@ -1138,7 +1138,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "number",
@@ -1188,7 +1188,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "text",
@@ -1244,7 +1244,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -1272,7 +1272,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -1300,7 +1300,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -1328,7 +1328,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -1356,7 +1356,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "autocomplete",
@@ -1412,7 +1412,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "dropdown",
@@ -1491,7 +1491,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           }
         ]
       },
@@ -1519,7 +1519,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "text",
@@ -1588,7 +1588,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "text",
@@ -1674,7 +1674,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "dropdown",
@@ -1729,7 +1729,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "dropdown",
@@ -1784,7 +1784,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "dropdown",
@@ -1856,6 +1856,77 @@
         ]
       },
       {
+        "id": "set_operation_mode",
+        "title": {
+          "en": "Set operation mode",
+          "da": "Indstil driftstilstand",
+          "de": "Betriebsmodus einstellen"
+        },
+        "titleFormatted": {
+          "en": "Set operation mode to [[mode]]",
+          "da": "Indstil driftstilstand til [[mode]]",
+          "de": "Betriebsmodus auf [[mode]] einstellen"
+        },
+        "hint": {
+          "en": "Switches between vacuum only, mop only, or combined modes.",
+          "da": "Skifter mellem kun støvsugning, kun mopning eller kombinerede tilstande.",
+          "de": "Wechselt zwischen nur Saugen, nur Wischen oder kombinierten Modi."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=valetudo|roborock-s5"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "da": "Tilstand",
+              "de": "Modus"
+            },
+            "values": [
+              {
+                "id": "vacuum",
+                "label": {
+                  "en": "Vacuum Only",
+                  "da": "Kun støvsuge",
+                  "de": "Nur Saugen"
+                }
+              },
+              {
+                "id": "mop",
+                "label": {
+                  "en": "Mop Only",
+                  "da": "Kun moppe",
+                  "de": "Nur Wischen"
+                }
+              },
+              {
+                "id": "vacuum_and_mop",
+                "label": {
+                  "en": "Vacuum & Mop",
+                  "da": "Støvsuge og moppe",
+                  "de": "Saugen & Wischen"
+                }
+              },
+              {
+                "id": "vacuum_then_mop",
+                "label": {
+                  "en": "Vacuum then Mop",
+                  "da": "Støvsuge derefter moppe",
+                  "de": "Saugen dann Wischen"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "set_speaker_volume",
         "title": {
           "en": "Set speaker volume",
@@ -1879,7 +1950,7 @@
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "number",
@@ -1897,215 +1968,6 @@
         ]
       },
       {
-        "id": "start_cleaning",
-        "title": {
-          "en": "Start cleaning",
-          "da": "Start rengøring",
-          "de": "Reinigung starten"
-        },
-        "titleFormatted": {
-          "en": "Start cleaning",
-          "da": "Start rengøring",
-          "de": "Reinigung starten"
-        },
-        "hint": {
-          "en": "Starts a full cleaning of the current floor map.",
-          "da": "Starter en fuld rengøring af det aktuelle etagekort.",
-          "de": "Startet eine vollständige Reinigung der aktuellen Etagenkarte."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
-          }
-        ]
-      },
-      {
-        "id": "start_new_map",
-        "title": {
-          "en": "Start building a new map",
-          "da": "Start opbygning af nyt kort",
-          "de": "Neue Karte erstellen"
-        },
-        "titleFormatted": {
-          "en": "Start building a new map",
-          "da": "Start opbygning af nyt kort",
-          "de": "Neue Karte erstellen"
-        },
-        "hint": {
-          "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
-          "da": "Sletter det aktuelle kort og starter en ny kortlægning. Brug med forsigtighed.",
-          "de": "Löscht die aktuelle Karte und startet eine neue Kartierung. Mit Vorsicht verwenden."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
-          }
-        ]
-      },
-      {
-        "id": "stop_cleaning",
-        "title": {
-          "en": "Stop cleaning",
-          "da": "Stop rengøring",
-          "de": "Reinigung stoppen"
-        },
-        "titleFormatted": {
-          "en": "Stop cleaning",
-          "da": "Stop rengøring",
-          "de": "Reinigung stoppen"
-        },
-        "hint": {
-          "en": "Stops the robot immediately. It will stay where it is.",
-          "da": "Stopper robotten med det samme. Den bliver hvor den er.",
-          "de": "Stoppt den Roboter sofort. Er bleibt, wo er ist."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
-          }
-        ]
-      },
-      {
-        "id": "switch_floor",
-        "title": {
-          "en": "Switch to floor",
-          "da": "Skift til etage",
-          "de": "Stockwerk wechseln"
-        },
-        "titleFormatted": {
-          "en": "Switch to floor [[floor]]",
-          "da": "Skift til etage [[floor]]",
-          "de": "Wechsle zu Stockwerk [[floor]]"
-        },
-        "hint": {
-          "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
-          "da": "Skifter robottens kort via SSH. Robotten genstarter under skiftet.",
-          "de": "Tauscht die Roboterkarte per SSH. Der Roboter startet beim Wechsel neu."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
-          },
-          {
-            "type": "autocomplete",
-            "name": "floor",
-            "title": {
-              "en": "Floor",
-              "da": "Etage",
-              "de": "Stockwerk"
-            },
-            "placeholder": {
-              "en": "Select a floor...",
-              "da": "Vælg en etage...",
-              "de": "Stockwerk auswählen..."
-            }
-          }
-        ]
-      },
-      {
-        "id": "update_floor",
-        "title": {
-          "en": "Update floor",
-          "da": "Opdater etage",
-          "de": "Stockwerk aktualisieren"
-        },
-        "titleFormatted": {
-          "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
-          "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
-          "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
-        },
-        "hint": {
-          "en": "Renames a saved floor and updates its dock setting.",
-          "da": "Omdøber en gemt etage og opdaterer dens dock-indstilling.",
-          "de": "Benennt ein gespeichertes Stockwerk um und aktualisiert die Ladestationseinstellung."
-        },
-        "platforms": [
-          "local"
-        ],
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=valetudo|driver_id=roborock-s5"
-          },
-          {
-            "type": "autocomplete",
-            "name": "floor",
-            "title": {
-              "en": "Floor",
-              "da": "Etage",
-              "de": "Stockwerk"
-            },
-            "placeholder": {
-              "en": "Select a floor...",
-              "da": "Vælg en etage...",
-              "de": "Stockwerk auswählen..."
-            }
-          },
-          {
-            "type": "text",
-            "name": "new_name",
-            "title": {
-              "en": "New Name",
-              "da": "Nyt navn",
-              "de": "Neuer Name"
-            },
-            "placeholder": {
-              "en": "e.g. Kitchen Floor",
-              "da": "f.eks. Køkkenetage",
-              "de": "z.B. Küchengeschoss"
-            }
-          },
-          {
-            "type": "dropdown",
-            "name": "has_dock",
-            "title": {
-              "en": "Has Dock",
-              "da": "Har dock",
-              "de": "Hat Ladestation"
-            },
-            "values": [
-              {
-                "id": "yes",
-                "label": {
-                  "en": "Yes",
-                  "da": "Ja",
-                  "de": "Ja"
-                }
-              },
-              {
-                "id": "no",
-                "label": {
-                  "en": "No",
-                  "da": "Nej",
-                  "de": "Nein"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
         "id": "set_water_usage",
         "title": {
           "en": "Set water usage",
@@ -2113,9 +1975,9 @@
           "de": "Wasserverbrauch einstellen"
         },
         "titleFormatted": {
-          "en": "[[device]] Set water usage to [[level]]",
-          "da": "[[device]] Indstil vandforbrug til [[level]]",
-          "de": "[[device]] Wasserverbrauch auf [[level]] einstellen"
+          "en": "Set water usage to [[level]]",
+          "da": "Indstil vandforbrug til [[level]]",
+          "de": "Wasserverbrauch auf [[level]] einstellen"
         },
         "hint": {
           "en": "Controls how much water the mop uses. Only available on models with mopping.",
@@ -2127,14 +1989,9 @@
         ],
         "args": [
           {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=valetudo"
-          },
-          {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo"
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
             "type": "dropdown",
@@ -2198,78 +2055,128 @@
         ]
       },
       {
-        "id": "set_operation_mode",
+        "id": "start_cleaning",
         "title": {
-          "en": "Set operation mode",
-          "da": "Indstil driftstilstand",
-          "de": "Betriebsmodus einstellen"
+          "en": "Start cleaning",
+          "da": "Start rengøring",
+          "de": "Reinigung starten"
         },
         "titleFormatted": {
-          "en": "[[device]] Set operation mode to [[mode]]",
-          "da": "[[device]] Indstil driftstilstand til [[mode]]",
-          "de": "[[device]] Betriebsmodus auf [[mode]] einstellen"
+          "en": "Start cleaning",
+          "da": "Start rengøring",
+          "de": "Reinigung starten"
         },
         "hint": {
-          "en": "Switches between vacuum only, mop only, or combined modes.",
-          "da": "Skifter mellem kun støvsugning, kun mopning eller kombinerede tilstande.",
-          "de": "Wechselt zwischen nur Saugen, nur Wischen oder kombinierten Modi."
+          "en": "Starts a full cleaning of the current floor map.",
+          "da": "Starter en fuld rengøring af det aktuelle etagekort.",
+          "de": "Startet eine vollständige Reinigung der aktuellen Etagenkarte."
         },
         "platforms": [
           "local"
         ],
         "args": [
           {
-            "type": "device",
             "name": "device",
-            "filter": "driver_id=valetudo"
-          },
+            "type": "device",
+            "filter": "driver_id=valetudo|roborock-s5"
+          }
+        ]
+      },
+      {
+        "id": "start_new_map",
+        "title": {
+          "en": "Start building a new map",
+          "da": "Start opbygning af nyt kort",
+          "de": "Neue Karte erstellen"
+        },
+        "titleFormatted": {
+          "en": "Start building a new map",
+          "da": "Start opbygning af nyt kort",
+          "de": "Neue Karte erstellen"
+        },
+        "hint": {
+          "en": "Erases the current map and starts a fresh mapping run. Use with caution.",
+          "da": "Sletter det aktuelle kort og starter en ny kortlægning. Brug med forsigtighed.",
+          "de": "Löscht die aktuelle Karte und startet eine neue Kartierung. Mit Vorsicht verwenden."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo"
+            "filter": "driver_id=valetudo|roborock-s5"
+          }
+        ]
+      },
+      {
+        "id": "stop_cleaning",
+        "title": {
+          "en": "Stop cleaning",
+          "da": "Stop rengøring",
+          "de": "Reinigung stoppen"
+        },
+        "titleFormatted": {
+          "en": "Stop cleaning",
+          "da": "Stop rengøring",
+          "de": "Reinigung stoppen"
+        },
+        "hint": {
+          "en": "Stops the robot immediately. It will stay where it is.",
+          "da": "Stopper robotten med det samme. Den bliver hvor den er.",
+          "de": "Stoppt den Roboter sofort. Er bleibt, wo er ist."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=valetudo|roborock-s5"
+          }
+        ]
+      },
+      {
+        "id": "switch_floor",
+        "title": {
+          "en": "Switch to floor",
+          "da": "Skift til etage",
+          "de": "Stockwerk wechseln"
+        },
+        "titleFormatted": {
+          "en": "Switch to floor [[floor]]",
+          "da": "Skift til etage [[floor]]",
+          "de": "Wechsle zu Stockwerk [[floor]]"
+        },
+        "hint": {
+          "en": "Swaps the robot's map via SSH. The robot will reboot during the switch.",
+          "da": "Skifter robottens kort via SSH. Robotten genstarter under skiftet.",
+          "de": "Tauscht die Roboterkarte per SSH. Der Roboter startet beim Wechsel neu."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=valetudo|roborock-s5"
           },
           {
-            "type": "dropdown",
-            "name": "mode",
+            "type": "autocomplete",
+            "name": "floor",
             "title": {
-              "en": "Mode",
-              "da": "Tilstand",
-              "de": "Modus"
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
             },
-            "values": [
-              {
-                "id": "vacuum",
-                "label": {
-                  "en": "Vacuum Only",
-                  "da": "Kun støvsuge",
-                  "de": "Nur Saugen"
-                }
-              },
-              {
-                "id": "mop",
-                "label": {
-                  "en": "Mop Only",
-                  "da": "Kun moppe",
-                  "de": "Nur Wischen"
-                }
-              },
-              {
-                "id": "vacuum_and_mop",
-                "label": {
-                  "en": "Vacuum & Mop",
-                  "da": "Støvsuge og moppe",
-                  "de": "Saugen & Wischen"
-                }
-              },
-              {
-                "id": "vacuum_then_mop",
-                "label": {
-                  "en": "Vacuum then Mop",
-                  "da": "Støvsuge derefter moppe",
-                  "de": "Saugen dann Wischen"
-                }
-              }
-            ]
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
           }
         ]
       },
@@ -2281,9 +2188,9 @@
           "de": "Staubbehälter leeren"
         },
         "titleFormatted": {
-          "en": "[[device]] Empty dustbin",
-          "da": "[[device]] Tøm støvbeholder",
-          "de": "[[device]] Staubbehälter leeren"
+          "en": "Empty dustbin",
+          "da": "Tøm støvbeholder",
+          "de": "Staubbehälter leeren"
         },
         "hint": {
           "en": "Triggers the auto-empty dock to empty the robot's dustbin. Requires a compatible dock.",
@@ -2295,14 +2202,92 @@
         ],
         "args": [
           {
-            "type": "device",
             "name": "device",
-            "filter": "driver_id=valetudo"
-          },
+            "type": "device",
+            "filter": "driver_id=valetudo|roborock-s5"
+          }
+        ]
+      },
+      {
+        "id": "update_floor",
+        "title": {
+          "en": "Update floor",
+          "da": "Opdater etage",
+          "de": "Stockwerk aktualisieren"
+        },
+        "titleFormatted": {
+          "en": "Update floor [[floor]]: rename to [[new_name]], dock [[has_dock]]",
+          "da": "Opdater etage [[floor]]: omdøb til [[new_name]], dock [[has_dock]]",
+          "de": "Stockwerk [[floor]] aktualisieren: umbenennen zu [[new_name]], Ladestation [[has_dock]]"
+        },
+        "hint": {
+          "en": "Renames a saved floor and updates its dock setting.",
+          "da": "Omdøber en gemt etage og opdaterer dens dock-indstilling.",
+          "de": "Benennt ein gespeichertes Stockwerk um und aktualisiert die Ladestationseinstellung."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
           {
             "name": "device",
             "type": "device",
-            "filter": "driver_id=valetudo"
+            "filter": "driver_id=valetudo|roborock-s5"
+          },
+          {
+            "type": "autocomplete",
+            "name": "floor",
+            "title": {
+              "en": "Floor",
+              "da": "Etage",
+              "de": "Stockwerk"
+            },
+            "placeholder": {
+              "en": "Select a floor...",
+              "da": "Vælg en etage...",
+              "de": "Stockwerk auswählen..."
+            }
+          },
+          {
+            "type": "text",
+            "name": "new_name",
+            "title": {
+              "en": "New Name",
+              "da": "Nyt navn",
+              "de": "Neuer Name"
+            },
+            "placeholder": {
+              "en": "e.g. Kitchen Floor",
+              "da": "f.eks. Køkkenetage",
+              "de": "z.B. Küchengeschoss"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "has_dock",
+            "title": {
+              "en": "Has Dock",
+              "da": "Har dock",
+              "de": "Hat Ladestation"
+            },
+            "values": [
+              {
+                "id": "yes",
+                "label": {
+                  "en": "Yes",
+                  "da": "Ja",
+                  "de": "Ja"
+                }
+              },
+              {
+                "id": "no",
+                "label": {
+                  "en": "No",
+                  "da": "Nej",
+                  "de": "Nein"
+                }
+              }
+            ]
           }
         ]
       }

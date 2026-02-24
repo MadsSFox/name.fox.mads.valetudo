@@ -1,0 +1,26 @@
+{
+  "id": "trigger_auto_empty",
+  "title": {
+    "en": "Empty dustbin",
+    "da": "Tøm støvbeholder",
+    "de": "Staubbehälter leeren"
+  },
+  "titleFormatted": {
+    "en": "Empty dustbin",
+    "da": "Tøm støvbeholder",
+    "de": "Staubbehälter leeren"
+  },
+  "hint": {
+    "en": "Triggers the auto-empty dock to empty the robot's dustbin. Requires a compatible dock.",
+    "da": "Udløser auto-tømningsdocken til at tømme robottens støvbeholder. Kræver en kompatibel dock.",
+    "de": "Löst das automatische Entleeren des Staubbehälters über die Dockstation aus. Erfordert eine kompatible Dockstation."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=valetudo|roborock-s5"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "set_water_usage",
+  "title": {
+    "en": "Set water usage",
+    "da": "Indstil vandforbrug",
+    "de": "Wasserverbrauch einstellen"
+  },
+  "titleFormatted": {
+    "en": "Set water usage to [[level]]",
+    "da": "Indstil vandforbrug til [[level]]",
+    "de": "Wasserverbrauch auf [[level]] einstellen"
+  },
+  "hint": {
+    "en": "Controls how much water the mop uses. Only available on models with mopping.",
+    "da": "Styrer hvor meget vand moppen bruger. Kun tilgængelig på modeller med moppefunktion.",
+    "de": "Steuert, wie viel Wasser der Wischmopp verwendet. Nur bei Modellen mit Wischfunktion verfügbar."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=valetudo|roborock-s5"
+    },
+    {
+      "type": "dropdown",
+      "name": "level",
+      "title": { "en": "Water Level", "da": "Vandniveau", "de": "Wasserstufe" },
+      "values": [
+        { "id": "off", "label": { "en": "Off", "da": "Slukket", "de": "Aus" } },
+        { "id": "min", "label": { "en": "Min", "da": "Min", "de": "Min" } },
+        { "id": "low", "label": { "en": "Low", "da": "Lav", "de": "Niedrig" } },
+        { "id": "medium", "label": { "en": "Medium", "da": "Medium", "de": "Mittel" } },
+        { "id": "high", "label": { "en": "High", "da": "Høj", "de": "Hoch" } },
+        { "id": "max", "label": { "en": "Max", "da": "Maks", "de": "Max" } }
+      ]
+    }
+  ]
+}

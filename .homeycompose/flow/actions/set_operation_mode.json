@@ -1,0 +1,37 @@
+{
+  "id": "set_operation_mode",
+  "title": {
+    "en": "Set operation mode",
+    "da": "Indstil driftstilstand",
+    "de": "Betriebsmodus einstellen"
+  },
+  "titleFormatted": {
+    "en": "Set operation mode to [[mode]]",
+    "da": "Indstil driftstilstand til [[mode]]",
+    "de": "Betriebsmodus auf [[mode]] einstellen"
+  },
+  "hint": {
+    "en": "Switches between vacuum only, mop only, or combined modes.",
+    "da": "Skifter mellem kun støvsugning, kun mopning eller kombinerede tilstande.",
+    "de": "Wechselt zwischen nur Saugen, nur Wischen oder kombinierten Modi."
+  },
+  "platforms": ["local"],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=valetudo|roborock-s5"
+    },
+    {
+      "type": "dropdown",
+      "name": "mode",
+      "title": { "en": "Mode", "da": "Tilstand", "de": "Modus" },
+      "values": [
+        { "id": "vacuum", "label": { "en": "Vacuum Only", "da": "Kun støvsuge", "de": "Nur Saugen" } },
+        { "id": "mop", "label": { "en": "Mop Only", "da": "Kun moppe", "de": "Nur Wischen" } },
+        { "id": "vacuum_and_mop", "label": { "en": "Vacuum & Mop", "da": "Støvsuge og moppe", "de": "Saugen & Wischen" } },
+        { "id": "vacuum_then_mop", "label": { "en": "Vacuum then Mop", "da": "Støvsuge derefter moppe", "de": "Saugen dann Wischen" } }
+      ]
+    }
+  ]
+}

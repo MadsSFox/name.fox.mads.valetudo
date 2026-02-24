@@ -37,5 +37,8 @@
   },
   "0.1.3": {
     "en": "Add 'Refresh room segments' flow action. Clear stale segment cache when switching floors."
+  },
+  "0.1.4": {
+    "en": "Fix refresh segments flow action not appearing in the Homey UI due to app.json not being rebuilt after adding the compose file."
   }
 }

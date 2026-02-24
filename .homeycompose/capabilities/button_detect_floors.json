@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Detect Floors",
+    "da": "Registrer etager",
+    "de": "Etagen erkennen"
+  },
+  "getable": false,
+  "setable": true,
+  "uiComponent": "button",
+  "icon": "/assets/capabilities/floor.svg"
+}

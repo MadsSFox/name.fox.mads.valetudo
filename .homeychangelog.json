@@ -40,5 +40,8 @@
   },
   "0.1.4": {
     "en": "Fix refresh segments flow action not appearing in the Homey UI due to app.json not being rebuilt after adding the compose file."
+  },
+  "0.1.5": {
+    "en": "Auto-detect additional maps stored on robot (user_map1, user_map2, etc.) and register as extra floors on connection. Fixed flow card device picker not showing devices. Added Refresh Rooms button on device card; segment room list now always fetched fresh from the robot."
   }
 }

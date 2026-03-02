@@ -49,5 +49,8 @@
   },
   "0.1.7": {
     "en": "Fix widget floor switch blocked during mapping now errors immediately instead of timing out, fix widget showing robot default map for newly detected floors, make detected floor tabs clickable to reveal the switch button"
+  },
+  "0.1.8": {
+    "en": "Fix S5 flow card device filters, improve floor switching reliability (segment positioning, PersistData backup/restore), and persist map snapshots across Homey restarts"
   }
 }

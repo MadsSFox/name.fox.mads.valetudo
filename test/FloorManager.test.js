@@ -36,6 +36,10 @@ describe('FloorManager', () => {
       ]),
       basicControl: sinon.stub().resolves(),
       isReachable: sinon.stub().resolves(true),
+      getMap: sinon.stub().resolves({
+        layers: [{ type: 'segment', compressedPixels: [] }],
+        entities: [],
+      }),
     };
 
     mqttClient = {};
@@ -184,9 +188,9 @@ describe('FloorManager', () => {
       // Should create floor directory
       sinon.assert.calledWith(ssh.exec, 'mkdir -p "/mnt/data/rockrobo/floors/ground"');
 
-      // Should check and copy each map file
-      assert.ok(ssh.fileExists.callCount >= 4); // 4 map files
-      assert.ok(ssh.copyFile.callCount >= 4);
+      // Should check and copy each map file (PersistData files are discovered via exec, not fileExists)
+      assert.ok(ssh.fileExists.callCount >= 2); // at least last_map + ChargerPos.data
+      assert.ok(ssh.copyFile.callCount >= 2); // at least last_map + ChargerPos.data
 
       // Should set as active floor
       assert.strictEqual(store.floor_config.activeFloor, 'ground');
@@ -208,8 +212,8 @@ describe('FloorManager', () => {
       );
 
       // Should check file existence but not copy
-      assert.ok(ssh.fileExists.callCount >= 4);
-      sinon.assert.notCalled(ssh.copyFile);
+      assert.ok(ssh.fileExists.callCount >= 2); // at least last_map + ChargerPos.data
+      sinon.assert.notCalled(ssh.copyFile); // no files copied when none exist
     });
   });
 
@@ -354,7 +358,7 @@ describe('FloorManager', () => {
       ssh.fileExists.resolves(false);
       await assert.rejects(
         () => fm.switchFloor('upstairs'),
-        (err) => err.message.includes('No saved map found')
+        (err) => err.message.includes('No saved map for')
       );
     });
 
@@ -382,7 +386,7 @@ describe('FloorManager', () => {
       sinon.assert.called(ssh.readFile);
       sinon.assert.called(ssh.writeFile);
       const writtenCfg = ssh.writeFile.getCalls().find((c) => c.args[0].includes('RoboController'));
-      assert.ok(writtenCfg.args[1].includes('need_recover_map=0'));
+      assert.ok(/need_recover_map\s*=\s*0/.test(writtenCfg.args[1]));
 
       // Should have rebooted
       sinon.assert.called(ssh.reboot);

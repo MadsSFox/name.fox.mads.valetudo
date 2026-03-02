@@ -81,9 +81,16 @@ module.exports = {
       return snapshot;
     }
 
-    // No in-memory snapshot — map files exist on robot but we can't render
-    // them without switching. Return null so the widget can show a message.
-    return null;
+    // No snapshot yet — kick off a background check and tell the widget whether
+    // to show a loading spinner or a permanent "switch required" message.
+    if (typeof device.requestFloorSnapshot === 'function') {
+      device.requestFloorSnapshot(floorId);
+    }
+    const loading = typeof device.isFloorSnapshotLoading === 'function'
+      ? device.isFloorSnapshotLoading(floorId)
+      : false;
+
+    return { _noSnapshot: true, loading };
   },
 
   async renameFloor({ homey, body }) {

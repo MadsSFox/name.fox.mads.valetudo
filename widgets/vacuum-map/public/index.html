@@ -163,6 +163,46 @@
     #toast.success { background: rgba(76, 175, 80, 0.85); }
     #toast.error { background: rgba(244, 67, 54, 0.85); }
 
+    /* Map-loading spinner — shown while a non-active floor snapshot is being fetched */
+    #map-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--homey-text-color, #aaa);
+      font-size: 13px;
+    }
+    #map-loading.show { display: flex; }
+    .map-loading-spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      border-top-color: #56affc;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    /* Read-only badge shown on non-active floor snapshots */
+    #readonly-badge {
+      position: absolute;
+      top: 38px;
+      right: 8px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      display: none;
+      z-index: 10;
+    }
+    #readonly-badge.show { display: block; }
+
     /* Switching overlay */
     #switching-overlay {
       position: absolute;
@@ -363,6 +403,12 @@
   <div id="status">Loading map…</div>
   <canvas id="map"></canvas>
 
+  <div id="map-loading">
+    <div class="map-loading-spinner"></div>
+    <span>Loading map…</span>
+  </div>
+  <div id="readonly-badge">Preview</div>
+
   <div id="floor-bar"></div>
   <button id="switch-floor-btn">Switch robot to this floor</button>
 
@@ -404,6 +450,9 @@
     var switchingTitleEl = document.getElementById('switching-title');
     var switchingStepEl = document.getElementById('switching-step');
     var switchingDismissEl = document.getElementById('switching-dismiss');
+    var mapLoadingEl = document.getElementById('map-loading');
+    var readonlyBadgeEl = document.getElementById('readonly-badge');
+    var snapshotRetryTimer = null;
     var deviceId = null;
     var refreshTimer = null;
     var currentRefreshMs = 10000;
@@ -754,6 +803,9 @@
       robotAvailable = false;
       canvas.width = 0;
       canvas.height = 0;
+      mapLoadingEl.classList.remove('show');
+      readonlyBadgeEl.classList.remove('show');
+      if (snapshotRetryTimer) { clearTimeout(snapshotRetryTimer); snapshotRetryTimer = null; }
       floorBarEl.style.display = 'none';
       switchFloorBtn.style.display = 'none';
       statusEl.innerHTML = '<span class="status-icon">&#x1F50C;</span>'
@@ -868,15 +920,53 @@
 
       _homey.api('GET', url)
         .then(function(mapData) {
+          // Sentinel: no snapshot available yet
+          if (mapData && mapData._noSnapshot) {
+            canvas.width = 0;
+            canvas.height = 0;
+            readonlyBadgeEl.classList.remove('show');
+            if (mapData.loading) {
+              // A background check is in progress — show spinner and retry
+              statusEl.style.display = 'none';
+              mapLoadingEl.classList.add('show');
+              if (snapshotRetryTimer) clearTimeout(snapshotRetryTimer);
+              snapshotRetryTimer = setTimeout(function() {
+                snapshotRetryTimer = null;
+                fetchAndRender();
+              }, 2000);
+            } else {
+              // No snapshot and nothing loading — map requires a floor switch
+              mapLoadingEl.classList.remove('show');
+              statusEl.innerHTML = '<span class="status-icon">&#x1F5FA;</span>'
+                + 'Switch robot to this floor to view the map'
+                + '<span class="status-hint">The map will be saved automatically after switching.</span>';
+              statusEl.style.display = 'block';
+            }
+            return;
+          }
+
+          mapLoadingEl.classList.remove('show');
           if (!mapData) {
-            // Map files exist on robot but no cached preview available
-            statusEl.textContent = 'Switch robot to this floor to view the map';
+            readonlyBadgeEl.classList.remove('show');
+            statusEl.innerHTML = '<span class="status-icon">&#x1F5FA;</span>'
+              + 'Switch robot to this floor to view the map'
+              + '<span class="status-hint">The map will be saved automatically after switching.</span>';
             statusEl.style.display = 'block';
             canvas.width = 0;
             canvas.height = 0;
             return;
           }
+
           statusEl.style.display = 'none';
+
+          // Show read-only badge when viewing a non-active floor's cached snapshot
+          var viewingId = selectedFloorId || activeFloorId;
+          if (viewingId && viewingId !== activeFloorId) {
+            readonlyBadgeEl.classList.add('show');
+          } else {
+            readonlyBadgeEl.classList.remove('show');
+          }
+
           try {
             renderMap(mapData);
           } catch (renderErr) {
@@ -885,6 +975,8 @@
           }
         })
         .catch(function(err) {
+          mapLoadingEl.classList.remove('show');
+          readonlyBadgeEl.classList.remove('show');
           statusEl.textContent = 'Error: ' + (err.message || String(err));
           statusEl.style.display = 'block';
         });
@@ -914,8 +1006,16 @@
         }
       }
 
-      // Also include entities in bounding box
+      // Include positional entities in bounding box, but NOT path/predicted_path.
+      // Path entities trace the full cleaning route and can span a much larger area
+      // than the actual floor, pulling minX/minY far out and making restricted areas
+      // appear visually offset relative to the floor layout.
+      var BOUNDS_ENTITY_TYPES = [
+        'virtual_wall', 'no_go_area', 'no_mop_area',
+        'charger_location', 'robot_position', 'active_zone',
+      ];
       for (var i = 0; i < entities.length; i++) {
+        if (BOUNDS_ENTITY_TYPES.indexOf(entities[i].type) === -1) continue;
         var pts = entities[i].points || [];
         for (var j = 0; j < pts.length; j += 2) {
           var ex = Math.floor(pts[j] / pixelSize);

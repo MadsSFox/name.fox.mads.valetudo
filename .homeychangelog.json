@@ -52,5 +52,8 @@
   },
   "0.1.8": {
     "en": "Fix S5 flow card device filters, improve floor switching reliability (segment positioning, PersistData backup/restore), and persist map snapshots across Homey restarts"
+  },
+  "0.1.9": {
+    "en": "Fix: map snapshots are no longer overwritten while the robot is cleaning — the widget now always shows the last complete floor map"
   }
 }

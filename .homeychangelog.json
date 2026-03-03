@@ -55,5 +55,8 @@
   },
   "0.1.9": {
     "en": "Floor deletion now fails safely if the robot is unreachable — the floor stays visible in the widget instead of being silently removed"
+  },
+  "0.1.10": {
+    "en": "Fix: map snapshots are no longer overwritten while the robot is cleaning — the widget now always shows the last complete floor map"
   }
 }

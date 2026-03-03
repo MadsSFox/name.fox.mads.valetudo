@@ -146,13 +146,16 @@ describe('FloorManager', () => {
       sinon.assert.calledWith(ssh.exec, 'rm -rf "/mnt/data/rockrobo/floors/ground"');
     });
 
-    it('should not fail if SSH removal fails', async () => {
+    it('should throw if SSH removal fails', async () => {
       store.floor_config = {
         floors: [{ id: 'ground', name: 'Ground Floor' }],
         activeFloor: null,
       };
       ssh.exec.rejects(new Error('SSH failed'));
-      await fm.removeFloor('ground'); // Should not throw
+      await assert.rejects(
+        () => fm.removeFloor('ground'),
+        (err) => err.message.includes('SSH failed')
+      );
     });
 
     it('should not clear activeFloor if removing a different floor', async () => {

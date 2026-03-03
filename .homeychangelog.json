@@ -52,5 +52,8 @@
   },
   "0.1.8": {
     "en": "Fix S5 flow card device filters, improve floor switching reliability (segment positioning, PersistData backup/restore), and persist map snapshots across Homey restarts"
+  },
+  "0.1.9": {
+    "en": "Floor deletion now fails safely if the robot is unreachable — the floor stays visible in the widget instead of being silently removed"
   }
 }

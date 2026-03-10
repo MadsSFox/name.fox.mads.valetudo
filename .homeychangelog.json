@@ -58,5 +58,8 @@
   },
   "0.1.10": {
     "en": "Fix: map snapshots are no longer overwritten while the robot is cleaning — the widget now always shows the last complete floor map"
+  },
+  "0.1.11": {
+    "en": "Fix: floor switches no longer cause planned cleans to rebuild the map — user_map0 is now recreated after every floor restore"
   }
 }

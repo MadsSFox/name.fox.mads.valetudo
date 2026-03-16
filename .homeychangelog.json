@@ -61,5 +61,8 @@
   },
   "0.1.11": {
     "en": "Fix: floor switches no longer cause planned cleans to rebuild the map — user_map0 is now recreated after every floor restore"
+  },
+  "0.1.12": {
+    "en": "Fix: app no longer crashes when the MQTT broker rejects the connection — wrong credentials, self-signed certificates, and other broker errors are now handled gracefully"
   }
 }

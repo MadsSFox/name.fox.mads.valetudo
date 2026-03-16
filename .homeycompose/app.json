@@ -1,6 +1,6 @@
 {
   "id": "name.fox.mads.valetudo",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [

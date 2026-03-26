@@ -64,5 +64,8 @@
   },
   "0.1.12": {
     "en": "Fix: app no longer crashes when the MQTT broker rejects the connection — wrong credentials, self-signed certificates, and other broker errors are now handled gracefully"
+  },
+  "0.1.13": {
+    "en": "Merge error capabilities into single alarm_error with dynamic message"
   }
 }

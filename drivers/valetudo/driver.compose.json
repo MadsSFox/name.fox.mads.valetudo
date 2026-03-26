@@ -18,7 +18,6 @@
     "measure_battery",
     "alarm_battery",
     "current_floor",
-    "vacuum_error",
     "alarm_error",
     "measure_clean_area_last",
     "measure_clean_duration_last",

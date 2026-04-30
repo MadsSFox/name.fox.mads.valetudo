@@ -67,5 +67,8 @@
   },
   "0.1.13": {
     "en": "Merge error capabilities into single alarm_error with dynamic message"
+  },
+  "0.2.0": {
+    "en": "Fix links to project + add flowcard with 1-10 segements cleaning"
   }
 }

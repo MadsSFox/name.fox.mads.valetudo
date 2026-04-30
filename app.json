@@ -77,11 +77,11 @@
       "multi-etage"
     ]
   },
-  "source": "https://github.com/MadsSFox/homey-valetudo",
-  "homepage": "https://github.com/MadsSFox/homey-valetudo",
-  "support": "https://github.com/MadsSFox/homey-valetudo/issues",
+  "source": "https://github.com/MadsSFox/name.fox.mads.valetudo",
+  "homepage": "https://github.com/MadsSFox/name.fox.mads.valetudo",
+  "support": "https://github.com/MadsSFox/name.fox.mads.valetudo/issues",
   "bugs": {
-    "url": "https://github.com/MadsSFox/homey-valetudo/issues"
+    "url": "https://github.com/MadsSFox/name.fox.mads.valetudo/issues"
   },
   "flow": {
     "triggers": [

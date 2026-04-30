@@ -1,0 +1,19 @@
+name: Restrict main merges
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-source-branch:
+    name: Require next_version source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch
+        run: |
+          if [ "${{ github.head_ref }}" != "next_version" ]; then
+            echo "❌ PRs to main must come from next_version, not '${{ github.head_ref }}'"
+            exit 1
+          fi
+          echo "✅ Source branch is next_version"

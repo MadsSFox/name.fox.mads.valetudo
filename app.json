@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "name.fox.mads.valetudo",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -77,11 +77,11 @@
       "multi-etage"
     ]
   },
-  "source": "https://github.com/MadsSFox/homey-valetudo",
-  "homepage": "https://github.com/MadsSFox/homey-valetudo",
-  "support": "https://github.com/MadsSFox/homey-valetudo/issues",
+  "source": "https://github.com/MadsSFox/name.fox.mads.valetudo",
+  "homepage": "https://github.com/MadsSFox/name.fox.mads.valetudo",
+  "support": "https://github.com/MadsSFox/name.fox.mads.valetudo/issues",
   "bugs": {
-    "url": "https://github.com/MadsSFox/homey-valetudo/issues"
+    "url": "https://github.com/MadsSFox/name.fox.mads.valetudo/issues"
   },
   "flow": {
     "triggers": [
@@ -1002,6 +1002,186 @@
               "en": "Select a room...",
               "da": "Vælg et rum...",
               "de": "Raum auswählen..."
+            }
+          },
+          {
+            "type": "number",
+            "name": "iterations",
+            "title": {
+              "en": "Iterations",
+              "da": "Gentagelser",
+              "de": "Durchgänge"
+            },
+            "min": 1,
+            "step": 1,
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "clean_segments",
+        "title": {
+          "en": "Clean multiple segments",
+          "da": "Rengør flere segmenter",
+          "de": "Mehrere Segmente reinigen"
+        },
+        "titleFormatted": {
+          "en": "Clean [[segment1]], [[segment2]], [[segment3]], [[segment4]], [[segment5]], [[segment6]], [[segment7]], [[segment8]], [[segment9]], [[segment10]] ([[iterations]]x)",
+          "da": "Rengør [[segment1]], [[segment2]], [[segment3]], [[segment4]], [[segment5]], [[segment6]], [[segment7]], [[segment8]], [[segment9]], [[segment10]] ([[iterations]]x)",
+          "de": "Reinige [[segment1]], [[segment2]], [[segment3]], [[segment4]], [[segment5]], [[segment6]], [[segment7]], [[segment8]], [[segment9]], [[segment10]] ([[iterations]]x)"
+        },
+        "hint": {
+          "en": "Cleans multiple rooms in one run. Select up to 10 segments. Set unused slots to 'None'.",
+          "da": "Rengør flere rum i én kørsel. Vælg op til 10 segmenter. Sæt ubrugte til 'Ingen'.",
+          "de": "Reinigt mehrere Räume in einem Durchgang. Wähle bis zu 10 Segmente. Ungenutzte Slots auf 'Keine' setzen."
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=valetudo|roborock-s5"
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment1",
+            "title": {
+              "en": "Room 1",
+              "da": "Rum 1",
+              "de": "Raum 1"
+            },
+            "placeholder": {
+              "en": "Select a room...",
+              "da": "Vælg et rum...",
+              "de": "Raum auswählen..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment2",
+            "title": {
+              "en": "Room 2",
+              "da": "Rum 2",
+              "de": "Raum 2"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment3",
+            "title": {
+              "en": "Room 3",
+              "da": "Rum 3",
+              "de": "Raum 3"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment4",
+            "title": {
+              "en": "Room 4",
+              "da": "Rum 4",
+              "de": "Raum 4"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment5",
+            "title": {
+              "en": "Room 5",
+              "da": "Rum 5",
+              "de": "Raum 5"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment6",
+            "title": {
+              "en": "Room 6",
+              "da": "Rum 6",
+              "de": "Raum 6"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment7",
+            "title": {
+              "en": "Room 7",
+              "da": "Rum 7",
+              "de": "Raum 7"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment8",
+            "title": {
+              "en": "Room 8",
+              "da": "Rum 8",
+              "de": "Raum 8"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment9",
+            "title": {
+              "en": "Room 9",
+              "da": "Rum 9",
+              "de": "Raum 9"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
+            }
+          },
+          {
+            "type": "autocomplete",
+            "name": "segment10",
+            "title": {
+              "en": "Room 10",
+              "da": "Rum 10",
+              "de": "Raum 10"
+            },
+            "placeholder": {
+              "en": "Select a room or None...",
+              "da": "Vælg et rum eller Ingen...",
+              "de": "Raum oder Keine..."
             }
           },
           {
@@ -2318,7 +2498,6 @@
         "measure_battery",
         "alarm_battery",
         "current_floor",
-        "vacuum_error",
         "alarm_error",
         "measure_clean_area_last",
         "measure_clean_duration_last",
@@ -2798,7 +2977,6 @@
         "measure_battery",
         "alarm_battery",
         "current_floor",
-        "vacuum_error",
         "alarm_error",
         "measure_clean_area_last",
         "measure_clean_duration_last",

@@ -1,6 +1,6 @@
 {
   "id": "name.fox.mads.valetudo",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -76,10 +76,10 @@
       "multi-etage"
     ]
   },
-  "source": "https://github.com/MadsSFox/homey-valetudo",
-  "homepage": "https://github.com/MadsSFox/homey-valetudo",
-  "support": "https://github.com/MadsSFox/homey-valetudo/issues",
+  "source": "https://github.com/MadsSFox/name.fox.mads.valetudo",
+  "homepage": "https://github.com/MadsSFox/name.fox.mads.valetudo",
+  "support": "https://github.com/MadsSFox/name.fox.mads.valetudo/issues",
   "bugs": {
-    "url": "https://github.com/MadsSFox/homey-valetudo/issues"
+    "url": "https://github.com/MadsSFox/name.fox.mads.valetudo/issues"
   }
 }

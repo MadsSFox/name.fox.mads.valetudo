@@ -158,6 +158,30 @@ describe('Driver flow card logic', () => {
       sinon.assert.calledWith(device.cleanSegment, '17', 2);
     });
 
+    it('clean_segments should pass multiple segment ids and iterations', async () => {
+      const card = mockFlowCard('action:clean_segments');
+      const device = { cleanMultipleSegments: sinon.stub().resolves() };
+      card.registerRunListener(async (args) => {
+        const segmentIds = ['segment1', 'segment2', 'segment3', 'segment4', 'segment5',
+          'segment6', 'segment7', 'segment8', 'segment9', 'segment10']
+          .map((k) => args[k])
+          .filter((s) => s && s.id !== '__none__')
+          .map((s) => s.id);
+        await args.device.cleanMultipleSegments(segmentIds, args.iterations || 1);
+      });
+
+      const none = { id: '__none__' };
+      await card._runListener({
+        device,
+        segment1: { id: '17' },
+        segment2: { id: '18' },
+        segment3: none, segment4: none, segment5: none,
+        segment6: none, segment7: none, segment8: none, segment9: none, segment10: none,
+        iterations: 2,
+      });
+      sinon.assert.calledWith(device.cleanMultipleSegments, ['17', '18'], 2);
+    });
+
     it('set_fan_speed should pass speed preset', async () => {
       const card = mockFlowCard('action:set_fan_speed');
       const device = { setFanSpeed: sinon.stub().resolves() };

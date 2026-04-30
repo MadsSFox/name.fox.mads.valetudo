@@ -191,7 +191,7 @@ Thanks to [Mark Haehnel](https://github.com/markhaehnel) for the **[original hom
 
 ## Source Code
 
-[GitHub Repository](https://github.com/MadsSFox/homey-valetudo)
+[GitHub Repository](https://github.com/MadsSFox/name.fox.mads.valetudo)
 
 ## License
 
